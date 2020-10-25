@@ -20,7 +20,7 @@ If the structure evolves over time, it leads to recurring changes in the code th
 
 ## Quickstart
 Copy 
-[datarestructor.js](https://github.com/JohT/data-reconstructor-js/blob/master/js/datarestructor.js) 
+[datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/js/datarestructor.js) 
 into your source folder. NPM is not yet supported (Oct. 2020).  
 
 ## Example
