@@ -28,6 +28,7 @@ var datarestructor = datarestructor || {};
  * @property {string} groupName - name of the property, that contains grouped entries. Default="group".
  * @property {string} groupPattern - Pattern that describes how to group entries. "groupName" defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}.
  * @property {string} groupDestinationPattern - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}.
+ * @property {string} groupDestinationName - (default=groupName) Name of the group when it had been moved to the destination.
  * @property {string} deduplicationPattern - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
  */
 
@@ -52,6 +53,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
       groupName: "group",
       groupPattern: "",
       groupDestinationPattern: "",
+      groupDestinationName: null,
       deduplicationPattern: "",
       getDisplayNameForPropertyName: null,
       getFieldNameForPropertyName: null,
@@ -134,6 +136,14 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
       return this;
     };
     /**
+     * Name of the group when it had been moved to the destination.
+     * The default value is the groupName, which will be used when the value is not valid (null or empty)
+     */
+    this.groupDestinationName = function (value) {
+      this.description.groupDestinationName = isSpecifiedString(value) ? value : this.description.groupName;
+      return this;
+    };
+    /**
      * Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
      * A pattern may contain variables in double curly brackets {{variable}}.
      */
@@ -148,6 +158,9 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
       }
       if (this.description.getFieldNameForPropertyName == null) {
         this.fieldName("");
+      }
+      if (this.description.groupDestinationName == null) {
+        this.groupDestinationName("");
       }
       return this.description;
     };
@@ -658,7 +671,10 @@ datarestructor.Restructor = (function () {
       if (entry._description.groupDestinationPattern != "") {
         var destinationKey = entry._identifier.groupDestinationId;
         if (groupedObject[destinationKey] != null) {
-          groupedObject[destinationKey][entry._description.groupName] = entry[entry._description.groupName];
+          var newGroup = entry[entry._description.groupName];
+          var existingGroup = groupedObject[destinationKey][entry._description.groupDestinationName]; //join if exists
+          var updatedGroup = existingGroup != null ? existingGroup.concat(newGroup) : newGroup;
+          groupedObject[destinationKey][entry._description.groupDestinationName] = updatedGroup;
           keysToDelete.push(key);
         }
       }

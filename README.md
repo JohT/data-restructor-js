@@ -258,10 +258,11 @@ same group will be put into. Example:
 
 ### 6. Moving groups (destination group):
 After grouping in step 5., every property containing a group and the remaining non-grouped properties 
-are listed one after another. To organize them further, groups can be moved to another (destination) group. <br/><br/>
+are listed one after another. To organize them further, a group can be moved beneath another (destination) group. <br/><br/>
 The `groupDestinationPattern` contains the pattern of the group to where the own group should be moved.
 Variables (listed below) are put into double curly brackets and will be replaced with the contents 
 of the description and the matching property.  
+Optionally, the `groupDestinationName` can be specified to rename the group when it is moved. Default is the value of `groupName`.
 Example, where the details group is moved to the summary, because the group destination pattern 
 of the details resolves to the same id as the resolved group pattern of the summary: 
    ```javascript
@@ -274,6 +275,7 @@ of the details resolves to the same id as the resolved group pattern of the summ
 
   var detailsDescription = new datarestructor.PropertyStructureDescriptionBuilder()
    .groupDestinationPattern("account--summary--{{index[0]}}--{{index[1]}}")
+   .groupDestinationName("details")
    ...
   ```
 
@@ -293,6 +295,7 @@ Additionally, single elements of the index can be used by specifying the index p
  * **groupName** - name of the property, that contains grouped entries. Default="group".
  * **groupPattern** - Pattern that describes how to group entries. "groupName" defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}.
  * **groupDestinationPattern** - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}.
+ * **groupDestinationName** - (default=groupName) Name of the group when it had been moved to the destination.
  * **deduplicationPattern** - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
 
 
@@ -307,7 +310,7 @@ Additionally, single elements of the index can be used by specifying the index p
 
 #### Described groups
  * **"name of described group"** as described in PropertyStructureDescription
- * **"names of moved groups"** as described in PropertyStructureDescription of another group that had been moved
+ * **"names of moved groups"** as described in PropertyStructureDescription of the group that had been moved
 
 #### Internal fields (should be avoided if possible, since they may change)
  * **isMatchingIndex** - true, if _identifier.index matches the described "indexStartsWith"
