@@ -459,12 +459,18 @@ datarestructor.Restructor = (function () {
    * Workflow: JSON -> flatten -> mark and identify -> add array fields -> deduplicate -> group -> flatten again
    * @param {object} jsonData - parsed JSON data or any other data object
    * @param {PropertyStructureDescription[]} descriptions - already grouped entries
+   * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
    */
-  function processJsonUsingDescriptions(jsonData, descriptions) {
+  function processJsonUsingDescriptions(jsonData, descriptions, debugMode) {
     // "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
     var processedData = flattenToArray(jsonData);
     // Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
     processedData = fillInArrayValues(processedData);
+
+    if ((typeof debugMode === "boolean") && debugMode) {
+      console.log("flattened data with array values:");
+      console.log(processedData);
+    }
 
     // Mark, identify and harmonize the flattened data by applying one description after another in their given order.
     var describedData = [];
