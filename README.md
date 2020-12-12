@@ -310,6 +310,7 @@ Additionally, single elements of the index can be used by specifying the index p
 
 #### Public functions
  * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets. Supported variables are all properties of this object, e.g. `"{{fieldName}}"`, `"{{displayName}}"`, `"{{value}}"`. The index can also be inserted using `"{{index}}"`, parts of the index using e.g. `"{{index[1]}}"`.
+ * **publicFieldsJson** - converts the public fields including grouped sub structures to JSON. The parameter "space" can be used to print a prettier JSON and will be directly used as third parameter for the call of `JSON.stringify`.
 
 #### Described groups
  * **"name of described group"** as described in PropertyStructureDescription
