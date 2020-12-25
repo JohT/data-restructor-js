@@ -289,6 +289,8 @@ Additionally, single elements of the index can be used by specifying the index p
 
  * **type** - ""(default). Some examples: "summary" for e.g. a list overview. "detail" e.g. when a summary is selected. "filter" e.g. for field/value pair results that can be selected as search parameters.
  * **category** - name of the category. Default = "". Could contain a symbol character or a short domain name. (e.g. "city")
+ * **abbreviation** - ""(default). One optional character, a symbol character or a short abbreviation of the category.
+ * **image** - ""(default). One optional path to an image resource.
  * **propertyPatternTemplateMode** - boolean "false"(default): property name needs to be equal to the pattern. "true" allows variables like "{{fieldname}}" inside the pattern.
  * **propertyPattern** - property name pattern (without array indices) to match
  * **indexStartsWith** - ""(default) matches all ids. String that needs to match the beginning of the id. E.g. "1." will match id="1.3.4" but not "0.1.2".
@@ -304,6 +306,8 @@ Additionally, single elements of the index can be used by specifying the index p
 #### Public fields
  * **category** - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * **type** - type of the result from PropertyStructureDescription
+ * **abbreviation** - one optional character, a symbol character or a short abbreviation of the category
+ * **image** - one optional path to an image resource
  * **displayName** - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * **fieldName** - field name extracted from the point separated hierarchical property name, e.g. "name"
  * **value** - content of the field
