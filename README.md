@@ -191,7 +191,9 @@ This can be used to categorize and filter properties.
 The description builder accepts these ways to configure property matching:
 
 - Equal Mode (default):  
-The property name needs to match the described pattern exactly. It is not needed to set equal mode.  
+The property name needs to match the described pattern exactly. It is not needed to set equal mode.
+The field name will be (by default) taken from the right most (after the last separator `.`) element of the property name.
+In the example below the field name will be "accountnumber".
 Example:
    ```javascript
    new datarestructor.PropertyStructureDescriptionBuilder()
@@ -202,7 +204,8 @@ Example:
 - Pattern Mode:  
 The property name needs to start with the described pattern. 
 The pattern may contain variables inside double curly brackets.  
-The variable `{{fieldName}}` is a special case which describes from where the fieldname should be taken.
+The variable `{{fieldName}}` is a special case which describes from where the field name should be taken.
+If `{{fieldName}}` is not specified, the field name will be taken from the right most (after the last separator `.`) element of the property name, which is the same behavior as in "Equal Mode".
 This mode needs to set using `propertyPatternTemplateMode`, since the default mode is `propertyPatternEqualMode`.
 Example:  
    ```javascript

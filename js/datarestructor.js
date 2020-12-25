@@ -251,7 +251,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
       if (match && match[1] != "") {
         return match[1];
       }
-      return value;
+      return rightMostPropertyNameElement(propertyname);
     };
   }
 
