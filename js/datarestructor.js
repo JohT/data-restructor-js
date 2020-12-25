@@ -186,7 +186,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
 
   function createNameExtractFunction(value, description) {
     if (isSpecifiedString(value)) {
-      return function (propertyname) {
+      return function (propertyName) {
         return value;
       };
     }
@@ -214,13 +214,13 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
     };
   }
 
-  function rightMostPropertyNameElement(propertyname) {
+  function rightMostPropertyNameElement(propertyName) {
     var regularExpression = new RegExp("(\\w+)$", "gi");
-    var match = propertyname.match(regularExpression);
+    var match = propertyName.match(regularExpression);
     if (match != null) {
       return match[0];
     }
-    return propertyname;
+    return propertyName;
   }
 
   function upperCaseFirstLetter(value) {
@@ -231,33 +231,33 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
   }
 
   function upperCaseFirstLetterForFunction(nameExtractFunction) {
-    return function (propertyname) {
-      return upperCaseFirstLetter(nameExtractFunction(propertyname));
+    return function (propertyName) {
+      return upperCaseFirstLetter(nameExtractFunction(propertyName));
     };
   }
 
   function removeArrayValuePropertyPostfixFunction(nameExtractFunction) {
-    return function (propertyname) {
-      var name = nameExtractFunction(propertyname);
+    return function (propertyName) {
+      var name = nameExtractFunction(propertyName);
       name = name != null ? name : "";
       return name.replace("_comma_separated_values", "");
     };
   }
 
   function extractNameUsingTemplatePattern(propertyPattern) {
-    return function (propertyname) {
+    return function (propertyName) {
       var regex = templateModePatternRegexForPatternAndVariable(propertyPattern, "{{fieldName}}");
-      var match = regex.exec(propertyname);
+      var match = regex.exec(propertyName);
       if (match && match[1] != "") {
         return match[1];
       }
-      return rightMostPropertyNameElement(propertyname);
+      return rightMostPropertyNameElement(propertyName);
     };
   }
 
   function extractNameUsingRightMostPropertyNameElement() {
-    return function (propertyname) {
-      return rightMostPropertyNameElement(propertyname);
+    return function (propertyName) {
+      return rightMostPropertyNameElement(propertyName);
     };
   }
 
@@ -378,11 +378,11 @@ datarestructor.DescribedEntryCreator = (function () {
       this._identifier
     );
     /**
-     * Resolves the given template. 
+     * Resolves the given template.
      * The template may contain variables in double curly brackets.
-     * Supported variables are all properties of this object, e.g. "{{fieldName}}", "{{displayName}}", "{{value}}". 
+     * Supported variables are all properties of this object, e.g. "{{fieldName}}", "{{displayName}}", "{{value}}".
      * The index can also be inserted using "{{index}}", parts of the index using e.g. "{{index[1]}}".
-     * @param {string} template 
+     * @param {string} template
      */
     this.resolveTemplate = function (template) {
       return replaceVariablesOfAll(replaceIndexVariables(template, indices, "index"), this, this._identifier);
@@ -531,7 +531,7 @@ datarestructor.DescribedEntryCreator = (function () {
    * and creates new objects for grouped structures (only one recursion level) to get rid of the circular structure
    * that would lead to the error message "TypeError: Converting circular structure to JSON".
    *
-   * @param {string}  key name of the property to be converted to JSON or empty for the whole object.
+   * @param {string} key name of the property to be converted to JSON or empty for the whole object.
    * @param {string} value value of the property to be converted to JSON.
    * @param {string[]} propertyNames array of strings containing only the public fields that will be converted to JSON.
    */
