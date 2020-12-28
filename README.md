@@ -295,17 +295,17 @@ Additionally, single elements of the index can be used by specifying the index p
  * **abbreviation** - ""(default). One optional character, a symbol character or a short abbreviation of the category.
  * **image** - ""(default). One optional path to an image resource.
  * **propertyPatternTemplateMode** - boolean "false"(default): property name needs to be equal to the pattern. "true" allows variables like "{{fieldname}}" inside the pattern.
- * **propertyPattern** - property name pattern (without array indices) to match
+ * **propertyPattern** - property name pattern (without array indices) to match. A pattern may contain variables in double curly brackets {{variable}}. See also: [variables](#public-fields), [further details](#public-functions)
  * **indexStartsWith** - ""(default) matches all ids. String that needs to match the beginning of the id. E.g. "1." will match id="1.3.4" but not "0.1.2".
  * **groupName** - name of the property, that contains grouped entries. Default="group".
- * **groupPattern** - Pattern that describes how to group entries. "groupName" defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}.
- * **groupDestinationPattern** - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}.
+ * **groupPattern** - Pattern that describes how to group entries. "groupName" defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}. See also: [variables](#public-fields), [further details](#public-functions)
+ * **groupDestinationPattern** - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}. See also: [variables](#public-fields), [further details](#public-functions)
  * **groupDestinationName** - (default=groupName) Name of the group when it had been moved to the destination.
- * **deduplicationPattern** - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
+ * **deduplicationPattern** - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}. See also: [variables](#public-fields), [further details](#public-functions)
 
 
-### DescribedEntry (output element)
-
+### DescribedEntry
+This is the structure of the main output element.
 #### Public fields
  * **category** - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * **type** - type of the result from PropertyStructureDescription
@@ -316,8 +316,11 @@ Additionally, single elements of the index can be used by specifying the index p
  * **value** - content of the field
 
 #### Public functions
- * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets. Supported variables are all properties of this object, e.g. `"{{fieldName}}"`, `"{{displayName}}"`, `"{{value}}"`. The index can also be inserted using `"{{index}}"`, parts of the index using e.g. `"{{index[1]}}"`.
- * **publicFieldsJson** - converts the public fields including grouped sub structures to JSON. The parameter "space" can be used to print a prettier JSON and will be directly used as third parameter for the call of `JSON.stringify`.
+ * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets.  
+   - All [public fields](#public-fields) can be used as variables, e.g. `"{{fieldName}}"`, `"{{displayName}}"`, `"{{value}}"`. 
+   - Further more, described groups that contain an array of [described entries](#DescribedEntry) can also be used, e.g. `"{{summaries[0].value}}"`. 
+   - Parts of the index can be inserted by using e.g. `"{{index[1]}}"`.
+ * **publicFieldsJson** - converts the public fields including described groups to JSON. The parameter named `space` can be used to print a prettier JSON and will be directly used as third parameter for the call of `JSON.stringify`.
 
 #### Described groups
  * **"name of described group"** as described in PropertyStructureDescription
