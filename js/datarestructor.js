@@ -355,7 +355,7 @@ datarestructor.DescribedEntryCreator = (function () {
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
     this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
     this.value = entry.value;
-    this._isMatchingIndex = indices.pointDelimited.startsWith(description.indexStartsWith);
+    this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
     this._description = description;
 
     this._identifier = {
@@ -454,8 +454,8 @@ datarestructor.DescribedEntryCreator = (function () {
    */
   function resolvableFieldsOfAll(varArgs) {
     var map = {};
-    var ignoreInternalFields = function (properyName) {
-      return !properyName.startsWith("_") && (properyName.indexOf("._") < 0);
+    var ignoreInternalFields = function (propertyName) {
+      return (propertyName.indexOf("_") != 0) && (propertyName.indexOf("._") < 0);
     };
     for (var index = 0; index < arguments.length; index+=1) {
       addToFilteredMapObject(datarestructor.InternalTools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
@@ -572,7 +572,7 @@ datarestructor.DescribedEntryCreator = (function () {
     if (typeof value !== "object" && propertyNames.indexOf(key) < 0 && key != "") {
       return undefined; // Remove all properties that are not contained in the given list.
     }
-    if (key.startsWith("_")) {
+    if (key.indexOf("_") == 0) {
       return undefined; //Remove all properties with a name beginning with an underscore (internal fields).
     }
     if (Array.isArray(value)) {
@@ -706,7 +706,7 @@ datarestructor.Restructor = (function () {
    * determined by the order of the array elements, whereas the first
    * array comes before the second one. This means, that entries with the
    * same id in the second array overwrite entries in the first array,
-   * and entries occuring later in the array overwrite earlier ones,
+   * and entries occurring later in the array overwrite earlier ones,
    * if they have the same id.
    *
    * "entriesToMerge" will be returned directly, if "entries" is null or empty.
@@ -815,9 +815,9 @@ datarestructor.Restructor = (function () {
     flattenedData.filter(function (entry) {
       var propertyNameWithoutArrayIndices = entry.name.replace(removeArrayBracketsRegEx, "");
       if (description.matchesPropertyName(propertyNameWithoutArrayIndices)) {
-        var descibedEntry = new datarestructor.DescribedEntryCreator(entry, description);
-        if (descibedEntry._isMatchingIndex) {
-          filtered.push(descibedEntry);
+        var describedEntry = new datarestructor.DescribedEntryCreator(entry, description);
+        if (describedEntry._isMatchingIndex) {
+          filtered.push(describedEntry);
         }
       }
     });
