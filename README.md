@@ -305,7 +305,7 @@ Additionally, single elements of the index can be used by specifying the index p
 
 
 ### DescribedEntry
-This is the structure of the main output element.
+This is the structure of a single main output element.
 #### Public fields
  * **category** - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * **type** - type of the result from PropertyStructureDescription
@@ -316,10 +316,11 @@ This is the structure of the main output element.
  * **value** - content of the field
 
 #### Public functions
- * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets.  
+ * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets:
    - All [public fields](#public-fields) can be used as variables, e.g. `"{{fieldName}}"`, `"{{displayName}}"`, `"{{value}}"`. 
-   - Further more, described groups that contain an array of [described entries](#DescribedEntry) can also be used, e.g. `"{{summaries[0].value}}"`. 
+   - Described groups that contain an array of [described entries](#DescribedEntry) can also be used, e.g. `"{{summaries[0].value}}"`. 
    - Parts of the index can be inserted by using e.g. `"{{index[1]}}"`.
+   - Besides the meta data, a described field can be used directly by its "fieldName", e.g. `"{{customernumber}}"` will be replaced by `123`, if the structure contains `fieldname="customernumber", value="123"`. This also applies to sub groups, e.g. `"{{details.customernumber}}"` will be replaced by `321`, if the structure contains `details[4].fieldname="customernumber", details[4].value="321"`.
  * **publicFieldsJson** - converts the public fields including described groups to JSON. The parameter named `space` can be used to print a prettier JSON and will be directly used as third parameter for the call of `JSON.stringify`.
 
 #### Described groups

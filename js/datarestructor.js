@@ -390,7 +390,7 @@ datarestructor.DescribedEntryCreator = (function () {
      * @returns {string} resolved template
      */
     this.resolveTemplate = function (template) {
-      return replaceResolvableFields(template, resolvableFieldsOfAll(this));
+      return replaceResolvableFields(template, addFieldsPerGroup(resolvableFieldsOfAll(this)));
     };
 
     /**
@@ -461,6 +461,46 @@ datarestructor.DescribedEntryCreator = (function () {
       addToFilteredMapObject(datarestructor.InternalTools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
     }
     return map;
+  }
+
+  /**
+   * Adds the value of the "fieldName" property (including its group prefix) and its associated "value" property content.
+   * For example: detail[2].fieldName="name", detail[2].value="Smith" lead to the additional property detail.name="Smith".
+   * @param {object} object with resolvable field names and their values.
+   * @returns {object} object with resolvable field names and their values.
+   */
+  function addFieldsPerGroup(map) {
+    var propertyNames = Object.keys(map);
+    var i, fullPropertyName, propertyInfo, propertyValue;
+    for (i = 0; i < propertyNames.length; i += 1) {
+      fullPropertyName = propertyNames[i];
+      propertyValue = map[fullPropertyName];
+      propertyInfo = getPropertyNameInfos(fullPropertyName);
+      // Ignore custom fields that are named "fieldName"(propertyValue), since this would lead to an unpredictable behavior.
+      if (propertyInfo.name == "fieldName" && propertyValue != "fieldName") {
+        map[propertyInfo.groupWithoutArrayIndices + propertyValue] = map[propertyInfo.group + "value"];
+      }
+    }
+    return map;
+  }
+
+  /**
+   * Infos about the full property name including the name of the group (followed by the separator) and the name of the property itself. 
+   * @param {String} fullPropertyName 
+   * @returns {Object} Contains "group" (empty or group name including trailing separator "."), "groupWithoutArrayIndices" and "name" (property name).
+   */
+  function getPropertyNameInfos(fullPropertyName) {
+    var positionOfRightMostSeparator = fullPropertyName.lastIndexOf(".");
+    var propertyName = fullPropertyName;
+    if (positionOfRightMostSeparator > 0) {
+      propertyName = fullPropertyName.substr(positionOfRightMostSeparator + 1);
+    }
+    var propertyGroup = "";
+    if (positionOfRightMostSeparator > 0) {
+      propertyGroup = fullPropertyName.substr(0, positionOfRightMostSeparator + 1); //includes the trailing ".".
+    }
+    var propertyGroupWithoutArrayIndices = propertyGroup.replace(removeArrayBracketsRegEx, "");
+    return {group: propertyGroup, groupWithoutArrayIndices: propertyGroupWithoutArrayIndices, name: propertyName};
   }
 
   /**
