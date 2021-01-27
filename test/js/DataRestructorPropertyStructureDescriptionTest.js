@@ -1,3 +1,5 @@
+var datarestructor = datarestructor || require("../../src/js/datarestructor.js"); // supports vanilla js & npm
+
 describe("datarestructor.PropertyStructureDescription", function () {
   var description;
 

@@ -1,0 +1,30 @@
+{
+  "name": "data-restructor",
+  "version": "2.3.0",
+  "description": "Transforms parsed JSON objects into a uniform data structure",
+  "main": "./src/js/datarestructor.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohT/data-restructor-js.git"
+  },
+  "keywords": [
+    "restruct",
+    "json",
+    "data"
+  ],
+  "author": "JohT",
+  "license": "SEE LICENCE IN LICENCE.txt",
+  "bugs": {
+    "url": "https://github.com/JohT/data-restructor-js/issues"
+  },
+  "homepage": "https://github.com/JohT/data-restructor-js#readme",
+  "devDependencies": {
+    "jasmine": "^3.6.4"
+  }
+}

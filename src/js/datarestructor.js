@@ -9,7 +9,8 @@
  * Workflow: JSON -> flatten -> mark and identify -> add array fields -> deduplicate -> group -> flatten again
  * @default {}
  */
-var datarestructor = datarestructor || {};
+var module = module || {}; // Fallback for vanilla js without modules
+var datarestructor = module.exports={}; // Export module for npm...
 
 /**
  * @callback propertyNameFunction

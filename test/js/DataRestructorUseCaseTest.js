@@ -1,5 +1,8 @@
 "use strict";
 
+var datarestructor = datarestructor || require("../../src/js/datarestructor.js"); // supports vanilla js & npm
+var testdata = testdata || require("./DataRestructorTestJsonData.js"); // supports vanilla js & npm
+
 describe("datarestructor.Restructor (use case)", function () {
   var jsonData;
   var restructorUnderTest;
