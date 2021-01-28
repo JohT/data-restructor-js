@@ -1,15 +1,17 @@
 /**
- * @fileOverview datarestructor for the web search client
+ * @fileOverview datarestructor Transforms parsed JSON objects into a uniform data structure
  * @version ${project.version}
  */
 
+ "use strict";
+var module = module || {}; // Fallback for vanilla js without modules
+
 /**
  * datarestructor namespace declaration.
- * It contains all functions to convert a JSON into enumerated list entries.
+ * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
  * Workflow: JSON -> flatten -> mark and identify -> add array fields -> deduplicate -> group -> flatten again
  * @default {}
  */
-var module = module || {}; // Fallback for vanilla js without modules
 var datarestructor = module.exports={}; // Export module for npm...
 
 /**
