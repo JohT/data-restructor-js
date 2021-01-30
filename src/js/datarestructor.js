@@ -6,6 +6,8 @@
  "use strict";
 var module = module || {}; // Fallback for vanilla js without modules
 
+//TODO must require internal_object_tools.flattenToArray
+//TODO fallback for "vanilla js" = include all scripts separatly
 /**
  * datarestructor namespace declaration.
  * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
@@ -13,6 +15,7 @@ var module = module || {}; // Fallback for vanilla js without modules
  * @default {}
  */
 var datarestructor = module.exports={}; // Export module for npm...
+var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
 
 /**
  * @callback propertyNameFunction
@@ -461,7 +464,7 @@ datarestructor.DescribedEntryCreator = (function () {
       return (propertyName.indexOf("_") != 0) && (propertyName.indexOf("._") < 0);
     };
     for (var index = 0; index < arguments.length; index+=1) {
-      addToFilteredMapObject(datarestructor.InternalTools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
+      addToFilteredMapObject(internal_object_tools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
     }
     return map;
   }
@@ -633,7 +636,7 @@ datarestructor.Restructor = (function () {
    */
   function processJsonUsingDescriptions(jsonData, descriptions, debugMode) {
     // "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
-    var processedData = datarestructor.InternalTools.flattenToArray(jsonData);
+    var processedData = internal_object_tools.flattenToArray(jsonData);
     // Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
     processedData = fillInArrayValues(processedData);
 
@@ -931,63 +934,4 @@ datarestructor.Restructor = (function () {
      */
     processJsonUsingDescriptions: processJsonUsingDescriptions
   };
-})();
-
-/**
- * InternalTools. Not meant to be called outside of "datarestructor".
- *
- * @namespace
- */
-datarestructor.InternalTools = (function () {
-  "use strict";
-  
-  /**
-   * @typedef {Object} NameValuePair
-   * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
-   * @property {string} value - value of the property
-   */
-  /**
-   * @param {object} data hierarchical object that may consist fo fields, subfields and arrays.
-   * @param {number} maxRecursionDepth 
-   * @returns {NameValuePair[]} array of property name and value pairs
-   */
-  //Modded (compatibility, recursion depth) version of:
-  //https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
-  function flattenToArray(data, maxRecursionDepth) {
-    var result = [];
-    if (typeof maxRecursionDepth !== "number" || maxRecursionDepth < 1) {
-      maxRecursionDepth = 20;
-    }
-    function recurse(cur, prop, depth) {
-      if ((depth > maxRecursionDepth) || (typeof cur === "function")){
-        return;
-      }
-      if (Object(cur) !== cur) {
-        result.push({ name: prop, value: cur });
-      } else if (Array.isArray(cur)) {
-        for (var i = 0, l = cur.length; i < l; i++) recurse(cur[i], prop + "[" + i + "]", depth + 1);
-        if (l == 0) {
-          result[prop] = [];
-          result.push({ name: prop, value: "" });
-        }
-      } else {
-        var isEmpty = true;
-        for (var p in cur) {
-          isEmpty = false;
-          recurse(cur[p], prop ? prop + "." + p : p, depth + 1);
-        }
-        if (isEmpty && prop) {
-          result.push({ name: prop, value: "" });
-        }
-      }
-    }
-    recurse(data, "", 0);
-    return result;
-  }
-
-  /**
-   * Public interface
-   * @scope datarestructor.InternalTools
-   */
-  return { flattenToArray: flattenToArray };
 })();
