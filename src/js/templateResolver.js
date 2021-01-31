@@ -37,7 +37,7 @@ template_resolver.Resolver = (function () {
      * @returns {string} resolved template
      */
     this.resolveTemplate = function (template) {
-      return replaceResolvableFields(template, addFieldsPerGroup(this.resolvableFieldsOfAll(this.sourceDataObject)));
+      return this.replaceResolvableFields(template, addFieldsPerGroup(this.resolvableFieldsOfAll(this.sourceDataObject)));
     };
     /**
      * Returns a map like object, that contains all resolvable fields and their values as properties.
@@ -52,7 +52,7 @@ template_resolver.Resolver = (function () {
      * @param {...object} varArgs variable count of parameters. Each parameter contains an object that fields should be resolvable for variables.
      * @returns {object} object with resolvable field names and their values.
      */
-    this.resolvableFieldsOfAll = function(varArgs) {
+    this.resolvableFieldsOfAll = function (varArgs) {
       var map = {};
       var ignoreInternalFields = function (propertyName) {
         return propertyName.indexOf("_") != 0 && propertyName.indexOf("._") < 0;
@@ -63,28 +63,27 @@ template_resolver.Resolver = (function () {
       }
       return map;
     };
-  }
-
-  /**
-   * Replaces all variables in double curly brackets, e.g. {{property}},
-   * with the value of that property from the resolvableProperties.
-   *
-   * Supported property types: string, number, boolean
-   * @param {string} stringContainingVariables
-   * @param {object[]} resolvableFields (name=value)
-   */
-  function replaceResolvableFields(stringContainingVariables, resolvableFields) {
-    var replaced = stringContainingVariables;
-    var propertyNames = Object.keys(resolvableFields);
-    var propertyIndex = 0;
-    var propertyName = "";
-    var propertyValue = "";
-    for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
-      propertyName = propertyNames[propertyIndex];
-      propertyValue = resolvableFields[propertyName];
-      replaced = replaced.replace("{{" + propertyName + "}}", propertyValue);
-    }
-    return replaced;
+    /**
+     * Replaces all variables in double curly brackets, e.g. {{property}},
+     * with the value of that property from the resolvableProperties.
+     *
+     * Supported property types: string, number, boolean
+     * @param {string} stringContainingVariables
+     * @param {object[]} resolvableFields (name=value)
+     */
+    this.replaceResolvableFields = function (stringContainingVariables, resolvableFields) {
+      var replaced = stringContainingVariables;
+      var propertyNames = Object.keys(resolvableFields);
+      var propertyIndex = 0;
+      var propertyName = "";
+      var propertyValue = "";
+      for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
+        propertyName = propertyNames[propertyIndex];
+        propertyValue = resolvableFields[propertyName];
+        replaced = replaced.replace("{{" + propertyName + "}}", propertyValue);
+      }
+      return replaced;
+    };
   }
 
   /**
@@ -100,7 +99,7 @@ template_resolver.Resolver = (function () {
       fullPropertyName = propertyNames[i];
       propertyValue = map[fullPropertyName];
       propertyInfo = getPropertyNameInfos(fullPropertyName);
-      // Supports fields that are defined by a property named "fieldName" (containing the name) 
+      // Supports fields that are defined by a property named "fieldName" (containing the name)
       // and a property named "value" inside the same sub object (containing its value).
       // Ignore custom fields that are named "fieldName"(propertyValue), since this would lead to an unpredictable behavior.
       // TODO could make "fieldName" and "value" configurable
@@ -154,4 +153,4 @@ template_resolver.Resolver = (function () {
    * @scope template_resolver.Resolver
    */
   return Resolver;
-}());
+})();

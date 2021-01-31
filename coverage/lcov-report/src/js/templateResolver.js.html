@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/js/templateResolver.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/js/</a> templateResolver.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>56/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.44% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>17/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>56/56</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">961×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">961×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">961×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">129712×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">8396×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">961×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-yes">65002×</span>
+<span class="cline-any cline-yes">65002×</span>
+<span class="cline-any cline-yes">65002×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-yes">314×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8396×</span>
+<span class="cline-any cline-yes">8396×</span>
+<span class="cline-any cline-yes">129712×</span>
+<span class="cline-any cline-yes">129712×</span>
+<span class="cline-any cline-yes">76130×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8396×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+/**
+ * @fileOverview Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
+ * @version ${project.version}
+ */
+var module = module || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span> // Fallback for vanilla js without modules
+&nbsp;
+/**
+ * template_resolver.
+ * @default {}
+ */
+var template_resolver = (module.exports = {}); // Export module for npm...
+var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js &amp; npm
+&nbsp;
+/**
+ * Resolver. Is used inside this repository. It could also be used outside.
+ *
+ * @namespace
+ */
+template_resolver.Resolver = (function () {
+  var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
+&nbsp;
+  /**
+   * Constructor function and container for everything, that needs to exist per instance.
+   */
+  function Resolver(sourceDataObject) {
+    this.sourceDataObject = sourceDataObject;
+    /**
+     * Resolves the given template.
+     *
+     * The template may contain variables in double curly brackets.
+     * Supported variables are all properties of this object, e.g. "{{fieldName}}", "{{displayName}}", "{{value}}".
+     * Since this object may also contains (described) groups of sub objects, they can also be used, e.g. "{{summaries[0].value}}"
+     * Parts of the index can be inserted by using e.g. "{{index[1]}}".
+     *
+     * @param {string} template
+     * @returns {string} resolved template
+     */
+    this.resolveTemplate = function (template) {
+      return this.replaceResolvableFields(template, addFieldsPerGroup(this.resolvableFieldsOfAll(this.sourceDataObject)));
+    };
+    /**
+     * Returns a map like object, that contains all resolvable fields and their values as properties.
+     * This function takes a variable count of input parameters,
+     * each containing an object that contains resolvable fields to extract from.
+     *
+     * The recursion depth is limited to 3, so that an object,
+     * that contains an object can contain another object (but not further).
+     *
+     * Properties beginning with an underscore in their name will be filtered out, since they are considered as internal fields.
+     *
+     * @param {...object} varArgs variable count of parameters. Each parameter contains an object that fields should be resolvable for variables.
+     * @returns {object} object with resolvable field names and their values.
+     */
+    this.resolvableFieldsOfAll = function (varArgs) {
+      var map = {};
+      var ignoreInternalFields = function (propertyName) {
+        return propertyName.indexOf("_") != 0 &amp;&amp; propertyName.indexOf("._") &lt; 0;
+      };
+      var index;
+      for (index = 0; index &lt; arguments.length; index += 1) {
+        addToFilteredMapObject(internal_object_tools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
+      }
+      return map;
+    };
+    /**
+     * Replaces all variables in double curly brackets, e.g. {{property}},
+     * with the value of that property from the resolvableProperties.
+     *
+     * Supported property types: string, number, boolean
+     * @param {string} stringContainingVariables
+     * @param {object[]} resolvableFields (name=value)
+     */
+    this.replaceResolvableFields = function (stringContainingVariables, resolvableFields) {
+      var replaced = stringContainingVariables;
+      var propertyNames = Object.keys(resolvableFields);
+      var propertyIndex = 0;
+      var propertyName = "";
+      var propertyValue = "";
+      for (propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex += 1) {
+        propertyName = propertyNames[propertyIndex];
+        propertyValue = resolvableFields[propertyName];
+        replaced = replaced.replace("{{" + propertyName + "}}", propertyValue);
+      }
+      return replaced;
+    };
+  }
+&nbsp;
+  /**
+   * Adds the value of the "fieldName" property (including its group prefix) and its associated "value" property content.
+   * For example: detail[2].fieldName="name", detail[2].value="Smith" lead to the additional property detail.name="Smith".
+   * @param {object} object with resolvable field names and their values.
+   * @returns {object} object with resolvable field names and their values.
+   */
+  function addFieldsPerGroup(map) {
+    var propertyNames = Object.keys(map);
+    var i, fullPropertyName, propertyInfo, propertyValue;
+    for (i = 0; i &lt; propertyNames.length; i += 1) {
+      fullPropertyName = propertyNames[i];
+      propertyValue = map[fullPropertyName];
+      propertyInfo = getPropertyNameInfos(fullPropertyName);
+      // Supports fields that are defined by a property named "fieldName" (containing the name)
+      // and a property named "value" inside the same sub object (containing its value).
+      // Ignore custom fields that are named "fieldName"(propertyValue), since this would lead to an unpredictable behavior.
+      // TODO could make "fieldName" and "value" configurable
+      if (propertyInfo.name === "fieldName" &amp;&amp; propertyValue !== "fieldName") {
+        map[propertyInfo.groupWithoutArrayIndices + propertyValue] = map[propertyInfo.group + "value"];
+      }
+    }
+    return map;
+  }
+&nbsp;
+  /**
+   * Infos about the full property name including the name of the group (followed by the separator) and the name of the property itself.
+   * @param {String} fullPropertyName
+   * @returns {Object} Contains "group" (empty or group name including trailing separator "."), "groupWithoutArrayIndices" and "name" (property name).
+   */
+  function getPropertyNameInfos(fullPropertyName) {
+    var positionOfRightMostSeparator = fullPropertyName.lastIndexOf(".");
+    var propertyName = fullPropertyName;
+    if (positionOfRightMostSeparator &gt; 0) {
+      propertyName = fullPropertyName.substr(positionOfRightMostSeparator + 1);
+    }
+    var propertyGroup = "";
+    if (positionOfRightMostSeparator &gt; 0) {
+      propertyGroup = fullPropertyName.substr(0, positionOfRightMostSeparator + 1); //includes the trailing ".".
+    }
+    var propertyGroupWithoutArrayIndices = propertyGroup.replace(removeArrayBracketsRegEx, "");
+    return { group: propertyGroup, groupWithoutArrayIndices: propertyGroupWithoutArrayIndices, name: propertyName };
+  }
+&nbsp;
+  /**
+   * Collects all flattened name-value-pairs into one object using the property names as keys and their values as values (map-like).
+   * Example: `{name: "accountNumber", value: "12345"}` becomes `mapObject["accountNumber"]="12345"`.
+   *
+   * @param {NameValuePair[]} elements flattened array of name-value-pairs
+   * @param {object} mapObject container to collect the results. Needs to be created before e.g. using `{}`.
+   * @param {function} filterMatchesFunction takes the property name as string argument and returns true (include) or false (exclude).
+   */
+  function addToFilteredMapObject(elements, mapObject, filterMatchesFunction) {
+    var index, element;
+    for (index = 0; index &lt; elements.length; index += 1) {
+      element = elements[index];
+      if (typeof filterMatchesFunction === "function" &amp;&amp; filterMatchesFunction(element.name)) {
+        mapObject[element.name] = element.value;
+      }
+    }
+    return mapObject;
+  }
+&nbsp;
+  /**
+   * Public interface
+   * @scope template_resolver.Resolver
+   */
+  return Resolver;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 31 2021 09:41:20 GMT+0100 (Central European Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

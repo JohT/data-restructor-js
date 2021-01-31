@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "jasmine",
-    "dev": "parcel ./src/js/datarestructor.js ./src/js/datarestructor-ie.js",
-    "build": "parcel build ./src/js/datarestructor.js ./src/js/datarestructor-ie.js"
+    "coverage": "nyc npm run test",
+    "dev":  "parcel ./src/js/datarestructor.js",
+    "build": "parcel build ./src/js/datarestructor.js ./src/js/datarestructor-ie.js ./src/js/templateResolver.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   "homepage": "https://github.com/JohT/data-restructor-js#readme",
   "devDependencies": {
     "jasmine": "^3.6.4",
+    "nyc": "^15.1.0",
     "parcel-bundler": "^1.12.4"
   }
 }
