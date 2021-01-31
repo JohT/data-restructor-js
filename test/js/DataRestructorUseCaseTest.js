@@ -5,11 +5,9 @@ var testdata = testdata || require("./DataRestructorTestJsonData.js"); // suppo
 
 describe("datarestructor.Restructor (use case)", function () {
   var jsonData;
-  var restructorUnderTest;
 
   beforeEach(function () {
     jsonData = testdata.UserCase.getJson();
-    restructorUnderTest = datarestructor.Restructor;
   });
 
   //strictly speaking, this is not a unit test. It could be seen as integration test.
@@ -26,7 +24,7 @@ describe("datarestructor.Restructor (use case)", function () {
       descriptions.push(detailsDescription());
       descriptions.push(filtersDescription());
       descriptions.push(filterCountsDescription());
-      restructorResults = restructorUnderTest.processJsonUsingDescriptions(jsonData, descriptions);
+      restructorResults = datarestructor.Restructor.processJsonUsingDescriptions(jsonData, descriptions);
     });
 
     afterEach(function () {

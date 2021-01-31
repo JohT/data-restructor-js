@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: datarestructor.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: datarestructor.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
  * @author JohT
@@ -11,7 +39,7 @@ var module = module || {}; // Fallback for vanilla js without modules
  * datarestructor namespace and module declaration.
  * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
  * 
- * <b>Transformation steps:</b>
+ * &lt;b>Transformation steps:&lt;/b>
  * - JSON
  * - flatten
  * - mark and identify
@@ -23,8 +51,8 @@ var module = module || {}; // Fallback for vanilla js without modules
  */
 var datarestructor = module.exports={}; // Export module for npm...
 
-var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
-var template_resolver = template_resolver || require("../../src/js/templateResolver"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js &amp; npm
+var template_resolver = template_resolver || require("../../src/js/templateResolver"); // supports vanilla js &amp; npm
 
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
@@ -402,7 +430,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
     return function (propertyName) {
       var regex = templateModePatternRegexForPatternAndVariable(propertyPattern, "{{fieldName}}");
       var match = regex.exec(propertyName);
-      if (match && match[1] != "") {
+      if (match &amp;&amp; match[1] != "") {
         return match[1];
       }
       return rightMostPropertyNameElement(propertyName);
@@ -440,7 +468,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
   }
 
   function isSpecifiedString(value) {
-    return typeof value === "string" && value != null && value != "";
+    return typeof value === "string" &amp;&amp; value != null &amp;&amp; value != "";
   }
 
   return PropertyStructureDescription;
@@ -609,9 +637,9 @@ datarestructor.DescribedEntryCreator = (function () {
     var propertyIndex;
     var propertyName;
     var propertyNames = Object.keys(obj);
-    for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
+    for (propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex += 1) {
       propertyName = propertyNames[propertyIndex];
-      if (typeof obj[propertyName] !== "object" && typeof obj[propertyName] !== "function") {
+      if (typeof obj[propertyName] !== "object" &amp;&amp; typeof obj[propertyName] !== "function") {
         result.push(propertyName);
       }
     }
@@ -645,7 +673,7 @@ datarestructor.DescribedEntryCreator = (function () {
    * @param {string[]} propertyNames array of strings containing only the public fields that will be converted to JSON.
    */
   function onlyDefinedPublicFields(key, value, propertyNames) {
-    if (typeof value !== "object" && propertyNames.indexOf(key) < 0 && key != "") {
+    if (typeof value !== "object" &amp;&amp; propertyNames.indexOf(key) &lt; 0 &amp;&amp; key != "") {
       return undefined; // Remove all properties that are not contained in the given list.
     }
     if (key.indexOf("_") == 0) {
@@ -655,10 +683,10 @@ datarestructor.DescribedEntryCreator = (function () {
       var index, propertyIndex;
       var entry, clonedEntry;
       var clonedArray = [];
-      for (index = 0; index < value.length; index += 1) {
+      for (index = 0; index &lt; value.length; index += 1) {
         entry = value[index];
         clonedEntry = {};
-        for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
+        for (propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex += 1) {
           clonedEntry[propertyNames[propertyIndex]] = entry[propertyNames[propertyIndex]];
         }
         clonedArray.push(clonedEntry);
@@ -724,7 +752,7 @@ datarestructor.Transform = (function () {
     // Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
     processedData = fillInArrayValues(processedData);
 
-    if ((typeof debugMode === "boolean") && debugMode) {
+    if ((typeof debugMode === "boolean") &amp;&amp; debugMode) {
       console.log("flattened data with array values:");
       console.log(processedData);
     }
@@ -732,7 +760,7 @@ datarestructor.Transform = (function () {
     // Mark, identify and harmonize the flattened data by applying one description after another in their given order.
     var describedData = [];
     var descriptionIndex, description, dataWithDescription;
-    for (descriptionIndex = 0; descriptionIndex < descriptions.length; descriptionIndex+=1) {
+    for (descriptionIndex = 0; descriptionIndex &lt; descriptions.length; descriptionIndex+=1) {
       description = descriptions[descriptionIndex];
       // Filter all entries that match the current description and enrich them with it
       dataWithDescription = extractEntriesByDescription(processedData, description);
@@ -774,14 +802,14 @@ datarestructor.Transform = (function () {
     var entriesToMergeById = asIdBasedObject(entriesToMerge, idOfElementFunction);
     var merged = [];
     var index, entry, id;
-    for (index = 0; index < entries.length; index+=1) {
+    for (index = 0; index &lt; entries.length; index+=1) {
       entry = entries[index];
       id = idOfElementFunction(entry);
       if (id == null || id === "" || entriesToMergeById[id] == null) {
         merged.push(entry);
       }
     }
-    for (index = 0; index < entriesToMerge.length; index+=1) {
+    for (index = 0; index &lt; entriesToMerge.length; index+=1) {
       entry = entriesToMerge[index];
       merged.push(entry);
     }
@@ -830,7 +858,7 @@ datarestructor.Transform = (function () {
    */
   function asIdBasedObject(elements, idOfElementFunction) {
     var idIndexedObject = new Object();
-    for (var index = 0; index < elements.length; index++) {
+    for (var index = 0; index &lt; elements.length; index++) {
       var element = elements[index];
       idIndexedObject[idOfElementFunction(element)] = element;
     }
@@ -873,7 +901,7 @@ datarestructor.Transform = (function () {
    */
   function groupById(elements, groupIdOfElementFunction, groupNameOfElementFunction) {
     var groupedResult = new Object();
-    for (var index = 0; index < elements.length; index++) {
+    for (var index = 0; index &lt; elements.length; index++) {
       var element = elements[index];
       var groupId = groupIdOfElementFunction(element);
       if (groupId === "") {
@@ -930,7 +958,7 @@ datarestructor.Transform = (function () {
   function applyGroupDestinationPattern(groupedObject) {
     var keys = Object.keys(groupedObject);
     var keysToDelete = [];
-    for (var index = 0; index < keys.length; index++) {
+    for (var index = 0; index &lt; keys.length; index++) {
       var key = keys[index];
       var entry = groupedObject[key];
       if (entry._description.groupDestinationPattern != "") {
@@ -945,7 +973,7 @@ datarestructor.Transform = (function () {
       }
     }
     // delete all moved entries that had been collected by their key
-    for (var index = 0; index < keysToDelete.length; index++) {
+    for (var index = 0; index &lt; keysToDelete.length; index++) {
       var keyToDelete = keysToDelete[index];
       delete groupedObject[keyToDelete];
     }
@@ -993,7 +1021,7 @@ datarestructor.Transform = (function () {
   function propertiesAsArray(groupedData) {
     var result = [];
     var propertyNames = Object.keys(groupedData);
-    for (var propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex++) {
+    for (var propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex++) {
       var propertyName = propertyNames[propertyIndex];
       var propertyValue = groupedData[propertyName];
       result.push(propertyValue);
@@ -1022,4 +1050,26 @@ datarestructor.Restructor.processJsonUsingDescriptions = function(jsonData, desc
     restructor.enableDebugMode();
   }
   return restructor.processJson(jsonData);
-};
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue Feb 02 2021 21:16:09 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -7,10 +7,13 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jasmine",
+    "prebuild": "rm -rf dist",
+    "test": "jasmine --config=./test/js/jasmine.json",
     "coverage": "nyc npm run test",
-    "dev":  "parcel ./src/js/datarestructor.js",
-    "build": "parcel build ./src/js/datarestructor.js ./src/js/datarestructor-ie.js ./src/js/templateResolver.js"
+    "doc": "jsdoc -d docs --configure ./docs/jsdoc.json ./src/js/datarestructor.js",
+    "dev": "parcel ./src/js/datarestructor.js",
+    "build": "parcel build ./src/js/datarestructor.js ./src/js/datarestructor-ie.js ./src/js/templateResolver.js",
+    "package": "npm run build && (npm run coverage & npm run doc)"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
   "homepage": "https://github.com/JohT/data-restructor-js#readme",
   "devDependencies": {
     "jasmine": "^3.6.4",
+    "jsdoc": "^3.6.6",
     "nyc": "^15.1.0",
     "parcel-bundler": "^1.12.4"
   }
