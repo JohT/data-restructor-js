@@ -8,12 +8,12 @@
   },
   "scripts": {
     "prebuild": "rm -rf dist",
-    "lint": "eslint \"./src/js/**\"",
-    "test": "jasmine --config=./test/js/jasmine.json",
-    "coverage": "nyc npm run test",
-    "doc": "jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
-    "dev": "parcel --out-dir devdist ./src/js/*.js",
-    "build": "parcel build ./src/js/*.js",
+    "lint": "$(npm bin)/eslint \"./src/js/**\"",
+    "test": "$(npm bin)/jasmine --config=./test/js/jasmine.json",
+    "coverage": "$(npm bin)/nyc npm run test",
+    "doc": "$(npm bin)/jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
+    "dev": "$(npm bin)/parcel --out-dir devdist ./src/js/*.js",
+    "build": "$(npm bin)/parcel build ./src/js/*.js",
     "package": "(npm run coverage & npm run lint & npm run doc) && npm run build"
   },
   "repository": {
