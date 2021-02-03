@@ -17,6 +17,8 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm install parcel-bundler --save-dev` Adds parcel-bundler as development dependency.
 - `npm install nyc --save-dev` Setup code coverage reports (successor of"istanbul")
 - `npm install jsdoc --save-dev` Setup JavaScript Documentation (JSDoc)
+- `npm install eslint --save-dev` Setup linter (static code quality analyzer)
+- `npx eslint --init` Initialize linter configuration file
 - `npm audit fix` Fixes vulnerabilities
 
 ## Further steps:

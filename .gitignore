@@ -64,3 +64,6 @@ build/Release
 
 # nyc (formerly known as istanbul) test coverage data
 .nyc_output
+
+# development build directory
+devdist/

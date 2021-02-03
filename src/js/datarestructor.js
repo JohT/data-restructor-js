@@ -315,7 +315,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
      * @example deduplicationPattern("{{category}}--{{type}}--{{index[0]}}--{{index[1]}}--{{fieldName}}")
      */
     this.deduplicationPattern = function (value) {
-      this.description.deduplicationPattern = withDefault(value, "");;
+      this.description.deduplicationPattern = withDefault(value, "");
       return this;
     };
     /**
@@ -340,7 +340,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
 
   function createNameExtractFunction(value, description) {
     if (isSpecifiedString(value)) {
-      return function (propertyName) {
+      return function () {
         return value;
       };
     }
@@ -354,7 +354,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
   function createFunctionMatchesPropertyName(description) {
     var propertyPatternToMatch = description.propertyPattern; // closure (closed over) parameter
     if (!isSpecifiedString(propertyPatternToMatch)) {
-      return function (propertyNameWithoutArrayIndices) {
+      return function () {
         return false; // Without a propertyPattern, no property will match (deactivated mark/identify).
       };
     }
@@ -679,7 +679,7 @@ datarestructor.Transform = (function () {
 
   /**
    * Constructor function and container for anything, that needs to exist per instance.
-   * @param {DescribedEntry[]} descriptions
+   * @param {PropertyStructureDescription[]} descriptions
    * @constructs Transform
    */
   function Transform(descriptions) {
@@ -697,15 +697,19 @@ datarestructor.Transform = (function () {
      * Enables debug mode. Logs additional informations.
      * @returns Transform
      */
-    this.enableDebugMode = function() {
+    this.enableDebugMode = function () {
       this.debugMode = true;
       return this;
     };
     /**
      * "Assembly line", that takes the (pared JSON) data and processes it using all given descriptions in their given order.
      * @param {object} data - parsed JSON data or any other data object
-     * @param {PropertyStructureDescription[]} descriptions - already grouped entries
-     * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
+     * @returns {DescribedEntry[]}
+     * @example 
+     * var allDescriptions = [];
+     * allDescriptions.push(summariesDescription());
+     * allDescriptions.push(detailsDescription());
+     * var result = new datarestructor.Transform(allDescriptions).processJson(jsonData);
      */
     this.processJson = function (data) {
       return processJsonUsingDescriptions(data, this.descriptions, this.debugMode);
@@ -717,6 +721,7 @@ datarestructor.Transform = (function () {
    * @param {object} jsonData - parsed JSON data or any other data object
    * @param {PropertyStructureDescription[]} descriptions - already grouped entries
    * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
+   * @returns {DescribedEntry[]}
    */
   function processJsonUsingDescriptions(jsonData, descriptions, debugMode) {
     // "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
@@ -945,7 +950,7 @@ datarestructor.Transform = (function () {
       }
     }
     // delete all moved entries that had been collected by their key
-    for (var index = 0; index < keysToDelete.length; index++) {
+    for (index = 0; index < keysToDelete.length; index+=1) {
       var keyToDelete = keysToDelete[index];
       delete groupedObject[keyToDelete];
     }
@@ -1007,6 +1012,11 @@ datarestructor.Transform = (function () {
 /**
  * Main fassade for the data restructor as static function(s).
  * 
+ * @example 
+ * var allDescriptions = [];
+ * allDescriptions.push(summariesDescription());
+ * allDescriptions.push(detailsDescription());
+ * var result = datarestructor.Restructor.processJsonUsingDescriptions(jsonData, allDescriptions);
  * @namespace
  */
 datarestructor.Restructor = {};
@@ -1015,6 +1025,7 @@ datarestructor.Restructor = {};
  * @param {object} jsonData - parsed JSON data or any other data object
  * @param {PropertyStructureDescription[]} descriptions - already grouped entries
  * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
+ * @returns {DescribedEntry[]}
  */
 datarestructor.Restructor.processJsonUsingDescriptions = function(jsonData, descriptions, debugMode) {
   var restructor = new datarestructor.Transform(descriptions);
