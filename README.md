@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
+![Branches](https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg)
 
 # data-reconstructor-js
 

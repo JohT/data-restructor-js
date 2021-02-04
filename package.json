@@ -11,10 +11,11 @@
     "lint": "$(npm bin)/eslint \"./src/js/**\"",
     "test": "$(npm bin)/jasmine --config=./test/js/jasmine.json",
     "coverage": "$(npm bin)/nyc npm run test",
+    "coverage-badge": "istanbul-badges-readme",
     "doc": "$(npm bin)/jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
     "dev": "$(npm bin)/parcel --out-dir devdist ./src/js/*.js",
     "build": "$(npm bin)/parcel build ./src/js/*.js",
-    "package": "(npm run coverage & npm run lint & npm run doc) && npm run build"
+    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run build"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
   "homepage": "https://github.com/JohT/data-restructor-js#readme",
   "devDependencies": {
     "eslint": "^7.19.0",
+    "istanbul-badges-readme": "^1.2.0",
     "jasmine": "^3.6.4",
     "jsdoc": "^3.6.6",
     "nyc": "^15.1.0",

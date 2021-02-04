@@ -3,6 +3,7 @@
 Overview of the commands to test, run and build this project as well as those that were used to setup it.
 
 ## Commands to test, run and build the project:
+- `npm install` Installs all dependencies and creates the folder `node_modules`, that is needed for all following commands.
 - `npm run package` Runs all steps incl. test, coverage, doc generation and build
 - `npm run coverage` Run all unit tests (using jasmine) **with** reporting coverage (using nyc/istanbul)
 - `npm test` Only all unit tests (using jasmine) **without** coverage report
@@ -19,6 +20,7 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm install jsdoc --save-dev` Setup JavaScript Documentation (JSDoc)
 - `npm install eslint --save-dev` Setup linter (static code quality analyzer)
 - `npx eslint --init` Initialize linter configuration file
+- `npm install istanbul-badges-readme --save-dev` Setup for code coverage badge for README.MD.
 - `npm audit fix` Fixes vulnerabilities
 
 ## Further steps:
