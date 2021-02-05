@@ -1,6 +1,12 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
 ![Branches](https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg)
+![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
+![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
+![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
+![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-destructor-js/dev/jsdoc)
+![nyc](https://img.shields.io/github/package-json/dependency-version/JohT/data-destructor-js/dev/nyc)
+![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-destructor-js/dev/parcel-bundler)
 
 # data-reconstructor-js
 
@@ -8,25 +14,38 @@ When parsing JSON on client-side, the structure of it attracts most of our atten
 If the structure evolves over time, it leads to recurring changes in the code that depends on it.
 
 ## Features:
-* Adapter that takes e.g. parsed JSON and transforms it into a standardized structure
+* Adapter that takes e.g. parsed JSON and transforms it into a uniform structure
 * Multiple transformation steps including flattening, removing duplicates, grouping, ...
-* Takes descriptions that reflect the incoming structure and define the standardized output
+* Takes descriptions that reflect the incoming structure and define the uniform output
 * Reusable and flexible
-* Supports most browser including ie5
+* Supports most browser including IE 5
 
-## not intended to be used when 
+## Not intended to be used when 
 * a "backend for frontend" exists, that is responsible for delivering the structure and content the way the client needs it.
 * the structure of the data is already stable, well abstracted and/or rather generic. 
 * the code, that depends on the structure of the data, can easily be changed (only a view lines, same team, ...).
 
 ## Quickstart
-Copy 
-[datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/js/datarestructor.js) 
-into your source folder. NPM is not yet supported (Oct. 2020).  
+The sources can be found inside the
+[source folder](https://github.com/JohT/data-restructor-js/tree/master/src/):
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/datarestructor.js) 
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js) 
+
+The built versions can be found inside the 
+[distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js) 
+- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility incl. IE)
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver.js) 
+- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility incl. IE)
+
+## Code Documentation
+The code documentation generated using [JSDoc](https://jsdoc.app) can be found inside the 
+[documentation folder](https://github.com/JohT/data-restructor-js/tree/master/doc/).
 
 ## Example
-As a starting point you may have a look at the following example.
-
+As a starting point you may have a look at the following example.   
+A running, comprehensive example can be found here: 
+[DataRestructorUseCaseTest.js](https://github.com/JohT/data-restructor-js/blob/master/test/js/DataRestructorUseCaseTest.js)
 ### Input Object
 ```json
 {
