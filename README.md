@@ -4,9 +4,10 @@
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
-![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-destructor-js/dev/jsdoc)
-![nyc](https://img.shields.io/github/package-json/dependency-version/JohT/data-destructor-js/dev/nyc)
-![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-destructor-js/dev/parcel-bundler)
+![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc)
+![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc)
+![nyc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc)
+![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel-bundler)
 
 # data-reconstructor-js
 
