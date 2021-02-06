@@ -1,6 +1,6 @@
 "use strict";
 
-var testdata = {};
+var testdata = module.exports={} || {};
 
 testdata.UserCase = function () {
   function getJson() {

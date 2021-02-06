@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+<img src="https://img.shields.io/github/languages/top/JohT/data-restructor-js" alt="Language">
+<img src="https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg" alt="Branches"></p>
+<h1>data-reconstructor-js</h1>
+<p>When parsing JSON on client-side, the structure of it attracts most of our attention.<br>
+If the structure evolves over time, it leads to recurring changes in the code that depends on it.</p>
+<h2>Features:</h2>
+<ul>
+<li>Adapter that takes e.g. parsed JSON and transforms it into a standardized structure</li>
+<li>Multiple transformation steps including flattening, removing duplicates, grouping, ...</li>
+<li>Takes descriptions that reflect the incoming structure and define the standardized output</li>
+<li>Reusable and flexible</li>
+<li>Supports most browser including ie5</li>
+</ul>
+<h2>not intended to be used when</h2>
+<ul>
+<li>a &quot;backend for frontend&quot; exists, that is responsible for delivering the structure and content the way the client needs it.</li>
+<li>the structure of the data is already stable, well abstracted and/or rather generic.</li>
+<li>the code, that depends on the structure of the data, can easily be changed (only a view lines, same team, ...).</li>
+</ul>
+<h2>Quickstart</h2>
+<p>Copy
+<a href="https://github.com/JohT/data-restructor-js/blob/master/js/datarestructor.js">datarestructor.js</a>
+into your source folder. NPM is not yet supported (Oct. 2020).</p>
+<h2>Example</h2>
+<p>As a starting point you may have a look at the following example.</p>
+<h3>Input Object</h3>
+<pre class="prettyprint source lang-json"><code>{
+    &quot;responses&quot;: [
+        {
+            &quot;hits&quot;: {
+                &quot;total&quot;: {
+                    &quot;value&quot;: 1
+                },
+                &quot;hits&quot;: [
+                    {
+                        &quot;_source&quot;: {
+                            &quot;iban&quot;: &quot;AT424321012345678901&quot;,
+                            &quot;accountnumber&quot;: &quot;12345678901&quot;,
+                            &quot;customernumber&quot;: &quot;00001234567&quot;,
+                            &quot;currency&quot;: &quot;USD&quot;,
+                            &quot;tags&quot;: [
+                                &quot;active&quot;,
+                                &quot;online&quot;
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+</code></pre>
+<h3>Code</h3>
+<pre class="prettyprint source lang-javascript"><code>function restructureJson(jsonData) {
+  var allDescriptions = [];
+  allDescriptions.push(summariesDescription());
+  allDescriptions.push(detailsDescription());
+  return datarestructor.Restructor.processJsonUsingDescriptions(jsonData, allDescriptions));
+}
+
+function summariesDescription() {
+  return new datarestructor.PropertyStructureDescriptionBuilder()
+    .type(&quot;summary&quot;)
+    .category(&quot;account&quot;)
+    .propertyPatternEqualMode()
+    .propertyPattern(&quot;responses.hits.hits._source.accountnumber&quot;)
+    .groupName(&quot;summaries&quot;)
+    .groupPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}&quot;)
+    .build();
+}
+
+function detailsDescription() {
+  return new datarestructor.PropertyStructureDescriptionBuilder()
+    .type(&quot;detail&quot;)
+    .category(&quot;account&quot;)
+    .propertyPatternTemplateMode()
+    .propertyPattern(&quot;responses.hits.hits._source.{{fieldName}}&quot;)
+    .groupName(&quot;details&quot;)
+    .groupPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}&quot;)
+    .groupDestinationPattern(&quot;account--summary--{{index[0]}}--{{index[1]}}&quot;)
+    .build();
+  }
+</code></pre>
+<h3>Output Java Object</h3>
+<p>An Javascript object with this structure and content is returned,
+when the function <code>restructureJson</code> from above is called:</p>
+<pre class="prettyprint source lang-yaml"><code>category: &quot;account&quot;
+displayName: &quot;Accountnumber&quot;
+fieldName: &quot;accountnumber&quot;
+type: &quot;summary&quot;
+value: &quot;12345678901&quot;
+details:
+  - category: &quot;account&quot;
+    type: &quot;detail&quot;  
+    displayName: &quot;Iban&quot;
+    fieldName: &quot;iban&quot;
+    value: &quot;AT424321012345678901&quot;
+  - category: &quot;account&quot;
+    type: &quot;detail&quot;
+    displayName: &quot;Accountnumber&quot;
+    fieldName: &quot;accountnumber&quot;
+    value: &quot;12345678901&quot;
+  - category: &quot;Konto&quot;
+    type: &quot;detail&quot;
+    displayName: &quot;Customernumber&quot;
+    fieldName: &quot;customernumber&quot;
+    value: &quot;00001234567&quot;
+  - category: &quot;Konto&quot;
+    type: &quot;detail&quot;
+    displayName: &quot;Currency&quot;
+    fieldName: &quot;currency&quot;
+    value: &quot;USD&quot;
+  - category: &quot;Konto&quot;
+    type: &quot;detail&quot;
+    displayName: &quot;Tags&quot;
+    fieldName: &quot;tags&quot;
+    value: &quot;active&quot;
+  - category: &quot;Konto&quot;
+    type: &quot;detail&quot;
+    displayName: &quot;Tags&quot;
+    fieldName: &quot;tags&quot;
+    value: &quot;online&quot;
+  - category: &quot;Konto&quot;
+    type: &quot;detail&quot;
+    displayName: &quot;Tags&quot;
+    fieldName: &quot;tags_comma_separated_values&quot;
+    value: &quot;active, online&quot;
+</code></pre>
+<h2>Transformation Steps:</h2>
+<h3>1. Flatten hierarchical data object</h3>
+<p>The input data object, e.g. parsed from JSON, is converted to an array of point separated property names and their values.
+For example this structure...</p>
+<pre class="prettyprint source lang-json"><code>{
+    &quot;responses&quot;: [
+        {
+            &quot;hits&quot;: {
+                &quot;total&quot;: {
+                    &quot;value&quot;: 1
+                },
+                &quot;hits&quot;: [
+                    {
+                        &quot;_source&quot;: {
+                            &quot;accountnumber&quot;: &quot;123&quot;
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+</code></pre>
+<p>...is flattened to...</p>
+<pre class="prettyprint source"><code>responses[0].hits.total.value=1
+responses[0].hits.hits[0]._source.accountnumber=123
+</code></pre>
+<h3>2. Add array value properties ending with &quot;_comma_separated_values&quot;</h3>
+<p>To make it easier to e.g. display array values like tags,
+an additional property is added that combines the array values to a single property,
+that contains the values in a comma separated way.
+This newly created property gets the name of the array property followed by &quot;_comma_separated_values&quot;
+and is inserted right after the single array values.</p>
+<p>For example these lines...</p>
+<pre class="prettyprint source"><code>responses[0].hits.total.value=1
+responses[0].hits.hits[0]._source.tags[0]=active
+responses[0].hits.hits[0]._source.tags[1]=online
+</code></pre>
+<p>...will lead to an additional property that looks like this...</p>
+<pre class="prettyprint source"><code>responses[0].hits.hits[0]._source.tags_comma_separated_values=active, online
+</code></pre>
+<h3>3. Attach description to matching properties</h3>
+<p>For every given description, all properties are searched for matches.
+If a description matches a property, the description gets attached to it.
+This can be used to categorize and filter properties.
+The description builder accepts these ways to configure property matching:</p>
+<ul>
+<li>Equal Mode (default):<br>
+The property name needs to match the described pattern exactly. It is not needed to set equal mode.
+The field name will be (by default) taken from the right most (after the last separator <code>.</code>) element of the property name.
+In the example below the field name will be &quot;accountnumber&quot;.
+Example:<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+.propertyPatternEqualMode()
+.propertyPattern(&quot;responses.hits.hits._source.accountnumber&quot;)
+...
+</code></pre>
+</li>
+<li>Pattern Mode:<br>
+The property name needs to start with the described pattern.
+The pattern may contain variables inside double curly brackets.<br>
+The variable <code>{{fieldName}}</code> is a special case which describes from where the field name should be taken.
+If <code>{{fieldName}}</code> is not specified, the field name will be taken from the right most (after the last separator <code>.</code>) element of the property name, which is the same behavior as in &quot;Equal Mode&quot;.
+This mode needs to set using <code>propertyPatternTemplateMode</code>, since the default mode is <code>propertyPatternEqualMode</code>.
+Example:<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+.propertyPatternTemplateMode()
+.propertyPattern(&quot;responses.hits.hits._source.{{fieldName}}&quot;)
+...
+</code></pre>
+</li>
+<li>Index Matching (Optional):<br>
+If the source data is structured in an top level array and all property names look pretty much the same
+it may be needed to describe data based on the array index.
+The index of an property is taken out of its array qualifiers.<br>
+For example, the property name <code>responses[0].hits.hits[1]._source.tags[2]</code> has the index <code>0.1.2</code>.<br>
+Index Matching can be combined with property name matching.
+This example restricts the description to the first top level array:<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+.indexStartsWith(&quot;0.&quot;)
+...
+</code></pre>
+</li>
+</ul>
+<h3>4. Removing duplicates (deduplication):</h3>
+<p>To remove duplicate properties or to override properties with other ones when they exist,
+a <code>deduplicationPattern</code> can be defined.<br/><br/>
+Variables (listed below) are put into double curly brackets and will be replaced with the contents
+of the description and the matching property.<br>
+If there are two entries with the same resolved <code>deduplicationPattern</code> (=<code>_identifier.deduplicationId</code>),
+the second one will override the first (the first one will be removed).
+Example:</p>
+<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+.deduplicationPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}--{{fieldName}}&quot;)
+...
+</code></pre>
+<h3>5. Grouping:</h3>
+<p>Since data had been flattened in the step 1., it is structured as a list of property names and their values.
+This non-hierarchical structure is ideal to add further properties, attach descriptions and remove duplicates.
+After all, a fully flat structure might not be suitable to display overviews/details or to collect options. <br/><br/>
+The <code>groupName</code> defines the name of the group attribute (defaults to &quot;group&quot; if not set). <br/><br/>
+The <code>groupPattern</code> describes, which properties belong to the same group.<br>
+Variables (listed below) are put into double curly brackets and will be replaced with the contents
+of the description and the matching property.<br>
+The <code>groupPattern</code> will be resolved to the <code>_identifier.groupId</code>. Every property, that leads to a
+new groupId gets a new attribute named by the <code>groupName</code>, where this entry and all others of the
+same group will be put into. Example:</p>
+<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+.groupName(&quot;details&quot;)
+.groupPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}&quot;)
+...
+</code></pre>
+<h3>6. Moving groups (destination group):</h3>
+<p>After grouping in step 5., every property containing a group and the remaining non-grouped properties
+are listed one after another. To organize them further, a group can be moved beneath another (destination) group. <br/><br/>
+The <code>groupDestinationPattern</code> contains the pattern of the group to where the own group should be moved.
+Variables (listed below) are put into double curly brackets and will be replaced with the contents
+of the description and the matching property.<br>
+Optionally, the <code>groupDestinationName</code> can be specified to rename the group when it is moved. Default is the value of <code>groupName</code>.
+Example, where the details group is moved to the summary, because the group destination pattern
+of the details resolves to the same id as the resolved group pattern of the summary:</p>
+<pre class="prettyprint source lang-javascript"><code>var summaryDescription = new datarestructor.PropertyStructureDescriptionBuilder()
+ .category(&quot;account&quot;)
+ .type(&quot;summary&quot;)
+ .groupName(&quot;summaries&quot;)
+ .groupPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}&quot;)
+ ...
+
+var detailsDescription = new datarestructor.PropertyStructureDescriptionBuilder()
+.groupDestinationPattern(&quot;account--summary--{{index[0]}}--{{index[1]}}&quot;)
+.groupDestinationName(&quot;details&quot;)
+...
+</code></pre>
+<h2>Types, fields, variables:</h2>
+<p>This section lists the types and their fields in detail (mostly taken from jsdoc).
+Every field can be used as variable in double curly brackets inside pattern properties.
+Additionally, single elements of the index can be used by specifying the index position e.g. <code>{{index[0]}}</code> (first), <code>{{index[1]}}</code> (second),...</p>
+<h3>PropertyStructureDescription (input description)</h3>
+<ul>
+<li><strong>type</strong> - &quot;&quot;(default). Some examples: &quot;summary&quot; for e.g. a list overview. &quot;detail&quot; e.g. when a summary is selected. &quot;filter&quot; e.g. for field/value pair results that can be selected as search parameters.</li>
+<li><strong>category</strong> - name of the category. Default = &quot;&quot;. Could contain a symbol character or a short domain name. (e.g. &quot;city&quot;)</li>
+<li><strong>abbreviation</strong> - &quot;&quot;(default). One optional character, a symbol character or a short abbreviation of the category.</li>
+<li><strong>image</strong> - &quot;&quot;(default). One optional path to an image resource.</li>
+<li><strong>propertyPatternTemplateMode</strong> - boolean &quot;false&quot;(default): property name needs to be equal to the pattern. &quot;true&quot; allows variables like &quot;{{fieldname}}&quot; inside the pattern.</li>
+<li><strong>propertyPattern</strong> - property name pattern (without array indices) to match. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+<li><strong>indexStartsWith</strong> - &quot;&quot;(default) matches all ids. String that needs to match the beginning of the id. E.g. &quot;1.&quot; will match id=&quot;1.3.4&quot; but not &quot;0.1.2&quot;.</li>
+<li><strong>groupName</strong> - name of the property, that contains grouped entries. Default=&quot;group&quot;.</li>
+<li><strong>groupPattern</strong> - Pattern that describes how to group entries. &quot;groupName&quot; defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+<li><strong>groupDestinationPattern</strong> - Pattern that describes where the group should be moved to. Default=&quot;&quot;=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+<li><strong>groupDestinationName</strong> - (default=groupName) Name of the group when it had been moved to the destination.</li>
+<li><strong>deduplicationPattern</strong> - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+</ul>
+<h3>DescribedEntry</h3>
+<p>This is the structure of a single main output element.</p>
+<h4>Public fields</h4>
+<ul>
+<li><strong>category</strong> - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character</li>
+<li><strong>type</strong> - type of the result from PropertyStructureDescription</li>
+<li><strong>abbreviation</strong> - one optional character, a symbol character or a short abbreviation of the category</li>
+<li><strong>image</strong> - one optional path to an image resource</li>
+<li><strong>displayName</strong> - display name extracted from the point separated hierarchical property name, e.g. &quot;Name&quot;</li>
+<li><strong>fieldName</strong> - field name extracted from the point separated hierarchical property name, e.g. &quot;name&quot;</li>
+<li><strong>value</strong> - content of the field</li>
+</ul>
+<h4>Public functions</h4>
+<ul>
+<li><strong>resolveTemplate</strong> - resolves the given template string. The template may contain variables in double curly brackets:
+<ul>
+<li>All <a href="#public-fields">public fields</a> can be used as variables, e.g. <code>&quot;{{fieldName}}&quot;</code>, <code>&quot;{{displayName}}&quot;</code>, <code>&quot;{{value}}&quot;</code>.</li>
+<li>Described groups that contain an array of <a href="#DescribedEntry">described entries</a> can also be used, e.g. <code>&quot;{{summaries[0].value}}&quot;</code>.</li>
+<li>Parts of the index can be inserted by using e.g. <code>&quot;{{index[1]}}&quot;</code>.</li>
+<li>Besides the meta data, a described field can be used directly by its &quot;fieldName&quot;, e.g. <code>&quot;{{customernumber}}&quot;</code> will be replaced by <code>123</code>, if the structure contains <code>fieldname=&quot;customernumber&quot;, value=&quot;123&quot;</code>. This also applies to sub groups, e.g. <code>&quot;{{details.customernumber}}&quot;</code> will be replaced by <code>321</code>, if the structure contains <code>details[4].fieldname=&quot;customernumber&quot;, details[4].value=&quot;321&quot;</code>.</li>
+</ul>
+</li>
+<li><strong>publicFieldsJson</strong> - converts the public fields including described groups to JSON. The parameter named <code>space</code> can be used to print a prettier JSON and will be directly used as third parameter for the call of <code>JSON.stringify</code>.</li>
+</ul>
+<h4>Described groups</h4>
+<ul>
+<li><strong>&quot;name of described group&quot;</strong> as described in PropertyStructureDescription</li>
+<li><strong>&quot;names of moved groups&quot;</strong> as described in PropertyStructureDescription of the group that had been moved</li>
+</ul>
+<h4>Internal fields (should be avoided if possible, since they may change)</h4>
+<ul>
+<li><strong>isMatchingIndex</strong> - true, if _identifier.index matches the described &quot;indexStartsWith&quot;</li>
+<li><strong>_identifier</strong> - internal structure for identifier. Avoid using it outside since it may change.</li>
+<li><strong>_identifier.index</strong> - array indices in hierarchical order separated by points, e.g. &quot;0.0&quot;</li>
+<li><strong>_identifier.value</strong> - the (single) value of the &quot;flattened&quot; property, e.g. &quot;Smith&quot;</li>
+<li><strong>_identifier.propertyNamesWithArrayIndices</strong> - the &quot;original&quot; flattened property name in hierarchical order separated by points, e.g. &quot;responses[0].hits.hits[0]._source.name&quot;</li>
+<li><strong>_identifier.propertyNameWithoutArrayIndices</strong> - same as propertyNamesWithArrayIndices but without array indices, e.g. &quot;responses.hits.hits._source.name&quot;</li>
+<li><strong>_identifier.groupId</strong> - Contains the resolved groupPattern from the PropertyStructureDescription. Entries with the same id will be grouped into the &quot;groupName&quot; of the PropertyStructureDescription.</li>
+<li><strong>_identifier.groupDestinationId</strong> - Contains the resolved groupDestinationPattern from the PropertyStructureDescription. Entries with this id will be moved to the given destination group.</li>
+<li><strong>_identifier.deduplicationId</strong> - Contains the resolved deduplicationPattern from the PropertyStructureDescription. Entries with the same id will be considered to be a duplicate and hence removed.</li>
+<li><strong>_description</strong> - PropertyStructureDescription for internal use. Avoid using it outside since it may change.</li>
+</ul>
+<h2>References</h2>
+<ul>
+<li><a href="https://jasmine.github.io">Jasmine Behavior-Driven JavaScript</a> for unit testing</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill">Mozilla MDN web docs - polyfill for 'Array.filter'</a> for browser compatibility</li>
+<li><a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Polyfill">Mozilla MDN web docs - polyfill for 'Array.forEach'</a> for browser compatibility (references <a href="http://es5.github.io/#x15.4.4.18">es5.github.io</a>)</li>
+<li><a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill">Mozilla MDN web docs - polyfill for 'Array.indexOf'</a> for browser compatibility</li>
+<li><a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray#Compatibility">Mozilla MDN web docs - polyfill for 'Array.isArray'</a> for browser compatibility</li>
+<li><a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith#Polyfill">Mozilla MDN web docs - polyfill for 'String.startsWith'</a> for browser compatibility</li>
+<li><a href="http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html">Token Posts - polyfill for 'Object.keys'</a> for browser compatibility</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>datarestructor.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>datarestructor transforms parsed JSON objects into a uniform data structure</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li><a href="https://github.com/JohT/data-restructor-js/releases/latest">latest version</a></li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>JohT</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>templateResolver.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>${project.version}</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>JohT</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="templateResolver.js.html">templateResolver.js</a>, <a href="templateResolver.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Feb 04 2021 21:11:51 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

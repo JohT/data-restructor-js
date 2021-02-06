@@ -1,0 +1,2558 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/js/datarestructor.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/js/</a> datarestructor.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.43% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>314/319</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.72% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>88/97</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.46% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>64/65</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>314/319</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">113×</span>
+<span class="cline-any cline-yes">113×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">113×</span>
+<span class="cline-any cline-yes">113×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">46×</span>
+<span class="cline-any cline-yes">46×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">161×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">161×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">161×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-yes">61×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">159×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">159×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">149×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">324×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">322×</span>
+<span class="cline-any cline-yes">92×</span>
+<span class="cline-any cline-yes">92×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">230×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">162×</span>
+<span class="cline-any cline-yes">90×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">45×</span>
+<span class="cline-any cline-yes">2741×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-yes">1826×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">290×</span>
+<span class="cline-any cline-yes">290×</span>
+<span class="cline-any cline-yes">290×</span>
+<span class="cline-any cline-yes">288×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">938×</span>
+<span class="cline-any cline-yes">937×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">161×</span>
+<span class="cline-any cline-yes">938×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">161×</span>
+<span class="cline-any cline-yes">938×</span>
+<span class="cline-any cline-yes">938×</span>
+<span class="cline-any cline-yes">938×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">92×</span>
+<span class="cline-any cline-yes">1588×</span>
+<span class="cline-any cline-yes">1588×</span>
+<span class="cline-any cline-yes">1588×</span>
+<span class="cline-any cline-yes">1586×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">230×</span>
+<span class="cline-any cline-yes">288×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2741×</span>
+<span class="cline-any cline-yes">2741×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4329×</span>
+<span class="cline-any cline-yes">4329×</span>
+<span class="cline-any cline-yes">1588×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4329×</span>
+<span class="cline-any cline-yes">4329×</span>
+<span class="cline-any cline-yes">4329×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5917×</span>
+<span class="cline-any cline-yes">5917×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">501×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1149×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-yes">2952×</span>
+<span class="cline-any cline-yes">2952×</span>
+<span class="cline-any cline-yes">2022×</span>
+<span class="cline-any cline-yes">1092×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2022×</span>
+<span class="cline-any cline-yes">2022×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">930×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">104×</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">328×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">328×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">312×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">264×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">192×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">256×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">996×</span>
+<span class="cline-any cline-yes">996×</span>
+<span class="cline-any cline-yes">996×</span>
+<span class="cline-any cline-yes">972×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">1812×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-yes">168×</span>
+<span class="cline-any cline-yes">168×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">816×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">4560×</span>
+<span class="cline-any cline-yes">4560×</span>
+<span class="cline-any cline-yes">840×</span>
+<span class="cline-any cline-yes">840×</span>
+<span class="cline-any cline-yes">840×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">168×</span>
+<span class="cline-any cline-yes">168×</span>
+<span class="cline-any cline-yes">168×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">840×</span>
+<span class="cline-any cline-yes">744×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">744×</span>
+<span class="cline-any cline-yes">744×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-yes">48×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-yes">84×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @fileOverview datarestructor Transforms parsed JSON objects into a uniform data structure
+ * @version ${project.version}
+ */
+&nbsp;
+ "use strict";
+var module = module || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span> // Fallback for vanilla js without modules
+&nbsp;
+/**
+ * datarestructor namespace declaration.
+ * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
+ * Workflow: JSON -&gt; flatten -&gt; mark and identify -&gt; add array fields -&gt; deduplicate -&gt; group -&gt; flatten again
+ * @default {}
+ */
+var datarestructor = module.exports={}; // Export module for npm...
+var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js &amp; npm
+var template_resolver = template_resolver || require("../../src/js/templateResolver"); // supports vanilla js &amp; npm
+&nbsp;
+/**
+ * @callback propertyNameFunction
+ *  @param {string} propertyName
+ */
+&nbsp;
+/**
+ * @typedef {Object} PropertyStructureDescription
+ * @property {string} type - ""(default). Some examples: "summary" for e.g. a list overview. "detail" e.g. when a summary is selected. "filter" e.g. for field/value pair results that can be selected as search parameters.
+ * @property {string} category - name of the category. Default = "". Could contain a symbol character or a short domain name. (e.g. "city")
+ * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
+ * @property {string} [image=""] - one optional path to an image resource
+ * @property {boolean} propertyPatternTemplateMode - "false"(default): property name needs to be equal to the pattern. "true" allows variables like "{{fieldName}}" inside the pattern.
+ * @property {string} propertyPattern - property name pattern (without array indices) to match
+ * @property {string} indexStartsWith - ""(default) matches all ids. String that needs to match the beginning of the id. E.g. "1." will match id="1.3.4" but not "0.1.2".
+ * @property {propertyNameFunction} getDisplayNameForPropertyName - display name for the property. ""(default) last property name element with upper case first letter.
+ * @property {propertyNameFunction} getFieldNameForPropertyName - field name for the property. "" (default) last property name element.
+ * @property {string} groupName - name of the property, that contains grouped entries. Default="group".
+ * @property {string} groupPattern - Pattern that describes how to group entries. "groupName" defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}.
+ * @property {string} groupDestinationPattern - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}.
+ * @property {string} groupDestinationName - (default=groupName) Name of the group when it had been moved to the destination.
+ * @property {string} deduplicationPattern - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
+ */
+&nbsp;
+/**
+ * PropertyStructureDescriptionBuilder
+ *
+ * @namespace
+ */
+datarestructor.PropertyStructureDescriptionBuilder = (function () {
+  "use strict";
+&nbsp;
+  /**
+   * Constructor function and container for everything, that needs to exist per instance.
+   */
+  function PropertyStructureDescription() {
+    this.description = {
+      type: "",
+      category: "",
+      abbreviation: "",
+      image: "",
+      propertyPatternTemplateMode: false,
+      propertyPattern: "",
+      indexStartsWith: "",
+      groupName: "group",
+      groupPattern: "",
+      groupDestinationPattern: "",
+      groupDestinationName: null,
+      deduplicationPattern: "",
+      getDisplayNameForPropertyName: null,
+      getFieldNameForPropertyName: null,
+      matchesPropertyName: null
+    };
+    this.type = function (value) {
+      this.description.type = value;
+      return this;
+    };
+    this.category = function (value) {
+      this.description.category = value;
+      return this;
+    };
+    this.abbreviation = function (value) {
+      this.description.abbreviation = withDefault(value, "");
+      return this;
+    };
+    this.image = function (value) {
+      this.description.image = withDefault(value, "");
+      return this;
+    };
+    /**
+     * "propertyPattern" need to match exactly if this mode is activated.
+     *  It clears propertyPatternTemplateMode which means "equal" mode.
+     */
+    this.propertyPatternEqualMode = function () {
+      this.description.propertyPatternTemplateMode = false;
+      return this;
+    };
+    /**
+     * "propertyPattern" can contain variables like {{fieldName}} and
+     * doesn't need to match the property name exactly. If the "propertyPattern"
+     * is shorter than the property name, it also matches when the property name
+     * starts with the "propertyPattern".
+     */
+    this.propertyPatternTemplateMode = function () {
+      this.description.propertyPatternTemplateMode = true;
+      return this;
+    };
+    /**
+     * property name pattern (single property names with sub types separated by "." without array indices) to match.
+     * May contain variables in double curly brackets.
+     * Example: responses.hits.hits._source.{{fieldName}}
+     * @returns {PropertyStructureDescription}
+     */
+    this.propertyPattern = function (value) {
+      this.description.propertyPattern = withDefault(value, "");
+      return this;
+    };
+    /**
+     *  String that needs to match the beginning of the id.
+     *  E.g. "1." will match id="1.3.4" but not "0.1.2".
+     *  Default is "" which will match every id.
+     */
+    this.indexStartsWith = function (value) {
+      this.description.indexStartsWith = withDefault(value, "");
+      return this;
+    };
+    this.displayPropertyName = function (value) {
+      this.description.getDisplayNameForPropertyName = createNameExtractFunction(value, this.description);
+      if (isSpecifiedString(value)) {
+        return this;
+      }
+      this.description.getDisplayNameForPropertyName = removeArrayValuePropertyPostfixFunction(
+        this.description.getDisplayNameForPropertyName
+      );
+      this.description.getDisplayNameForPropertyName = upperCaseFirstLetterForFunction(
+        this.description.getDisplayNameForPropertyName
+      );
+      return this;
+    };
+    this.fieldName = function (value) {
+      this.description.getFieldNameForPropertyName = createNameExtractFunction(value, this.description);
+      return this;
+    };
+    this.groupName = function (value) {
+      this.description.groupName = withDefault(value, "");;
+      return this;
+    };
+    /**
+     * Pattern that describes how to group entries. "groupName" defines the name of this group.
+     * A pattern may contain variables in double curly brackets {{variable}}.
+     */
+    this.groupPattern = function (value) {
+      this.description.groupPattern = withDefault(value, "");;
+      return this;
+    };
+    /**
+     * Pattern that describes where the group should be moved to. Default=""=Group will not be moved.
+     * A pattern may contain variables in double curly brackets {{variable}}.
+     */
+    this.groupDestinationPattern = function (value) {
+      this.description.groupDestinationPattern = withDefault(value, "");;
+      return this;
+    };
+    /**
+     * Name of the group when it had been moved to the destination.
+     * The default value is the groupName, which will be used when the value is not valid (null or empty)
+     */
+    this.groupDestinationName = function (value) {
+      this.description.groupDestinationName = withDefault(value, this.description.groupName);
+      return this;
+    };
+    /**
+     * Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
+     * A pattern may contain variables in double curly brackets {{variable}}.
+     */
+    this.deduplicationPattern = function (value) {
+      this.description.deduplicationPattern = withDefault(value, "");;
+      return this;
+    };
+    this.build = function () {
+      this.description.matchesPropertyName = createFunctionMatchesPropertyName(this.description);
+      if (this.description.getDisplayNameForPropertyName == null) {
+        this.displayPropertyName("");
+      }
+      if (this.description.getFieldNameForPropertyName == null) {
+        this.fieldName("");
+      }
+      if (this.description.groupDestinationName == null) {
+        this.groupDestinationName("");
+      }
+      return this.description;
+    };
+  }
+&nbsp;
+  function createNameExtractFunction(value, description) {
+    if (isSpecifiedString(value)) {
+      return function (propertyName) {
+        return value;
+      };
+    }
+    if (description.propertyPatternTemplateMode) {
+      var patternToMatch = description.propertyPattern; // closure (closed over) parameter
+      return extractNameUsingTemplatePattern(patternToMatch);
+    }
+    return extractNameUsingRightMostPropertyNameElement();
+  }
+&nbsp;
+  function createFunctionMatchesPropertyName(description) {
+    var propertyPatternToMatch = description.propertyPattern; // closure (closed over) parameter
+    if (!isSpecifiedString(propertyPatternToMatch)) {
+      return <span class="fstat-no" title="function not covered" >function (propertyNameWithoutArrayIndices) {</span>
+<span class="cstat-no" title="statement not covered" >        return false; </span>// Without a propertyPattern, no property will match (deactivated mark/identify).
+      };
+    }
+    if (description.propertyPatternTemplateMode) {
+      return function (propertyNameWithoutArrayIndices) {
+        return templateModePatternRegexForPattern(propertyPatternToMatch).exec(propertyNameWithoutArrayIndices) != null;
+      };
+    }
+    return function (propertyNameWithoutArrayIndices) {
+      return propertyNameWithoutArrayIndices === propertyPatternToMatch;
+    };
+  }
+&nbsp;
+  function rightMostPropertyNameElement(propertyName) {
+    var regularExpression = new RegExp("(\\w+)$", "gi");
+    var match = propertyName.match(regularExpression);
+    if (match != null) {
+      return match[0];
+    }
+    return propertyName;
+  }
+&nbsp;
+  function upperCaseFirstLetter(value) {
+    if (value.length &gt; 1) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    return value;
+  }
+&nbsp;
+  function upperCaseFirstLetterForFunction(nameExtractFunction) {
+    return function (propertyName) {
+      return upperCaseFirstLetter(nameExtractFunction(propertyName));
+    };
+  }
+&nbsp;
+  function removeArrayValuePropertyPostfixFunction(nameExtractFunction) {
+    return function (propertyName) {
+      var name = nameExtractFunction(propertyName);
+      name = name != null ? name : <span class="branch-1 cbranch-no" title="branch not covered" >"";</span>
+      return name.replace("_comma_separated_values", "");
+    };
+  }
+&nbsp;
+  function extractNameUsingTemplatePattern(propertyPattern) {
+    return function (propertyName) {
+      var regex = templateModePatternRegexForPatternAndVariable(propertyPattern, "{{fieldName}}");
+      var match = regex.exec(propertyName);
+      if (match &amp;&amp; match[1] != "") {
+        return match[1];
+      }
+      return rightMostPropertyNameElement(propertyName);
+    };
+  }
+&nbsp;
+  function extractNameUsingRightMostPropertyNameElement() {
+    return function (propertyName) {
+      return rightMostPropertyNameElement(propertyName);
+    };
+  }
+&nbsp;
+  function templateModePatternRegexForPattern(propertyPatternToUse) {
+    var placeholderInDoubleCurlyBracketsRegEx = new RegExp("\\\\\\{\\\\\\{[-\\w]+\\\\\\}\\\\\\}", "gi");
+    return templateModePatternRegexForPatternAndVariable(propertyPatternToUse, placeholderInDoubleCurlyBracketsRegEx);
+  }
+&nbsp;
+  function templateModePatternRegexForPatternAndVariable(propertyPatternToUse, variablePattern) {
+    var pattern = escapeCharsForRegEx(propertyPatternToUse);
+    if (typeof variablePattern === "string") {
+      variablePattern = escapeCharsForRegEx(variablePattern);
+    }
+    pattern = pattern.replace(variablePattern, "([-\\w]+)");
+    pattern = "^" + pattern;
+    return new RegExp(pattern, "i");
+  }
+&nbsp;
+  function escapeCharsForRegEx(characters) {
+    var nonWordCharactersRegEx = new RegExp("([^-\\w])", "gi");
+    return characters.replace(nonWordCharactersRegEx, "\\$1");
+  }
+&nbsp;
+  function withDefault(value, defaultValue) {
+    return isSpecifiedString(value) ? value : defaultValue;
+  }
+&nbsp;
+  function isSpecifiedString(value) {
+    return typeof value === "string" &amp;&amp; value != null &amp;&amp; value != "";
+  }
+&nbsp;
+  /**
+   * Public interface
+   * @scope datarestructor.PropertyStructureDescriptionBuilder
+   */
+  return PropertyStructureDescription;
+})();
+&nbsp;
+/**
+ * @typedef {Object} DescribedEntry
+ * @property {string} category - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
+ * @property {string} type - type of the result from PropertyStructureDescription
+ * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
+ * @property {string} [image=""] - one optional path to an image resource
+ * @property {string} index - array of numbers containing the split index. Example: "responses[2].hits.hits[4]._source.name" leads to an array with the two elements: [2,4]
+ * @property {string} displayName - display name extracted from the point separated hierarchical property name, e.g. "Name"
+ * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
+ * @property {string} value - content of the field
+ * @property {string} resolveTemplate - function, that replaces propertyNames in double curly brackets with the values in this object.
+ * @property {string} publicFieldsJson - function, that converts the public fields including grouped sub structures to JSON.
+ * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
+ * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
+ * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
+ * @property {string} _identifier.value - the (single) value of the "flattened" property, e.g. "Smith"
+ * @property {string} _identifier.propertyNameWithArrayIndices - the "original" flattened property name in hierarchical order separated by points, e.g. "responses[0].hits.hits[0]._source.name"
+ * @property {string} _identifier.propertyNameWithoutArrayIndices - same as propertyNamesWithArrayIndices but without array indices, e.g. "responses.hits.hits._source.name"
+ * @property {string} _identifier.groupId - Contains the resolved groupPattern from the PropertyStructureDescription. Entries with the same id will be grouped into the "groupName" of the PropertyStructureDescription.
+ * @property {string} _identifier.groupDestinationId - Contains the resolved groupDestinationPattern from the PropertyStructureDescription. Entries with this id will be moved to the given destination group.
+ * @property {string} _identifier.deduplicationId - Contains the resolved deduplicationPattern from the PropertyStructureDescription. Entries with the same id will be considered to be a duplicate and hence removed.
+ * @property {Object} _description - PropertyStructureDescription for internal use. Avoid using it outside since it may change.
+ */
+&nbsp;
+/**
+ * @callback stringFieldOfDescribedEntryFunction
+ *  @param {DescribedEntry} entry
+ */
+&nbsp;
+/**
+ * DescribedEntryCreator
+ *
+ * @namespace
+ */
+datarestructor.DescribedEntryCreator = (function () {
+  "use strict";
+&nbsp;
+  var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
+&nbsp;
+  /**
+   * Constructor function and container for everything, that needs to exist per instance.
+   */
+  function DescribedEntry(entry, description) {
+    var indices = indicesOf(entry.name);
+    var propertyNameWithoutArrayIndices = entry.name.replace(removeArrayBracketsRegEx, "");
+    var templateResolver = new template_resolver.Resolver(this);
+&nbsp;
+    this.category = description.category;
+    this.type = description.type;
+    this.abbreviation = description.abbreviation;
+    this.image = description.image;
+    /**
+     * Array of numbers containing the split index. 
+     * Example: "responses[2].hits.hits[4]._source.name" leads to an array with two elements: [2,4]
+     * This is the public version of the internal variable _identifier.index, which contains in contrast all index elements in one point separated string (e.g. "2.4").
+     */
+    this.index = indices.numberArray;
+    this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
+    this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
+    this.value = entry.value;
+    this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
+    this._description = description;
+&nbsp;
+    this._identifier = {
+      index: indices.pointDelimited,
+      propertyNameWithArrayIndices: entry.name,
+      propertyNameWithoutArrayIndices: propertyNameWithoutArrayIndices,
+      groupId: "",
+      groupDestinationId: "",
+      deduplicationId: ""
+    };
+    this._identifier.groupId = templateResolver.replaceResolvableFields(
+      description.groupPattern,
+      templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier)
+    );
+    this._identifier.groupDestinationId = templateResolver.replaceResolvableFields(
+      description.groupDestinationPattern,
+      templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier)
+    );
+    this._identifier.deduplicationId = templateResolver.replaceResolvableFields(
+      description.deduplicationPattern,
+      templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier)
+    );
+    /**
+     * Resolves the given template.
+     * 
+     * The template may contain variables in double curly brackets.
+     * Supported variables are all properties of this object, e.g. "{{fieldName}}", "{{displayName}}", "{{value}}".
+     * Since this object may also contains (described) groups of sub objects, they can also be used, e.g. "{{summaries[0].value}}" 
+     * Parts of the index can be inserted by using e.g. "{{index[1]}}".
+     * 
+     * @param {string} template
+     * @returns {string} resolved template
+     */
+    this.resolveTemplate = function (template) {
+      return new template_resolver.Resolver(this).resolveTemplate(template);
+    };
+&nbsp;
+    /**
+     * Returns JSON containing all the public fields
+     * @param space — Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
+     */
+    this.publicFieldsJson = function (space) {
+      var propertyNames = propertyNamesWithoutObjectsAndFunctions(this);
+      var prettyPrintJsonSpace = typeof space === "number" ? space : 0;
+      return JSON.stringify(this, replacerRetainsOnlyDefinedPublicFields(propertyNames), prettyPrintJsonSpace);
+    };
+  }
+&nbsp;
+  /**
+   * Returns "1.12.123" and [1,12,123] for "results[1].hits.hits[12].aggregates[123]".
+   *
+   * @param {String} fullPropertyName
+   * @return {ExtractedIndices} extracted indices in different representations
+   */
+  function indicesOf(fullPropertyName) {
+    var arrayBracketsRegEx = new RegExp("\\[(\\d+)\\]", "gi");
+    return indicesOfWithRegex(fullPropertyName, arrayBracketsRegEx);
+  }
+&nbsp;
+  /**
+   * Returns "1.12.123" and [1,12,123] for "results[1].hits.hits[12].aggregates[123]".
+   *
+   * @param {string} fullPropertyName
+   * @param {RegExp} regexWithOneNumberGroup
+   * @return {ExtractedIndices} extracted indices in different representations
+   */
+  function indicesOfWithRegex(fullPropertyName, regexWithOneNumberGroup) {
+    var pointDelimited = "";
+    var numberArray = [];
+    var match;
+    do {
+      match = regexWithOneNumberGroup.exec(fullPropertyName);
+      if (match) {
+        if (pointDelimited.length &gt; 0) {
+          pointDelimited += ".";
+        }
+        pointDelimited += match[1];
+        numberArray.push(parseInt(match[1]));
+      }
+    } while (match);
+    return { pointDelimited: pointDelimited, numberArray: numberArray };
+  }
+&nbsp;
+  /**
+   * Returns an array of property names of the given object without properties of type "object".
+   */
+  function propertyNamesWithoutObjectsAndFunctions(obj) {
+    var result = [];
+    var propertyIndex;
+    var propertyName;
+    var propertyNames = Object.keys(obj);
+    for (propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex += 1) {
+      propertyName = propertyNames[propertyIndex];
+      if (typeof obj[propertyName] !== "object" &amp;&amp; typeof obj[propertyName] !== "function") {
+        result.push(propertyName);
+      }
+    }
+    return result;
+  }
+&nbsp;
+  /**
+   * Returns a function, that takes two arguments and is therefore applicable to be used as "replacer" parameter for JSON.stringify.
+   * It only retains the given property names and removes everything else except for embedded "sub" objects
+   * with the same structure (and only one recursive level). These sub objects will be cloned to get rid of the circular
+   * structure that would lead to the error message "TypeError: Converting circular structure to JSON".
+   * Internal properties containing objects but beginning with an underscore in their name will also be removed.
+   *
+   * @param key name of the property to be converted to JSON or empty for the whole object.
+   * @param value value of the property to be converted to JSON.
+   * @returns function that is applicable to be used as "replacer" parameter for JSON.stringify.
+   */
+  function replacerRetainsOnlyDefinedPublicFields(propertyNames) {
+    return function (key, value) {
+      return onlyDefinedPublicFields(key, value, propertyNames);
+    };
+  }
+  /**
+   * This function takes two arguments and is therefore applicable to be used as "replacer" parameter for JSON.stringify.
+   * It removes internal properties beginning with an underscore in their name
+   * and creates new objects for grouped structures (only one recursion level) to get rid of the circular structure
+   * that would lead to the error message "TypeError: Converting circular structure to JSON".
+   *
+   * @param {string} key name of the property to be converted to JSON or empty for the whole object.
+   * @param {string} value value of the property to be converted to JSON.
+   * @param {string[]} propertyNames array of strings containing only the public fields that will be converted to JSON.
+   */
+  function onlyDefinedPublicFields(key, value, propertyNames) {
+    if (typeof value !== "object" &amp;&amp; propertyNames.indexOf(key) &lt; 0 &amp;&amp; key != "") {
+      return undefined; // Remove all properties that are not contained in the given list.
+    }
+    if (key.indexOf("_") == 0) {
+      return undefined; //Remove all properties with a name beginning with an underscore (internal fields).
+    }
+    if (Array.isArray(value)) {
+      var index, propertyIndex;
+      var entry, clonedEntry;
+      var clonedArray = [];
+      for (index = 0; index &lt; value.length; index += 1) {
+        entry = value[index];
+        clonedEntry = {};
+        for (propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex += 1) {
+          clonedEntry[propertyNames[propertyIndex]] = entry[propertyNames[propertyIndex]];
+        }
+        clonedArray.push(clonedEntry);
+      }
+      return clonedArray;
+    }
+    return value;
+  }
+&nbsp;
+  /**
+   * Public interface
+   * @scope datarestructor.DescribedEntryCreator
+   */
+  return DescribedEntry;
+})();
+&nbsp;
+datarestructor.Restructor = (function () {
+  "use strict";
+&nbsp;
+  /**
+   * "Assembly line", that takes the jsonData and processes it using all given descriptions in their given order.
+   * Workflow: JSON -&gt; flatten -&gt; mark and identify -&gt; add array fields -&gt; deduplicate -&gt; group -&gt; flatten again
+   * @param {object} jsonData - parsed JSON data or any other data object
+   * @param {PropertyStructureDescription[]} descriptions - already grouped entries
+   * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
+   */
+  function processJsonUsingDescriptions(jsonData, descriptions, debugMode) {
+    // "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
+    var processedData = internal_object_tools.flattenToArray(jsonData);
+    // Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
+    processedData = fillInArrayValues(processedData);
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if ((typeof debugMode === "boolean") &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >debugMode)</span> {
+<span class="cstat-no" title="statement not covered" >      console.log("flattened data with array values:");</span>
+<span class="cstat-no" title="statement not covered" >      console.log(processedData);</span>
+    }
+&nbsp;
+    // Mark, identify and harmonize the flattened data by applying one description after another in their given order.
+    var describedData = [];
+    for (var descriptionIndex = 0; descriptionIndex &lt; descriptions.length; descriptionIndex++) {
+      var description = descriptions[descriptionIndex];
+      // Filter all entries that match the current description and enrich them with it
+      var dataWithDescription = extractEntriesByDescription(processedData, description);
+      // Remove duplicate entries where a deduplicationPattern is described
+      describedData = deduplicateFlattenedData(describedData, dataWithDescription);
+    }
+    processedData = describedData;
+&nbsp;
+    // Group entries where a groupPattern is described
+    processedData = groupFlattenedData(processedData);
+&nbsp;
+    // Move group entries where a groupDestinationPattern is described
+    processedData = applyGroupDestinationPattern(processedData);
+&nbsp;
+    // Turns the grouped object back into an array of DescribedEntry-Objects
+    return propertiesAsArray(processedData);
+  }
+&nbsp;
+  /**
+   * Takes two arrays of objects, e.g. [{id: B, value: 2},{id: C, value: 3}]
+   * and [{id: A, value: 1},{id: B, value: 4}] and merges them into one:
+   * [{id: C, value: 3},{id: A, value: 1},{id: B, value: 4}]
+   *
+   * Entries with the same id ("duplicates") will be overwritten.
+   * Only the last element with the same id remains. The order is
+   * determined by the order of the array elements, whereas the first
+   * array comes before the second one. This means, that entries with the
+   * same id in the second array overwrite entries in the first array,
+   * and entries that occur later in the array overwrite earlier ones,
+   * if they have the same id.
+   *
+   * The id is extracted from every element using the given function.
+   *
+   * @param {DescribedEntry[]} entries
+   * @param {DescribedEntry[]} entriesToMerge
+   * @param {stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   */
+  function mergeFlattenedData(entries, entriesToMerge, idOfElementFunction) {
+    var entriesToMergeById = asIdBasedObject(entriesToMerge, idOfElementFunction);
+    var merged = [];
+    for (var index = 0; index &lt; entries.length; index++) {
+      var entry = entries[index];
+      var id = idOfElementFunction(entry);
+      if (id == null || id === "" || entriesToMergeById[id] == null) {
+        merged.push(entry);
+      }
+    }
+    for (var index = 0; index &lt; entriesToMerge.length; index++) {
+      var entry = entriesToMerge[index];
+      merged.push(entry);
+    }
+    return merged;
+  }
+&nbsp;
+  /**
+   * Takes two arrays of objects, e.g. [{id: B, value: 2},{id: C, value: 3}]
+   * and [{id: A, value: 1},{id: B, value: 4}] and merges them into one:
+   * [{id: C, value: 3},{id: A, value: 1},{id: B, value: 4}]
+   *
+   * Entries with the same id ("duplicates") will be overwritten.
+   * Only the last element with the same id remains. The order is
+   * determined by the order of the array elements, whereas the first
+   * array comes before the second one. This means, that entries with the
+   * same id in the second array overwrite entries in the first array,
+   * and entries occurring later in the array overwrite earlier ones,
+   * if they have the same id.
+   *
+   * "entriesToMerge" will be returned directly, if "entries" is null or empty.
+   *
+   * The id is extracted from every element using their deduplication pattern (if available).
+   *
+   * @param {DescribedEntry[]} entries
+   * @param {DescribedEntry[]} entriesToMerge
+   * @param {stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   * @see mergeFlattenedData
+   */
+  function deduplicateFlattenedData(entries, entriesToMerge) {
+    if (entries == null || entries.length == 0) {
+      return entriesToMerge;
+    }
+    var idOfElementFunction = function (entry) {
+      return entry._identifier.deduplicationId;
+    };
+    return mergeFlattenedData(entries, entriesToMerge, idOfElementFunction);
+  }
+&nbsp;
+  /**
+   * Converts the given elements to an object, that provides these
+   * entries by their id. For example, [{id: A, value: 1}] becomes
+   * result['A'] = 1.
+   * @param {DescribedEntry[]} elements of DescribedEntry elements
+   * @param {stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   * @return {DescribedEntry[] entries indexed by id
+   */
+  function asIdBasedObject(elements, idOfElementFunction) {
+    var idIndexedObject = new Object();
+    for (var index = 0; index &lt; elements.length; index++) {
+      var element = elements[index];
+      idIndexedObject[idOfElementFunction(element)] = element;
+    }
+    return idIndexedObject;
+  }
+&nbsp;
+  /**
+   * Converts the given elements into an object, that provides these
+   * entries by their id (determined by the entry's groupPattern).
+   * For example, [{id: A, value: 1}] becomes result['A'] = 1.
+   *
+   * Furthermore, this function creates a group property (determined by the entry's groupName)
+   * and collects all related elements (specified by their group pattern) in it.
+   *
+   * @param {DescribedEntry[]} elements of DescribedEntry elements
+   * @return {DescribedEntry[] entries indexed by id
+   */
+  function groupFlattenedData(flattenedData) {
+    return groupById(
+      flattenedData,
+      function (entry) {
+        return entry._identifier.groupId;
+      },
+      function (entry) {
+        return entry._description.groupName;
+      }
+    );
+  }
+&nbsp;
+  /**
+   * Converts the given elements into an object, that provides these
+   * entries by their id. For example, [{id: A, value: 1}] becomes
+   * result['A'] = 1. Furthermore, this function creates a group property (with the name )
+   * and collects all related elements (specified by their group pattern) in it.
+   *
+   * @param {DescribedEntry[]} elements of DescribedEntry elements
+   * @param {stringFieldOfDescribedEntryFunction} groupNameOfElementFunction function, that returns the name of the group property that will be created inside the "main" element.
+   * @param {stringFieldOfDescribedEntryFunction} groupIdOfElementFunction returns the group id of an DescribedEntry
+   * @return {DescribedEntry[] entries indexed by id
+   */
+  function groupById(elements, groupIdOfElementFunction, groupNameOfElementFunction) {
+    var groupedResult = new Object();
+    for (var index = 0; index &lt; elements.length; index++) {
+      var element = elements[index];
+      var groupId = groupIdOfElementFunction(element);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (groupId === "") {
+<span class="cstat-no" title="statement not covered" >        continue;</span>
+      }
+      var groupName = groupNameOfElementFunction(element);
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (groupName == null || groupName === "") {
+<span class="cstat-no" title="statement not covered" >        continue;</span>
+      }
+      if (!groupedResult[groupId]) {
+        groupedResult[groupId] = element;
+        groupedResult[groupId][groupName] = [];
+      }
+      groupedResult[groupId][groupName].push(element);
+    }
+    return groupedResult;
+  }
+&nbsp;
+  /**
+   * Extracts entries out of "flattened" JSON data and provides an array of objects.
+   * @param {Object[]} flattenedData - flattened json from search query result
+   * @param {string} flattenedData[].name - name of the property in hierarchical order separated by points
+   * @param {string} flattenedData[].value - value of the property as string
+   * @param {PropertyStructureDescription} - description of structure of the entries that should be extracted
+   * @return {DescribedEntry[]}
+   */
+  function extractEntriesByDescription(flattenedData, description) {
+    var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
+    var filtered = [];
+&nbsp;
+    flattenedData.filter(function (entry) {
+      var propertyNameWithoutArrayIndices = entry.name.replace(removeArrayBracketsRegEx, "");
+      if (description.matchesPropertyName(propertyNameWithoutArrayIndices)) {
+        var describedEntry = new datarestructor.DescribedEntryCreator(entry, description);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (describedEntry._isMatchingIndex) {
+          filtered.push(describedEntry);
+        }
+      }
+    });
+    return filtered;
+  }
+&nbsp;
+  /**
+   * Takes already grouped {@link DescribedEntry} objects and
+   * uses their "_identifier.groupDestinationId" (if exists)
+   * to move groups to the given destination.
+   *
+   * This is useful, if separately described groups like "summary" and "detail" should be put together,
+   * so that every summery contains a group with the regarding details.
+   *
+   * @param {DescribedEntry[]} groupedObject - already grouped entries
+   * @return {DescribedEntry[]}
+   */
+  function applyGroupDestinationPattern(groupedObject) {
+    var keys = Object.keys(groupedObject);
+    var keysToDelete = [];
+    for (var index = 0; index &lt; keys.length; index++) {
+      var key = keys[index];
+      var entry = groupedObject[key];
+      if (entry._description.groupDestinationPattern != "") {
+        var destinationKey = entry._identifier.groupDestinationId;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (groupedObject[destinationKey] != null) {
+          var newGroup = entry[entry._description.groupName];
+          var existingGroup = groupedObject[destinationKey][entry._description.groupDestinationName]; //join if exists
+          var updatedGroup = existingGroup != null ? <span class="branch-0 cbranch-no" title="branch not covered" >existingGroup.concat(newGroup) </span>: newGroup;
+          groupedObject[destinationKey][entry._description.groupDestinationName] = updatedGroup;
+          keysToDelete.push(key);
+        }
+      }
+    }
+    // delete all moved entries that had been collected by their key
+    for (var index = 0; index &lt; keysToDelete.length; index++) {
+      var keyToDelete = keysToDelete[index];
+      delete groupedObject[keyToDelete];
+    }
+    return groupedObject;
+  }
+&nbsp;
+  /**
+   * Fills in extra "_comma_separated_values" properties into the flattened data
+   * for properties that end with an array. E.g. response.hits.hits.tags[0]="active" and response.hits.hits.tags[0]="ready"
+   * will lead to the extra element "response.hits.hits.tags_comma_separated_values="active, ready".
+   *
+   * @return flattened data with filled in "_comma_separated_values" properties
+   */
+  function fillInArrayValues(flattenedData) {
+    var trailingArrayIndexRegEx = new RegExp("\\[\\d+\\]$", "gi");
+    var result = [];
+    var lastArrayProperty = "";
+    var lastArrayPropertyValue = "";
+&nbsp;
+    flattenedData.filter(function (entry) {
+      if (!entry.name.match(trailingArrayIndexRegEx)) {
+        if (lastArrayProperty !== "") {
+          result.push({ name: lastArrayProperty + "_comma_separated_values", value: lastArrayPropertyValue });
+          lastArrayProperty = "";
+        }
+        result.push(entry);
+        return;
+      }
+      var propertyNameWithoutTrailingArrayIndex = entry.name.replace(trailingArrayIndexRegEx, "");
+      if (lastArrayProperty === propertyNameWithoutTrailingArrayIndex) {
+        lastArrayPropertyValue += ", " + entry.value;
+      } else {
+        if (lastArrayProperty !== "") {
+          result.push({ name: lastArrayProperty + "_comma_separated_values", value: lastArrayPropertyValue });
+          lastArrayProperty = "";
+        }
+        lastArrayProperty = propertyNameWithoutTrailingArrayIndex;
+        lastArrayPropertyValue = entry.value;
+      }
+      result.push(entry);
+    });
+    return result;
+  }
+&nbsp;
+  /**
+   * @typedef {Object} ExtractedIndices
+   * @property {string} pointDelimited - bracket indices separated by points
+   * @property {number[]} numberArray as array of numbers
+   */
+  function propertiesAsArray(groupedData) {
+    var result = [];
+    var propertyNames = Object.keys(groupedData);
+    for (var propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex++) {
+      var propertyName = propertyNames[propertyIndex];
+      var propertyValue = groupedData[propertyName];
+      result.push(propertyValue);
+    }
+    return result;
+  }
+&nbsp;
+  /**
+   * Public interface
+   * @scope datarestructor.Restructor
+   */
+  return {
+    /**
+     * "Assembly line", that takes the jsonData and processes it using all given descriptions in their given order.
+     * Workflow: JSON -&gt; flatten -&gt; mark and identify -&gt; add array fields -&gt; deduplicate -&gt; group -&gt; flatten again
+     * @param {object} jsonData - parsed JSON data or any other data object
+     * @param {PropertyStructureDescription[]} descriptions - already grouped entries
+     * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
+     */
+    processJsonUsingDescriptions: processJsonUsingDescriptions
+  };
+})();</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 31 2021 09:41:20 GMT+0100 (Central European Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

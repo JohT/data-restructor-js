@@ -1,0 +1,43 @@
+{
+  "name": "data-restructor",
+  "version": "2.3.0",
+  "description": "Transforms parsed JSON objects into a uniform data structure",
+  "main": "./src/js/datarestructor.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "lint": "$(npm bin)/eslint \"./src/js/**\"",
+    "test": "$(npm bin)/jasmine --config=./test/js/jasmine.json",
+    "coverage": "$(npm bin)/nyc npm run test",
+    "coverage-badge": "istanbul-badges-readme",
+    "doc": "$(npm bin)/jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
+    "dev": "$(npm bin)/parcel --out-dir devdist ./src/js/*.js",
+    "build": "$(npm bin)/parcel build ./src/js/*.js",
+    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohT/data-restructor-js.git"
+  },
+  "keywords": [
+    "restruct",
+    "json",
+    "data"
+  ],
+  "author": "JohT",
+  "license": "SEE LICENCE IN LICENCE.txt",
+  "bugs": {
+    "url": "https://github.com/JohT/data-restructor-js/issues"
+  },
+  "homepage": "https://github.com/JohT/data-restructor-js#readme",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "istanbul-badges-readme": "^1.2.0",
+    "jasmine": "^3.6.4",
+    "jsdoc": "^3.6.6",
+    "nyc": "^15.1.0",
+    "parcel-bundler": "^1.12.4"
+  }
+}

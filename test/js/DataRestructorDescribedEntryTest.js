@@ -1,5 +1,7 @@
 "use strict";
 
+var datarestructor = datarestructor || require("../../src/js/datarestructor.js"); // supports vanilla js & npm
+
 describe("datarestructor.DescribedEntry", function () {
   var description;
   var rawEntry;
