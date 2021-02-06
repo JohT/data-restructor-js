@@ -1,6 +1,18 @@
 # CHANGELOG.md
 
-## **v2.2.0** Resolving template with described fields (latest)
+## **v2.3.0** Continuous Integration (latest)
+
+### Features:
+
+  - Continuous Integration using GitHub Actions
+  - Build using nodes package manager (npm)
+  - Bundle (minification,...) using Parcel Bundler
+  - Automated already existing unit tests using Jasmine
+  - Unit-Test coverage measurement using nyc
+  - Documentation Generation using JSDoc
+  - Static code analysis using ESLint
+  - Updated documentation
+## **v2.2.0** Resolving template with described fields
 
 ### Features:
 
