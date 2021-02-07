@@ -25,10 +25,9 @@ Overview of the commands to test, run and build this project as well as those th
 
 ## Further steps:
 - It would be great to get SpecRunner.html up and running in dev mode like: "dev": "parcel ./test/js/SpecRunner.html". [parcel issue 3407](https://github.com/parcel-bundler/parcel/issues/3407) may be key for that.
-- **TODO** Add Linter
 
 ## References
  * [Parcel - Getting Started](https://parceljs.org/getting_started.html)
  * [Jasmine - Using Jasmine with node](https://jasmine.github.io/setup/nodejs.html)
  * [Istanbul/nyc - Installation & Usage](https://github.com/istanbuljs/nyc#installation--usage)
-
+ * [ESLint - Getting Started](https://eslint.org/docs/user-guide/getting-started)
