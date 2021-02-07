@@ -27,7 +27,11 @@ If the structure evolves over time, it leads to recurring changes in the code th
 * the code, that depends on the structure of the data, can easily be changed (only a view lines, same team, ...).
 
 ## Quickstart
-The sources can be found inside the
+Use the following command to install the library using npm:
+```
+npm install data-restructor
+```
+Alternatively, the sources can be found inside the
 [source folder](https://github.com/JohT/data-restructor-js/tree/master/src/):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/datarestructor.js) 
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js) 
