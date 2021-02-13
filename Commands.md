@@ -7,6 +7,7 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm run package` Runs all steps incl. test, coverage, doc generation and build
 - `npm run coverage` Run all unit tests (using jasmine) **with** reporting coverage (using nyc/istanbul)
 - `npm test` Only all unit tests (using jasmine) **without** coverage report
+- `npm run coverage-badge` Updates code coverage badge inside `README.md`
 - `npm run doc` Generates JSDoc Documentation in folder "docs"
 - `npm run build` Builds the application for production including minification,...
 - `npm run dev` Builds the application for development (without minification) and starts the live server
