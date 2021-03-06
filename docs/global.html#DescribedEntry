@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line496">line 496</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line498">line 498</a>
     </li></ul></dd>
     
 
@@ -143,7 +143,7 @@
 
         
             
-<h4 class="name" id="index"><span class="type-signature"></span>index<span class="type-signature"></span></h4>
+<h4 class="name" id="index"><span class="type-signature"></span>index<span class="type-signature"> :Array.&lt;number></span></h4>
 
 
 
@@ -154,6 +154,168 @@ Example: &quot;responses[2].hits.hits[4]._source.name&quot; leads to an array wi
 This is the public version of the internal variable _identifier.index, which contains in contrast all index elements in one point separated string (e.g. &quot;2.4&quot;).</p>
 </div>
 
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;number></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line513">line 513</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addGroupEntry"><span class="type-signature"></span>addGroupEntry<span class="signature">(groupName, describedEntry)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Adds an entry to the given group. If the group does not exist, it will be created.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>groupName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>describedEntry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#DescribedEntry">DescribedEntry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -189,7 +351,7 @@ This is the public version of the internal variable _identifier.index, which con
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line510">line 510</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line579">line 579</a>
     </li></ul></dd>
     
 
@@ -205,11 +367,178 @@ This is the public version of the internal variable _identifier.index, which con
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
+            
+
     
 
     
-        <h3 class="subsection-title">Methods</h3>
+    <h4 class="name" id="getGroupEntries"><span class="type-signature"></span>getGroupEntries<span class="signature">(groupName)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="global.html#DescribedEntry">DescribedEntry</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Returns the entries of the given group or an empty array, it the group doesn't exist.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>groupName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line570">line 570</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>entries of the group</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="global.html#DescribedEntry">DescribedEntry</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
 
         
             
@@ -313,7 +642,7 @@ This is the public version of the internal variable _identifier.index, which con
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line556">line 556</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line559">line 559</a>
     </li></ul></dd>
     
 
@@ -454,7 +783,7 @@ Parts of the index can be inserted by using e.g. &quot;{{index[1]}}&quot;.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line548">line 548</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line551">line 551</a>
     </li></ul></dd>
     
 
@@ -522,13 +851,13 @@ Parts of the index can be inserted by using e.g. &quot;{{index[1]}}&quot;.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DataFieldBuilder.html">DataFieldBuilder</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Feb 04 2021 21:11:51 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 10:24:47 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

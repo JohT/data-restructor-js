@@ -45,30 +45,59 @@
     <section>
         <article><p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
 <img src="https://img.shields.io/github/languages/top/JohT/data-restructor-js" alt="Language">
-<img src="https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg" alt="Branches"></p>
+<img src="https://img.shields.io/badge/Coverage-90.15%25-brightgreen.svg" alt="Branches">
+<img src="https://aleen42.github.io/badges/src/npm.svg" alt="npm">
+<img src="https://aleen42.github.io/badges/src/jasmine.svg" alt="jasmine">
+<img src="https://aleen42.github.io/badges/src/eslint.svg" alt="eslint">
+<img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc" alt="JSDoc">
+<img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc" alt="JSDoc">
+<img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc" alt="nyc">
+<img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel-bundler" alt="parcel-bundler"></p>
 <h1>data-reconstructor-js</h1>
 <p>When parsing JSON on client-side, the structure of it attracts most of our attention.<br>
 If the structure evolves over time, it leads to recurring changes in the code that depends on it.</p>
 <h2>Features:</h2>
 <ul>
-<li>Adapter that takes e.g. parsed JSON and transforms it into a standardized structure</li>
+<li>Adapter that takes e.g. parsed JSON and transforms it into a uniform structure</li>
 <li>Multiple transformation steps including flattening, removing duplicates, grouping, ...</li>
-<li>Takes descriptions that reflect the incoming structure and define the standardized output</li>
+<li>Takes descriptions that reflect the incoming structure and define the uniform output</li>
 <li>Reusable and flexible</li>
-<li>Supports most browser including ie5</li>
+<li>Supports most browser including IE 5</li>
 </ul>
-<h2>not intended to be used when</h2>
+<h2>Not intended to be used when</h2>
 <ul>
 <li>a &quot;backend for frontend&quot; exists, that is responsible for delivering the structure and content the way the client needs it.</li>
 <li>the structure of the data is already stable, well abstracted and/or rather generic.</li>
 <li>the code, that depends on the structure of the data, can easily be changed (only a view lines, same team, ...).</li>
 </ul>
 <h2>Quickstart</h2>
-<p>Copy
-<a href="https://github.com/JohT/data-restructor-js/blob/master/js/datarestructor.js">datarestructor.js</a>
-into your source folder. NPM is not yet supported (Oct. 2020).</p>
+<p>Use the following command to install the library using npm:</p>
+<pre class="prettyprint source"><code>npm install data-restructor
+</code></pre>
+<p>Alternatively, the sources can be found inside the
+<a href="https://github.com/JohT/data-restructor-js/tree/master/src/">source folder</a>:</p>
+<ul>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/src/js/datarestructor.js">datarestructor.js</a></li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js">templateResolver.js</a></li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/src/js/describedfield.js">describedfield.js</a></li>
+</ul>
+<p>The built versions can be found inside the
+<a href="https://github.com/JohT/data-restructor-js/tree/master/dist">distribution folder</a>:</p>
+<ul>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js">datarestructor.js</a></li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js">datarestructor-ie.js</a> (full compatibility with IE)</li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver.js">templateResolver.js</a></li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js">templateResolver-ie.js</a> (full compatibility with IE)</li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield.js">describedfield.js</a></li>
+<li><a href="https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js">describedfield-ie.js</a> (full compatibility with IE)</li>
+</ul>
+<h2>Code Documentation</h2>
+<p>The code documentation generated using <a href="https://jsdoc.app">JSDoc</a> can be found inside the
+<a href="https://github.com/JohT/data-restructor-js/tree/master/doc/">documentation folder</a>.</p>
 <h2>Example</h2>
-<p>As a starting point you may have a look at the following example.</p>
+<p>As a starting point you may have a look at the following example.<br>
+A running, comprehensive example can be found here:
+<a href="https://github.com/JohT/data-restructor-js/blob/master/test/js/DataRestructorUseCaseTest.js">DataRestructorUseCaseTest.js</a></p>
 <h3>Input Object</h3>
 <pre class="prettyprint source lang-json"><code>{
     &quot;responses&quot;: [
@@ -490,6 +519,109 @@ Additionally, single elements of the index can be used by specifying the index p
 
 <header>
     
+        <h2>describedfield.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Describes a data field of the restructured data.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>${project.version}</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>JohT</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
         <h2>templateResolver.js</h2>
         
     
@@ -589,13 +721,13 @@ Additionally, single elements of the index can be used by specifying the index p
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DataFieldBuilder.html">DataFieldBuilder</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Feb 04 2021 21:11:51 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 10:24:47 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

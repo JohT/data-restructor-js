@@ -459,6 +459,8 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
  * @property {string} value - content of the field
  * @property {string} resolveTemplate - function, that replaces propertyNames in double curly brackets with the values in this object.
  * @property {string} publicFieldsJson - function, that converts the public fields including grouped sub structures to JSON.
+ * @property {DescribedEntry[]} getGroupEntries -  function, that returns the entries of the given group or an empty array, it the group doesn't exist. 
+*  @property {String} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
  * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
  * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -506,6 +508,7 @@ datarestructor.DescribedEntryCreator = (function () {
      * Array of numbers containing the split index. 
      * Example: "responses[2].hits.hits[4]._source.name" leads to an array with two elements: [2,4]
      * This is the public version of the internal variable _identifier.index, which contains in contrast all index elements in one point separated string (e.g. "2.4").
+     * @type {number[]}
      */
     this.index = indices.numberArray;
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
@@ -558,6 +561,27 @@ datarestructor.DescribedEntryCreator = (function () {
       var prettyPrintJsonSpace = typeof space === "number" ? space : 0;
       return JSON.stringify(this, replacerRetainsOnlyDefinedPublicFields(propertyNames), prettyPrintJsonSpace);
     };
+
+    /**
+     * Returns the entries of the given group or an empty array, it the group doesn't exist. 
+     * @param {String} groupName 
+     * @returns {DescribedEntry[]} entries of the group
+     */
+    this.getGroupEntries = function (groupName) {
+      return this[groupName]? this[groupName] : [];
+    };
+
+    /**
+     * Adds an entry to the given group. If the group does not exist, it will be created.
+     * @param {String} groupName 
+     * @param {DescribedEntry} describedEntry 
+     */
+    this.addGroupEntry = function(groupName, describedEntry) {
+      if (!this[groupName]) {
+        this[groupName] = [];
+      }
+      this[groupName].push(describedEntry);
+    }
   }
 
   /**
@@ -648,7 +672,7 @@ datarestructor.DescribedEntryCreator = (function () {
     if (typeof value !== "object" && propertyNames.indexOf(key) < 0 && key != "") {
       return undefined; // Remove all properties that are not contained in the given list.
     }
-    if (key.indexOf("_") == 0) {
+    if ((typeof key === "string") && (key.indexOf("_") == 0)) {
       return undefined; //Remove all properties with a name beginning with an underscore (internal fields).
     }
     if (Array.isArray(value)) {
@@ -889,10 +913,9 @@ datarestructor.Transform = (function () {
         continue;
       }
       if (!groupedResult[groupId]) {
-        groupedResult[groupId] = element;
-        groupedResult[groupId][groupName] = [];
+        groupedResult[groupId] = element; 
       }
-      groupedResult[groupId][groupName].push(element);
+      groupedResult[groupId].addGroupEntry(groupName, element);
     }
     return groupedResult;
   }

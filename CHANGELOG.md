@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## **v2.4.0** Introducing DescribedDataField (latest)
+
+### Features:
+ - Pure, non cyclic data result that can be converted to json without using additional functions
 ## **v2.3.0** Continuous Integration (latest)
 
 ### Features:
