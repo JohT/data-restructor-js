@@ -102,6 +102,427 @@
 
         
                 
+<h4 class="name" id="DescribedDataField">DescribedDataField</h4>
+
+
+
+
+<div class="description">
+    <p>Describes a field of the restructured data.
+Dynamically added properties represent custom named groups containing DescribedDataField-Arrays.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>category</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last"><p>name of the category. Could contain a short domain name like &quot;product&quot; or &quot;vendor&quot;.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last"><p>type of the data element. Examples: &quot;summary&quot; for e.g. a list overview. &quot;detail&quot; e.g. when a summary is selected. &quot;filter&quot; e.g. for field/value pair results that can be selected as data filters.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>abbreviation</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last"><p>one optional character, a symbol character or a short abbreviation of the category</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ""
+                
+                </td>
+            
+
+            <td class="description last"><p>one optional path to an image resource</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>array of numbers containing the splitted index. Example: &quot;responses[2].hits.hits[4]._source.name&quot; will have an index of [2,4]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>displayName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>display name of the field</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>field name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>content of the field</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>couldBeAnyCustomGroupName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#DescribedDataField">DescribedDataField</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>any number of groups attached to the field each containing multiple fields</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
 <h4 class="name" id="DescribedEntry">DescribedEntry</h4>
 
 
@@ -485,6 +906,72 @@
             
 
             <td class="description last"><p>function, that converts the public fields including grouped sub structures to JSON.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>getGroupEntries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#DescribedEntry">DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>function, that returns the entries of the given group or an empty array, it the group doesn't exist.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>addGroupEntry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>function, that adds an entry to the given group. If the group does not exist, it will be created.</p></td>
         </tr>
 
     
@@ -1666,7 +2153,7 @@ how the data should be transformed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line474">line 474</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line476">line 476</a>
     </li></ul></dd>
     
 
@@ -1732,13 +2219,13 @@ how the data should be transformed.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DataFieldBuilder.html">DataFieldBuilder</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Feb 04 2021 21:11:51 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 10:24:47 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

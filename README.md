@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
-![Branches](https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg)
+![Branches](https://img.shields.io/badge/Coverage-90.15%25-brightgreen.svg)
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
@@ -35,13 +35,16 @@ Alternatively, the sources can be found inside the
 [source folder](https://github.com/JohT/data-restructor-js/tree/master/src/):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/datarestructor.js) 
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js) 
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/describedfield.js) 
 
 The built versions can be found inside the 
 [distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js) 
-- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility incl. IE)
+- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility with IE)
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver.js) 
-- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility incl. IE)
+- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility with IE)
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield.js) 
+- [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js) (full compatibility with IE)
 
 ## Code Documentation
 The code documentation generated using [JSDoc](https://jsdoc.app) can be found inside the 
