@@ -303,14 +303,20 @@ internal_object_tools.flattenToArray = function (data, maxRecursionDepth) {
  */
 "use strict";
 
-var module = module || {}; // Fallback for vanilla js without modules
+var module = templateResolverInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 
+function templateResolverInternalCreateIfNotExists(objectToCheck) {
+  return objectToCheck || {};
+}
 /**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
  */
 
+
 var template_resolver = module.exports = {}; // Export module for npm...
+
+template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
 
 var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
 
@@ -485,7 +491,242 @@ template_resolver.Resolver = function () {
 
   return Resolver;
 }();
-},{"../../lib/js/flattenToArray":"../../lib/js/flattenToArray.js"}],"datarestructor.js":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"../../lib/js/flattenToArray.js"}],"describedfield.js":[function(require,module,exports) {
+/**
+ * @file Describes a data field of the restructured data.
+ * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
+ * @author JohT
+ * @version ${project.version}
+ */
+"use strict";
+
+var module = describedFieldInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
+
+function describedFieldInternalCreateIfNotExists(objectToCheck) {
+  return objectToCheck || {};
+}
+/**
+ * Describes a data field of the restructured data.
+ * @module described_field
+ */
+
+
+var described_field = module.exports = {}; // Export module for npm...
+
+described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExists;
+/**
+ * Describes a field of the restructured data.
+ * Dynamically added properties represent custom named groups containing DescribedDataField-Arrays.
+ *
+ * @global
+ * @typedef {Object} DescribedDataField
+ * @property {string} [category=""] - name of the category. Could contain a short domain name like "product" or "vendor".
+ * @property {string} [type=""] - type of the data element. Examples: "summary" for e.g. a list overview. "detail" e.g. when a summary is selected. "filter" e.g. for field/value pair results that can be selected as data filters.
+ * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
+ * @property {string} [image=""] - one optional path to an image resource
+ * @property {string} index - array of numbers containing the splitted index. Example: "responses[2].hits.hits[4]._source.name" will have an index of [2,4]
+ * @property {string} displayName - display name of the field
+ * @property {string} fieldName - field name
+ * @property {string} value - content of the field
+ * @property {DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
+ */
+
+/**
+ * DescribedDataFieldBuilder. 
+ * It is used to build a DescribedDataField that is the main element of the restructured data and therefore considered "public".
+ */
+
+described_field.DescribedDataFieldBuilder = function () {
+  /**
+   * Constructor function and container for everything, that needs to exist per instance.
+   * @constructs DataFieldBuilder
+   */
+  function DescribedDataFieldBuilder() {
+    /**
+     * @type {DescribedDataField}
+     */
+    this.describedField = {
+      category: "",
+      type: "",
+      abbreviation: "",
+      image: "",
+      index: [],
+      displayName: "",
+      fieldName: "",
+      value: ""
+    };
+    /**
+     * Takes over all values of the given DescribedDataField.
+     * @function
+     * @param {DescribedDataField} template 
+     * @returns {DescribedDataFieldBuilder}
+     * @example fromDescribedDataField(sourceField)
+     */
+
+    this.fromDescribedDataField = function (template) {
+      this.category(template.category);
+      this.type(template.type);
+      this.abbreviation(template.abbreviation);
+      this.image(template.image);
+      this.index(template.index);
+      this.displayName(template.displayName);
+      this.fieldName(template.fieldName);
+      this.value(template.value);
+      return this;
+    };
+    /**
+     * Sets the category.
+     *
+     * Contains a short domain nam, for example:
+     * - "product" for products
+     * - "vendor" for vendors
+     *
+     * @function
+     * @param {String} [value=""]
+     * @returns {DescribedDataFieldBuilder}
+     * @example category("Product")
+     */
+
+
+    this.category = function (value) {
+      this.describedField.category = withDefaultString(value, "");
+      return this;
+    };
+    /**
+     * Sets the type.
+     *
+     * Contains the type of the entry, for example:
+     * - "summary" for e.g. a list overview.
+     * - "detail" e.g. when a summary is selected.
+     * - "filter" e.g. for field/value pair results that can be selected as search parameters.
+     *
+     * @function
+     * @param {String} [value=""]
+     * @returns {DescribedDataFieldBuilder}
+     * @example type("summary")
+     */
+
+
+    this.type = function (value) {
+      this.describedField.type = withDefaultString(value, "");
+      return this;
+    };
+    /**
+     * Sets the optional abbreviation.
+     *
+     * Contains a symbol character or a very short abbreviation of the category.
+     * - "P" for products
+     * - "V" for vendors
+     *
+     * @function
+     * @param {String} [value=""]
+     * @returns {DescribedDataFieldBuilder}
+     * @example abbreviation("P")
+     */
+
+
+    this.abbreviation = function (value) {
+      this.describedField.abbreviation = withDefaultString(value, "");
+      return this;
+    };
+    /**
+     * Sets the optional path to an image resource.
+     *
+     * @function
+     * @param {String} [value=""]
+     * @returns {DescribedDataFieldBuilder}
+     * @example image("img/product.png")
+     */
+
+
+    this.image = function (value) {
+      this.describedField.image = withDefaultString(value, "");
+      return this;
+    };
+    /**
+     * Sets the index as an array of numbers containing the splitted array indexes of the source field.
+     * Example: "responses[2].hits.hits[4]._source.name" will have an index of [2,4].
+     *
+     * @function
+     * @param {number[]} [value=[]]
+     * @returns {DescribedDataFieldBuilder}
+     * @example index([2,4])
+     */
+
+
+    this.index = function (value) {
+      this.describedField.index = withDefaultArray(value, []);
+      return this;
+    };
+    /**
+     * Sets the display name.
+     *
+     * @function
+     * @param {String} [value=""]
+     * @returns {DescribedDataFieldBuilder}
+     * @example displayName("Color")
+     */
+
+
+    this.displayName = function (value) {
+      this.describedField.displayName = withDefaultString(value, "");
+      return this;
+    };
+    /**
+     * Sets the (technical) field name.
+     *
+     * @function
+     * @param {String} [value=""]
+     * @returns {DescribedDataFieldBuilder}
+     * @example fieldName("color")
+     */
+
+
+    this.fieldName = function (value) {
+      this.describedField.fieldName = withDefaultString(value, "");
+      return this;
+    };
+    /**
+      * Sets the value/content of the field.
+      *
+      * @function
+      * @param {String} [value=""]
+      * @returns {DescribedDataFieldBuilder}
+      * @example value("darkblue")
+      */
+
+
+    this.value = function (value) {
+      this.describedField.value = withDefaultString(value, "");
+      return this;
+    };
+    /**
+     * Finalizes the settings and builds the DescribedDataField.
+     * @function
+     * @returns {DescribedDataField}
+     */
+
+
+    this.build = function () {
+      return this.describedField;
+    };
+  }
+
+  function isSpecifiedString(value) {
+    return typeof value === "string" && value !== null && value !== "";
+  }
+
+  function withDefaultString(value, defaultValue) {
+    return isSpecifiedString(value) ? value : defaultValue;
+  }
+
+  function withDefaultArray(value, defaultValue) {
+    return value !== null ? value : defaultValue;
+  }
+
+  return DescribedDataFieldBuilder;
+}();
+},{}],"datarestructor.js":[function(require,module,exports) {
 /**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -493,10 +734,11 @@ template_resolver.Resolver = function () {
  */
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var module = datarestructorInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 
-var module = module || {}; // Fallback for vanilla js without modules
-
+function datarestructorInternalCreateIfNotExists(objectToCheck) {
+  return objectToCheck || {};
+}
 /**
  * datarestructor namespace and module declaration.
  * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
@@ -512,12 +754,18 @@ var module = module || {}; // Fallback for vanilla js without modules
  * @module datarestructor
  */
 
+
 var datarestructor = module.exports = {}; // Export module for npm...
+
+datarestructor.internalCreateIfNotExists = datarestructorInternalCreateIfNotExists;
 
 var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
 
 
 var template_resolver = template_resolver || require("../../src/js/templateResolver"); // supports vanilla js & npm
+
+
+var described_field = described_field || require("../../src/js/describedfield"); // supports vanilla js & npm
 
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
@@ -989,6 +1237,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
 /**
  * @global
  * @typedef {Object} DescribedEntry
+ * @property {DescribedDataField} describedField - public type with the main properties for external/public use
  * @property {string} category - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * @property {string} type - type of the result from PropertyStructureDescription
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
@@ -997,8 +1246,11 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
  * @property {string} displayName - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
  * @property {string} value - content of the field
+ * @property {string[]} groupNames - contains the name of every group (containing and DescribedEntry[]) that had been added dynamically to this object. 
  * @property {string} resolveTemplate - function, that replaces propertyNames in double curly brackets with the values in this object.
  * @property {string} publicFieldsJson - function, that converts the public fields including grouped sub structures to JSON.
+*  @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
+*  @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
  * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
  * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -1010,8 +1262,6 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
  * @property {string} _identifier.deduplicationId - Contains the resolved deduplicationPattern from the PropertyStructureDescription. Entries with the same id will be considered to be a duplicate and hence removed.
  * @property {Object} _description - PropertyStructureDescription for internal use. Avoid using it outside since it may change.
  */
-// @ property {DescribedEntry[]} getGroupEntries -  function, that returns the entries of the given group or an empty array, it the group doesn't exist. 
-// @ property {String} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
 
 /**
  * Returns a field value of the given {@link DescribedEntry}.
@@ -1041,6 +1291,7 @@ datarestructor.DescribedEntryCreator = function () {
     var indices = indicesOf(entry.name);
     var propertyNameWithoutArrayIndices = entry.name.replace(removeArrayBracketsRegEx, "");
     var templateResolver = new template_resolver.Resolver(this);
+    this.describedField = new described_field.DescribedDataFieldBuilder().category(description.category).type(description.type).abbreviation(description.abbreviation).image(description.image).index(indices.numberArray).displayName(description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices)).fieldName(description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices)).value(entry.value).build();
     this.category = description.category;
     this.type = description.type;
     this.abbreviation = description.abbreviation;
@@ -1056,6 +1307,7 @@ datarestructor.DescribedEntryCreator = function () {
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
     this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
     this.value = entry.value;
+    this.groupNames = [];
     this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
     this._description = description;
     this._identifier = {
@@ -1066,9 +1318,9 @@ datarestructor.DescribedEntryCreator = function () {
       groupDestinationId: "",
       deduplicationId: ""
     };
-    this._identifier.groupId = templateResolver.replaceResolvableFields(description.groupPattern, templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier));
-    this._identifier.groupDestinationId = templateResolver.replaceResolvableFields(description.groupDestinationPattern, templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier));
-    this._identifier.deduplicationId = templateResolver.replaceResolvableFields(description.deduplicationPattern, templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier));
+    this._identifier.groupId = templateResolver.replaceResolvableFields(description.groupPattern, templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier));
+    this._identifier.groupDestinationId = templateResolver.replaceResolvableFields(description.groupDestinationPattern, templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier));
+    this._identifier.deduplicationId = templateResolver.replaceResolvableFields(description.deduplicationPattern, templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier));
     /**
      * Resolves the given template.
      * 
@@ -1091,19 +1343,8 @@ datarestructor.DescribedEntryCreator = function () {
 
 
     this.publicFieldsJson = function (space) {
-      var propertyNames = propertyNamesWithoutObjectsAndFunctions(this);
       var prettyPrintJsonSpace = typeof space === "number" ? space : 0;
-      return JSON.stringify(this, replacerRetainsOnlyDefinedPublicFields(propertyNames), prettyPrintJsonSpace);
-    };
-    /**
-     * Returns the entries of the given group or an empty array, it the group doesn't exist. 
-     * @param {String} groupName 
-     * @returns {DescribedEntry[]} entries of the group
-     */
-
-
-    this.getGroupEntries = function (groupName) {
-      return this[groupName] ? this[groupName] : [];
+      return JSON.stringify(this.describedField, null, prettyPrintJsonSpace);
     };
     /**
      * Adds an entry to the given group. If the group does not exist, it will be created.
@@ -1113,11 +1354,30 @@ datarestructor.DescribedEntryCreator = function () {
 
 
     this.addGroupEntry = function (groupName, describedEntry) {
+      this.addGroupEntries(groupName, [describedEntry]);
+    };
+    /**
+     * Adds entries to the given group. If the group does not exist, it will be created.
+     * @param {String} groupName 
+     * @param {DescribedEntry[]} describedEntries
+     */
+
+
+    this.addGroupEntries = function (groupName, describedEntries) {
       if (!this[groupName]) {
+        this.groupNames.push(groupName);
         this[groupName] = [];
+        this.describedField[groupName] = [];
       }
 
-      this[groupName].push(describedEntry);
+      var index;
+      var describedEntry;
+
+      for (index = 0; index < describedEntries.length; index += 1) {
+        describedEntry = describedEntries[index];
+        this[groupName].push(describedEntry);
+        this.describedField[groupName].push(describedEntry.describedField);
+      }
     };
   }
   /**
@@ -1169,87 +1429,6 @@ datarestructor.DescribedEntryCreator = function () {
       pointDelimited: pointDelimited,
       numberArray: numberArray
     };
-  }
-  /**
-   * Returns an array of property names of the given object without properties of type "object".
-   */
-
-
-  function propertyNamesWithoutObjectsAndFunctions(obj) {
-    var result = [];
-    var propertyIndex;
-    var propertyName;
-    var propertyNames = Object.keys(obj);
-
-    for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
-      propertyName = propertyNames[propertyIndex];
-
-      if (_typeof(obj[propertyName]) !== "object" && typeof obj[propertyName] !== "function") {
-        result.push(propertyName);
-      }
-    }
-
-    return result;
-  }
-  /**
-   * Returns a function, that takes two arguments and is therefore applicable to be used as "replacer" parameter for JSON.stringify.
-   * It only retains the given property names and removes everything else except for embedded "sub" objects
-   * with the same structure (and only one recursive level). These sub objects will be cloned to get rid of the circular
-   * structure that would lead to the error message "TypeError: Converting circular structure to JSON".
-   * Internal properties containing objects but beginning with an underscore in their name will also be removed.
-   *
-   * @param key name of the property to be converted to JSON or empty for the whole object.
-   * @param value value of the property to be converted to JSON.
-   * @returns function that is applicable to be used as "replacer" parameter for JSON.stringify.
-   */
-
-
-  function replacerRetainsOnlyDefinedPublicFields(propertyNames) {
-    return function (key, value) {
-      return onlyDefinedPublicFields(key, value, propertyNames);
-    };
-  }
-  /**
-   * This function takes two arguments and is therefore applicable to be used as "replacer" parameter for JSON.stringify.
-   * It removes internal properties beginning with an underscore in their name
-   * and creates new objects for grouped structures (only one recursion level) to get rid of the circular structure
-   * that would lead to the error message "TypeError: Converting circular structure to JSON".
-   *
-   * @param {string} key name of the property to be converted to JSON or empty for the whole object.
-   * @param {string} value value of the property to be converted to JSON.
-   * @param {string[]} propertyNames array of strings containing only the public fields that will be converted to JSON.
-   */
-
-
-  function onlyDefinedPublicFields(key, value, propertyNames) {
-    if (_typeof(value) !== "object" && propertyNames.indexOf(key) < 0 && key != "") {
-      return undefined; // Remove all properties that are not contained in the given list.
-    }
-
-    if (typeof key === "string" && key.indexOf("_") == 0) {
-      return undefined; //Remove all properties with a name beginning with an underscore (internal fields).
-    }
-
-    if (Array.isArray(value)) {
-      var index, propertyIndex;
-      var entry, clonedEntry;
-      var clonedArray = [];
-
-      for (index = 0; index < value.length; index += 1) {
-        entry = value[index];
-        clonedEntry = {};
-
-        for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
-          clonedEntry[propertyNames[propertyIndex]] = entry[propertyNames[propertyIndex]];
-        }
-
-        clonedArray.push(clonedEntry);
-      }
-
-      return clonedArray;
-    }
-
-    return value;
   }
 
   return DescribedEntry;
@@ -1552,10 +1731,7 @@ datarestructor.Transform = function () {
 
         if (groupedObject[destinationKey] != null) {
           var newGroup = entry[entry._description.groupName];
-          var existingGroup = groupedObject[destinationKey][entry._description.groupDestinationName]; //join if exists
-
-          var updatedGroup = existingGroup != null ? existingGroup.concat(newGroup) : newGroup;
-          groupedObject[destinationKey][entry._description.groupDestinationName] = updatedGroup;
+          groupedObject[destinationKey].addGroupEntries(entry._description.groupDestinationName, newGroup);
           keysToDelete.push(key);
         }
       }
@@ -1664,7 +1840,7 @@ datarestructor.Restructor.processJsonUsingDescriptions = function (jsonData, des
 
   return restructor.processJson(jsonData);
 };
-},{"../../lib/js/flattenToArray":"../../lib/js/flattenToArray.js","../../src/js/templateResolver":"templateResolver.js"}],"datarestructor-ie.js":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"../../lib/js/flattenToArray.js","../../src/js/templateResolver":"templateResolver.js","../../src/js/describedfield":"describedfield.js"}],"datarestructor-ie.js":[function(require,module,exports) {
 "use strict";
 
 require("../../lib/js/polyfills/isArrayPolyfill.js");
@@ -1708,7 +1884,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50454" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52316" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
