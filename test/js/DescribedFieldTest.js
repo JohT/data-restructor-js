@@ -6,6 +6,19 @@ describe("describedfield.DescribedDataFieldBuilder", function () {
   beforeEach(function () {
     builderUnderTest = new described_field.DescribedDataFieldBuilder();
   });
+  
+  describe("should have a global function to create objects if they don't exist", function () {
+    it("should create a new object if the given one doesn't exist", function () {
+      var result = described_field.internalCreateIfNotExists(null);
+      expect(result).toEqual({});
+    });
+    
+    it("should use the given object if it exists", function () {
+      var expectedExistingObject = {anytestproperty: 4};
+      var result = described_field.internalCreateIfNotExists(expectedExistingObject);
+      expect(result).toEqual(expectedExistingObject);
+    });
+  });
 
   describe("fields should have default values and", function () {
     it("should contain an empty category", function () {
