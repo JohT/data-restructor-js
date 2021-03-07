@@ -455,6 +455,7 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
 /**
  * @global
  * @typedef {Object} DescribedEntry
+ * @property {DescribedDataField} describedField - public type with the main properties for external/public use
  * @property {string} category - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * @property {string} type - type of the result from PropertyStructureDescription
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
@@ -463,10 +464,11 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
  * @property {string} displayName - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
  * @property {string} value - content of the field
+ * @property {string[]} groupNames - contains the name of every group (containing and DescribedEntry[]) that had been added dynamically to this object. 
  * @property {string} resolveTemplate - function, that replaces propertyNames in double curly brackets with the values in this object.
  * @property {string} publicFieldsJson - function, that converts the public fields including grouped sub structures to JSON.
- * @property {DescribedEntry[]} getGroupEntries -  function, that returns the entries of the given group or an empty array, it the group doesn't exist. 
-*  @property {String} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
+*  @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
+*  @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
  * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
  * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -506,6 +508,16 @@ datarestructor.DescribedEntryCreator = (function () {
     var propertyNameWithoutArrayIndices = entry.name.replace(removeArrayBracketsRegEx, "");
     var templateResolver = new template_resolver.Resolver(this);
 
+    this.describedField = new described_field.DescribedDataFieldBuilder()
+      .category(description.category)
+      .type(description.type)
+      .abbreviation(description.abbreviation)
+      .image(description.image)
+      .index(indices.numberArray)
+      .displayName(description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices))
+      .fieldName(description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices))
+      .value(entry.value)
+      .build();
     this.category = description.category;
     this.type = description.type;
     this.abbreviation = description.abbreviation;
@@ -520,6 +532,7 @@ datarestructor.DescribedEntryCreator = (function () {
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
     this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
     this.value = entry.value;
+    this.groupNames = [];
     this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
     this._description = description;
 
@@ -533,15 +546,15 @@ datarestructor.DescribedEntryCreator = (function () {
     };
     this._identifier.groupId = templateResolver.replaceResolvableFields(
       description.groupPattern,
-      templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier)
+      templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier)
     );
     this._identifier.groupDestinationId = templateResolver.replaceResolvableFields(
       description.groupDestinationPattern,
-      templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier)
+      templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier)
     );
     this._identifier.deduplicationId = templateResolver.replaceResolvableFields(
       description.deduplicationPattern,
-      templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier)
+      templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier)
     );
     /**
      * Resolves the given template.
@@ -563,18 +576,8 @@ datarestructor.DescribedEntryCreator = (function () {
      * @param space — Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
      */
     this.publicFieldsJson = function (space) {
-      var propertyNames = propertyNamesWithoutObjectsAndFunctions(this);
       var prettyPrintJsonSpace = typeof space === "number" ? space : 0;
-      return JSON.stringify(this, replacerRetainsOnlyDefinedPublicFields(propertyNames), prettyPrintJsonSpace);
-    };
-
-    /**
-     * Returns the entries of the given group or an empty array, it the group doesn't exist. 
-     * @param {String} groupName 
-     * @returns {DescribedEntry[]} entries of the group
-     */
-    this.getGroupEntries = function (groupName) {
-      return this[groupName]? this[groupName] : [];
+      return JSON.stringify(this.describedField, null, prettyPrintJsonSpace);
     };
 
     /**
@@ -583,13 +586,29 @@ datarestructor.DescribedEntryCreator = (function () {
      * @param {DescribedEntry} describedEntry 
      */
     this.addGroupEntry = function(groupName, describedEntry) {
-      if (!this[groupName]) {
-        this[groupName] = [];
-      }
-      this[groupName].push(describedEntry);
-    }
-  }
+      this.addGroupEntries(groupName, [describedEntry]);
+    };
 
+    /**
+     * Adds entries to the given group. If the group does not exist, it will be created.
+     * @param {String} groupName 
+     * @param {DescribedEntry[]} describedEntries
+     */
+    this.addGroupEntries = function(groupName, describedEntries) {
+      if (!this[groupName]) {
+        this.groupNames.push(groupName);
+        this[groupName] = [];
+        this.describedField[groupName] = [];
+      }
+      var index;
+      var describedEntry;
+      for (index = 0; index < describedEntries.length; index += 1) {
+        describedEntry = describedEntries[index];
+        this[groupName].push(describedEntry);
+        this.describedField[groupName].push(describedEntry.describedField);
+      }
+    };
+  }
   /**
    * @typedef {Object} ExtractedIndices
    * @property {string} pointDelimited - bracket indices separated by points
@@ -629,73 +648,6 @@ datarestructor.DescribedEntryCreator = (function () {
       }
     } while (match);
     return { pointDelimited: pointDelimited, numberArray: numberArray };
-  }
-
-  /**
-   * Returns an array of property names of the given object without properties of type "object".
-   */
-  function propertyNamesWithoutObjectsAndFunctions(obj) {
-    var result = [];
-    var propertyIndex;
-    var propertyName;
-    var propertyNames = Object.keys(obj);
-    for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
-      propertyName = propertyNames[propertyIndex];
-      if (typeof obj[propertyName] !== "object" && typeof obj[propertyName] !== "function") {
-        result.push(propertyName);
-      }
-    }
-    return result;
-  }
-
-  /**
-   * Returns a function, that takes two arguments and is therefore applicable to be used as "replacer" parameter for JSON.stringify.
-   * It only retains the given property names and removes everything else except for embedded "sub" objects
-   * with the same structure (and only one recursive level). These sub objects will be cloned to get rid of the circular
-   * structure that would lead to the error message "TypeError: Converting circular structure to JSON".
-   * Internal properties containing objects but beginning with an underscore in their name will also be removed.
-   *
-   * @param key name of the property to be converted to JSON or empty for the whole object.
-   * @param value value of the property to be converted to JSON.
-   * @returns function that is applicable to be used as "replacer" parameter for JSON.stringify.
-   */
-  function replacerRetainsOnlyDefinedPublicFields(propertyNames) {
-    return function (key, value) {
-      return onlyDefinedPublicFields(key, value, propertyNames);
-    };
-  }
-  /**
-   * This function takes two arguments and is therefore applicable to be used as "replacer" parameter for JSON.stringify.
-   * It removes internal properties beginning with an underscore in their name
-   * and creates new objects for grouped structures (only one recursion level) to get rid of the circular structure
-   * that would lead to the error message "TypeError: Converting circular structure to JSON".
-   *
-   * @param {string} key name of the property to be converted to JSON or empty for the whole object.
-   * @param {string} value value of the property to be converted to JSON.
-   * @param {string[]} propertyNames array of strings containing only the public fields that will be converted to JSON.
-   */
-  function onlyDefinedPublicFields(key, value, propertyNames) {
-    if (typeof value !== "object" && propertyNames.indexOf(key) < 0 && key != "") {
-      return undefined; // Remove all properties that are not contained in the given list.
-    }
-    if ((typeof key === "string") && (key.indexOf("_") == 0)) {
-      return undefined; //Remove all properties with a name beginning with an underscore (internal fields).
-    }
-    if (Array.isArray(value)) {
-      var index, propertyIndex;
-      var entry, clonedEntry;
-      var clonedArray = [];
-      for (index = 0; index < value.length; index += 1) {
-        entry = value[index];
-        clonedEntry = {};
-        for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
-          clonedEntry[propertyNames[propertyIndex]] = entry[propertyNames[propertyIndex]];
-        }
-        clonedArray.push(clonedEntry);
-      }
-      return clonedArray;
-    }
-    return value;
   }
 
   return DescribedEntry;
@@ -971,9 +923,7 @@ datarestructor.Transform = (function () {
         var destinationKey = entry._identifier.groupDestinationId;
         if (groupedObject[destinationKey] != null) {
           var newGroup = entry[entry._description.groupName];
-          var existingGroup = groupedObject[destinationKey][entry._description.groupDestinationName]; //join if exists
-          var updatedGroup = existingGroup != null ? existingGroup.concat(newGroup) : newGroup;
-          groupedObject[destinationKey][entry._description.groupDestinationName] = updatedGroup;
+          groupedObject[destinationKey].addGroupEntries(entry._description.groupDestinationName, newGroup);
           keysToDelete.push(key);
         }
       }

@@ -505,7 +505,7 @@ Dynamically added properties represent custom named groups containing DescribedD
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line16">line 16</a>
+        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -570,6 +570,39 @@ Dynamically added properties represent custom named groups containing DescribedD
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>describedField</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#DescribedDataField">DescribedDataField</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>public type with the main properties for external/public use</p></td>
+        </tr>
+
     
 
         <tr>
@@ -846,6 +879,39 @@ Dynamically added properties represent custom named groups containing DescribedD
 
         <tr>
             
+                <td class="name"><code>groupNames</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>contains the name of every group (containing and DescribedEntry[]) that had been added dynamically to this object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>resolveTemplate</code></td>
             
 
@@ -912,46 +978,13 @@ Dynamically added properties represent custom named groups containing DescribedD
 
         <tr>
             
-                <td class="name"><code>getGroupEntries</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;<a href="global.html#DescribedEntry">DescribedEntry</a>></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>function, that returns the entries of the given group or an empty array, it the group doesn't exist.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>addGroupEntry</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="global.html#DescribedDataField">DescribedDataField</a></span>
 
 
             
@@ -972,6 +1005,39 @@ Dynamically added properties represent custom named groups containing DescribedD
             
 
             <td class="description last"><p>function, that adds an entry to the given group. If the group does not exist, it will be created.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>addGroupEntries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="global.html#DescribedDataField">DescribedDataField</a>></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>function, that adds entries to the given group. If the group does not exist, it will be created.</p></td>
         </tr>
 
     
@@ -1295,7 +1361,7 @@ Dynamically added properties represent custom named groups containing DescribedD
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line449">line 449</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line455">line 455</a>
     </li></ul></dd>
     
 
@@ -1418,7 +1484,7 @@ Dynamically added properties represent custom named groups containing DescribedD
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line29">line 29</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line35">line 35</a>
     </li></ul></dd>
     
 
@@ -2030,7 +2096,7 @@ how the data should be transformed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line38">line 38</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -2153,7 +2219,7 @@ how the data should be transformed.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line476">line 476</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line484">line 484</a>
     </li></ul></dd>
     
 
@@ -2225,7 +2291,7 @@ how the data should be transformed.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 10:24:47 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 20:24:32 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

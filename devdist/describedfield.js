@@ -126,15 +126,20 @@ parcelRequire = (function (modules, cache, entry, globalName) {
  */
 "use strict";
 
-var module = module || {}; // Fallback for vanilla js without modules
+var module = describedFieldInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 
+function describedFieldInternalCreateIfNotExists(objectToCheck) {
+  return objectToCheck || {};
+}
 /**
  * Describes a data field of the restructured data.
  * @module described_field
  */
 
+
 var described_field = module.exports = {}; // Export module for npm...
 
+described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExists;
 /**
  * Describes a field of the restructured data.
  * Dynamically added properties represent custom named groups containing DescribedDataField-Arrays.
@@ -375,7 +380,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50454" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52316" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
