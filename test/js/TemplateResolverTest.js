@@ -12,6 +12,19 @@ describe("templateResolver.Resolver", function () {
   beforeEach(function () {
   });
 
+  describe("should have a global function to create objects if they don't exist", function () {
+    it("should create a new object if the given one doesn't exist", function () {
+      var result = template_resolver.internalCreateIfNotExists(null);
+      expect(result).toEqual({});
+    });
+    
+    it("should use the given object if it exists", function () {
+      var expectedExistingObject = {anytestproperty: 4};
+      var result = template_resolver.internalCreateIfNotExists(expectedExistingObject);
+      expect(result).toEqual(expectedExistingObject);
+    });
+  });
+
   describe("resolves a template with variables of contained properties and ", function () {
     beforeEach(function () {
       rawEntry = { name: "responses[0].hits.hits[3]._source.tag[5]", value: "inactive" };

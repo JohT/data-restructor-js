@@ -5,7 +5,11 @@
  */
 
  "use strict";
-var module = module || {}; // Fallback for vanilla js without modules
+var module = datarestructorInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
+
+function datarestructorInternalCreateIfNotExists(objectToCheck) {
+  return objectToCheck || {};
+}
 
 /**
  * datarestructor namespace and module declaration.
@@ -22,9 +26,11 @@ var module = module || {}; // Fallback for vanilla js without modules
  * @module datarestructor
  */
 var datarestructor = module.exports={}; // Export module for npm...
+datarestructor.internalCreateIfNotExists = datarestructorInternalCreateIfNotExists;
 
 var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
 var template_resolver = template_resolver || require("../../src/js/templateResolver"); // supports vanilla js & npm
+var described_field = described_field || require("../../src/js/describedfield"); // supports vanilla js & npm
 
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.

@@ -5,13 +5,18 @@
  * @version ${project.version}
  */
 "use strict";
-var module = module || {}; // Fallback for vanilla js without modules
+var module = describedFieldInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
+
+function describedFieldInternalCreateIfNotExists(objectToCheck) {
+  return objectToCheck || {};
+}
 
 /**
  * Describes a data field of the restructured data.
  * @module described_field
  */
 var described_field = (module.exports = {}); // Export module for npm...
+described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExists;
 
 /**
  * Describes a field of the restructured data.
