@@ -93,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line506">line 506</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line504">line 504</a>
     </li></ul></dd>
     
 
@@ -199,7 +199,7 @@ This is the public version of the internal variable _identifier.index, which con
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line531">line 531</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line529">line 529</a>
     </li></ul></dd>
     
 
@@ -351,7 +351,7 @@ This is the public version of the internal variable _identifier.index, which con
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line597">line 597</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line572">line 572</a>
     </li></ul></dd>
     
 
@@ -511,7 +511,7 @@ This is the public version of the internal variable _identifier.index, which con
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line588">line 588</a>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line563">line 563</a>
     </li></ul></dd>
     
 
@@ -536,301 +536,6 @@ This is the public version of the internal variable _identifier.index, which con
 
 
 
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="publicFieldsJson"><span class="type-signature"></span>publicFieldsJson<span class="signature">(space)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Returns JSON containing all the public fields</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>space</code></td>
-            
-
-            <td class="type">
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>— Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line578">line 578</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="resolveTemplate"><span class="type-signature"></span>resolveTemplate<span class="signature">(template)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Resolves the given template.</p>
-<p>The template may contain variables in double curly brackets.
-Supported variables are all properties of this object, e.g. &quot;{{fieldName}}&quot;, &quot;{{displayName}}&quot;, &quot;{{value}}&quot;.
-Since this object may also contains (described) groups of sub objects, they can also be used, e.g. &quot;{{summaries[0].value}}&quot;
-Parts of the index can be inserted by using e.g. &quot;{{index[1]}}&quot;.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>template</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line570">line 570</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>resolved template</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
@@ -858,7 +563,7 @@ Parts of the index can be inserted by using e.g. &quot;{{index[1]}}&quot;.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 20:24:32 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Wed Mar 10 2021 07:34:47 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
