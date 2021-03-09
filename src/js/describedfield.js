@@ -31,7 +31,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} index - array of numbers containing the splitted index. Example: "responses[2].hits.hits[4]._source.name" will have an index of [2,4]
  * @property {string} displayName - display name of the field
  * @property {string} fieldName - field name
- * @property {string} value - content of the field
+ * @property {{*}} value - content of the field
  * @property {DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
  */
 
@@ -178,12 +178,12 @@ described_field.DescribedDataFieldBuilder = (function () {
      * Sets the value/content of the field.
      *
      * @function
-     * @param {String} [value=""]
+     * @param {*} value
      * @returns {DescribedDataFieldBuilder}
      * @example value("darkblue")
      */
     this.value = function (value) {
-      this.describedField.value = withDefaultString(value, "");
+      this.describedField.value = value;
       return this;
     };
  

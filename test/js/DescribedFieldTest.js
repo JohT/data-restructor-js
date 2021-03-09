@@ -55,6 +55,11 @@ describe("describedfield.DescribedDataFieldBuilder", function () {
       var result = builderUnderTest.build();
       expect(result.fieldName).toEqual("");
     });
+
+    it("should contain an empty value", function () {
+      var result = builderUnderTest.build();
+      expect(result.value).toEqual("");
+    });
   });
 
   describe("fields should be set to default values when overridden with null and", function () {
