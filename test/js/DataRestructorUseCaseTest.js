@@ -248,7 +248,6 @@ describe("datarestructor.Restructor (use case)", function () {
           atLeastOneEntryAsserted = true;
           expect(entry.value).toContain("<em>");
           expect(entry.value).toContain("</em>");
-          expect(entry._identifier.propertyNameWithoutArrayIndices).toContain(".highlight.");
         }
       );
     });
