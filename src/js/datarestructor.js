@@ -465,8 +465,6 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
  * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
  * @property {string} value - content of the field
  * @property {string[]} groupNames - contains the name of every group (containing and DescribedEntry[]) that had been added dynamically to this object. 
- * @property {string} resolveTemplate - function, that replaces propertyNames in double curly brackets with the values in this object.
- * @property {string} publicFieldsJson - function, that converts the public fields including grouped sub structures to JSON.
 *  @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
 *  @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
@@ -556,29 +554,6 @@ datarestructor.DescribedEntryCreator = (function () {
       description.deduplicationPattern,
       templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier)
     );
-    /**
-     * Resolves the given template.
-     * 
-     * The template may contain variables in double curly brackets.
-     * Supported variables are all properties of this object, e.g. "{{fieldName}}", "{{displayName}}", "{{value}}".
-     * Since this object may also contains (described) groups of sub objects, they can also be used, e.g. "{{summaries[0].value}}" 
-     * Parts of the index can be inserted by using e.g. "{{index[1]}}".
-     * 
-     * @param {string} template
-     * @returns {string} resolved template
-     */
-    this.resolveTemplate = function (template) {
-      return new template_resolver.Resolver(this).resolveTemplate(template);
-    };
-
-    /**
-     * Returns JSON containing all the public fields
-     * @param space — Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
-     */
-    this.publicFieldsJson = function (space) {
-      var prettyPrintJsonSpace = typeof space === "number" ? space : 0;
-      return JSON.stringify(this.describedField, null, prettyPrintJsonSpace);
-    };
 
     /**
      * Adds an entry to the given group. If the group does not exist, it will be created.
@@ -980,7 +955,7 @@ datarestructor.Transform = (function () {
     for (var propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex++) {
       var propertyName = propertyNames[propertyIndex];
       var propertyValue = groupedData[propertyName];
-      result.push(propertyValue);
+      result.push(propertyValue.describedField);
     }
     return result;
   }
