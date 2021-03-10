@@ -29,6 +29,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
  * @property {string} [image=""] - one optional path to an image resource
  * @property {string} index - array of numbers containing the splitted index. Example: "responses[2].hits.hits[4]._source.name" will have an index of [2,4]
+ * @property {string[]} groupNames - array of names of all dynamically added properties representing groups
  * @property {string} displayName - display name of the field
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
@@ -36,7 +37,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  */
 
 /**
- * DescribedDataFieldBuilder. 
+ * DescribedDataFieldBuilder.
  * It is used to build a DescribedDataField that is the main element of the restructured data and therefore considered "public".
  */
 described_field.DescribedDataFieldBuilder = (function () {
@@ -54,23 +55,25 @@ described_field.DescribedDataFieldBuilder = (function () {
       abbreviation: "",
       image: "",
       index: [],
+      groupNames: [],
       displayName: "",
       fieldName: "",
       value: ""
     };
     /**
-     * Takes over all values of the given DescribedDataField.
+     * Takes over all values of the template DescribedDataField.
      * @function
-     * @param {DescribedDataField} template 
+     * @param {DescribedDataField} template
      * @returns {DescribedDataFieldBuilder}
      * @example fromDescribedDataField(sourceField)
      */
-    this.fromDescribedDataField = function(template) {
+    this.fromDescribedDataField = function (template) {
       this.category(template.category);
       this.type(template.type);
       this.abbreviation(template.abbreviation);
       this.image(template.image);
       this.index(template.index);
+      this.groupNames(template.groupNames);
       this.displayName(template.displayName);
       this.fieldName(template.fieldName);
       this.value(template.value);
@@ -151,6 +154,19 @@ described_field.DescribedDataFieldBuilder = (function () {
       return this;
     };
     /**
+     * Sets the group names as an array of strings containing the names of the dynamically added properties,
+     * that contain an array of DescribedDataField-Objects.
+     *
+     * @function
+     * @param {string[]} [value=[]]
+     * @returns {DescribedDataFieldBuilder}
+     * @example groupNames(["summaries","details","options"])
+     */
+    this.groupNames = function (value) {
+      this.describedField.groupNames = withDefaultArray(value, []);
+      return this;
+    };
+    /**
      * Sets the display name.
      *
      * @function
@@ -174,7 +190,7 @@ described_field.DescribedDataFieldBuilder = (function () {
       this.describedField.fieldName = withDefaultString(value, "");
       return this;
     };
-   /**
+    /**
      * Sets the value/content of the field.
      *
      * @function
@@ -186,7 +202,7 @@ described_field.DescribedDataFieldBuilder = (function () {
       this.describedField.value = value;
       return this;
     };
- 
+
     /**
      * Finalizes the settings and builds the DescribedDataField.
      * @function
@@ -206,8 +222,59 @@ described_field.DescribedDataFieldBuilder = (function () {
   }
 
   function withDefaultArray(value, defaultValue) {
-    return value !== null? value : defaultValue;
+    return value === undefined || value === null ? defaultValue : value;
   }
 
   return DescribedDataFieldBuilder;
-}());
+})();
+
+described_field.DescribedDataFieldGroup = (function () {
+  /**
+   * Adds groups to DescribedDataFields. These groups are dynamically added properties
+   * that contain an array of sub fields of the same type DescribedDataFields.
+   * 
+   * @param {DescribedDataField} dataField
+   * @constructs DescribedDataFieldGroup
+   * @example new described_field.DescribedDataFieldGroup(field).addGroupEntry("details", detailField);
+   */
+  function DescribedDataFieldGroup(dataField) {
+    this.dataField = dataField;
+
+    /**
+     * Adds an entry to the given group. If the group does not exist, it will be created.
+     * @function
+     * @param {String} groupName name of the group to which the entry will be added
+     * @param {DescribedDataField} describedField sub field that is added to the group
+     * @returns {DescribedDataFieldGroup}
+     * @memberOf DescribedDataFieldGroup
+     */
+    this.addGroupEntry = function (groupName, describedField) {
+      this.addGroupEntries(groupName, [describedField]);
+      return this;
+    };
+
+    /**
+     * Adds entries to the given group. If the group does not exist, it will be created.
+     * @function
+     * @param {String} groupName name of the group to which the entries will be added
+     * @param {DescribedDataField[]} describedFields sub fields that are added to the group
+     * @returns {DescribedDataFieldGroup}
+     * @memberOf DescribedDataFieldGroup
+     */
+    this.addGroupEntries = function (groupName, describedFields) {
+      if (!this.dataField[groupName]) {
+        this.dataField.groupNames.push(groupName);
+        this.dataField[groupName] = [];
+      }
+      var index;
+      var describedEntry;
+      for (index = 0; index < describedFields.length; index += 1) {
+        describedEntry = describedFields[index];
+        this.dataField[groupName].push(describedEntry);
+      }
+      return this;
+    };
+  }
+
+  return DescribedDataFieldGroup;
+})();

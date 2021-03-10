@@ -464,9 +464,8 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
  * @property {string} displayName - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
  * @property {string} value - content of the field
- * @property {string[]} groupNames - contains the name of every group (containing and DescribedEntry[]) that had been added dynamically to this object. 
-*  @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
-*  @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
+ * @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
+ * @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
  * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
  * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -530,7 +529,6 @@ datarestructor.DescribedEntryCreator = (function () {
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
     this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
     this.value = entry.value;
-    this.groupNames = [];
     this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
     this._description = description;
 
@@ -570,17 +568,15 @@ datarestructor.DescribedEntryCreator = (function () {
      * @param {DescribedEntry[]} describedEntries
      */
     this.addGroupEntries = function(groupName, describedEntries) {
+      new described_field.DescribedDataFieldGroup(this.describedField).addGroupEntries(groupName, describedEntries);
       if (!this[groupName]) {
-        this.groupNames.push(groupName);
         this[groupName] = [];
-        this.describedField[groupName] = [];
       }
       var index;
       var describedEntry;
       for (index = 0; index < describedEntries.length; index += 1) {
         describedEntry = describedEntries[index];
         this[groupName].push(describedEntry);
-        this.describedField[groupName].push(describedEntry.describedField);
       }
     };
   }

@@ -1,6 +1,10 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
+<<<<<<< HEAD
 ![Branches](https://img.shields.io/badge/Coverage-93.81%25-brightgreen.svg)
+=======
+![Branches](https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg)
+>>>>>>> 5e4ee5e (DescribedDataField contains group names)
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
@@ -345,6 +349,7 @@ Since 3.0.0 and above, [DescribedEntry](#DescribedEntry) is only used internally
  * **abbreviation** - one optional character, a symbol character or a short abbreviation of the category
  * **image** - one optional path to an image resource
  * **index** - contains an array of numbers representing the hierarchical index for list entries (and their sub lists ...). Example: `"responses[2].hits.hits[4]._source.name"` will have an index of [2,4].
+ * **groupNames** - contains an array of String names. Every name represents a group that had been dynamically added as property. Groups should be added using [DescribedDataFieldGroup](#DescribedDataFieldGroup), which will also update the group names.   
  * **displayName** - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * **fieldName** - field name extracted from the point separated hierarchical property name, e.g. "name"
  * **value** - content of the field
@@ -355,6 +360,16 @@ Since version 3.0.0 and above, there are no functions any more.
 #### Described groups
  * **"name of described group"** as described in PropertyStructureDescription
  * **"names of moved groups"** as described in PropertyStructureDescription of the group that had been moved
+
+
+### DescribedDataFieldGroup
+This helper was added with version 3.0.0. It adds groups to [DescribedDataField](#DescribedDataField)s. 
+These groups are dynamically added properties that contain an array of sub fields also of type [DescribedDataField](#DescribedDataField).
+
+#### Public functions
+ 
+ * **addGroupEntry(groupName, entry)** Adds an entry to the given group. If the group does not exist, it will be created and added to the "groupNames". 
+ * **addGroupEntries(groupName, entries)** Adds an array of entries to the given group. If the group does not exist, it will be created and added to the "groupNames". 
 
 ### DescribedEntry
 Since 3.0.0 and above, DescribedEntry is only used internally and is not public any more.
