@@ -29,6 +29,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
  * @property {string} [image=""] - one optional path to an image resource
  * @property {string} index - array of numbers containing the splitted index. Example: "responses[2].hits.hits[4]._source.name" will have an index of [2,4]
+ * @property {string[]} groupNames - array of names of all dynamically added properties representing groups 
  * @property {string} displayName - display name of the field
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
@@ -54,12 +55,13 @@ described_field.DescribedDataFieldBuilder = (function () {
       abbreviation: "",
       image: "",
       index: [],
+      groupNames: [],
       displayName: "",
       fieldName: "",
       value: ""
     };
     /**
-     * Takes over all values of the given DescribedDataField.
+     * Takes over all values of the template DescribedDataField.
      * @function
      * @param {DescribedDataField} template 
      * @returns {DescribedDataFieldBuilder}
@@ -71,6 +73,7 @@ described_field.DescribedDataFieldBuilder = (function () {
       this.abbreviation(template.abbreviation);
       this.image(template.image);
       this.index(template.index);
+      this.groupNames(template.groupNames);
       this.displayName(template.displayName);
       this.fieldName(template.fieldName);
       this.value(template.value);
@@ -151,6 +154,19 @@ described_field.DescribedDataFieldBuilder = (function () {
       return this;
     };
     /**
+     * Sets the group names as an array of strings containing the names of the dynamically added properties,
+     * that contain an array of DescribedDataField-Objects.
+     *
+     * @function
+     * @param {string[]} [value=[]]
+     * @returns {DescribedDataFieldBuilder}
+     * @example groupNames(["summaries","details","options"])
+     */
+    this.groupNames = function (value) {
+      this.describedField.groupNames = withDefaultArray(value, []);
+      return this;
+    };
+    /**
      * Sets the display name.
      *
      * @function
@@ -206,7 +222,7 @@ described_field.DescribedDataFieldBuilder = (function () {
   }
 
   function withDefaultArray(value, defaultValue) {
-    return value !== null? value : defaultValue;
+    return (typeof value !== "undefined" && value !== null)? value : defaultValue;
   }
 
   return DescribedDataFieldBuilder;

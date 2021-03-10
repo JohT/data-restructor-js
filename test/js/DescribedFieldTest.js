@@ -46,6 +46,11 @@ describe("describedfield.DescribedDataFieldBuilder", function () {
       expect(result.index).toEqual([]);
     });
 
+    it("should contain an empty group names array", function () {
+      var result = builderUnderTest.build();
+      expect(result.groupNames).toEqual([]);
+    });
+
     it("should contain an empty displayName", function () {
       var result = builderUnderTest.build();
       expect(result.displayName).toEqual("");
@@ -82,6 +87,11 @@ describe("describedfield.DescribedDataFieldBuilder", function () {
       var result = builderUnderTest.index(null).build();
       expect(result.index).toEqual([]);
     });
+
+    it("should use an empty group names array when set to null", function () {
+      var result = builderUnderTest.groupNames(undefined).build();
+      expect(result.groupNames).toEqual([]);
+    });
   });
 
   describe("fields should be overridable and", function () {
@@ -113,6 +123,12 @@ describe("describedfield.DescribedDataFieldBuilder", function () {
       var expectedValue = [1, 2, 3];
       var result = builderUnderTest.index(expectedValue).build();
       expect(result.index).toEqual(expectedValue);
+    });
+
+    it("should contain the given group names", function () {
+      var expectedValue = ["summaries", "details", "options"];
+      var result = builderUnderTest.groupNames(expectedValue).build();
+      expect(result.groupNames).toEqual(expectedValue);
     });
 
     it("should contain the given displayName", function () {
@@ -168,6 +184,13 @@ describe("describedfield.DescribedDataFieldBuilder", function () {
       var result = builderUnderTest.index(expectedValue).build();
       result = clonedBuilderUnderTest.fromDescribedDataField(result).build();
       expect(result.index).toEqual(expectedValue);
+    });
+
+    it("should contain the given group names", function () {
+      var expectedValue = ["summaries", "details", "options"];
+      var result = builderUnderTest.groupNames(expectedValue).build();
+      result = clonedBuilderUnderTest.fromDescribedDataField(result).build();
+      expect(result.groupNames).toEqual(expectedValue);
     });
 
     it("should contain the given displayName", function () {

@@ -573,7 +573,9 @@ datarestructor.DescribedEntryCreator = (function () {
       if (!this[groupName]) {
         this.groupNames.push(groupName);
         this[groupName] = [];
+        
         this.describedField[groupName] = [];
+        this.describedField.groupNames.push(groupName);
       }
       var index;
       var describedEntry;
