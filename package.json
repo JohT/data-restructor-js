@@ -1,6 +1,6 @@
 {
   "name": "data-restructor",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Transforms parsed JSON objects into a uniform data structure",
   "main": "./src/js/datarestructor.js",
   "directories": {
