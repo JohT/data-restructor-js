@@ -492,11 +492,8 @@ datarestructor.PropertyStructureDescriptionBuilder = (function () {
  * @property {string} displayName - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
  * @property {string} value - content of the field
- * @property {string[]} groupNames - contains the name of every group (containing and DescribedEntry[]) that had been added dynamically to this object. 
- * @property {string} resolveTemplate - function, that replaces propertyNames in double curly brackets with the values in this object.
- * @property {string} publicFieldsJson - function, that converts the public fields including grouped sub structures to JSON.
-*  @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
-*  @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
+ * @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
+ * @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
  * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
  * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -560,7 +557,6 @@ datarestructor.DescribedEntryCreator = (function () {
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
     this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
     this.value = entry.value;
-    this.groupNames = [];
     this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
     this._description = description;
 
@@ -584,29 +580,6 @@ datarestructor.DescribedEntryCreator = (function () {
       description.deduplicationPattern,
       templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier)
     );
-    /**
-     * Resolves the given template.
-     * 
-     * The template may contain variables in double curly brackets.
-     * Supported variables are all properties of this object, e.g. "{{fieldName}}", "{{displayName}}", "{{value}}".
-     * Since this object may also contains (described) groups of sub objects, they can also be used, e.g. "{{summaries[0].value}}" 
-     * Parts of the index can be inserted by using e.g. "{{index[1]}}".
-     * 
-     * @param {string} template
-     * @returns {string} resolved template
-     */
-    this.resolveTemplate = function (template) {
-      return new template_resolver.Resolver(this).resolveTemplate(template);
-    };
-
-    /**
-     * Returns JSON containing all the public fields
-     * @param space — Adds indentation, white space, and line break characters to the return-value JSON text to make it easier to read.
-     */
-    this.publicFieldsJson = function (space) {
-      var prettyPrintJsonSpace = typeof space === "number" ? space : 0;
-      return JSON.stringify(this.describedField, null, prettyPrintJsonSpace);
-    };
 
     /**
      * Adds an entry to the given group. If the group does not exist, it will be created.
@@ -623,17 +596,16 @@ datarestructor.DescribedEntryCreator = (function () {
      * @param {DescribedEntry[]} describedEntries
      */
     this.addGroupEntries = function(groupName, describedEntries) {
+      var describedFieldDataGroup =  new described_field.DescribedDataFieldGroup(this.describedField);
       if (!this[groupName]) {
-        this.groupNames.push(groupName);
         this[groupName] = [];
-        this.describedField[groupName] = [];
       }
       var index;
       var describedEntry;
       for (index = 0; index &lt; describedEntries.length; index += 1) {
         describedEntry = describedEntries[index];
         this[groupName].push(describedEntry);
-        this.describedField[groupName].push(describedEntry.describedField);
+        describedFieldDataGroup.addGroupEntry(groupName, describedEntry.describedField);
       }
     };
   }
@@ -1008,7 +980,7 @@ datarestructor.Transform = (function () {
     for (var propertyIndex = 0; propertyIndex &lt; propertyNames.length; propertyIndex++) {
       var propertyName = propertyNames[propertyIndex];
       var propertyValue = groupedData[propertyName];
-      result.push(propertyValue);
+      result.push(propertyValue.describedField);
     }
     return result;
   }
@@ -1050,13 +1022,13 @@ datarestructor.Restructor.processJsonUsingDescriptions = function(jsonData, desc
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DataFieldBuilder.html">DataFieldBuilder</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DescribedDataFieldBuilder.html">DescribedDataFieldBuilder</a></li><li><a href="DescribedDataFieldGroup.html">DescribedDataFieldGroup</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 20:24:32 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Mar 13 2021 12:12:16 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

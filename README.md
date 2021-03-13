@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
 <<<<<<< HEAD
-![Branches](https://img.shields.io/badge/Coverage-93.81%25-brightgreen.svg)
+![Branches](https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg)
 =======
 ![Branches](https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg)
 >>>>>>> 5e4ee5e (DescribedDataField contains group names)

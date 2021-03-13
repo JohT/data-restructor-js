@@ -43,9 +43,19 @@
 
 
     <section>
-        <article><p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+        <article><h1><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
 <img src="https://img.shields.io/github/languages/top/JohT/data-restructor-js" alt="Language">
-<img src="https://img.shields.io/badge/Coverage-93.91%25-brightgreen.svg" alt="Branches">
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<img src="https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg" alt="Branches"></h1>
+<p><img src="https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg" alt="Branches"></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>5e4ee5e (DescribedDataField contains group names)
 <img src="https://aleen42.github.io/badges/src/npm.svg" alt="npm">
 <img src="https://aleen42.github.io/badges/src/jasmine.svg" alt="jasmine">
 <img src="https://aleen42.github.io/badges/src/eslint.svg" alt="eslint">
@@ -53,6 +63,13 @@
 <img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc" alt="JSDoc">
 <img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc" alt="nyc">
 <img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel-bundler" alt="parcel-bundler"></p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <h1>data-reconstructor-js</h1>
 <p>When parsing JSON on client-side, the structure of it attracts most of our attention.<br>
 If the structure evolves over time, it leads to recurring changes in the code that depends on it.</p>
@@ -157,8 +174,7 @@ function detailsDescription() {
   }
 </code></pre>
 <h3>Output Java Object</h3>
-<p>An Javascript object with this structure and content is returned,
-when the function <code>restructureJson</code> from above is called:</p>
+<p>An Javascript object with mainly this structure (see <a href="#DescribedEntry">DescribedEntry</a> for more details) and content is returned, when the function <code>restructureJson</code> from above is called:</p>
 <pre class="prettyprint source lang-yaml"><code>category: &quot;account&quot;
 displayName: &quot;Accountnumber&quot;
 fieldName: &quot;accountnumber&quot;
@@ -350,37 +366,46 @@ Additionally, single elements of the index can be used by specifying the index p
 <li><strong>groupDestinationName</strong> - (default=groupName) Name of the group when it had been moved to the destination.</li>
 <li><strong>deduplicationPattern</strong> - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
 </ul>
-<h3>DescribedEntry</h3>
-<p>This is the structure of a single main output element.</p>
+<h3>DescribedDataField</h3>
+<p>This is the data structure of a single output element representing a field.
+Beside the properties described below, the described data field can also contain
+custom properties containing groups (arrays) of sub fields of type DescribedDataField.</p>
+<p>Before version 3.0.0 this structure was named <a href="#DescribedEntry">DescribedEntry</a> and also contained internal fields.<br>
+Since 3.0.0 and above, <a href="#DescribedEntry">DescribedEntry</a> is only used internally and is not public any more.</p>
 <h4>Public fields</h4>
 <ul>
 <li><strong>category</strong> - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character</li>
 <li><strong>type</strong> - type of the result from PropertyStructureDescription</li>
 <li><strong>abbreviation</strong> - one optional character, a symbol character or a short abbreviation of the category</li>
 <li><strong>image</strong> - one optional path to an image resource</li>
+<li><strong>index</strong> - contains an array of numbers representing the hierarchical index for list entries (and their sub lists ...). Example: <code>&quot;responses[2].hits.hits[4]._source.name&quot;</code> will have an index of [2,4].</li>
+<li><strong>groupNames</strong> - contains an array of String names. Every name represents a group that had been dynamically added as property. Groups should be added using <a href="#DescribedDataFieldGroup">DescribedDataFieldGroup</a>, which will also update the group names.</li>
 <li><strong>displayName</strong> - display name extracted from the point separated hierarchical property name, e.g. &quot;Name&quot;</li>
 <li><strong>fieldName</strong> - field name extracted from the point separated hierarchical property name, e.g. &quot;name&quot;</li>
 <li><strong>value</strong> - content of the field</li>
 </ul>
 <h4>Public functions</h4>
-<ul>
-<li><strong>resolveTemplate</strong> - resolves the given template string. The template may contain variables in double curly brackets:
-<ul>
-<li>All <a href="#public-fields">public fields</a> can be used as variables, e.g. <code>&quot;{{fieldName}}&quot;</code>, <code>&quot;{{displayName}}&quot;</code>, <code>&quot;{{value}}&quot;</code>.</li>
-<li>Described groups that contain an array of <a href="#DescribedEntry">described entries</a> can also be used, e.g. <code>&quot;{{summaries[0].value}}&quot;</code>.</li>
-<li>Parts of the index can be inserted by using e.g. <code>&quot;{{index[1]}}&quot;</code>.</li>
-<li>Besides the meta data, a described field can be used directly by its &quot;fieldName&quot;, e.g. <code>&quot;{{customernumber}}&quot;</code> will be replaced by <code>123</code>, if the structure contains <code>fieldname=&quot;customernumber&quot;, value=&quot;123&quot;</code>. This also applies to sub groups, e.g. <code>&quot;{{details.customernumber}}&quot;</code> will be replaced by <code>321</code>, if the structure contains <code>details[4].fieldname=&quot;customernumber&quot;, details[4].value=&quot;321&quot;</code>.</li>
-</ul>
-</li>
-<li><strong>publicFieldsJson</strong> - converts the public fields including described groups to JSON. The parameter named <code>space</code> can be used to print a prettier JSON and will be directly used as third parameter for the call of <code>JSON.stringify</code>.</li>
-</ul>
+<p>Since version 3.0.0 and above, there are no functions any more.</p>
 <h4>Described groups</h4>
 <ul>
 <li><strong>&quot;name of described group&quot;</strong> as described in PropertyStructureDescription</li>
 <li><strong>&quot;names of moved groups&quot;</strong> as described in PropertyStructureDescription of the group that had been moved</li>
 </ul>
-<h4>Internal fields (should be avoided if possible, since they may change)</h4>
+<h3>DescribedDataFieldGroup</h3>
+<p>This helper was added with version 3.0.0. It adds groups to <a href="#DescribedDataField">DescribedDataField</a>s.
+These groups are dynamically added properties that contain an array of sub fields also of type <a href="#DescribedDataField">DescribedDataField</a>.</p>
+<h4>Public functions</h4>
 <ul>
+<li><strong>addGroupEntry(groupName, entry)</strong> Adds an entry to the given group. If the group does not exist, it will be created and added to the &quot;groupNames&quot;.</li>
+<li><strong>addGroupEntries(groupName, entries)</strong> Adds an array of entries to the given group. If the group does not exist, it will be created and added to the &quot;groupNames&quot;.</li>
+</ul>
+<h3>DescribedEntry</h3>
+<p>Since 3.0.0 and above, DescribedEntry is only used internally and is not public any more.
+It is documented here for sake of completeness and for maintenance purposes.
+See JSDoc for a more comprehensive reference.</p>
+<h4>Properties</h4>
+<ul>
+<li><strong>describedField</strong> - contains the <a href="#DescribedDataField">DescribedDataField</a></li>
 <li><strong>isMatchingIndex</strong> - true, if _identifier.index matches the described &quot;indexStartsWith&quot;</li>
 <li><strong>_identifier</strong> - internal structure for identifier. Avoid using it outside since it may change.</li>
 <li><strong>_identifier.index</strong> - array indices in hierarchical order separated by points, e.g. &quot;0.0&quot;</li>
@@ -391,6 +416,27 @@ Additionally, single elements of the index can be used by specifying the index p
 <li><strong>_identifier.groupDestinationId</strong> - Contains the resolved groupDestinationPattern from the PropertyStructureDescription. Entries with this id will be moved to the given destination group.</li>
 <li><strong>_identifier.deduplicationId</strong> - Contains the resolved deduplicationPattern from the PropertyStructureDescription. Entries with the same id will be considered to be a duplicate and hence removed.</li>
 <li><strong>_description</strong> - PropertyStructureDescription for internal use. Avoid using it outside since it may change.</li>
+</ul>
+<h3>Template Resolver</h3>
+<p>An simple template resolver is included and provided as separate module.
+Here is an example on how to use it:</p>
+<pre class="prettyprint source lang-javaScript"><code>var template_resolver = require(&quot;templateResolver&quot;);
+var sourceDataObject = {type: &quot;MyType&quot;, category: &quot;MyCategory&quot;};
+var resolver = new template_resolver.Resolver(sourceDataObject);
+var template = &quot;{{type}}-{{category}}&quot;;
+var resolvedString = resolver.resolveTemplate(template);
+//resolvedString will contain &quot;MyType-MyCategory&quot;
+</code></pre>
+<h4>Public functions</h4>
+<ul>
+<li><strong>resolveTemplate</strong> - resolves the given template string. The template may contain variables in double curly brackets:
+<ul>
+<li>All <a href="#public-fields">public fields</a> can be used as variables, e.g. <code>&quot;{{fieldName}}&quot;</code>, <code>&quot;{{displayName}}&quot;</code>, <code>&quot;{{value}}&quot;</code>.</li>
+<li>Described groups that contain an array of <a href="#DescribedDataField">described entries</a> can also be used, e.g. <code>&quot;{{summaries[0].value}}&quot;</code>.</li>
+<li>Parts of the index can be inserted by using e.g. <code>&quot;{{index[1]}}&quot;</code>.</li>
+<li>Besides the meta data, a described field can be used directly by its &quot;fieldName&quot;, e.g. <code>&quot;{{customernumber}}&quot;</code> will be replaced by <code>123</code>, if the structure contains <code>fieldname=&quot;customernumber&quot;, value=&quot;123&quot;</code>. This also applies to sub groups, e.g. <code>&quot;{{details.customernumber}}&quot;</code> will be replaced by <code>321</code>, if the structure contains <code>details[4].fieldname=&quot;customernumber&quot;, details[4].value=&quot;321&quot;</code>.</li>
+</ul>
+</li>
 </ul>
 <h2>References</h2>
 <ul>
@@ -721,13 +767,13 @@ Additionally, single elements of the index can be used by specifying the index p
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DataFieldBuilder.html">DataFieldBuilder</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="DescribedDataFieldBuilder.html">DescribedDataFieldBuilder</a></li><li><a href="DescribedDataFieldGroup.html">DescribedDataFieldGroup</a></li><li><a href="global.html#DescribedEntry">DescribedEntry</a></li><li><a href="PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="Resolver.html">Resolver</a></li><li><a href="Transform.html">Transform</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 07 2021 20:24:32 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Mar 13 2021 12:12:16 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
