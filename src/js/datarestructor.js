@@ -568,7 +568,7 @@ datarestructor.DescribedEntryCreator = (function () {
      * @param {DescribedEntry[]} describedEntries
      */
     this.addGroupEntries = function(groupName, describedEntries) {
-      new described_field.DescribedDataFieldGroup(this.describedField).addGroupEntries(groupName, describedEntries);
+      var describedFieldDataGroup =  new described_field.DescribedDataFieldGroup(this.describedField);
       if (!this[groupName]) {
         this[groupName] = [];
       }
@@ -577,6 +577,7 @@ datarestructor.DescribedEntryCreator = (function () {
       for (index = 0; index < describedEntries.length; index += 1) {
         describedEntry = describedEntries[index];
         this[groupName].push(describedEntry);
+        describedFieldDataGroup.addGroupEntry(groupName, describedEntry.describedField);
       }
     };
   }

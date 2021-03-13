@@ -227,9 +227,8 @@ describe("describedfield", function () {
     });
 
     it("should contain an previously added group", function () {
-      var groupName = "details";
-      fieldGroupUnderTest.addGroupEntry(groupName, testField);
-      expect(testField[groupName]).toContain(testField);
+      fieldGroupUnderTest.addGroupEntry("details", testField);
+      expect(testField.details[0].category).toContain("A");
     });
 
     it("should contain the name of an previously added group", function () {
@@ -241,16 +240,16 @@ describe("describedfield", function () {
     it("should contain all entries of an previously added groups", function () {
       var groupName = "details";
       fieldGroupUnderTest.addGroupEntries(groupName, [testField, anotherTestField]);
-      expect(testField.details).toContain(testField);
-      expect(testField.details).toContain(anotherTestField);
+      expect(testField.details[0].category).toContain("A");
+      expect(testField.details[1].category).toContain("B");
     });
 
     it("should contain an entry that had been added to an already existing group ", function () {
       fieldGroupUnderTest.addGroupEntry("details", testField);
-      expect(testField.details).toContain(testField);
+      expect(testField.details[0].category).toContain("A");
 
       fieldGroupUnderTest.addGroupEntry("details", anotherTestField);
-      expect(testField.details).toContain(anotherTestField);
+      expect(testField.details[1].category).toContain("B");
 
       expect(testField.groupNames.length).toEqual(1);
     });

@@ -36,14 +36,11 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
  */
 
-/**
- * DescribedDataFieldBuilder.
- * It is used to build a DescribedDataField that is the main element of the restructured data and therefore considered "public".
- */
 described_field.DescribedDataFieldBuilder = (function () {
   /**
-   * Constructor function and container for everything, that needs to exist per instance.
-   * @constructs DataFieldBuilder
+   * Builds a DescribedDataField.  
+   * DescribedDataField is the main element of the restructured data and therefore considered "public".
+   * @constructs DescribedDataFieldBuilder
    */
   function DescribedDataFieldBuilder() {
     /**
@@ -228,6 +225,16 @@ described_field.DescribedDataFieldBuilder = (function () {
   return DescribedDataFieldBuilder;
 })();
 
+/**
+ * Creates a new described data field with all properties of the original one except for dynamically added groups.
+ * @param {DescribedDataField} describedDataField 
+ * @returns {DescribedDataField} 
+ * @memberof described_field
+ */
+described_field.copyWithoutGroups = function(describedDataField) {
+  return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).build();
+};
+
 described_field.DescribedDataFieldGroup = (function () {
   /**
    * Adds groups to DescribedDataFields. These groups are dynamically added properties
@@ -267,10 +274,11 @@ described_field.DescribedDataFieldGroup = (function () {
         this.dataField[groupName] = [];
       }
       var index;
-      var describedEntry;
+      var describedField;
       for (index = 0; index < describedFields.length; index += 1) {
-        describedEntry = describedFields[index];
-        this.dataField[groupName].push(describedEntry);
+        describedField = describedFields[index];
+        describedField = described_field.copyWithoutGroups(describedField);
+        this.dataField[groupName].push(describedField);
       }
       return this;
     };
