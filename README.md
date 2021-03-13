@@ -1,6 +1,10 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
-![Branches](https://img.shields.io/badge/Coverage-91.45%25-brightgreen.svg)
+<<<<<<< HEAD
+![Branches](https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg)
+=======
+![Branches](https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg)
+>>>>>>> 5e4ee5e (DescribedDataField contains group names)
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
@@ -35,13 +39,16 @@ Alternatively, the sources can be found inside the
 [source folder](https://github.com/JohT/data-restructor-js/tree/master/src/):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/datarestructor.js) 
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js) 
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/describedfield.js) 
 
 The built versions can be found inside the 
 [distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js) 
-- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility incl. IE)
+- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility with IE)
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver.js) 
-- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility incl. IE)
+- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility with IE)
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield.js) 
+- [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js) (full compatibility with IE)
 
 ## Code Documentation
 The code documentation generated using [JSDoc](https://jsdoc.app) can be found inside the 
@@ -114,8 +121,7 @@ function detailsDescription() {
 ```
 
 ### Output Java Object
-An Javascript object with this structure and content is returned, 
-when the function `restructureJson` from above is called:
+An Javascript object with mainly this structure (see [DescribedEntry](#DescribedEntry) for more details) and content is returned, when the function `restructureJson` from above is called:
 ```yaml
 category: "account"
 displayName: "Accountnumber"
@@ -329,30 +335,48 @@ Additionally, single elements of the index can be used by specifying the index p
  * **deduplicationPattern** - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}. See also: [variables](#public-fields), [further details](#public-functions)
 
 
-### DescribedEntry
-This is the structure of a single main output element.
+### DescribedDataField
+This is the data structure of a single output element representing a field. 
+Beside the properties described below, the described data field can also contain 
+custom properties containing groups (arrays) of sub fields of type DescribedDataField.
+
+Before version 3.0.0 this structure was named [DescribedEntry](#DescribedEntry) and also contained internal fields.   
+Since 3.0.0 and above, [DescribedEntry](#DescribedEntry) is only used internally and is not public any more.
+
 #### Public fields
  * **category** - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * **type** - type of the result from PropertyStructureDescription
  * **abbreviation** - one optional character, a symbol character or a short abbreviation of the category
  * **image** - one optional path to an image resource
+ * **index** - contains an array of numbers representing the hierarchical index for list entries (and their sub lists ...). Example: `"responses[2].hits.hits[4]._source.name"` will have an index of [2,4].
+ * **groupNames** - contains an array of String names. Every name represents a group that had been dynamically added as property. Groups should be added using [DescribedDataFieldGroup](#DescribedDataFieldGroup), which will also update the group names.   
  * **displayName** - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * **fieldName** - field name extracted from the point separated hierarchical property name, e.g. "name"
  * **value** - content of the field
 
 #### Public functions
- * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets:
-   - All [public fields](#public-fields) can be used as variables, e.g. `"{{fieldName}}"`, `"{{displayName}}"`, `"{{value}}"`. 
-   - Described groups that contain an array of [described entries](#DescribedEntry) can also be used, e.g. `"{{summaries[0].value}}"`. 
-   - Parts of the index can be inserted by using e.g. `"{{index[1]}}"`.
-   - Besides the meta data, a described field can be used directly by its "fieldName", e.g. `"{{customernumber}}"` will be replaced by `123`, if the structure contains `fieldname="customernumber", value="123"`. This also applies to sub groups, e.g. `"{{details.customernumber}}"` will be replaced by `321`, if the structure contains `details[4].fieldname="customernumber", details[4].value="321"`.
- * **publicFieldsJson** - converts the public fields including described groups to JSON. The parameter named `space` can be used to print a prettier JSON and will be directly used as third parameter for the call of `JSON.stringify`.
+Since version 3.0.0 and above, there are no functions any more. 
 
 #### Described groups
  * **"name of described group"** as described in PropertyStructureDescription
  * **"names of moved groups"** as described in PropertyStructureDescription of the group that had been moved
 
-#### Internal fields (should be avoided if possible, since they may change)
+
+### DescribedDataFieldGroup
+This helper was added with version 3.0.0. It adds groups to [DescribedDataField](#DescribedDataField)s. 
+These groups are dynamically added properties that contain an array of sub fields also of type [DescribedDataField](#DescribedDataField).
+
+#### Public functions
+ 
+ * **addGroupEntry(groupName, entry)** Adds an entry to the given group. If the group does not exist, it will be created and added to the "groupNames". 
+ * **addGroupEntries(groupName, entries)** Adds an array of entries to the given group. If the group does not exist, it will be created and added to the "groupNames". 
+
+### DescribedEntry
+Since 3.0.0 and above, DescribedEntry is only used internally and is not public any more.
+It is documented here for sake of completeness and for maintenance purposes.
+See JSDoc for a more comprehensive reference.
+#### Properties
+ * **describedField** - contains the [DescribedDataField](#DescribedDataField)
  * **isMatchingIndex** - true, if _identifier.index matches the described "indexStartsWith"
  * **_identifier** - internal structure for identifier. Avoid using it outside since it may change.
  * **_identifier.index** - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -363,6 +387,24 @@ This is the structure of a single main output element.
  * **_identifier.groupDestinationId** - Contains the resolved groupDestinationPattern from the PropertyStructureDescription. Entries with this id will be moved to the given destination group.
  * **_identifier.deduplicationId** - Contains the resolved deduplicationPattern from the PropertyStructureDescription. Entries with the same id will be considered to be a duplicate and hence removed.
  * **_description** - PropertyStructureDescription for internal use. Avoid using it outside since it may change.
+
+### Template Resolver
+An simple template resolver is included and provided as separate module.
+Here is an example on how to use it:
+```javaScript
+var template_resolver = require("templateResolver");
+var sourceDataObject = {type: "MyType", category: "MyCategory"};
+var resolver = new template_resolver.Resolver(sourceDataObject);
+var template = "{{type}}-{{category}}";
+var resolvedString = resolver.resolveTemplate(template);
+//resolvedString will contain "MyType-MyCategory"
+```
+#### Public functions
+ * **resolveTemplate** - resolves the given template string. The template may contain variables in double curly brackets:
+   - All [public fields](#public-fields) can be used as variables, e.g. `"{{fieldName}}"`, `"{{displayName}}"`, `"{{value}}"`. 
+   - Described groups that contain an array of [described entries](#DescribedDataField) can also be used, e.g. `"{{summaries[0].value}}"`. 
+   - Parts of the index can be inserted by using e.g. `"{{index[1]}}"`.
+   - Besides the meta data, a described field can be used directly by its "fieldName", e.g. `"{{customernumber}}"` will be replaced by `123`, if the structure contains `fieldname="customernumber", value="123"`. This also applies to sub groups, e.g. `"{{details.customernumber}}"` will be replaced by `321`, if the structure contains `details[4].fieldname="customernumber", details[4].value="321"`.
 
 ## References
  * [Jasmine Behavior-Driven JavaScript](https://jasmine.github.io) for unit testing

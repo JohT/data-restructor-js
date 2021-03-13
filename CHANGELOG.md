@@ -1,5 +1,16 @@
 # CHANGELOG.md
 
+## **v3.0.0** Introducing DescribedDataField (latest)
+### Features:
+
+ - Pure, non cyclic data result that can be converted to json without using additional functions
+
+### Breaking Changes:
+
+ - DescribedDataField replaces DescribedEntry as an element for the restructured output
+ - DescribedEntry remains only for internal use
+ - DescribedEntry function "resolveTemplate" is removed. "templateResolver.js" can be used instead.
+ - DescribedEntry function "publicFieldsJson" is removed. `JSON.stringify(describedEntry.describedField)` can be used instead.
 ## **v2.3.0** Continuous Integration (latest)
 
 ### Features:

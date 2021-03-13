@@ -131,6 +131,18 @@ describe("datarestructor.Restructor (use case)", function () {
       );
     });
 
+    it("every entry of type 'summary' has a group 'summaries' that is contained in the group names", function () {
+      forEachEntryMatching(
+        function (entry) {
+          return entry.type === "summary";
+        },
+        function (entry) {
+          atLeastOneEntryAsserted = true;
+          expect(entry.groupNames).toContain("summaries");
+        }
+      );
+    });
+
     it("every entry of type 'filter' has a group 'options' with at least two entries", function () {
       forEachEntryMatching(
         function (entry) {
@@ -139,6 +151,18 @@ describe("datarestructor.Restructor (use case)", function () {
         function (entry) {
           atLeastOneEntryAsserted = true;
           expect(entry.options.length).toBeGreaterThan(1);
+        }
+      );
+    });
+
+    it("every entry of type 'filter' has a group 'options' that is contained in the group names", function () {
+      forEachEntryMatching(
+        function (entry) {
+          return entry.type === "filter";
+        },
+        function (entry) {
+          atLeastOneEntryAsserted = true;
+          expect(entry.groupNames).toContain("options");
         }
       );
     });
@@ -248,7 +272,6 @@ describe("datarestructor.Restructor (use case)", function () {
           atLeastOneEntryAsserted = true;
           expect(entry.value).toContain("<em>");
           expect(entry.value).toContain("</em>");
-          expect(entry._identifier.propertyNameWithoutArrayIndices).toContain(".highlight.");
         }
       );
     });
