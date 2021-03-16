@@ -217,41 +217,72 @@ describe("describedfield", function () {
   });
 
   describe("DescribedDataFieldGroup", function () {
-    var testField, anotherTestField;
+    var testField, testGroupField, testSubGroupField, anotherTestGroupField;
     var fieldGroupUnderTest;
 
     beforeEach(function () {
-      testField = new describedFieldUnderTest.DescribedDataFieldBuilder().category("A").build();
-      anotherTestField = new describedFieldUnderTest.DescribedDataFieldBuilder().category("B").build();
+      testField = new describedFieldUnderTest.DescribedDataFieldBuilder().category("Root").build();
+      testGroupField = new describedFieldUnderTest.DescribedDataFieldBuilder().category("A").build();
+      testSubGroupField = new describedFieldUnderTest.DescribedDataFieldBuilder().category("a").build();
+      anotherTestGroupField = new describedFieldUnderTest.DescribedDataFieldBuilder().category("B").build();
+
       fieldGroupUnderTest = new describedFieldUnderTest.DescribedDataFieldGroup(testField);
     });
 
+    it("shouldn't do anything if the groups to add are empty", function () {
+      fieldGroupUnderTest.addGroupEntries("details", []);
+      expect(testField.details).toBeUndefined();
+    });
+
+    it("shouldn't do anything if the groups to add are null", function () {
+      fieldGroupUnderTest.addGroupEntries("details", null);
+      expect(testField.details).toBeUndefined();
+    });
+
+    it("shouldn't do anything if the group name is empty", function () {
+      var result = fieldGroupUnderTest.addGroupEntries("", testGroupField);
+      expect(result).toEqual(fieldGroupUnderTest);
+    });
+
+    it("shouldn't do anything if the group name is null", function () {
+      var result = fieldGroupUnderTest.addGroupEntries(null, testGroupField);
+      expect(result).toEqual(fieldGroupUnderTest);
+    });
+
     it("should contain an previously added group", function () {
-      fieldGroupUnderTest.addGroupEntry("details", testField);
+      fieldGroupUnderTest.addGroupEntry("details", testGroupField);
       expect(testField.details[0].category).toContain("A");
     });
 
     it("should contain the name of an previously added group", function () {
       var groupName = "details";
-      fieldGroupUnderTest.addGroupEntry(groupName, testField);
+      fieldGroupUnderTest.addGroupEntry(groupName, testGroupField);
       expect(testField.groupNames).toContain(groupName);
     });
 
     it("should contain all entries of an previously added groups", function () {
       var groupName = "details";
-      fieldGroupUnderTest.addGroupEntries(groupName, [testField, anotherTestField]);
+      fieldGroupUnderTest.addGroupEntries(groupName, [testGroupField, anotherTestGroupField]);
       expect(testField.details[0].category).toContain("A");
       expect(testField.details[1].category).toContain("B");
     });
 
     it("should contain an entry that had been added to an already existing group ", function () {
-      fieldGroupUnderTest.addGroupEntry("details", testField);
+      fieldGroupUnderTest.addGroupEntry("details", testGroupField);
       expect(testField.details[0].category).toContain("A");
 
-      fieldGroupUnderTest.addGroupEntry("details", anotherTestField);
+      fieldGroupUnderTest.addGroupEntry("details", anotherTestGroupField);
       expect(testField.details[1].category).toContain("B");
 
       expect(testField.groupNames.length).toEqual(1);
     });
+
+    it("should contain the groups of an previously added group (2nd level)", function () {
+      // Add a (sub) group with an sub detail field to the main test field
+      new describedFieldUnderTest.DescribedDataFieldGroup(testGroupField).addGroupEntry("details", testSubGroupField);
+      fieldGroupUnderTest.addGroupEntry("details", testGroupField);
+      expect(testField.details[0].details[0].category).toContain("a");
+    });
+
   });
 });

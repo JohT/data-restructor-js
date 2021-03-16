@@ -232,7 +232,7 @@ describe("datarestructor.DescribedEntry", function () {
       rawEntry = { name: "responses[0].hits.hits[3]._source.jsontag[5]", value: "jsoninactive" };
       description = new datarestructor.PropertyStructureDescriptionBuilder().type("jsontesttype").category("jsontestcategory").abbreviation("J").image("j.img").build();
       describedEntry = new datarestructor.DescribedEntryCreator(rawEntry, description);
-      json = JSON.stringify(describedEntry.describedField);
+      json = JSON.stringify(describedEntry);
     });
 
     it("should contain the type", function () {
