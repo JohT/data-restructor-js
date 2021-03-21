@@ -641,16 +641,36 @@ datarestructor.Transform = (function () {
      */
     this.descriptions = descriptions;
     /**
-     * DebugMode enables detailed logging for troubleshooting.
+     * Debug mode switch, that enables/disables detailed logging.
+     * @protected
      * @type {boolean}
      */
     this.debugMode = false;
     /**
      * Enables debug mode. Logs additional information.
-     * @returns Transform
+     * @returns {module:datarestructor.Transform}
      */
     this.enableDebugMode = function () {
       this.debugMode = true;
+      return this;
+    };
+    /**
+     * Maximum recursion depth. Defaults to 8, 
+     * @protected 
+     * @type {number}
+     */
+    this.maxRecursionDepth = 8;
+
+    /**
+     * Sets the maximum recursion depth. Defaults to 8 if not set.
+     * @param {number} value non negative number.
+     * @returns {module:datarestructor.Transform}
+     */
+    this.setMaxRecursionDepth = function (value) {
+      if ((typeof value !== "number") || (value < 0)) {
+        throw "Invalid max recursion depth value: " + value;
+      }
+      this.maxRecursionDepth = value;
       return this;
     };
     /**
@@ -664,7 +684,7 @@ datarestructor.Transform = (function () {
      * var result = new datarestructor.Transform(allDescriptions).processJson(jsonData);
      */
     this.processJson = function (data) {
-      return processJsonUsingDescriptions(data, this.descriptions, this.debugMode);
+      return processJsonUsingDescriptions(data, this.descriptions, this.debugMode, this.maxRecursionDepth);
     };
   }
 
@@ -673,14 +693,12 @@ datarestructor.Transform = (function () {
    * @param {object} jsonData - parsed JSON data or any other data object
    * @param {module:datarestructor.PropertyStructureDescription[]} descriptions - already grouped entries
    * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
+   * @param {number} maxRecursionDepth - maximum recursion depth. Defaults to 8 if not set.
    * @returns {module:datarestructor.DescribedEntry[]}
    * @protected
    * @memberof module:datarestructor.Transform
    */
-  function processJsonUsingDescriptions(jsonData, descriptions, debugMode) {
-    if (typeof debugMode !== "boolean") {
-      debugMode = false;
-    }
+  function processJsonUsingDescriptions(jsonData, descriptions, debugMode, maxRecursionDepth) {
     // "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
     var processedData = internal_object_tools.flattenToArray(jsonData);
     // Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
@@ -728,7 +746,6 @@ datarestructor.Transform = (function () {
     processedData = propertiesAsArray(processedData);
 
     // Converts the internal described entries  into described fields
-    var maxRecursionDepth = 8;
     processedData = toDescribedFields(processedData, maxRecursionDepth);
 
     if (debugMode) {
@@ -1106,6 +1123,7 @@ datarestructor.Restructor = {};
  * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
  * @returns {module:datarestructor.DescribedEntry[]}
  * @memberof module:datarestructor.Restructor
+ * @deprecated since v3.1.0, please use "new datarestructor.Transform(descriptions).processJson(jsonData)".
  */
 datarestructor.Restructor.processJsonUsingDescriptions = function(jsonData, descriptions, debugMode) {
   var restructor = new datarestructor.Transform(descriptions);
