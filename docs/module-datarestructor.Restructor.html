@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Namespace: Restructor</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Namespace: Restructor</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+            <span class="ancestors"><a href="module-datarestructor.html">datarestructor</a>.</span>Restructor</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Main fassade for the data restructor as static function(s).</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line1108">line 1108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+            <h3>Example</h3>
+            
+    <pre class="prettyprint"><code>var allDescriptions = [];
+allDescriptions.push(summariesDescription());
+allDescriptions.push(detailsDescription());
+var result = datarestructor.Restructor.processJsonUsingDescriptions(jsonData, allDescriptions);</code></pre>
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".datarestructor.Restructor.processJsonUsingDescriptions"><span class="type-signature">(static) </span>datarestructor.Restructor.processJsonUsingDescriptions<span class="signature">(jsonData, descriptions, debugMode)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Static fassade function for the &quot;Assembly line&quot;, that takes the jsonData and processes it using all given descriptions in their given order.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jsonData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>parsed JSON data or any other data object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.PropertyStructureDescription">module:datarestructor.PropertyStructureDescription</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>already grouped entries</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>debugMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>false=default=off, true=write additional logs for detailed debugging</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>since v3.1.0, please use "new datarestructor.Transform(descriptions).processJson(jsonData)".</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line1128">line 1128</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="module-datarestructor.DescribedEntryCreator.html">DescribedEntryCreator</a></li><li><a href="module-datarestructor.PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="module-datarestructor.Transform.html">Transform</a></li><li><a href="module-described_field.DescribedDataFieldBuilder.html">DescribedDataFieldBuilder</a></li><li><a href="module-described_field.DescribedDataFieldGroup.html">DescribedDataFieldGroup</a></li><li><a href="module-template_resolver.Resolver.html">Resolver</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 21 2021 17:15:45 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

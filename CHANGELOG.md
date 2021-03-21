@@ -1,6 +1,21 @@
 # CHANGELOG.md
 
-## **v3.0.0** Introducing DescribedDataField (latest)
+## **v3.1.0** Introducing DescribedDataField (latest)
+
+### Features:
+
+- Configurable maximum recursion depth for field groups inside groups inside groups...
+- Improved JSDoc structure and contents
+### Fixes:
+
+- [#3](https://github.com/JohT/data-restructor-js/issues/3) Group hierarchy limited to 1 since v3.0.0
+
+### Deprecated:
+
+- `datarestructor.Restructor.processJsonUsingDescriptions(jsonData, descriptions)` is deprecated.
+Please use `new datarestructor.Transform(descriptions).processJson(jsonData)` instead.
+
+## **v3.0.0** Introducing DescribedDataField
 ### Features:
 
  - Pure, non cyclic data result that can be converted to json without using additional functions
@@ -11,7 +26,7 @@
  - DescribedEntry remains only for internal use
  - DescribedEntry function "resolveTemplate" is removed. "templateResolver.js" can be used instead.
  - DescribedEntry function "publicFieldsJson" is removed. `JSON.stringify(describedEntry.describedField)` can be used instead.
-## **v2.3.0** Continuous Integration (latest)
+## **v2.3.0** Continuous Integration
 
 ### Features:
 

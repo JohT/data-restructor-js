@@ -22,8 +22,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * Describes a field of the restructured data.
  * Dynamically added properties represent custom named groups containing DescribedDataField-Arrays.
  *
- * @global
- * @typedef {Object} DescribedDataField
+ * @typedef {Object} module:described_field.DescribedDataField
  * @property {string} [category=""] - name of the category. Could contain a short domain name like "product" or "vendor".
  * @property {string} [type=""] - type of the data element. Examples: "summary" for e.g. a list overview. "detail" e.g. when a summary is selected. "filter" e.g. for field/value pair results that can be selected as data filters.
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
@@ -33,18 +32,19 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} displayName - display name of the field
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
- * @property {DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
+ * @property {module:described_field.DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
  */
 
 described_field.DescribedDataFieldBuilder = (function () {
   /**
-   * Builds a DescribedDataField.  
+   * Builds a {@link module:described_field.DescribedDataField}.
    * DescribedDataField is the main element of the restructured data and therefore considered "public".
    * @constructs DescribedDataFieldBuilder
+   * @alias module:described_field.DescribedDataFieldBuilder
    */
   function DescribedDataFieldBuilder() {
     /**
-     * @type {DescribedDataField}
+     * @type {module:described_field.DescribedDataField}
      */
     this.describedField = {
       category: "",
@@ -58,9 +58,9 @@ described_field.DescribedDataFieldBuilder = (function () {
       value: ""
     };
     /**
-     * Takes over all values of the template DescribedDataField.
+     * Takes over all values of the template {@link module:described_field.DescribedDataField}.
      * @function
-     * @param {DescribedDataField} template
+     * @param {module:described_field.DescribedDataField} template
      * @returns {DescribedDataFieldBuilder}
      * @example fromDescribedDataField(sourceField)
      */
@@ -152,7 +152,7 @@ described_field.DescribedDataFieldBuilder = (function () {
     };
     /**
      * Sets the group names as an array of strings containing the names of the dynamically added properties,
-     * that contain an array of DescribedDataField-Objects.
+     * that contain an array of {@link module:described_field.DescribedDataField}-Objects.
      *
      * @function
      * @param {string[]} [value=[]]
@@ -201,9 +201,9 @@ described_field.DescribedDataFieldBuilder = (function () {
     };
 
     /**
-     * Finalizes the settings and builds the DescribedDataField.
+     * Finalizes the settings and builds the {@link module:described_field.DescribedDataField}.
      * @function
-     * @returns {DescribedDataField}
+     * @returns {module:described_field.DescribedDataField}
      */
     this.build = function () {
       return this.describedField;
@@ -223,25 +223,26 @@ described_field.DescribedDataFieldBuilder = (function () {
   }
 
   return DescribedDataFieldBuilder;
-})();
+}());
 
 /**
  * Creates a new described data field with all properties of the original one except for dynamically added groups.
- * @param {DescribedDataField} describedDataField 
- * @returns {DescribedDataField} 
- * @memberof described_field
+ * @param {module:described_field.DescribedDataField} describedDataField
+ * @returns {module:described_field.DescribedDataField}
+ * @memberof module:described_field
  */
-described_field.copyWithoutGroups = function(describedDataField) {
-  return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).build();
+described_field.copyWithoutGroups = function (describedDataField) {
+  return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).groupNames([]).build();
 };
 
 described_field.DescribedDataFieldGroup = (function () {
   /**
-   * Adds groups to DescribedDataFields. These groups are dynamically added properties
-   * that contain an array of sub fields of the same type DescribedDataFields.
-   * 
-   * @param {DescribedDataField} dataField
+   * Adds groups to {@link module:described_field.DescribedDataField}s. These groups are dynamically added properties
+   * that contain an array of sub fields of the same type {@link module:described_field.DescribedDataField}s.
+   *
+   * @param {module:described_field.DescribedDataField} dataField
    * @constructs DescribedDataFieldGroup
+   * @alias module:described_field.DescribedDataFieldGroup
    * @example new described_field.DescribedDataFieldGroup(field).addGroupEntry("details", detailField);
    */
   function DescribedDataFieldGroup(dataField) {
@@ -251,9 +252,8 @@ described_field.DescribedDataFieldGroup = (function () {
      * Adds an entry to the given group. If the group does not exist, it will be created.
      * @function
      * @param {String} groupName name of the group to which the entry will be added
-     * @param {DescribedDataField} describedField sub field that is added to the group
+     * @param {module:described_field.DescribedDataField} describedField sub field that is added to the group
      * @returns {DescribedDataFieldGroup}
-     * @memberOf DescribedDataFieldGroup
      */
     this.addGroupEntry = function (groupName, describedField) {
       this.addGroupEntries(groupName, [describedField]);
@@ -264,12 +264,17 @@ described_field.DescribedDataFieldGroup = (function () {
      * Adds entries to the given group. If the group does not exist, it will be created.
      * @function
      * @param {String} groupName name of the group to which the entries will be added
-     * @param {DescribedDataField[]} describedFields sub fields that are added to the group
+     * @param {module:described_field.DescribedDataField[]} describedFields sub fields that are added to the group
      * @returns {DescribedDataFieldGroup}
-     * @memberOf DescribedDataFieldGroup
      */
     this.addGroupEntries = function (groupName, describedFields) {
-      if (!this.dataField[groupName]) {
+      if (!groupName || groupName.length === 0) {
+        return this;
+      }
+      if (!describedFields || describedFields.length === 0) {
+        return this;
+      }
+      if (this.dataField[groupName] === undefined) {
         this.dataField.groupNames.push(groupName);
         this.dataField[groupName] = [];
       }
@@ -277,7 +282,6 @@ described_field.DescribedDataFieldGroup = (function () {
       var describedField;
       for (index = 0; index < describedFields.length; index += 1) {
         describedField = describedFields[index];
-        describedField = described_field.copyWithoutGroups(describedField);
         this.dataField[groupName].push(describedField);
       }
       return this;
@@ -285,4 +289,4 @@ described_field.DescribedDataFieldGroup = (function () {
   }
 
   return DescribedDataFieldGroup;
-})();
+}());
