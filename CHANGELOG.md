@@ -1,6 +1,6 @@
 # CHANGELOG.md
 
-## **v3.1.0** Introducing DescribedDataField (latest)
+## **v3.1.0** Configurable recursion depth for sub groups (latest)
 
 ### Features:
 
