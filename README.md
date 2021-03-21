@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
-![Branches](https://img.shields.io/badge/Coverage-94.02%25-brightgreen.svg)
+![Branches](https://img.shields.io/badge/Coverage-95.62%25-brightgreen.svg)
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
@@ -48,7 +48,7 @@ The built versions can be found inside the
 
 ## Code Documentation
 The code documentation generated using [JSDoc](https://jsdoc.app) can be found inside the 
-[documentation folder](https://github.com/JohT/data-restructor-js/tree/master/doc/).
+[documentation folder](https://github.com/JohT/data-restructor-js/tree/master/docs/).
 
 ## Example
 As a starting point you may have a look at the following example.   
@@ -89,7 +89,7 @@ function restructureJson(jsonData) {
   var allDescriptions = [];
   allDescriptions.push(summariesDescription());
   allDescriptions.push(detailsDescription());
-  return datarestructor.Restructor.processJsonUsingDescriptions(jsonData, allDescriptions));
+  return new datarestructor.Transform(allDescriptions).processJson(jsonData);
 }
 
 function summariesDescription() {
