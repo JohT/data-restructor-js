@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: DescribedDataFieldGroup</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: DescribedDataFieldGroup</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-described_field.html">described_field</a>.</span>DescribedDataFieldGroup<span class="signature">(dataField)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="DescribedDataFieldGroup"><span class="type-signature"></span>new DescribedDataFieldGroup<span class="signature">(dataField)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Adds groups to <a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a>s. These groups are dynamically added properties
+that contain an array of sub fields of the same type <a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a>s.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dataField</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line248">line 248</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>new described_field.DescribedDataFieldGroup(field).addGroupEntry("details", detailField);</code></pre>
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addGroupEntries"><span class="type-signature"></span>addGroupEntries<span class="signature">(groupName, describedFields)</span><span class="type-signature"> &rarr; {DescribedDataFieldGroup}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Adds entries to the given group. If the group does not exist, it will be created.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>groupName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of the group to which the entries will be added</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>describedFields</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>sub fields that are added to the group</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line270">line 270</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">DescribedDataFieldGroup</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="addGroupEntry"><span class="type-signature"></span>addGroupEntry<span class="signature">(groupName, describedField)</span><span class="type-signature"> &rarr; {DescribedDataFieldGroup}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Adds an entry to the given group. If the group does not exist, it will be created.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>groupName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of the group to which the entry will be added</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>describedField</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>sub field that is added to the group</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="describedfield.js.html">describedfield.js</a>, <a href="describedfield.js.html#line258">line 258</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">DescribedDataFieldGroup</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="module-datarestructor.DescribedEntryCreator.html">DescribedEntryCreator</a></li><li><a href="module-datarestructor.PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="module-datarestructor.Transform.html">Transform</a></li><li><a href="module-described_field.DescribedDataFieldBuilder.html">DescribedDataFieldBuilder</a></li><li><a href="module-described_field.DescribedDataFieldGroup.html">DescribedDataFieldGroup</a></li><li><a href="module-template_resolver.Resolver.html">Resolver</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 21 2021 17:15:45 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

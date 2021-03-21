@@ -1,0 +1,3060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: Transform</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: Transform</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-datarestructor.html">datarestructor</a>.</span>Transform<span class="signature">(descriptions)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+
+    
+    <h4 class="name" id="Transform"><span class="type-signature"></span>new Transform<span class="signature">(descriptions)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Main class for the data transformation.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.PropertyStructureDescription">module:datarestructor.PropertyStructureDescription</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line637">line 637</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="debugMode"><span class="type-signature">(protected) </span>debugMode<span class="type-signature"> :boolean</span></h4>
+
+
+
+
+<div class="description">
+    <p>Debug mode switch, that enables/disables detailed logging.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line648">line 648</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="descriptions"><span class="type-signature"></span>descriptions<span class="type-signature"> :Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span></h4>
+
+
+
+
+<div class="description">
+    <p>Descriptions of the input data that define the behaviour of the transformation.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line642">line 642</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="maxRecursionDepth"><span class="type-signature">(protected) </span>maxRecursionDepth<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    <p>Maximum recursion depth. Defaults to 8,</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line662">line 662</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".applyGroupDestinationPattern"><span class="type-signature">(protected, static) </span>applyGroupDestinationPattern<span class="signature">(groupedObject)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Takes already grouped <a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a> objects and
+uses their &quot;_identifier.groupDestinationId&quot; (if exists)
+to move groups to the given destination.</p>
+<p>This is useful, if separately described groups like &quot;summary&quot; and &quot;detail&quot; should be put together,
+so that every summery contains a group with the regarding details.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>groupedObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>already grouped entries</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line948">line 948</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".asIdBasedObject"><span class="type-signature">(protected, static) </span>asIdBasedObject<span class="signature">(elements, idOfElementFunction)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Converts the given elements to an object, that provides these
+entries by their id. For example, [{id: A, value: 1}] becomes
+result['A'] = 1.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>of DescribedEntry elements</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idOfElementFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.stringFieldOfDescribedEntryFunction">module:datarestructor.stringFieldOfDescribedEntryFunction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>returns the id of an DescribedEntry</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line842">line 842</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>{module:datarestructor.DescribedEntry[] entries indexed by id</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".deduplicateFlattenedData"><span class="type-signature">(protected, static) </span>deduplicateFlattenedData<span class="signature">(entries, entriesToMerge, idOfElementFunction)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Takes two arrays of objects, e.g. [{id: B, value: 2},{id: C, value: 3}]
+and [{id: A, value: 1},{id: B, value: 4}] and merges them into one:
+[{id: C, value: 3},{id: A, value: 1},{id: B, value: 4}]</p>
+<p>Entries with the same id (&quot;duplicates&quot;) will be overwritten.
+Only the last element with the same id remains. The order is
+determined by the order of the array elements, whereas the first
+array comes before the second one. This means, that entries with the
+same id in the second array overwrite entries in the first array,
+and entries occurring later in the array overwrite earlier ones,
+if they have the same id.</p>
+<p>&quot;entriesToMerge&quot; will be returned directly, if &quot;entries&quot; is null or empty.</p>
+<p>The id is extracted from every element using their deduplication pattern (if available).</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entriesToMerge</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idOfElementFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.stringFieldOfDescribedEntryFunction">module:datarestructor.stringFieldOfDescribedEntryFunction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>returns the id of an DescribedEntry</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line822">line 822</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>mergeFlattenedData</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".extractEntriesByDescription"><span class="type-signature">(protected, static) </span>extractEntriesByDescription<span class="signature">(flattenedData)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Extracts entries out of &quot;flattened&quot; JSON data and provides an array of objects.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>flattenedData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>flattened json from search query result</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>name of the property in hierarchical order separated by points</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>value of the property as string</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code></code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.PropertyStructureDescription">module:datarestructor.PropertyStructureDescription</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>description of structure of the entries that should be extracted</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line919">line 919</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".fillInArrayValues"><span class="type-signature">(protected, static) </span>fillInArrayValues<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Fills in extra &quot;_comma_separated_values&quot; properties into the flattened data
+for properties that end with an array. E.g. response.hits.hits.tags[0]=&quot;active&quot; and response.hits.hits.tags[0]=&quot;ready&quot;
+will lead to the extra element &quot;response.hits.hits.tags_comma_separated_values=&quot;active, ready&quot;.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line980">line 980</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>flattened data with filled in &quot;_comma_separated_values&quot; properties</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".forEachGroupEntry"><span class="type-signature">(protected, static) </span>forEachGroupEntry<span class="signature">(rootEntry, onFoundEntry)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Traverses through all groups and their entries and calls the given function on every found entry
+with the group name and the entry itself as parameters.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>rootEntry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>onFoundEntry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.onEntryFoundFunction">module:datarestructor.onEntryFoundFunction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line1093">line 1093</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".groupById"><span class="type-signature">(protected, static) </span>groupById<span class="signature">(elements, groupNameOfElementFunction, groupIdOfElementFunction)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Converts the given elements into an object, that provides these
+entries by their id. For example, [{id: A, value: 1}] becomes
+result['A'] = 1. Furthermore, this function creates a group property (with the name )
+and collects all related elements (specified by their group pattern) in it.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>of DescribedEntry elements</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groupNameOfElementFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.stringFieldOfDescribedEntryFunction">module:datarestructor.stringFieldOfDescribedEntryFunction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>function, that returns the name of the group property that will be created inside the &quot;main&quot; element.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>groupIdOfElementFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.stringFieldOfDescribedEntryFunction">module:datarestructor.stringFieldOfDescribedEntryFunction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>returns the group id of an DescribedEntry</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line889">line 889</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>{module:datarestructor.DescribedEntry[] entries indexed by id</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".groupFlattenedData"><span class="type-signature">(protected, static) </span>groupFlattenedData<span class="signature">(elements)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Converts the given elements into an object, that provides these
+entries by their id (determined by the entry's groupPattern).
+For example, [{id: A, value: 1}] becomes result['A'] = 1.</p>
+<p>Furthermore, this function creates a group property (determined by the entry's groupName)
+and collects all related elements (specified by their group pattern) in it.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elements</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>of DescribedEntry elements</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line864">line 864</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>{module:datarestructor.DescribedEntry[] entries indexed by id</p>
+</div>
+
+
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".mergeFlattenedData"><span class="type-signature">(protected, static) </span>mergeFlattenedData<span class="signature">(entries, entriesToMerge, idOfElementFunction)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Takes two arrays of objects, e.g. [{id: B, value: 2},{id: C, value: 3}]
+and [{id: A, value: 1},{id: B, value: 4}] and merges them into one:
+[{id: C, value: 3},{id: A, value: 1},{id: B, value: 4}]</p>
+<p>Entries with the same id (&quot;duplicates&quot;) will be overwritten.
+Only the last element with the same id remains. The order is
+determined by the order of the array elements, whereas the first
+array comes before the second one. This means, that entries with the
+same id in the second array overwrite entries in the first array,
+and entries that occur later in the array overwrite earlier ones,
+if they have the same id.</p>
+<p>The id is extracted from every element using the given function.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entriesToMerge</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>idOfElementFunction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.stringFieldOfDescribedEntryFunction">module:datarestructor.stringFieldOfDescribedEntryFunction</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>returns the id of an DescribedEntry</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line780">line 780</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".processJsonUsingDescriptions"><span class="type-signature">(protected, static) </span>processJsonUsingDescriptions<span class="signature">(jsonData, descriptions, debugMode, maxRecursionDepth)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>&quot;Assembly line&quot;, that takes the jsonData and processes it using all given descriptions in their given order.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>jsonData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>parsed JSON data or any other data object</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>descriptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.PropertyStructureDescription">module:datarestructor.PropertyStructureDescription</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>already grouped entries</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>debugMode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>false=default=off, true=write additional logs for detailed debugging</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxRecursionDepth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>maximum recursion depth. Defaults to 8 if not set.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line701">line 701</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".toDescribedField"><span class="type-signature">(protected, static) </span>toDescribedField<span class="signature">(entry, recursionDepth, maxRecursionDepth)</span><span class="type-signature"> &rarr; {<a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Converts a internal described entry to a newly created public described field.
+Since the structure of a described field is hierarchical, this function is called recursively.
+Because the internal described entries may very likely contain cyclic references, the depth of recursion
+needs to be limited. Therefore, the current recursion depth is taken as second parameter
+and the maximum recursion depth is taken as third parameter.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>entry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the internal entry that will be converted</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>recursionDepth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>current hierarchy recursion depth</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxRecursionDepth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>maximum hierarchy recursion depth</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line1056">line 1056</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".toDescribedFields"><span class="type-signature">(protected, static) </span>toDescribedFields<span class="signature">(describedEntries, maxRecursionDepth)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Converts described entries (internal data structure) to described fields (external data structure).
+Since the structure of a described field is hierarchical, every field needs to be converted
+in a recursive manner. The maximum recursion depth is taken as the second parameter.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>describedEntries</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxRecursionDepth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>maximum hierarchy depth</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line1032">line 1032</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="module-described_field.html#.DescribedDataField">module:described_field.DescribedDataField</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="enableDebugMode"><span class="type-signature"></span>enableDebugMode<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="module-datarestructor.Transform.html">module:datarestructor.Transform</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Enables debug mode. Logs additional information.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line653">line 653</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="module-datarestructor.Transform.html">module:datarestructor.Transform</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="processJson"><span class="type-signature"></span>processJson<span class="signature">(data)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>&quot;Assembly line&quot;, that takes the (pared JSON) data and processes it using all given descriptions in their given order.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>parsed JSON data or any other data object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line686">line 686</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="module-datarestructor.html#.DescribedEntry">module:datarestructor.DescribedEntry</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var allDescriptions = [];
+allDescriptions.push(summariesDescription());
+allDescriptions.push(detailsDescription());
+var result = new datarestructor.Transform(allDescriptions).processJson(jsonData);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setMaxRecursionDepth"><span class="type-signature"></span>setMaxRecursionDepth<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="module-datarestructor.Transform.html">module:datarestructor.Transform</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Sets the maximum recursion depth. Defaults to 8 if not set.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>non negative number.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="datarestructor.js.html">datarestructor.js</a>, <a href="datarestructor.js.html#line669">line 669</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="module-datarestructor.Transform.html">module:datarestructor.Transform</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-datarestructor.html">datarestructor</a></li><li><a href="module-described_field.html">described_field</a></li><li><a href="module-template_resolver.html">template_resolver</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-datarestructor.Restructor.html">Restructor</a></li></ul><h3>Classes</h3><ul><li><a href="module-datarestructor.DescribedEntryCreator.html">DescribedEntryCreator</a></li><li><a href="module-datarestructor.PropertyStructureDescriptionBuilder.html">PropertyStructureDescriptionBuilder</a></li><li><a href="module-datarestructor.Transform.html">Transform</a></li><li><a href="module-described_field.DescribedDataFieldBuilder.html">DescribedDataFieldBuilder</a></li><li><a href="module-described_field.DescribedDataFieldGroup.html">DescribedDataFieldGroup</a></li><li><a href="module-template_resolver.Resolver.html">Resolver</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Mar 21 2021 17:15:45 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

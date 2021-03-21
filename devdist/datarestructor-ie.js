@@ -320,19 +320,20 @@ template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNo
 
 var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
 
-/**
- * Resolver. Is used inside this repository. It could also be used outside.
- */
-
 
 template_resolver.Resolver = function () {
   var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
   /**
-   * Constructor function and container for everything, that needs to exist per instance.
+   * Resolver. Is used inside this repository. It could also be used outside.
+   * @param {*} sourceDataObject The properties of this object will be used to replace the placeholders in the template.
    * @constructs Resolver
+   * @alias module:template_resolver.Resolver
    */
 
   function Resolver(sourceDataObject) {
+    /**
+     * The properties of this source data object will be used to replace the placeholders in the template.
+     */
     this.sourceDataObject = sourceDataObject;
     /**
      * Resolves the given template.
@@ -361,6 +362,7 @@ template_resolver.Resolver = function () {
      *
      * @param {...object} varArgs variable count of parameters. Each parameter contains an object that fields should be resolvable for variables.
      * @returns {object} object with resolvable field names and their values.
+     * @public
      */
 
 
@@ -410,6 +412,8 @@ template_resolver.Resolver = function () {
    * For example: detail[2].fieldName="name", detail[2].value="Smith" lead to the additional property detail.name="Smith".
    * @param {object} object with resolvable field names and their values.
    * @returns {object} object with resolvable field names and their values.
+   * @protected
+   * @memberof module:template_resolver.Resolver
    */
 
 
@@ -436,6 +440,8 @@ template_resolver.Resolver = function () {
    * Infos about the full property name including the name of the group (followed by the separator) and the name of the property itself.
    * @param {String} fullPropertyName
    * @returns {Object} Contains "group" (empty or group name including trailing separator "."), "groupWithoutArrayIndices" and "name" (property name).
+   * @protected
+   * @memberof module:template_resolver.Resolver
    */
 
 
@@ -467,6 +473,8 @@ template_resolver.Resolver = function () {
    * @param {NameValuePair[]} elements flattened array of name-value-pairs
    * @param {object} mapObject container to collect the results. Needs to be created before e.g. using `{}`.
    * @param {function} filterMatchesFunction takes the property name as string argument and returns true (include) or false (exclude).
+   * @protected
+   * @memberof module:template_resolver.Resolver
    */
 
 
@@ -483,11 +491,6 @@ template_resolver.Resolver = function () {
 
     return mapObject;
   }
-  /**
-   * Public interface
-   * @scope template_resolver.Resolver
-   */
-
 
   return Resolver;
 }();
@@ -518,8 +521,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * Describes a field of the restructured data.
  * Dynamically added properties represent custom named groups containing DescribedDataField-Arrays.
  *
- * @global
- * @typedef {Object} DescribedDataField
+ * @typedef {Object} module:described_field.DescribedDataField
  * @property {string} [category=""] - name of the category. Could contain a short domain name like "product" or "vendor".
  * @property {string} [type=""] - type of the data element. Examples: "summary" for e.g. a list overview. "detail" e.g. when a summary is selected. "filter" e.g. for field/value pair results that can be selected as data filters.
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
@@ -529,18 +531,19 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} displayName - display name of the field
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
- * @property {DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
+ * @property {module:described_field.DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
  */
 
 described_field.DescribedDataFieldBuilder = function () {
   /**
-   * Builds a DescribedDataField.  
+   * Builds a {@link module:described_field.DescribedDataField}.
    * DescribedDataField is the main element of the restructured data and therefore considered "public".
    * @constructs DescribedDataFieldBuilder
+   * @alias module:described_field.DescribedDataFieldBuilder
    */
   function DescribedDataFieldBuilder() {
     /**
-     * @type {DescribedDataField}
+     * @type {module:described_field.DescribedDataField}
      */
     this.describedField = {
       category: "",
@@ -554,9 +557,9 @@ described_field.DescribedDataFieldBuilder = function () {
       value: ""
     };
     /**
-     * Takes over all values of the template DescribedDataField.
+     * Takes over all values of the template {@link module:described_field.DescribedDataField}.
      * @function
-     * @param {DescribedDataField} template
+     * @param {module:described_field.DescribedDataField} template
      * @returns {DescribedDataFieldBuilder}
      * @example fromDescribedDataField(sourceField)
      */
@@ -659,7 +662,7 @@ described_field.DescribedDataFieldBuilder = function () {
     };
     /**
      * Sets the group names as an array of strings containing the names of the dynamically added properties,
-     * that contain an array of DescribedDataField-Objects.
+     * that contain an array of {@link module:described_field.DescribedDataField}-Objects.
      *
      * @function
      * @param {string[]} [value=[]]
@@ -715,9 +718,9 @@ described_field.DescribedDataFieldBuilder = function () {
       return this;
     };
     /**
-     * Finalizes the settings and builds the DescribedDataField.
+     * Finalizes the settings and builds the {@link module:described_field.DescribedDataField}.
      * @function
-     * @returns {DescribedDataField}
+     * @returns {module:described_field.DescribedDataField}
      */
 
 
@@ -742,23 +745,24 @@ described_field.DescribedDataFieldBuilder = function () {
 }();
 /**
  * Creates a new described data field with all properties of the original one except for dynamically added groups.
- * @param {DescribedDataField} describedDataField 
- * @returns {DescribedDataField} 
- * @memberof described_field
+ * @param {module:described_field.DescribedDataField} describedDataField
+ * @returns {module:described_field.DescribedDataField}
+ * @memberof module:described_field
  */
 
 
 described_field.copyWithoutGroups = function (describedDataField) {
-  return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).build();
+  return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).groupNames([]).build();
 };
 
 described_field.DescribedDataFieldGroup = function () {
   /**
-   * Adds groups to DescribedDataFields. These groups are dynamically added properties
-   * that contain an array of sub fields of the same type DescribedDataFields.
-   * 
-   * @param {DescribedDataField} dataField
+   * Adds groups to {@link module:described_field.DescribedDataField}s. These groups are dynamically added properties
+   * that contain an array of sub fields of the same type {@link module:described_field.DescribedDataField}s.
+   *
+   * @param {module:described_field.DescribedDataField} dataField
    * @constructs DescribedDataFieldGroup
+   * @alias module:described_field.DescribedDataFieldGroup
    * @example new described_field.DescribedDataFieldGroup(field).addGroupEntry("details", detailField);
    */
   function DescribedDataFieldGroup(dataField) {
@@ -767,9 +771,8 @@ described_field.DescribedDataFieldGroup = function () {
      * Adds an entry to the given group. If the group does not exist, it will be created.
      * @function
      * @param {String} groupName name of the group to which the entry will be added
-     * @param {DescribedDataField} describedField sub field that is added to the group
+     * @param {module:described_field.DescribedDataField} describedField sub field that is added to the group
      * @returns {DescribedDataFieldGroup}
-     * @memberOf DescribedDataFieldGroup
      */
 
     this.addGroupEntry = function (groupName, describedField) {
@@ -780,14 +783,21 @@ described_field.DescribedDataFieldGroup = function () {
      * Adds entries to the given group. If the group does not exist, it will be created.
      * @function
      * @param {String} groupName name of the group to which the entries will be added
-     * @param {DescribedDataField[]} describedFields sub fields that are added to the group
+     * @param {module:described_field.DescribedDataField[]} describedFields sub fields that are added to the group
      * @returns {DescribedDataFieldGroup}
-     * @memberOf DescribedDataFieldGroup
      */
 
 
     this.addGroupEntries = function (groupName, describedFields) {
-      if (!this.dataField[groupName]) {
+      if (!groupName || groupName.length === 0) {
+        return this;
+      }
+
+      if (!describedFields || describedFields.length === 0) {
+        return this;
+      }
+
+      if (this.dataField[groupName] === undefined) {
         this.dataField.groupNames.push(groupName);
         this.dataField[groupName] = [];
       }
@@ -797,7 +807,6 @@ described_field.DescribedDataFieldGroup = function () {
 
       for (index = 0; index < describedFields.length; index += 1) {
         describedField = describedFields[index];
-        describedField = described_field.copyWithoutGroups(describedField);
         this.dataField[groupName].push(describedField);
       }
 
@@ -851,8 +860,7 @@ var described_field = described_field || require("../../src/js/describedfield");
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
  * 
- * @global
- * @callback propertyNameFunction
+ * @callback module:datarestructor.propertyNameFunction
  * @param {string} propertyName full qualified, point separated property name 
  * @return {String} extracted, simple name
  */
@@ -861,8 +869,7 @@ var described_field = described_field || require("../../src/js/describedfield");
  * Describes a selected part of the incoming data structure and defines, 
  * how the data should be transformed.
  * 
- * @global
- * @typedef {Object} PropertyStructureDescription
+ * @typedef {Object} module:datarestructor.PropertyStructureDescription
  * @property {string} type - ""(default). Some examples: "summary" for e.g. a list overview. "detail" e.g. when a summary is selected. "filter" e.g. for field/value pair results that can be selected as search parameters.
  * @property {string} category - name of the category. Default = "". Could contain a short domain name like "product" or "vendor".
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
@@ -870,8 +877,8 @@ var described_field = described_field || require("../../src/js/describedfield");
  * @property {boolean} propertyPatternTemplateMode - "false"(default): property name needs to be equal to the pattern. "true" allows variables like "{{fieldName}}" inside the pattern.
  * @property {string} propertyPattern - property name pattern (without array indices) to match
  * @property {string} indexStartsWith - ""(default) matches all ids. String that needs to match the beginning of the id. E.g. "1." will match id="1.3.4" but not "0.1.2".
- * @property {propertyNameFunction} getDisplayNameForPropertyName - display name for the property. ""(default) last property name element with upper case first letter.
- * @property {propertyNameFunction} getFieldNameForPropertyName - field name for the property. "" (default) last property name element.
+ * @property {module:datarestructor.propertyNameFunction} getDisplayNameForPropertyName - display name for the property. ""(default) last property name element with upper case first letter.
+ * @property {module:datarestructor.propertyNameFunction} getFieldNameForPropertyName - field name for the property. "" (default) last property name element.
  * @property {string} groupName - name of the property, that contains grouped entries. Default="group".
  * @property {string} groupPattern - Pattern that describes how to group entries. "groupName" defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}.
  * @property {string} groupDestinationPattern - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}.
@@ -879,21 +886,18 @@ var described_field = described_field || require("../../src/js/describedfield");
  * @property {string} deduplicationPattern - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
  */
 
-/**
- * Builder for a {@link PropertyStructureDescription}.
- */
-
 
 datarestructor.PropertyStructureDescriptionBuilder = function () {
   "use strict";
   /**
-   * Constructor function and container for everything, that needs to exist per instance.
+   * Builder for a {@link PropertyStructureDescription}.
    * @constructs PropertyStructureDescriptionBuilder
+   * @alias module:datarestructor.PropertyStructureDescriptionBuilder
    */
 
   function PropertyStructureDescription() {
     /**
-     * @type {PropertyStructureDescription}
+     * @type {module:datarestructor.PropertyStructureDescription}
      */
     this.description = {
       type: "",
@@ -922,7 +926,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * 
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example type("summary")
      */
 
@@ -939,7 +943,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * 
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example category("Product")
      */
 
@@ -957,7 +961,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * 
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example abbreviation("P")
      */
 
@@ -971,7 +975,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * 
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example image("img/product.png")
      */
 
@@ -986,7 +990,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * "propertyPattern" need to match exactly if this mode is activated.
      *  It clears propertyPatternTemplateMode which means "equal" mode.
      * @function
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      */
 
 
@@ -1003,7 +1007,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * starts with the "propertyPattern".
      * 
      * @function
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      */
 
 
@@ -1021,7 +1025,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * - responses.hits.hits._source.{{fieldName}}
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example propertyPattern("responses.hits.hits._source.{{fieldName}}")
      */
 
@@ -1038,7 +1042,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * - "1." will match id="1.3.4" but not "0.1.2".
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example indexStartsWith("1.")
      */
 
@@ -1057,7 +1061,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * - "Product"
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example displayPropertyName("Product")
      */
 
@@ -1083,7 +1087,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * - "product"
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example fieldName("product")
      */
 
@@ -1097,7 +1101,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * 
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example groupName("details")
      */
 
@@ -1113,7 +1117,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * A pattern may contain variables in double curly brackets {{variable}}.
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example groupPattern("{{type}}-{{category}}")
      */
 
@@ -1129,7 +1133,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * A pattern may contain variables in double curly brackets {{variable}}.
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example groupDestinationPattern("main-{{category}}")
      */
 
@@ -1144,7 +1148,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * The default value is the groupName, which will be used when the value is not valid (null or empty)
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example groupDestinationPattern("options")
      */
 
@@ -1160,7 +1164,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
      * A pattern may contain variables in double curly brackets {{variable}}.
      * @function
      * @param {String} [value=""]
-     * @returns {PropertyStructureDescriptionBuilder}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      * @example deduplicationPattern("{{category}}--{{type}}--{{index[0]}}--{{index[1]}}--{{fieldName}}")
      */
 
@@ -1172,7 +1176,7 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
     /**
      * Finalizes the settings and builds the  PropertyStructureDescription.
      * @function
-     * @returns {PropertyStructureDescription}
+     * @returns {module:datarestructor.PropertyStructureDescription}
      */
 
 
@@ -1316,9 +1320,23 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
   return PropertyStructureDescription;
 }();
 /**
- * @global
- * @typedef {Object} DescribedEntry
- * @property {DescribedDataField} describedField - public type with the main properties for external/public use
+ * Adds a group item/entry to the {@link module:datarestructor.DescribedEntry}.
+ * 
+ * @callback module:datarestructor.addGroupEntryFunction
+ * @param {String} groupName name of the group that should be added
+ * @param {module:datarestructor.DescribedEntry} describedEntry entry that should be added to the group
+ */
+
+/**
+ * Adds some group items/entries to the {@link module:datarestructor.DescribedEntry}.
+ * 
+ * @callback module:datarestructor.addGroupEntriesFunction
+ * @param {String} groupName name of the group that should be added
+ * @param {module:datarestructor.DescribedEntry[]} describedEntry entries that should be added to the group
+ */
+
+/**
+ * @typedef {Object} module:datarestructor.DescribedEntry
  * @property {string} category - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character
  * @property {string} type - type of the result from PropertyStructureDescription
  * @property {string} [abbreviation=""] - one optional character, a symbol character or a short abbreviation of the category
@@ -1327,8 +1345,9 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
  * @property {string} displayName - display name extracted from the point separated hierarchical property name, e.g. "Name"
  * @property {string} fieldName - field name extracted from the point separated hierarchical property name, e.g. "name"
  * @property {string} value - content of the field
- * @property {DescribedDataField} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
- * @property {DescribedDataField[]} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
+ * @property {string[]} groupNames - array of names of all dynamically added properties representing groups
+ * @property {module:datarestructor.addGroupEntryFunction} addGroupEntry - function, that adds an entry to the given group. If the group does not exist, it will be created.
+ * @property {module:datarestructor.addGroupEntriesFunction} addGroupEntries - function, that adds entries to the given group. If the group does not exist, it will be created.
  * @property {boolean} _isMatchingIndex - true, when _identifier.index matches the described "indexStartsWith"
  * @property {Object} _identifier - internal structure for identifier. Avoid using it outside since it may change.
  * @property {string} _identifier.index - array indices in hierarchical order separated by points, e.g. "0.0"
@@ -1342,16 +1361,11 @@ datarestructor.PropertyStructureDescriptionBuilder = function () {
  */
 
 /**
- * Returns a field value of the given {@link DescribedEntry}.
+ * Returns a field value of the given {@link module:datarestructor.DescribedEntry}.
  * 
- * @global
- * @callback stringFieldOfDescribedEntryFunction
- * @param {DescribedEntry} entry described entry that contains the field that should be returned
+ * @callback module:datarestructor.stringFieldOfDescribedEntryFunction
+ * @param {module:datarestructor.DescribedEntry} entry described entry that contains the field that should be returned
  * @returns {String} field value 
- */
-
-/**
- * Creates a {@link DescribedEntry}.
  */
 
 
@@ -1360,22 +1374,21 @@ datarestructor.DescribedEntryCreator = function () {
 
   var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
   /**
-   * Constructor function and container for everything, that needs to exist per instance.
-   * @constructs DescribedEntry
-   * @type {DescribedEntry}
+   * Creates a {@link module:datarestructor.DescribedEntry}.
+   * @constructs DescribedEntryCreator
+   * @alias module:datarestructor.DescribedEntryCreator
    */
 
   function DescribedEntry(entry, description) {
     var indices = indicesOf(entry.name);
     var propertyNameWithoutArrayIndices = entry.name.replace(removeArrayBracketsRegEx, "");
     var templateResolver = new template_resolver.Resolver(this);
-    this.describedField = new described_field.DescribedDataFieldBuilder().category(description.category).type(description.type).abbreviation(description.abbreviation).image(description.image).index(indices.numberArray).displayName(description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices)).fieldName(description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices)).value(entry.value).build();
     this.category = description.category;
     this.type = description.type;
     this.abbreviation = description.abbreviation;
     this.image = description.image;
     /**
-     * Array of numbers containing the split index. 
+     * Array of numbers containing the split index.
      * Example: "responses[2].hits.hits[4]._source.name" leads to an array with two elements: [2,4]
      * This is the public version of the internal variable _identifier.index, which contains in contrast all index elements in one point separated string (e.g. "2.4").
      * @type {number[]}
@@ -1385,6 +1398,7 @@ datarestructor.DescribedEntryCreator = function () {
     this.displayName = description.getDisplayNameForPropertyName(propertyNameWithoutArrayIndices);
     this.fieldName = description.getFieldNameForPropertyName(propertyNameWithoutArrayIndices);
     this.value = entry.value;
+    this.groupNames = [];
     this._isMatchingIndex = indices.pointDelimited.indexOf(description.indexStartsWith) == 0;
     this._description = description;
     this._identifier = {
@@ -1395,13 +1409,13 @@ datarestructor.DescribedEntryCreator = function () {
       groupDestinationId: "",
       deduplicationId: ""
     };
-    this._identifier.groupId = templateResolver.replaceResolvableFields(description.groupPattern, templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier));
-    this._identifier.groupDestinationId = templateResolver.replaceResolvableFields(description.groupDestinationPattern, templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier));
-    this._identifier.deduplicationId = templateResolver.replaceResolvableFields(description.deduplicationPattern, templateResolver.resolvableFieldsOfAll(this.describedField, this._description, this._identifier));
+    this._identifier.groupId = templateResolver.replaceResolvableFields(description.groupPattern, templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier));
+    this._identifier.groupDestinationId = templateResolver.replaceResolvableFields(description.groupDestinationPattern, templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier));
+    this._identifier.deduplicationId = templateResolver.replaceResolvableFields(description.deduplicationPattern, templateResolver.resolvableFieldsOfAll(this, this._description, this._identifier));
     /**
      * Adds an entry to the given group. If the group does not exist, it will be created.
-     * @param {String} groupName 
-     * @param {DescribedEntry} describedEntry 
+     * @param {String} groupName name of the group that should be added
+     * @param {module:datarestructor.DescribedEntry} describedEntry entry that should be added to the group
      */
 
     this.addGroupEntry = function (groupName, describedEntry) {
@@ -1409,15 +1423,14 @@ datarestructor.DescribedEntryCreator = function () {
     };
     /**
      * Adds entries to the given group. If the group does not exist, it will be created.
-     * @param {String} groupName 
-     * @param {DescribedEntry[]} describedEntries
+     * @param {String} groupName
+     * @param {module:datarestructor.DescribedEntry[]} describedEntries
      */
 
 
     this.addGroupEntries = function (groupName, describedEntries) {
-      var describedFieldDataGroup = new described_field.DescribedDataFieldGroup(this.describedField);
-
       if (!this[groupName]) {
+        this.groupNames.push(groupName);
         this[groupName] = [];
       }
 
@@ -1427,12 +1440,11 @@ datarestructor.DescribedEntryCreator = function () {
       for (index = 0; index < describedEntries.length; index += 1) {
         describedEntry = describedEntries[index];
         this[groupName].push(describedEntry);
-        describedFieldDataGroup.addGroupEntry(groupName, describedEntry.describedField);
       }
     };
   }
   /**
-   * @typedef {Object} ExtractedIndices
+   * @typedef {Object} module:datarestructor.ExtractedIndices
    * @property {string} pointDelimited - bracket indices separated by points
    * @property {number[]} numberArray as array of numbers
    */
@@ -1441,7 +1453,9 @@ datarestructor.DescribedEntryCreator = function () {
    * Returns "1.12.123" and [1,12,123] for "results[1].hits.hits[12].aggregates[123]".
    *
    * @param {String} fullPropertyName
-   * @return {ExtractedIndices} extracted indices in different representations
+   * @return {module:datarestructor.ExtractedIndices} extracted indices in different representations
+   * @protected
+   * @memberof module:datarestructor.DescribedEntryCreator
    */
 
 
@@ -1454,7 +1468,9 @@ datarestructor.DescribedEntryCreator = function () {
    *
    * @param {string} fullPropertyName
    * @param {RegExp} regexWithOneNumberGroup
-   * @return {ExtractedIndices} extracted indices in different representations
+   * @return {module:datarestructor.ExtractedIndices} extracted indices in different representations
+   * @protected
+   * @memberof module:datarestructor.DescribedEntryCreator
    */
 
 
@@ -1484,34 +1500,32 @@ datarestructor.DescribedEntryCreator = function () {
 
   return DescribedEntry;
 }();
-/**
- * Main class for the data transformation.
- */
-
 
 datarestructor.Transform = function () {
   "use strict";
   /**
-   * Constructor function and container for anything, that needs to exist per instance.
-   * @param {PropertyStructureDescription[]} descriptions
+   * Main class for the data transformation.
+   * @param {module:datarestructor.PropertyStructureDescription[]} descriptions
    * @constructs Transform
+   * @alias module:datarestructor.Transform
    */
 
   function Transform(descriptions) {
     /**
      * Descriptions of the input data that define the behaviour of the transformation.
-     * @type {DescribedEntry[]}
+     * @type {module:datarestructor.DescribedEntry[]}
      */
     this.descriptions = descriptions;
     /**
-     * DebugMode enables detailed logging for troubleshooting.
+     * Debug mode switch, that enables/disables detailed logging.
+     * @protected
      * @type {boolean}
      */
 
     this.debugMode = false;
     /**
-     * Enables debug mode. Logs additional informations.
-     * @returns Transform
+     * Enables debug mode. Logs additional information.
+     * @returns {module:datarestructor.Transform}
      */
 
     this.enableDebugMode = function () {
@@ -1519,10 +1533,32 @@ datarestructor.Transform = function () {
       return this;
     };
     /**
+     * Maximum recursion depth. Defaults to 8, 
+     * @protected 
+     * @type {number}
+     */
+
+
+    this.maxRecursionDepth = 8;
+    /**
+     * Sets the maximum recursion depth. Defaults to 8 if not set.
+     * @param {number} value non negative number.
+     * @returns {module:datarestructor.Transform}
+     */
+
+    this.setMaxRecursionDepth = function (value) {
+      if (typeof value !== "number" || value < 0) {
+        throw "Invalid max recursion depth value: " + value;
+      }
+
+      this.maxRecursionDepth = value;
+      return this;
+    };
+    /**
      * "Assembly line", that takes the (pared JSON) data and processes it using all given descriptions in their given order.
      * @param {object} data - parsed JSON data or any other data object
-     * @returns {DescribedEntry[]}
-     * @example 
+     * @returns {module:datarestructor.DescribedEntry[]}
+     * @example
      * var allDescriptions = [];
      * allDescriptions.push(summariesDescription());
      * allDescriptions.push(detailsDescription());
@@ -1531,25 +1567,28 @@ datarestructor.Transform = function () {
 
 
     this.processJson = function (data) {
-      return processJsonUsingDescriptions(data, this.descriptions, this.debugMode);
+      return processJsonUsingDescriptions(data, this.descriptions, this.debugMode, this.maxRecursionDepth);
     };
   }
   /**
    * "Assembly line", that takes the jsonData and processes it using all given descriptions in their given order.
    * @param {object} jsonData - parsed JSON data or any other data object
-   * @param {PropertyStructureDescription[]} descriptions - already grouped entries
+   * @param {module:datarestructor.PropertyStructureDescription[]} descriptions - already grouped entries
    * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
-   * @returns {DescribedEntry[]}
+   * @param {number} maxRecursionDepth - maximum recursion depth. Defaults to 8 if not set.
+   * @returns {module:datarestructor.DescribedEntry[]}
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
-  function processJsonUsingDescriptions(jsonData, descriptions, debugMode) {
+  function processJsonUsingDescriptions(jsonData, descriptions, debugMode, maxRecursionDepth) {
     // "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
     var processedData = internal_object_tools.flattenToArray(jsonData); // Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
 
     processedData = fillInArrayValues(processedData);
 
-    if (typeof debugMode === "boolean" && debugMode) {
+    if (debugMode) {
       console.log("flattened data with array values:");
       console.log(processedData);
     } // Mark, identify and harmonize the flattened data by applying one description after another in their given order.
@@ -1566,13 +1605,40 @@ datarestructor.Transform = function () {
       describedData = deduplicateFlattenedData(describedData, dataWithDescription);
     }
 
-    processedData = describedData; // Group entries where a groupPattern is described
+    processedData = describedData;
 
-    processedData = groupFlattenedData(processedData); // Move group entries where a groupDestinationPattern is described
+    if (debugMode) {
+      console.log("describedData data:");
+      console.log(processedData);
+    } // Group entries where a groupPattern is described
 
-    processedData = applyGroupDestinationPattern(processedData); // Turns the grouped object back into an array of DescribedEntry-Objects
 
-    return propertiesAsArray(processedData);
+    processedData = groupFlattenedData(processedData);
+
+    if (debugMode) {
+      console.log("grouped describedData data:");
+      console.log(processedData);
+    } // Move group entries where a groupDestinationPattern is described
+
+
+    processedData = applyGroupDestinationPattern(processedData);
+
+    if (debugMode) {
+      console.log("moved grouped describedData data:");
+      console.log(processedData);
+    } // Turns the grouped object back into an array of DescribedEntry-Objects
+
+
+    processedData = propertiesAsArray(processedData); // Converts the internal described entries  into described fields
+
+    processedData = toDescribedFields(processedData, maxRecursionDepth);
+
+    if (debugMode) {
+      console.log("transformed result:");
+      console.log(processedData);
+    }
+
+    return processedData;
   }
   /**
    * Takes two arrays of objects, e.g. [{id: B, value: 2},{id: C, value: 3}]
@@ -1589,9 +1655,11 @@ datarestructor.Transform = function () {
    *
    * The id is extracted from every element using the given function.
    *
-   * @param {DescribedEntry[]} entries
-   * @param {DescribedEntry[]} entriesToMerge
-   * @param {stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   * @param {module:datarestructor.DescribedEntry[]} entries
+   * @param {module:datarestructor.DescribedEntry[]} entriesToMerge
+   * @param {module:datarestructor.stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1633,10 +1701,12 @@ datarestructor.Transform = function () {
    *
    * The id is extracted from every element using their deduplication pattern (if available).
    *
-   * @param {DescribedEntry[]} entries
-   * @param {DescribedEntry[]} entriesToMerge
-   * @param {stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   * @param {module:datarestructor.DescribedEntry[]} entries
+   * @param {module:datarestructor.DescribedEntry[]} entriesToMerge
+   * @param {module:datarestructor.stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
    * @see mergeFlattenedData
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1655,9 +1725,11 @@ datarestructor.Transform = function () {
    * Converts the given elements to an object, that provides these
    * entries by their id. For example, [{id: A, value: 1}] becomes
    * result['A'] = 1.
-   * @param {DescribedEntry[]} elements of DescribedEntry elements
-   * @param {stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
-   * @return {DescribedEntry[] entries indexed by id
+   * @param {module:datarestructor.DescribedEntry[]} elements of DescribedEntry elements
+   * @param {module:datarestructor.stringFieldOfDescribedEntryFunction} idOfElementFunction returns the id of an DescribedEntry
+   * @return {module:datarestructor.DescribedEntry[] entries indexed by id
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1679,8 +1751,10 @@ datarestructor.Transform = function () {
    * Furthermore, this function creates a group property (determined by the entry's groupName)
    * and collects all related elements (specified by their group pattern) in it.
    *
-   * @param {DescribedEntry[]} elements of DescribedEntry elements
-   * @return {DescribedEntry[] entries indexed by id
+   * @param {module:datarestructor.DescribedEntry[]} elements of DescribedEntry elements
+   * @return {module:datarestructor.DescribedEntry[] entries indexed by id
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1697,10 +1771,12 @@ datarestructor.Transform = function () {
    * result['A'] = 1. Furthermore, this function creates a group property (with the name )
    * and collects all related elements (specified by their group pattern) in it.
    *
-   * @param {DescribedEntry[]} elements of DescribedEntry elements
-   * @param {stringFieldOfDescribedEntryFunction} groupNameOfElementFunction function, that returns the name of the group property that will be created inside the "main" element.
-   * @param {stringFieldOfDescribedEntryFunction} groupIdOfElementFunction returns the group id of an DescribedEntry
-   * @return {DescribedEntry[] entries indexed by id
+   * @param {module:datarestructor.DescribedEntry[]} elements of DescribedEntry elements
+   * @param {module:datarestructor.stringFieldOfDescribedEntryFunction} groupNameOfElementFunction function, that returns the name of the group property that will be created inside the "main" element.
+   * @param {module:datarestructor.stringFieldOfDescribedEntryFunction} groupIdOfElementFunction returns the group id of an DescribedEntry
+   * @return {module:datarestructor.DescribedEntry[] entries indexed by id
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1735,8 +1811,10 @@ datarestructor.Transform = function () {
    * @param {Object[]} flattenedData - flattened json from search query result
    * @param {string} flattenedData[].name - name of the property in hierarchical order separated by points
    * @param {string} flattenedData[].value - value of the property as string
-   * @param {PropertyStructureDescription} - description of structure of the entries that should be extracted
-   * @return {DescribedEntry[]}
+   * @param {module:datarestructor.PropertyStructureDescription} - description of structure of the entries that should be extracted
+   * @return {module:datarestructor.DescribedEntry[]}
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1757,15 +1835,17 @@ datarestructor.Transform = function () {
     return filtered;
   }
   /**
-   * Takes already grouped {@link DescribedEntry} objects and
+   * Takes already grouped {@link module:datarestructor.DescribedEntry} objects and
    * uses their "_identifier.groupDestinationId" (if exists)
    * to move groups to the given destination.
    *
    * This is useful, if separately described groups like "summary" and "detail" should be put together,
    * so that every summery contains a group with the regarding details.
    *
-   * @param {DescribedEntry[]} groupedObject - already grouped entries
-   * @return {DescribedEntry[]}
+   * @param {module:datarestructor.DescribedEntry[]} groupedObject - already grouped entries
+   * @return {module:datarestructor.DescribedEntry[]}
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1802,6 +1882,8 @@ datarestructor.Transform = function () {
    * will lead to the extra element "response.hits.hits.tags_comma_separated_values="active, ready".
    *
    * @return flattened data with filled in "_comma_separated_values" properties
+   * @protected
+   * @memberof module:datarestructor.Transform
    */
 
 
@@ -1853,10 +1935,93 @@ datarestructor.Transform = function () {
     for (var propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex++) {
       var propertyName = propertyNames[propertyIndex];
       var propertyValue = groupedData[propertyName];
-      result.push(propertyValue.describedField);
+      result.push(propertyValue);
     }
 
     return result;
+  }
+  /**
+   * Converts described entries (internal data structure) to described fields (external data structure).
+   * Since the structure of a described field is hierarchical, every field needs to be converted
+   * in a recursive manner. The maximum recursion depth is taken as the second parameter.
+   * @param {module:datarestructor.DescribedEntry[]} describedEntries
+   * @param {number} maxRecursionDepth  maximum hierarchy depth
+   * @returns {module:described_field.DescribedDataField[]}
+   * @protected
+   * @memberof module:datarestructor.Transform
+   */
+
+
+  function toDescribedFields(describedEntries, maxRecursionDepth) {
+    var result = [];
+    var index;
+    var describedEntity;
+
+    for (index = 0; index < describedEntries.length; index += 1) {
+      describedEntity = describedEntries[index];
+      result.push(toDescribedField(describedEntity, 0, maxRecursionDepth));
+    }
+
+    return result;
+  }
+  /**
+   * Converts a internal described entry to a newly created public described field.
+   * Since the structure of a described field is hierarchical, this function is called recursively.
+   * Because the internal described entries may very likely contain cyclic references, the depth of recursion
+   * needs to be limited. Therefore, the current recursion depth is taken as second parameter
+   * and the maximum recursion depth is taken as third parameter.
+   * @param {module:datarestructor.DescribedEntry} entry the internal entry that will be converted
+   * @param {number} recursionDepth current hierarchy recursion depth
+   * @param {number} maxRecursionDepth  maximum hierarchy recursion depth
+   * @returns {module:described_field.DescribedDataField}
+   * @protected
+   * @memberof module:datarestructor.Transform
+   */
+
+
+  function toDescribedField(entry, recursionDepth, maxRecursionDepth) {
+    var field = new described_field.DescribedDataFieldBuilder().category(entry.category).type(entry.type).abbreviation(entry.abbreviation).image(entry.image).index(entry.index).displayName(entry.displayName).fieldName(entry.fieldName).value(entry.value).build();
+
+    if (recursionDepth > maxRecursionDepth) {
+      return field;
+    }
+
+    var fieldGroups = new described_field.DescribedDataFieldGroup(field);
+    forEachGroupEntry(entry, function (groupName, groupEntry) {
+      fieldGroups.addGroupEntry(groupName, toDescribedField(groupEntry, recursionDepth + 1, maxRecursionDepth));
+    });
+    return field;
+  }
+  /**
+   * Takes the full qualified original property name and extracts a simple name out of it.
+   *
+   * @callback module:datarestructor.onEntryFoundFunction
+   * @param {string} groupName name of the group where the entry had been found.
+   * @param {module:datarestructor.DescribedEntry} foundEntry the found entry itself.
+   */
+
+  /**
+   * Traverses through all groups and their entries and calls the given function on every found entry
+   * with the group name and the entry itself as parameters.
+   * @param {module:datarestructor.DescribedEntry} rootEntry
+   * @param {module:datarestructor.onEntryFoundFunction} onFoundEntry
+   * @protected
+   * @memberof module:datarestructor.Transform
+   */
+
+
+  function forEachGroupEntry(rootEntry, onFoundEntry) {
+    var groupIndex, entryIndex;
+    var groupName, entry;
+
+    for (groupIndex = 0; groupIndex < rootEntry.groupNames.length; groupIndex += 1) {
+      groupName = rootEntry.groupNames[groupIndex];
+
+      for (entryIndex = 0; entryIndex < rootEntry[groupName].length; entryIndex += 1) {
+        entry = rootEntry[groupName][entryIndex];
+        onFoundEntry(groupName, entry);
+      }
+    }
   }
 
   return Transform;
@@ -1869,7 +2034,7 @@ datarestructor.Transform = function () {
  * allDescriptions.push(summariesDescription());
  * allDescriptions.push(detailsDescription());
  * var result = datarestructor.Restructor.processJsonUsingDescriptions(jsonData, allDescriptions);
- * @namespace
+ * @namespace module:datarestructor.Restructor
  */
 
 
@@ -1877,9 +2042,11 @@ datarestructor.Restructor = {};
 /**
  * Static fassade function for the "Assembly line", that takes the jsonData and processes it using all given descriptions in their given order.
  * @param {object} jsonData - parsed JSON data or any other data object
- * @param {PropertyStructureDescription[]} descriptions - already grouped entries
+ * @param {module:datarestructor.PropertyStructureDescription[]} descriptions - already grouped entries
  * @param {boolean} debugMode - false=default=off, true=write additional logs for detailed debugging
- * @returns {DescribedEntry[]}
+ * @returns {module:datarestructor.DescribedEntry[]}
+ * @memberof module:datarestructor.Restructor
+ * @deprecated since v3.1.0, please use "new datarestructor.Transform(descriptions).processJson(jsonData)".
  */
 
 datarestructor.Restructor.processJsonUsingDescriptions = function (jsonData, descriptions, debugMode) {
@@ -1935,7 +2102,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57023" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54027" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
