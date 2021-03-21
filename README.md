@@ -47,8 +47,7 @@ The built versions can be found inside the
 - [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js) (full compatibility with IE)
 
 ## Code Documentation
-The code documentation generated using [JSDoc](https://jsdoc.app) can be found inside the 
-[documentation folder](https://github.com/JohT/data-restructor-js/tree/master/docs/).
+The [code documentation](https://joht.github.io/data-restructor-js) is generated using [JSDoc](https://jsdoc.app) and is published using [GitHub Pages](https://pages.github.com) at [https://joht.github.io/data-restructor-js](https://joht.github.io/data-restructor-js).
 
 ## Example
 As a starting point you may have a look at the following example.   
