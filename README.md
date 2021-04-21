@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
-![Branches](https://img.shields.io/badge/Coverage-95.62%25-brightgreen.svg)
+![Branches](https://img.shields.io/badge/Coverage-95.24%25-brightgreen.svg)
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
@@ -37,7 +37,20 @@ Alternatively, the sources can be found inside the
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js) 
 - [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/describedfield.js) 
 
-The built versions can be found inside the 
+The development artifacts (not minified) can be found inside the
+[devdist folder](https://github.com/JohT/data-restructor-js/tree/master/devdist):
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor.js) 
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/templateResolver.js) 
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/describedfield.js) 
+
+Here is a code example on how these modules can be imported:
+```javascript
+var template_resolver = template_resolver || require("data-restructor/devdist/templateResolver"); // supports vanilla js
+var described_field = described_field || require("data-restructor/devdist/describedfield"); // supports vanilla js
+var datarestructor = datarestructor || require("data-restructor/devdist/datarestructor"); // supports vanilla js
+```
+
+The built (minified) versions can be found inside the 
 [distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js) 
 - [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility with IE)
@@ -45,6 +58,13 @@ The built versions can be found inside the
 - [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility with IE)
 - [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield.js) 
 - [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js) (full compatibility with IE)
+
+
+```javascript
+var template_resolver = template_resolver || require("data-restructor/devdist/templateResolver"); // supports vanilla js
+var described_field = described_field || require("data-restructor/devdist/describedfield"); // supports vanilla js
+var datarestructor = datarestructor || require("data-restructor/devdist/datarestructor"); // supports vanilla js
+```
 
 ## Code Documentation
 The [code documentation](https://joht.github.io/data-restructor-js) is generated using [JSDoc](https://jsdoc.app) and is published using [GitHub Pages](https://pages.github.com) at [https://joht.github.io/data-restructor-js](https://joht.github.io/data-restructor-js).
