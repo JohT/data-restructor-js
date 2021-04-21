@@ -59,13 +59,6 @@ The built (minified) versions can be found inside the
 - [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield.js) 
 - [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js) (full compatibility with IE)
 
-
-```javascript
-var template_resolver = template_resolver || require("data-restructor/devdist/templateResolver"); // supports vanilla js
-var described_field = described_field || require("data-restructor/devdist/describedfield"); // supports vanilla js
-var datarestructor = datarestructor || require("data-restructor/devdist/datarestructor"); // supports vanilla js
-```
-
 ## Code Documentation
 The [code documentation](https://joht.github.io/data-restructor-js) is generated using [JSDoc](https://jsdoc.app) and is published using [GitHub Pages](https://pages.github.com) at [https://joht.github.io/data-restructor-js](https://joht.github.io/data-restructor-js).
 
@@ -327,6 +320,8 @@ of the details resolves to the same id as the resolved group pattern of the summ
    .groupDestinationName("details")
    ...
   ```
+### 7. Convert data into an array of DescribedFields:
+The result is finally converted into an array of [DescribedDataField](#DescribedDataField)s. 
 
 ## Types, fields, variables:
 This section lists the types and their fields in detail (mostly taken from jsdoc).
@@ -420,6 +415,24 @@ var resolvedString = resolver.resolveTemplate(template);
    - Described groups that contain an array of [described entries](#DescribedDataField) can also be used, e.g. `"{{summaries[0].value}}"`. 
    - Parts of the index can be inserted by using e.g. `"{{index[1]}}"`.
    - Besides the meta data, a described field can be used directly by its "fieldName", e.g. `"{{customernumber}}"` will be replaced by `123`, if the structure contains `fieldname="customernumber", value="123"`. This also applies to sub groups, e.g. `"{{details.customernumber}}"` will be replaced by `321`, if the structure contains `details[4].fieldname="customernumber", details[4].value="321"`.
+
+### TransformConfig
+An comprehensive and up to date reference can be found here: [TransformConfig JSDoc](https://joht.github.io/data-restructor-js/module-datarestructor.html#.TransformConfig). 
+
+The restructured data is by nature hierarchical and may contain cyclic data references. Fields may contain groups of fields that may contain groups of fields....
+Since JSON can't be generated out of objects with cyclic references, sub-structures are expressed by copies. 
+That leads to recursion and duplication, that need to be limited. This can be configured here.
+
+#### Properties
+* **debugMode** boolean value, that enables/disables detailed logging
+* **maxRecursionDepth** numeric value that defines the maximum recursion depth
+* **removeDuplicationAboveRecursionDepth** numeric value that defines the recursion depth, above which duplications inside groups will be removed. 
+
+#### Public functions (provides by "Transform")
+* **enableDebugMode(boolean)** boolean value, that enables/disables detailed logging
+* **setMaxRecursionDepth(number)** numeric value that defines the maximum recursion depth
+* **setRemoveDuplicationAboveRecursionDepth(number)** numeric value that defines the recursion depth, above which duplications inside groups will be removed. 
+
 
 ## References
  * [Jasmine Behavior-Driven JavaScript](https://jasmine.github.io) for unit testing
