@@ -105,29 +105,68 @@ describe("datarestructor.Restructor (use case)", function () {
       });
     }
 
-    it("should be in debug mode when previously set", function () {
-      var transform = new datarestructor.Transform(descriptions).enableDebugMode();
-      expect(transform.debugMode).toBeTruthy();
-    });
+    describe("should be configurable and", function () {
+      it("should be in debug mode when previously set", function () {
+        var transform = new datarestructor.Transform(descriptions).enableDebugMode();
+        expect(transform.config.debugMode).toBeTruthy();
+      });
 
-    it("should contain max recursion depth as previously set", function () {
-      var expectedValue = 5;
-      var transform = new datarestructor.Transform(descriptions).setMaxRecursionDepth(expectedValue);
-      expect(transform.maxRecursionDepth).toEqual(expectedValue);
-    });
+      it("should by default not be in debug mode", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(transform.config.debugMode).toBeFalsy();
+      });
 
-    it("should fail if max recursion depth is set to null", function () {
-      var transform = new datarestructor.Transform(descriptions);
-      expect(function () {
-        transform.setMaxRecursionDepth(null);
-      }).toThrow();
-    });
+      it("should contain max recursion depth as previously set", function () {
+        var expectedValue = 5;
+        var transform = new datarestructor.Transform(descriptions).setMaxRecursionDepth(expectedValue);
+        expect(transform.config.maxRecursionDepth).toEqual(expectedValue);
+      });
 
-    it("should fail if max recursion depth is negative", function () {
-      var transform = new datarestructor.Transform(descriptions);
-      expect(function () {
-        transform.setMaxRecursionDepth(-1);
-      }).toThrow();
+      it("should by default contain max recursion depth = 8", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(transform.config.maxRecursionDepth).toEqual(8);
+      });
+
+      it("should fail if max recursion depth is set to null", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(function () {
+          transform.setMaxRecursionDepth(null);
+        }).toThrow();
+      });
+
+      it("should fail if max recursion depth is negative", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(function () {
+          transform.setMaxRecursionDepth(-1);
+        }).toThrow();
+      });
+
+      it("should contain 'remove duplications above recursion depth' as previously set", function () {
+        var expectedValue = 4;
+        var transform = new datarestructor.Transform(descriptions).setRemoveDuplicationAboveRecursionDepth(expectedValue);
+        expect(transform.config.removeDuplicationAboveRecursionDepth).toEqual(expectedValue);
+      });
+
+      it("should by default have 'remove duplications above recursion depth' = 1", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(transform.config.removeDuplicationAboveRecursionDepth).toEqual(1);
+      });
+
+      it("should fail if 'remove duplications above recursion depth' is set to null", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(function () {
+          transform.setRemoveDuplicationAboveRecursionDepth(null);
+        }).toThrow();
+      });
+
+      it("should fail if 'remove duplications above recursion depth' is negative", function () {
+        var transform = new datarestructor.Transform(descriptions);
+        expect(function () {
+          transform.setRemoveDuplicationAboveRecursionDepth(-1);
+        }).toThrow();
+      });
+      
+
     });
 
     describe("using debug mode", function () {
