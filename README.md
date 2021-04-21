@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Language](https://img.shields.io/github/languages/top/JohT/data-restructor-js)
-![Branches](https://img.shields.io/badge/Coverage-95.62%25-brightgreen.svg)
+![Branches](https://img.shields.io/badge/Coverage-95.24%25-brightgreen.svg)
 ![![npm](./src/npm.svg)](https://aleen42.github.io/badges/src/npm.svg)
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
@@ -37,7 +37,20 @@ Alternatively, the sources can be found inside the
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js) 
 - [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/describedfield.js) 
 
-The built versions can be found inside the 
+The development artifacts (not minified) can be found inside the
+[devdist folder](https://github.com/JohT/data-restructor-js/tree/master/devdist):
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor.js) 
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/templateResolver.js) 
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/describedfield.js) 
+
+Here is a code example on how these modules can be imported:
+```javascript
+var template_resolver = template_resolver || require("data-restructor/devdist/templateResolver"); // supports vanilla js
+var described_field = described_field || require("data-restructor/devdist/describedfield"); // supports vanilla js
+var datarestructor = datarestructor || require("data-restructor/devdist/datarestructor"); // supports vanilla js
+```
+
+The built (minified) versions can be found inside the 
 [distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js) 
 - [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility with IE)
@@ -307,6 +320,8 @@ of the details resolves to the same id as the resolved group pattern of the summ
    .groupDestinationName("details")
    ...
   ```
+### 7. Convert data into an array of DescribedFields:
+The result is finally converted into an array of [DescribedDataField](#DescribedDataField)s. 
 
 ## Types, fields, variables:
 This section lists the types and their fields in detail (mostly taken from jsdoc).
@@ -400,6 +415,24 @@ var resolvedString = resolver.resolveTemplate(template);
    - Described groups that contain an array of [described entries](#DescribedDataField) can also be used, e.g. `"{{summaries[0].value}}"`. 
    - Parts of the index can be inserted by using e.g. `"{{index[1]}}"`.
    - Besides the meta data, a described field can be used directly by its "fieldName", e.g. `"{{customernumber}}"` will be replaced by `123`, if the structure contains `fieldname="customernumber", value="123"`. This also applies to sub groups, e.g. `"{{details.customernumber}}"` will be replaced by `321`, if the structure contains `details[4].fieldname="customernumber", details[4].value="321"`.
+
+### TransformConfig
+An comprehensive and up to date reference can be found here: [TransformConfig JSDoc](https://joht.github.io/data-restructor-js/module-datarestructor.html#.TransformConfig). 
+
+The restructured data is by nature hierarchical and may contain cyclic data references. Fields may contain groups of fields that may contain groups of fields....
+Since JSON can't be generated out of objects with cyclic references, sub-structures are expressed by copies. 
+That leads to recursion and duplication, that need to be limited. This can be configured here.
+
+#### Properties
+* **debugMode** boolean value, that enables/disables detailed logging
+* **maxRecursionDepth** numeric value that defines the maximum recursion depth
+* **removeDuplicationAboveRecursionDepth** numeric value that defines the recursion depth, above which duplications inside groups will be removed. 
+
+#### Public functions (provides by "Transform")
+* **enableDebugMode(boolean)** boolean value, that enables/disables detailed logging
+* **setMaxRecursionDepth(number)** numeric value that defines the maximum recursion depth
+* **setRemoveDuplicationAboveRecursionDepth(number)** numeric value that defines the recursion depth, above which duplications inside groups will be removed. 
+
 
 ## References
  * [Jasmine Behavior-Driven JavaScript](https://jasmine.github.io) for unit testing

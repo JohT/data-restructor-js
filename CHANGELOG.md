@@ -1,6 +1,12 @@
 # CHANGELOG.md
 
-## **v3.1.0** Configurable recursion depth for sub groups (latest)
+## **v3.2.0** Configurable recursion depth above which duplications will be removed (latest)
+
+### Features:
+
+- #5 Configurable recursion depth above which duplications will be removed.
+
+## **v3.1.0** Configurable recursion depth for sub groups
 
 ### Features:
 
