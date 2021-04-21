@@ -16,7 +16,7 @@
     "dev": "rm -rf devdist && $(npm bin)/parcel --out-dir devdist ./src/js/*.js",
     "watch": "rm -rf devdist && $(npm bin)/parcel watch --out-dir devdist ./src/js/*.js",
     "build": "$(npm bin)/parcel build ./src/js/*.js",
-    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && (npm run watch & npm run build)"
+    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run build && npm run watch"
   },
   "repository": {
     "type": "git",
