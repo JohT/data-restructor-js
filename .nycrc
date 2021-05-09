@@ -4,7 +4,8 @@
         "src/**/*.js"
     ],
     "exclude": [
-        "src/**/*-ie.js"
+        "src/**/*-ie.js",
+        "src/header/*"
     ],
     "reporter": [
         "html",

@@ -5,7 +5,6 @@
 ![![jasmine](./src/jasmine.svg)](https://aleen42.github.io/badges/src/jasmine.svg)
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
 ![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc)
-![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc)
 ![nyc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc)
 ![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel-bundler)
 
@@ -433,12 +432,25 @@ That leads to recursion and duplication, that need to be limited. This can be co
 * **setMaxRecursionDepth(number)** numeric value that defines the maximum recursion depth
 * **setRemoveDuplicationAboveRecursionDepth(number)** numeric value that defines the recursion depth, above which duplications inside groups will be removed. 
 
-
 ## References
- * [Jasmine Behavior-Driven JavaScript](https://jasmine.github.io) for unit testing
  * [Mozilla MDN web docs - polyfill for 'Array.filter'](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill) for browser compatibility
  * [Mozilla MDN web docs - polyfill for 'Array.forEach'](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Polyfill) for browser compatibility (references [es5.github.io](http://es5.github.io/#x15.4.4.18))
  * [Mozilla MDN web docs - polyfill for 'Array.indexOf'](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill) for browser compatibility
  * [Mozilla MDN web docs - polyfill for 'Array.isArray'](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray#Compatibility) for browser compatibility
  * [Mozilla MDN web docs - polyfill for 'String.startsWith'](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith#Polyfill) for browser compatibility
  * [Token Posts - polyfill for 'Object.keys'](http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html) for browser compatibility
+
+
+## Credits
+
+Although this project doesn't use any runtime dependencies, it is created using these great tools:
+
+* [ESLint](https://eslint.org) - [MIT License](https://github.com/eslint/eslint/blob/master/LICENSE)
+* [istanbul-badges-readme](https://www.npmjs.com/package/istanbul-badges-readme) - [MIT License](https://github.com/olavoparno/istanbul-badges-readme/blob/develop/LICENSE)
+* [Jasmine](https://jasmine.github.io) - [MIT License](https://github.com/jasmine/jasmine/blob/main/MIT.LICENSE)
+* [JSDoc](https://jsdoc.app) - [Apache Licence 2.0](https://github.com/jsdoc/jsdoc/blob/master/LICENSE)
+* [merger-js](https://github.com/joao-neves95/merger-js) - [GNU General Public License v3.0](https://github.com/joao-neves95/merger-js/blob/master/LICENSE.md)
+* [NYC aka Istanbul](https://istanbul.js.org) - [ISC License](https://github.com/istanbuljs/nyc/blob/master/LICENSE.txt)
+* [PARCEL](https://parceljs.org) - [MIT License](https://github.com/parcel-bundler/parcel/blob/v2/LICENSE)
+* [merger-js](https://github.com/joao-neves95/merger-js) - [GNU General Public License v3.0](https://github.com/joao-neves95/merger-js/blob/master/LICENSE.md)
+

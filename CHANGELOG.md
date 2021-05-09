@@ -1,6 +1,13 @@
 # CHANGELOG.md
 
-## **v3.2.0** Configurable recursion depth above which duplications will be removed (latest)
+## **v3.3.0** Merged source files for direct use without module system (latest)
+
+### Features:
+
+- #7 Add merged global JavaScript files in "dist" and "devdist" to use them without module system
+- security vulnerability CVE-2021-23358 https://github.com/advisories/GHSA-cf4h-3jhx-xvhq fixed
+
+## **v3.2.0** Configurable recursion depth above which duplications will be removed
 
 ### Features:
 
