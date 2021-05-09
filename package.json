@@ -1,6 +1,6 @@
 {
   "name": "data-restructor",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Transforms parsed JSON objects into a uniform data structure",
   "main": "./src/js/datarestructor.js",
   "directories": {
@@ -8,15 +8,16 @@
   },
   "scripts": {
     "prebuild": "rm -rf dist",
-    "lint": "$(npm bin)/eslint \"./src/js/**\"",
-    "test": "$(npm bin)/jasmine --config=./test/js/jasmine.json",
-    "coverage": "$(npm bin)/nyc npm run test",
+    "lint": "eslint \"./src/js/**\"",
+    "test": "jasmine --config=./test/js/jasmine.json",
+    "coverage": "nyc npm run test",
     "coverage-badge": "istanbul-badges-readme",
-    "doc": "$(npm bin)/jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
-    "dev": "rm -rf devdist && $(npm bin)/parcel --out-dir devdist ./src/js/*.js",
-    "watch": "rm -rf devdist && $(npm bin)/parcel watch --out-dir devdist ./src/js/*.js",
-    "build": "$(npm bin)/parcel build ./src/js/*.js",
-    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run build && npm run watch"
+    "doc": "jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
+    "merger": "merger build",
+    "dev": "rm -rf devdist && parcel --out-dir devdist ./src/js/*.js",
+    "devbuild": "rm -rf devdist && (NODE_ENV=development parcel build --out-dir devdist ./src/js/*.js --target node --global data_restructor_js --no-minify --no-source-maps --no-content-hash --bundle-node-modules --detailed-report)",
+    "build": "parcel build ./src/js/*.js --target node --bundle-node-modules",
+    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run devbuild && npm run build && merger"
   },
   "repository": {
     "type": "git",
@@ -28,17 +29,18 @@
     "data"
   ],
   "author": "JohT",
-  "license": "SEE LICENCE IN LICENCE.txt",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/JohT/data-restructor-js/issues"
   },
-  "homepage": "https://github.com/JohT/data-restructor-js#readme",
+  "homepage": "https://joht.github.io/data-restructor-js",
   "devDependencies": {
     "eslint": "^7.22.0",
     "istanbul-badges-readme": "^1.2.1",
-    "jasmine": "^3.6.4",
+    "jasmine": "^3.7.0",
     "jsdoc": "^3.6.6",
     "nyc": "^15.1.0",
-    "parcel-bundler": "^1.12.4"
-  }
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {}
 }
