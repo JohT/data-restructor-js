@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../lib/js/polyfills/indexOfPolyfill.js":[function(require,module,exports) {
+})({"EMVD":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if (!Array.prototype.indexOf) Array.prototype.indexOf = function (Object, max, min) {
   "use strict";
@@ -130,37 +130,29 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = function (Object, max, m
     if (i < 0) i = max(0, Len + i);else if (i >= Len) return -1;
 
     if (member === void 0) {
-      for (; i !== Len; ++i) {
-        if (that[i] === void 0 && i in that) return i;
-      } // undefined
+      for (; i !== Len; ++i) if (that[i] === void 0 && i in that) return i; // undefined
 
     } else if (member !== member) {
-      for (; i !== Len; ++i) {
-        if (that[i] !== that[i]) return i;
-      } // NaN
+      for (; i !== Len; ++i) if (that[i] !== that[i]) return i; // NaN
 
-    } else for (; i !== Len; ++i) {
-      if (that[i] === member) return i;
-    } // all else
+    } else for (; i !== Len; ++i) if (that[i] === member) return i; // all else
 
 
     return -1; // if the value was not found, then return -1
   };
 }(Object, Math.max, Math.min);
-},{}],"../../lib/js/polyfills/objectKeysPolyfill.js":[function(require,module,exports) {
+},{}],"ZEAm":[function(require,module,exports) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function (o) {
   if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
   var k = [],
       p;
 
-  for (p in o) {
-    if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
-  }
+  for (p in o) if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
 
   return k;
 };
-},{}],"../../lib/js/flattenToArray.js":[function(require,module,exports) {
+},{}],"kBit":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -242,7 +234,7 @@ internal_object_tools.flattenToArray = function (data, maxRecursionDepth) {
   recurse(data, "", 0);
   return result;
 };
-},{}],"templateResolver.js":[function(require,module,exports) {
+},{}],"gEHB":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -317,7 +309,7 @@ template_resolver.Resolver = function () {
     this.resolvableFieldsOfAll = function () {
       var map = {};
 
-      var ignoreInternalFields = function ignoreInternalFields(propertyName) {
+      var ignoreInternalFields = function (propertyName) {
         return propertyName.indexOf("_") !== 0 && propertyName.indexOf("._") < 0;
       };
 
@@ -442,7 +434,7 @@ template_resolver.Resolver = function () {
 
   return Resolver;
 }();
-},{"../../lib/js/flattenToArray":"../../lib/js/flattenToArray.js"}],"templateResolver-ie.js":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"kBit"}],"zclm":[function(require,module,exports) {
 "use strict";
 
 require("../../lib/js/polyfills/indexOfPolyfill.js");
@@ -452,211 +444,6 @@ require("../../lib/js/polyfills/objectKeysPolyfill.js");
 var template_resolver = require("../../src/js/templateResolver.js");
 
 module.exports = {
-  template_resolver: template_resolver
+  template_resolver
 };
-},{"../../lib/js/polyfills/indexOfPolyfill.js":"../../lib/js/polyfills/indexOfPolyfill.js","../../lib/js/polyfills/objectKeysPolyfill.js":"../../lib/js/polyfills/objectKeysPolyfill.js","../../src/js/templateResolver.js":"templateResolver.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-var global = arguments[3];
-var OVERLAY_ID = '__parcel__error__overlay__';
-var OldModule = module.bundle.Module;
-
-function Module(moduleName) {
-  OldModule.call(this, moduleName);
-  this.hot = {
-    data: module.bundle.hotData,
-    _acceptCallbacks: [],
-    _disposeCallbacks: [],
-    accept: function (fn) {
-      this._acceptCallbacks.push(fn || function () {});
-    },
-    dispose: function (fn) {
-      this._disposeCallbacks.push(fn);
-    }
-  };
-  module.bundle.hotData = null;
-}
-
-module.bundle.Module = Module;
-var checkedAssets, assetsToAccept;
-var parent = module.bundle.parent;
-
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
-  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50909" + '/');
-
-  ws.onmessage = function (event) {
-    checkedAssets = {};
-    assetsToAccept = [];
-    var data = JSON.parse(event.data);
-
-    if (data.type === 'update') {
-      var handled = false;
-      data.assets.forEach(function (asset) {
-        if (!asset.isNew) {
-          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
-
-          if (didAccept) {
-            handled = true;
-          }
-        }
-      }); // Enable HMR for CSS by default.
-
-      handled = handled || data.assets.every(function (asset) {
-        return asset.type === 'css' && asset.generated.js;
-      });
-
-      if (handled) {
-        console.clear();
-        data.assets.forEach(function (asset) {
-          hmrApply(global.parcelRequire, asset);
-        });
-        assetsToAccept.forEach(function (v) {
-          hmrAcceptRun(v[0], v[1]);
-        });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
-      }
-    }
-
-    if (data.type === 'reload') {
-      ws.close();
-
-      ws.onclose = function () {
-        location.reload();
-      };
-    }
-
-    if (data.type === 'error-resolved') {
-      console.log('[parcel] ✨ Error resolved');
-      removeErrorOverlay();
-    }
-
-    if (data.type === 'error') {
-      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
-      removeErrorOverlay();
-      var overlay = createErrorOverlay(data);
-      document.body.appendChild(overlay);
-    }
-  };
-}
-
-function removeErrorOverlay() {
-  var overlay = document.getElementById(OVERLAY_ID);
-
-  if (overlay) {
-    overlay.remove();
-  }
-}
-
-function createErrorOverlay(data) {
-  var overlay = document.createElement('div');
-  overlay.id = OVERLAY_ID; // html encode message and stack trace
-
-  var message = document.createElement('div');
-  var stackTrace = document.createElement('pre');
-  message.innerText = data.error.message;
-  stackTrace.innerText = data.error.stack;
-  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
-  return overlay;
-}
-
-function getParents(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return [];
-  }
-
-  var parents = [];
-  var k, d, dep;
-
-  for (k in modules) {
-    for (d in modules[k][1]) {
-      dep = modules[k][1][d];
-
-      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
-      }
-    }
-  }
-
-  if (bundle.parent) {
-    parents = parents.concat(getParents(bundle.parent, id));
-  }
-
-  return parents;
-}
-
-function hmrApply(bundle, asset) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (modules[asset.id] || !bundle.parent) {
-    var fn = new Function('require', 'module', 'exports', asset.generated.js);
-    asset.isNew = !modules[asset.id];
-    modules[asset.id] = [fn, asset.deps];
-  } else if (bundle.parent) {
-    hmrApply(bundle.parent, asset);
-  }
-}
-
-function hmrAcceptCheck(bundle, id) {
-  var modules = bundle.modules;
-
-  if (!modules) {
-    return;
-  }
-
-  if (!modules[id] && bundle.parent) {
-    return hmrAcceptCheck(bundle.parent, id);
-  }
-
-  if (checkedAssets[id]) {
-    return;
-  }
-
-  checkedAssets[id] = true;
-  var cached = bundle.cache[id];
-  assetsToAccept.push([bundle, id]);
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    return true;
-  }
-
-  return getParents(global.parcelRequire, id).some(function (id) {
-    return hmrAcceptCheck(global.parcelRequire, id);
-  });
-}
-
-function hmrAcceptRun(bundle, id) {
-  var cached = bundle.cache[id];
-  bundle.hotData = {};
-
-  if (cached) {
-    cached.hot.data = bundle.hotData;
-  }
-
-  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
-    cached.hot._disposeCallbacks.forEach(function (cb) {
-      cb(bundle.hotData);
-    });
-  }
-
-  delete bundle.cache[id];
-  bundle(id);
-  cached = bundle.cache[id];
-
-  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
-    cached.hot._acceptCallbacks.forEach(function (cb) {
-      cb();
-    });
-
-    return true;
-  }
-}
-},{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","templateResolver-ie.js"], null)
-//# sourceMappingURL=/templateResolver-ie.js.map
+},{"../../lib/js/polyfills/indexOfPolyfill.js":"EMVD","../../lib/js/polyfills/objectKeysPolyfill.js":"ZEAm","../../src/js/templateResolver.js":"gEHB"}]},{},["zclm"], "data_restructor_js")
