@@ -24,7 +24,7 @@
 		{
 			"source": "./src/header/datarestructor-global-all-min.h",
 			"output": {
-				"path": "./dev",
+				"path": "./dist",
 				"name": "datarestructor-global-all-min.js"
 			},
 			"config": {
@@ -44,7 +44,7 @@
 		{
 			"source": "./src/header/datarestructor-ie-global-all-min.h",
 			"output": {
-				"path": "./dev",
+				"path": "./dist",
 				"name": "datarestructor-ie-global-all-min.js"
 			},
 			"config": {

@@ -1,6 +1,9 @@
 # CHANGELOG.md
 
-## **v3.3.0** Merged source files for direct use without module system (latest)
+## **v3.3.1** Output folder fixed (latest)
+
+- #7 minified output destination is fixed to "dist" (instead of "dev")
+## **v3.3.0** Merged source files for direct use without module system
 
 ### Features:
 
