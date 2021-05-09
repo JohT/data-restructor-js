@@ -2,9 +2,12 @@
 
 Overview of the commands to test, run and build this project as well as those that were used to setup it.
 
-## Commands to test, run and build the project:
+## Most important commands for development:
 - `npm install` Installs all dependencies and creates the folder `node_modules`, that is needed for all following commands.
-- `npm run package` Runs all steps incl. test, coverage, doc generation and build
+- `npm run package` Ready to publish build incl. test, coverage, doc generation, dev+prod build
+- `npm login` + `npm publish` To publish a new release. Be sure to run npm run package first.
+
+## Commands to test, run and build the project:
 - `npm run coverage` Run all unit tests (using jasmine) **with** reporting coverage (using nyc/istanbul)
 - `npm test` Only all unit tests (using jasmine) **without** coverage report
 - `npm run coverage-badge` Updates code coverage badge inside `README.md`
@@ -12,6 +15,9 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm run build` Builds the application for production including minification,...
 - `npm run dev` Builds the application for development (without minification) and starts the live server
 - `npm run watch` Builds the application for development (without minification) without starting the server.
+
+## Commands that needs to be installed globally to build the project
+- `npm install merger-js -g` Cross-platform CLI build tool to bundle JavaScript files without modules
 
 ## Commands used to setup the project:
 - `npm init` Initialize node package manager, creates `package.json` file.
@@ -24,6 +30,7 @@ Overview of the commands to test, run and build this project as well as those th
 - `npx eslint --init` Initialize linter configuration file
 - `npm install istanbul-badges-readme --save-dev` Setup for code coverage badge for README.MD.
 - `npm audit fix` Fixes vulnerabilities
+
 
 ## Further steps:
 - It would be great to get SpecRunner.html up and running in dev mode like: "dev": "parcel ./test/js/SpecRunner.html". [parcel issue 3407](https://github.com/parcel-bundler/parcel/issues/3407) may be key for that.
