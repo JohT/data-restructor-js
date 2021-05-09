@@ -5,8 +5,9 @@
 ### Features:
 
 - #7 Add merged global JavaScript files in "dist" and "devdist" to use them without module system
-- security vulnerability CVE-2021-23358 https://github.com/advisories/GHSA-cf4h-3jhx-xvhq fixed
-
+- security vulnerability CVE-2021-23358 https://github.com/advisories/GHSA-cf4h-3jhx-xvhq addressed
+- REAMDE.MD now contains a lists of credits
+- COMMANDS.MD now contains a separate list for commands, that are used on a regular basis
 ## **v3.2.0** Configurable recursion depth above which duplications will be removed
 
 ### Features:
