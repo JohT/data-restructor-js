@@ -2,7 +2,9 @@
 
 ## **v3.3.1** Output folder fixed (latest)
 
-- #7 minified output destination is fixed to "dist" (instead of "dev")
+### Fixes:
+- Minified output destination fixed. Minified files are now correctly written into the "dist" folder  (instead of "dev").
+
 ## **v3.3.0** Merged source files for direct use without module system
 
 ### Features:
