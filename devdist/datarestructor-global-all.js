@@ -1,10 +1,14 @@
 /*
  * Merged using [merger-js](https://www.npmjs.com/package/merger-js).
  */
+// $import './moduledummy'
 // $import './../../lib/js/flattenToArray'
 // $import './../../src/js/templateResolver'
 // $import './../../src/js/describedfield'
 // $import './../../src/js/datarestructor.js'
+// Fallback for vanilla js without modules
+var module = module || {}; 
+var require = require || function() {};
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss

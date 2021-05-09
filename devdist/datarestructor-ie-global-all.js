@@ -1,11 +1,15 @@
 /*
  * Merged using [merger-js](https://www.npmjs.com/package/merger-js).
  */
+// $import './moduledummy'
 // @import<<dir ./../../lib/js/polyfills/'
 // $import './../../lib/js/flattenToArray'
 // $import './../../src/js/templateResolver'
 // $import './../../src/js/describedfield'
 // $import './../../src/js/datarestructor.js'
+// Fallback for vanilla js without modules
+var module = module || {}; 
+var require = require || function() {};
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill
 if (!Array.prototype.filter){
     Array.prototype.filter = function(func, thisArg) {
