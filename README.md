@@ -38,11 +38,13 @@ Alternatively, the sources can be found inside the
 
 The development artifacts (not minified) can be found inside the
 [devdist folder](https://github.com/JohT/data-restructor-js/tree/master/devdist):
+- [datarestructor-ie-global-all.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor-ie-global-all.js) all sources including polyfills merged to be used without module system
+- [datarestructor-global-all.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor-global-all.js) all sources without polyfills merged to be used without module system
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor.js) 
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/templateResolver.js) 
 - [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/describedfield.js) 
 
-Here is a code example on how these modules can be imported:
+Here are some code examples on how these modules can be imported:
 ```javascript
 var template_resolver = template_resolver || require("data-restructor/devdist/templateResolver"); // supports vanilla js
 var described_field = described_field || require("data-restructor/devdist/describedfield"); // supports vanilla js
@@ -51,6 +53,8 @@ var datarestructor = datarestructor || require("data-restructor/devdist/datarest
 
 The built (minified) versions can be found inside the 
 [distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
+- [datarestructor-ie-global-all-min.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie-global-all-min.js) all sources including polyfills merged and minified to be used without module system
+- [datarestructor-global-all-min.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-global-all-min.js) all sources without polyfills merged and minified to be used without module system
 - [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js) 
 - [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility with IE)
 - [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver.js) 
