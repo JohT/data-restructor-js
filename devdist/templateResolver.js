@@ -1,88 +1,168 @@
-var $c62c6ba8ac97ae931807b54d1b2bdb52$var$module = $c62c6ba8ac97ae931807b54d1b2bdb52$var$templateResolverInternalCreateIfNotExists($c62c6ba8ac97ae931807b54d1b2bdb52$var$module);
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+(function(modules, entry, mainEntry, parcelRequireName, globalName) {
+  /* eslint-disable no-undef */
+  var globalObject =
+    typeof globalThis !== 'undefined'
+      ? globalThis
+      : typeof self !== 'undefined'
+      ? self
+      : typeof window !== 'undefined'
+      ? window
+      : typeof global !== 'undefined'
+      ? global
+      : {};
+  /* eslint-enable no-undef */
+
+  // Save the require from previous bundle to this closure if any
+  var previousRequire =
+    typeof globalObject[parcelRequireName] === 'function' &&
+    globalObject[parcelRequireName];
+
+  var cache = previousRequire.cache || {};
+  // Do not use `require` to prevent Webpack from trying to bundle this call
+  var nodeRequire =
+    typeof module !== 'undefined' &&
+    typeof module.require === 'function' &&
+    module.require.bind(module);
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire =
+          typeof globalObject[parcelRequireName] === 'function' &&
+          globalObject[parcelRequireName];
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error("Cannot find module '" + name + "'");
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = (cache[name] = new newRequire.Module(name));
+
+      modules[name][0].call(
+        module.exports,
+        localRequire,
+        module,
+        module.exports,
+        this
+      );
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x) {
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x) {
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function(id, exports) {
+    modules[id] = [
+      function(require, module) {
+        module.exports = exports;
+      },
+      {},
+    ];
+  };
+
+  Object.defineProperty(newRequire, 'root', {
+    get: function() {
+      return globalObject[parcelRequireName];
+    },
+  });
+
+  globalObject[parcelRequireName] = newRequire;
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (mainEntry) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(mainEntry);
+
+    // CommonJS
+    if (typeof exports === 'object' && typeof module !== 'undefined') {
+      module.exports = mainExports;
+
+      // RequireJS
+    } else if (typeof define === 'function' && define.amd) {
+      define(function() {
+        return mainExports;
+      });
+
+      // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+})({"7hyUl":[function(require,module,exports) {
+/**
+* @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
+* @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
+* @author JohT
+* @version ${project.version}
+*/
+"use strict";
+var module = templateResolverInternalCreateIfNotExists(module);
 // Fallback for vanilla js without modules
-function $c62c6ba8ac97ae931807b54d1b2bdb52$var$templateResolverInternalCreateIfNotExists(objectToCheck) {
+function templateResolverInternalCreateIfNotExists(objectToCheck) {
   return objectToCheck || ({});
 }
 /**
 * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
 * @module template_resolver
 */
-var $c62c6ba8ac97ae931807b54d1b2bdb52$var$template_resolver = $c62c6ba8ac97ae931807b54d1b2bdb52$var$module.exports = {};
+var template_resolver = module.exports = {};
 // Export module for npm...
-$c62c6ba8ac97ae931807b54d1b2bdb52$var$template_resolver.internalCreateIfNotExists = $c62c6ba8ac97ae931807b54d1b2bdb52$var$templateResolverInternalCreateIfNotExists;
-// ASSET: lib/js/flattenToArray.js
-var $b53890aca4781e9886fe426745c272e8$exports, $b53890aca4781e9886fe426745c272e8$var$module, $b53890aca4781e9886fe426745c272e8$var$internal_object_tools, $b53890aca4781e9886fe426745c272e8$executed = false;
-function $b53890aca4781e9886fe426745c272e8$exec() {
-  $b53890aca4781e9886fe426745c272e8$exports = {};
-  $b53890aca4781e9886fe426745c272e8$var$module = $b53890aca4781e9886fe426745c272e8$var$module || ({});
-  $b53890aca4781e9886fe426745c272e8$var$internal_object_tools = $b53890aca4781e9886fe426745c272e8$var$module.exports = {};
-  // Export module for npm...
-  /**
-  * @typedef {Object} NameValuePair
-  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
-  * @property {string} value - value of the property
-  */
-  /**
-  * @param {object} data hierarchical object that may consist fo fields, subfields and arrays.
-  * @param {number} maxRecursionDepth
-  * @returns {NameValuePair[]} array of property name and value pairs
-  */
-  $b53890aca4781e9886fe426745c272e8$var$internal_object_tools.flattenToArray = function (data, maxRecursionDepth) {
-    var result = [];
-    if (typeof maxRecursionDepth !== "number" || maxRecursionDepth < 1) {
-      maxRecursionDepth = 20;
-    }
-    function recurse(cur, prop, depth) {
-      if (depth > maxRecursionDepth || typeof cur === "function") {
-        return;
-      }
-      if (Object(cur) !== cur) {
-        result.push({
-          name: prop,
-          value: cur
-        });
-      } else if (Array.isArray(cur)) {
-        var i;
-        var l = cur.length;
-        for (i = 0; i < l; i += 1) {
-          recurse(cur[i], prop + "[" + i + "]", depth + 1);
-        }
-        if (l === 0) {
-          result[prop] = [];
-          result.push({
-            name: prop,
-            value: ""
-          });
-        }
-      } else {
-        var isEmpty = true;
-        var p;
-        for (p in cur) {
-          isEmpty = false;
-          recurse(cur[p], prop ? prop + "." + p : p, depth + 1);
-        }
-        if (isEmpty && prop) {
-          result.push({
-            name: prop,
-            value: ""
-          });
-        }
-      }
-    }
-    recurse(data, "", 0);
-    return result;
-  };
-}
-function $b53890aca4781e9886fe426745c272e8$init() {
-  if (!$b53890aca4781e9886fe426745c272e8$executed) {
-    $b53890aca4781e9886fe426745c272e8$executed = true;
-    $b53890aca4781e9886fe426745c272e8$exec();
-  }
-  return $b53890aca4781e9886fe426745c272e8$exports;
-}
-var $c62c6ba8ac97ae931807b54d1b2bdb52$var$internal_object_tools = $c62c6ba8ac97ae931807b54d1b2bdb52$var$internal_object_tools || $b53890aca4781e9886fe426745c272e8$init();
+template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
+var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray");
 // supports vanilla js & npm
-$c62c6ba8ac97ae931807b54d1b2bdb52$var$template_resolver.Resolver = (function () {
+template_resolver.Resolver = (function () {
   var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
   /**
   * Resolver. Is used inside this repository. It could also be used outside.
@@ -130,7 +210,7 @@ $c62c6ba8ac97ae931807b54d1b2bdb52$var$template_resolver.Resolver = (function () 
       };
       var index;
       for (index = 0; index < arguments.length; index += 1) {
-        addToFilteredMapObject($c62c6ba8ac97ae931807b54d1b2bdb52$var$internal_object_tools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
+        addToFilteredMapObject(internal_object_tools.flattenToArray(arguments[index], 3), map, ignoreInternalFields);
       }
       return map;
     };
@@ -227,4 +307,77 @@ $c62c6ba8ac97ae931807b54d1b2bdb52$var$template_resolver.Resolver = (function () 
   }
   return Resolver;
 })();
+
+},{"../../lib/js/flattenToArray":"3Qsn4"}],"3Qsn4":[function(require,module,exports) {
+"use strict";
+/**
+* @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
+* @version ${project.version}
+* @see {@link https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss|stackoverflow flatten nested json objects}
+*/
+var module = module || ({});
+// Fallback for vanilla js without modules
+/**
+* internal_object_tools. Not meant to be used outside this repository.
+* @default {}
+*/
+var internal_object_tools = module.exports = {};
+// Export module for npm...
+/**
+* @typedef {Object} NameValuePair
+* @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
+* @property {string} value - value of the property
+*/
+/**
+* @param {object} data hierarchical object that may consist fo fields, subfields and arrays.
+* @param {number} maxRecursionDepth
+* @returns {NameValuePair[]} array of property name and value pairs
+*/
+internal_object_tools.flattenToArray = function (data, maxRecursionDepth) {
+  var result = [];
+  if (typeof maxRecursionDepth !== "number" || maxRecursionDepth < 1) {
+    maxRecursionDepth = 20;
+  }
+  function recurse(cur, prop, depth) {
+    if (depth > maxRecursionDepth || typeof cur === "function") {
+      return;
+    }
+    if (Object(cur) !== cur) {
+      result.push({
+        name: prop,
+        value: cur
+      });
+    } else if (Array.isArray(cur)) {
+      var i;
+      var l = cur.length;
+      for (i = 0; i < l; i += 1) {
+        recurse(cur[i], prop + "[" + i + "]", depth + 1);
+      }
+      if (l === 0) {
+        result[prop] = [];
+        result.push({
+          name: prop,
+          value: ""
+        });
+      }
+    } else {
+      var isEmpty = true;
+      var p;
+      for (p in cur) {
+        isEmpty = false;
+        recurse(cur[p], prop ? prop + "." + p : p, depth + 1);
+      }
+      if (isEmpty && prop) {
+        result.push({
+          name: prop,
+          value: ""
+        });
+      }
+    }
+  }
+  recurse(data, "", 0);
+  return result;
+};
+
+},{}]},["7hyUl"], "7hyUl", "parcelRequire9661")
 
