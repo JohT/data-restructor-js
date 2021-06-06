@@ -7,6 +7,14 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm run package` Ready to publish build incl. test, coverage, doc generation, dev+prod build
 - `npm login` + `npm publish` To publish a new release. Be sure to run npm run package first.
 
+
+## Commands that needs to be installed globally to build the project
+- `npm install merger-js -g` Cross-platform CLI build tool to bundle JavaScript files without modules
+
+**Notice:** merger needs manual input in the console and prompts to select the source.
+Select "all" using the arrow down key followed by enter to continue the build. If there is a better solution for that, propose it by creating an issue. `merger.js` is helpful to create additional JavaScript bundles without module system.
+
+
 ## Commands to test, run and build the project:
 - `npm run coverage` Run all unit tests (using jasmine) **with** reporting coverage (using nyc/istanbul)
 - `npm test` Only all unit tests (using jasmine) **without** coverage report
@@ -15,9 +23,6 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm run build` Builds the application for production including minification,...
 - `npm run dev` Builds the application for development (without minification) and starts the live server
 - `npm run watch` Builds the application for development (without minification) without starting the server.
-
-## Commands that needs to be installed globally to build the project
-- `npm install merger-js -g` Cross-platform CLI build tool to bundle JavaScript files without modules
 
 ## Commands used to setup the project:
 - `npm init` Initialize node package manager, creates `package.json` file.

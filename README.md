@@ -8,7 +8,7 @@
 ![nyc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc)
 ![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel-bundler)
 
-# data-reconstructor-js
+# data-restructor-js
 
 When parsing JSON on client-side, the structure of it attracts most of our attention.  
 If the structure evolves over time, it leads to recurring changes in the code that depends on it.
@@ -64,6 +64,16 @@ The built (minified) versions can be found inside the
 
 ## Code Documentation
 The [code documentation](https://joht.github.io/data-restructor-js) is generated using [JSDoc](https://jsdoc.app) and is published using [GitHub Pages](https://pages.github.com) at [https://joht.github.io/data-restructor-js](https://joht.github.io/data-restructor-js).
+
+## Build all
+
+Use the following [commands](COMMANDS.md) to build and package the module. A list of all commands can be found in [COMMANDS.md](COMMANDS.md).
+```shell script
+npm install merger-js -g
+npm install
+npm run package
+```
+**Note:** merger.js prompts to select a source file. Please select "ALL" using the arrow keys and press enter to continue.
 
 ## Example
 As a starting point you may have a look at the following example.   

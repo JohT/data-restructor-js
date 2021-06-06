@@ -1,5 +1,12 @@
 # CHANGELOG.md
 
+## **v3.3.2** Encourage Open Source Contributing (upcoming)
+- [README.md](README.md#build-all) contains a description on how to build the module.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) sets the standard for an open, welcoming,
+diverse, inclusive, and healthy community.
+- [CONTRIBUTING.md](CONTRIBUTING.md) provides information for those who want to contribute
+- issue templates support submitting issues for bugs and new features
+
 ## **v3.3.1** Output folder fixed (latest)
 
 ### Fixes:
