@@ -1,6 +1,6 @@
 # CHANGELOG.md
 
-## **v3.3.2** Encourage Open Source Contributing (upcoming)
+## **v3.3.2** Encourage Open Source Contributing (latest)
 ### Features:
 - [README.md](README.md#build-all) contains a description on how to build the module.
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) sets the standard for an open, welcoming,
@@ -10,7 +10,7 @@ diverse, inclusive, and healthy community.
 - [PARCEL v2](https://v2.parceljs.org) migration
 - update dependency versions
 
-## **v3.3.1** Output folder fixed (latest)
+## **v3.3.1** Output folder fixed
 
 ### Fixes:
 - Minified output destination fixed. Minified files are now correctly written into the "dist" folder  (instead of "dev").
@@ -21,8 +21,8 @@ diverse, inclusive, and healthy community.
 
 - #7 Add merged global JavaScript files in "dist" and "devdist" to use them without module system
 - security vulnerability CVE-2021-23358 https://github.com/advisories/GHSA-cf4h-3jhx-xvhq addressed
-- REAMDE.MD now contains a lists of credits
-- COMMANDS.MD now contains a separate list for commands, that are used on a regular basis
+- [README.md](README.md#credits) now contains a lists of credits
+- [COMMANDS.MD](COMMANDS.MD#most-important-commands-for-development) now contains a separate list for commands, that are used on a regular basis
 ## **v3.2.0** Configurable recursion depth above which duplications will be removed
 
 ### Features:
