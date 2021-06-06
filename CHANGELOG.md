@@ -1,14 +1,18 @@
 # CHANGELOG.md
+## **v3.3.3** IE support fix (latest)
 
-## **v3.3.2** Encourage Open Source Contributing (latest)
+### Fixes:
+- Use classic property definitions idiom instead of [ES6 PropertyShorthand](http://es6-features.org/#PropertyShorthand) for internet explorer (IE) support.
+
+## **v3.3.2** Encourage Open Source Contributing
 ### Features:
 - [README.md](README.md#build-all) contains a description on how to build the module.
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) sets the standard for an open, welcoming,
 diverse, inclusive, and healthy community.
 - [CONTRIBUTING.md](CONTRIBUTING.md) provides information for those who want to contribute
-- issue templates support submitting issues for bugs and new features
+- Issue templates support submitting issues for bugs and new features
 - [PARCEL v2](https://v2.parceljs.org) migration
-- update dependency versions
+- Update dependency versions
 
 ## **v3.3.1** Output folder fixed
 
