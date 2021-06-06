@@ -146,7 +146,7 @@ require("../../lib/js/polyfills/indexOfPolyfill.js");
 require("../../lib/js/polyfills/objectKeysPolyfill.js");
 var template_resolver = require("../../src/js/templateResolver.js");
 module.exports = {
-  template_resolver
+  template_resolver: template_resolver
 };
 
 },{"../../lib/js/polyfills/indexOfPolyfill.js":"3Kjed","../../lib/js/polyfills/objectKeysPolyfill.js":"7lzVt","../../src/js/templateResolver.js":"7hyUl"}],"3Kjed":[function(require,module,exports) {

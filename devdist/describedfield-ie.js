@@ -144,7 +144,7 @@
 "use strict";
 var described_field = require("../../src/js/describedfield.js");
 module.exports = {
-  described_field
+  described_field: described_field
 };
 
 },{"../../src/js/describedfield.js":"4X3T9"}],"4X3T9":[function(require,module,exports) {

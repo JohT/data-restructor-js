@@ -148,7 +148,7 @@ require("../../lib/js/polyfills/indexOfPolyfill.js");
 require("../../lib/js/polyfills/objectKeysPolyfill.js");
 var datarestructor = require("../../src/js/datarestructor.js");
 module.exports = {
-  datarestructor
+  datarestructor: datarestructor
 };
 
 },{"../../lib/js/polyfills/isArrayPolyfill.js":"1EZqJ","../../lib/js/polyfills/arrayFilterPolyfill.js":"18D46","../../lib/js/polyfills/indexOfPolyfill.js":"3Kjed","../../lib/js/polyfills/objectKeysPolyfill.js":"7lzVt","../../src/js/datarestructor.js":"7h0AO"}],"1EZqJ":[function(require,module,exports) {
