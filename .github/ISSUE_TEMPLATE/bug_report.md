@@ -24,8 +24,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Scope:**
  - Version [e.g. v0.8]
- - Module (e.g. search-menu-ui)
- - Location/Feature within the Module (e.g. filter options view) 
+ - Module (e.g. datarestructor.js)
+ - Location/Feature within the Module (e.g. recursion duplication removal) 
 
 **Additional context**
 Add any other context about the problem here.
