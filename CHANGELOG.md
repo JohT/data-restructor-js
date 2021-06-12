@@ -1,5 +1,11 @@
 # CHANGELOG.md
-## **v3.3.3** IE support fix (latest)
+
+## **v3.3.4** Remove duplicate groups within recursion (latest)
+
+### Fixes:
+- #12 Zero recursion duplication should be possible
+
+## **v3.3.3** IE support fix
 
 ### Fixes:
 - Use classic property definitions idiom instead of [ES6 PropertyShorthand](http://es6-features.org/#PropertyShorthand) for internet explorer (IE) support.
