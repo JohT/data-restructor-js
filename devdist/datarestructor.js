@@ -1161,10 +1161,24 @@ datarestructor.Transform = (function () {
     var describedEntity;
     for (index = 0; index < describedEntries.length; index += 1) {
       describedEntity = describedEntries[index];
-      result.push(toDescribedField(describedEntity, 0, config));
+      result.push(toDescribedField(describedEntity, {
+        recursionDepth: 0,
+        config: config,
+        groupToSkip: ""
+      }));
     }
     return result;
   }
+  /**
+  * Describes the context type for the recursive DescribedDataField conversion,
+  * that contains everything that needs to be accessible throughout recursion regardless of the
+  * recursion depth.
+  *
+  * @typedef {Object} module:datarestructor.DescribedFieldRecursionContext
+  * @param {number} recursionDepth current recursion depth
+  * @param {String} groupToSkip name of a group to skip or "" when no group should be skipped.
+  * @param {module:datarestructor.TransformConfig} config configuration for the data transformation
+  */
   /**
   * Converts a internal described entry to a newly created public described field.
   * Since the structure of a described field is hierarchical, this function is called recursively.
@@ -1172,28 +1186,62 @@ datarestructor.Transform = (function () {
   * needs to be limited. Therefore, the current recursion depth is taken as second parameter
   * and the maximum recursion depth is taken as third parameter.
   * @param {module:datarestructor.DescribedEntry} entry the internal entry that will be converted
-  * @param {number} recursionDepth current hierarchy recursion depth
-  * @param {module:datarestructor.TransformConfig} config configuration for the data transformation
+  * @param {module:datarestructor.DescribedFieldRecursionContext} recursionContext context contains everything that needs to be accessible throughout the recursion.
   * @returns {module:described_field.DescribedDataField}
   * @protected
   * @memberof module:datarestructor.Transform
   */
-  function toDescribedField(entry, recursionDepth, config) {
+  function toDescribedField(entry, recursionContext) {
     var field = new described_field.DescribedDataFieldBuilder().category(entry.category).type(entry.type).abbreviation(entry.abbreviation).image(entry.image).index(entry.index).displayName(entry.displayName).fieldName(entry.fieldName).value(entry.value).build();
-    if (recursionDepth > config.maxRecursionDepth) {
+    if (recursionContext.recursionDepth > recursionContext.config.maxRecursionDepth) {
       return field;
     }
+    var nextRecursionContext = null;
+    var duplicateGroupNameToSkip = "";
     var fieldGroups = new described_field.DescribedDataFieldGroup(field);
-    forEachGroupEntry(entry, function (groupName, groupEntry) {
-      if (groupEntry != entry || recursionDepth <= config.removeDuplicationAboveRecursionDepth) {
-        fieldGroups.addGroupEntry(groupName, toDescribedField(groupEntry, recursionDepth + 1, config));
-      } else {
-        if (config.debugMode) {
-          console.log("Removed duplicate field " + groupEntry.fieldName + " with value " + groupEntry.value + " of group " + groupName + " at recursion depth " + recursionDepth);
+    forEachGroupEntry(entry, function (groupName, groupEntry, allGroupEntries) {
+      if (recursionContext.groupToSkip === groupName) {
+        if (recursionContext.config.debugMode) {
+          console.log("Removed duplicate group " + groupName + " at recursion depth " + recursionContext.recursionDepth);
         }
+        return;
       }
+      duplicateGroupNameToSkip = "";
+      if (recursionContext.recursionDepth >= recursionContext.config.removeDuplicationAboveRecursionDepth) {
+        duplicateGroupNameToSkip = arraysEqual(groupEntry[groupName], allGroupEntries, describedFieldEqual) ? groupName : "";
+      }
+      nextRecursionContext = {
+        recursionDepth: recursionContext.recursionDepth + 1,
+        config: recursionContext.config,
+        groupToSkip: duplicateGroupNameToSkip
+      };
+      fieldGroups.addGroupEntry(groupName, toDescribedField(groupEntry, nextRecursionContext));
     });
     return field;
+  }
+  function describedFieldEqual(a, b) {
+    return defaultEmpty(a.category) === defaultEmpty(b.category) && defaultEmpty(a.type) === defaultEmpty(b.type) && a.fieldName === b.fieldName && a.value === b.value;
+  }
+  function defaultEmpty(value) {
+    return defaultValue(value, "");
+  }
+  function defaultValue(value, valueAsDefault) {
+    if (typeof value === "undefined" || !value) {
+      return valueAsDefault;
+    }
+    return value;
+  }
+  // Reference: https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript/16430730
+  // Added "elementEqualFunction" to implement equal object detection.
+  // Arrays are assumed to be sorted. Differently ordered entries are treated as not equal.
+  function arraysEqual(a, b, elementEqualFunction) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+    for (var i = 0; i < a.length; ++i) {
+      if (!elementEqualFunction(a[i], b[i])) return false;
+    }
+    return true;
   }
   /**
   * Takes the full qualified original property name and extracts a simple name out of it.
@@ -1201,6 +1249,7 @@ datarestructor.Transform = (function () {
   * @callback module:datarestructor.onEntryFoundFunction
   * @param {string} groupName name of the group where the entry had been found.
   * @param {module:datarestructor.DescribedEntry} foundEntry the found entry itself.
+  * @param {module:datarestructor.DescribedEntry[]} allEntries the array of all entries where the found entry is an element of.
   */
   /**
   * Traverses through all groups and their entries and calls the given function on every found entry
@@ -1217,7 +1266,7 @@ datarestructor.Transform = (function () {
       groupName = rootEntry.groupNames[groupIndex];
       for (entryIndex = 0; entryIndex < rootEntry[groupName].length; entryIndex += 1) {
         entry = rootEntry[groupName][entryIndex];
-        onFoundEntry(groupName, entry);
+        onFoundEntry(groupName, entry, rootEntry[groupName]);
       }
     }
   }

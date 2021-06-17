@@ -432,5 +432,41 @@ describe("datarestructor.Restructor (use case)", function () {
         );
       });
     });
+
+    describe("using Transform with duplication removal", function () {
+      beforeEach(function () {
+        restructorResults = new datarestructor.Transform(descriptions).setRemoveDuplicationAboveRecursionDepth(0).setMaxRecursionDepth(1).enableDebugMode().processJson(jsonData);
+      });
+      
+      it("shouldn't contain duplicated details inside every summary detail", function () {
+        forEachEntryMatching(
+          function (entry) {
+            return entry.type === "summary";
+          },
+          function (entry) {
+            var index;
+            // Each entry in 'details' shouldn't contain details (duplication) itself
+            for (index = 0; index < entry.details.length; index += 1) {
+              expect(entry.details[index].details).toBeUndefined();
+            }
+          }
+        );
+      });
+
+      it("shouldn't contain duplicated options inside every filter option", function () {
+        forEachEntryMatching(
+          function (entry) {
+            return entry.type === "filter";
+          },
+          function (entry) {
+            var index;
+            // Each entry in 'options' shouldn't contain options (duplication) itself
+            for (index = 0; index < entry.options.length; index += 1) {
+              expect(entry.options[index].options).toBeUndefined();
+            }
+          }
+        );
+      });
+    });
   });
 });
