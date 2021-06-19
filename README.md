@@ -6,7 +6,7 @@
 ![![eslint](./src/eslint.svg)](https://aleen42.github.io/badges/src/eslint.svg)
 ![JSDoc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc)
 ![nyc](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc)
-![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel-bundler)
+![parcel-bundler](https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel)
 
 # data-restructor-js
 
