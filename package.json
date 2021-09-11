@@ -46,11 +46,11 @@
   },
   "homepage": "https://joht.github.io/data-restructor-js",
   "devDependencies": {
-    "eslint": "^7.28.0",
-    "istanbul-badges-readme": "^1.4.0",
+    "eslint": "7.28.0",
+    "istanbul-badges-readme": "1.4.0",
     "jasmine": "^3.7.0",
-    "jsdoc": "^3.6.7",
-    "nyc": "^15.1.0",
+    "jsdoc": "3.6.7",
+    "nyc": "15.1.0",
     "parcel": "2.0.0-beta.2"
   },
   "dependencies": {}
