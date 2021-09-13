@@ -9,6 +9,6 @@
     ":automergeMinor",
     ":automergeRequireAllStatusChecks",
     ":automergeLinters",
-    ":automergeTesters",
+    ":automergeTesters"
   ]
 }
