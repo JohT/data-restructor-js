@@ -1,6 +1,6 @@
 {
   "name": "data-restructor",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "description": "Transforms parsed JSON objects into a uniform data structure",
   "directories": {
     "test": "test"
@@ -24,11 +24,11 @@
     "coverage": "nyc npm run test",
     "coverage-badge": "istanbul-badges-readme",
     "doc": "jsdoc -d docs --configure ./docs/jsdoc.json --readme ./README.md ./src/js/*.js",
-    "merger": "merger build",
+    "merger": "echo -ne \"k\n\" | npx merger build",
     "dev": "rm -rf devdist && parcel --out-dir devdist ./src/js/*.js",
     "devbuild": "rm -rf devdist && NODE_ENV=development parcel build --dist-dir devdist ./src/js/*.js --no-optimize --no-source-maps --no-scope-hoist --no-content-hash --detailed-report",
     "build": "parcel build ./src/js/*.js",
-    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run devbuild && npm run build && merger"
+    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run devbuild && npm run build && npm run merger"
   },
   "repository": {
     "type": "git",
@@ -47,11 +47,13 @@
   "homepage": "https://joht.github.io/data-restructor-js",
   "devDependencies": {
     "eslint": "8.6.0",
+    "inquirer": "8.2.0",
     "istanbul-badges-readme": "1.8.1",
     "jasmine": "4.0.1",
     "jsdoc": "3.6.7",
+    "merger-js": "3.10.3",
+    "node-notifier": "10.0.0",
     "nyc": "15.1.0",
     "parcel": "2.0.0-rc.0"
-  },
-  "dependencies": {}
+  }
 }
