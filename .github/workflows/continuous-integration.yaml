@@ -1,0 +1,83 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: 
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.ref }}
+        token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
+    - name: Set the environment variable "commit-message"
+      run: echo "commit-message=$(git log -1 --pretty=format:"%s")" >> $GITHUB_ENV
+    - name: Display Message on continuous integration 
+      if: env.commit-message == env.CI_COMMIT_MESSAGE
+      run: echo "Continuous Integration Commit - most of the following steps will be skipped"
+
+    - uses: actions/setup-node@v2
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      with:
+        node-version: '12' 
+    - name: Install node packages
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      run: npm ci
+    - name: Build package (lint, test, build, package, merge)
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      run: npm run package
+
+    - name: Archive code coverage results
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-code-coverage-report
+        path: coverage
+        retention-days: 31
+        if-no-files-found: error
+    - name: Archive documentation
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      uses: actions/upload-artifact@v2
+      with:
+        name: documentation
+        path: docs
+        retention-days: 31
+        if-no-files-found: error
+    - name: Archive build artifacts
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      uses: actions/upload-artifact@v2
+      with:
+        name: distribution-production
+        path: dist
+        retention-days: 31
+        if-no-files-found: error
+    - name: Archive build artifacts
+      if: env.commit-message != env.CI_COMMIT_MESSAGE
+      uses: actions/upload-artifact@v2
+      with:
+        name: distribution-development
+        path: devdist
+        retention-days: 31
+        if-no-files-found: error
+    
+    #- name: Dump GitHub context
+    #  env:
+    #    GITHUB_CONTEXT: ${{ toJson(github) }}
+    #  run: echo "$GITHUB_CONTEXT"
+    - name: Dump Commit desicion parameters 
+      run: echo "github.event.pull_request=${{ github.event.pull_request }}, github.event.pull_request.merged=${{ github.event.pull_request.merged }}, github.event.push=${{ github.event.push }}"
+    - name: Commit build artifacts (dist, devdist, docs, coverage)
+      # Don't run on already pushed continuous integration commit. Only run when a pull request gets merged.
+      if: env.commit-message != env.CI_COMMIT_MESSAGE && ((github.event.pull_request != null && github.event.pull_request.merged == true) || (github.event.push != null))
+      run: |
+        git config --global user.name '${{ github.event.repository.name }} Continuous Integration'
+        git config --global user.email 'joht@users.noreply.github.com'
+        git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git push
