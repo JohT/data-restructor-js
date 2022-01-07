@@ -27,13 +27,17 @@ This project and everyone participating in it is governed by the [Code of Conduc
 
 ### Prerequisites
 - Install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- Install [merger.js](https://github.com/joao-neves95/merger-js/blob/master/README.md) using `npm install merger-js -g`
 
 ### First steps
 
 - [Fork](https://docs.github.com/en/github/getting-started-with-github/quickstart/fork-a-repo) this repository 
 - Setup and build the project locally as described in [README.md](README.md#build-all)
 - A list of all commands can be found in [COMMANDS.md](COMMANDS.md)
+
+### GIT commit
+
+- Create a feature branch before making a commit.
+- Automatically generated build artifacts (`dist`, - `devdist`, `docs`, `coverage` folder contents) shouldn't be included in a commit. The continuous integration pipeline will generate them and commit them separately. This also means that a feature branch needs to be pulled after the pipeline has finished before adding further commits. When the pull request is ready to merge a rebase may be considered to clean up the history and get the feature branch up to date if needed. The same applies here: Build artifacts should be left out since the pipeline will take care of them. 
 
 ### Tests
 - All unit tests are integrated into the build
