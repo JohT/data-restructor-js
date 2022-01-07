@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
+  pull_request: {}
 
 jobs:
   build:
@@ -72,10 +71,10 @@ jobs:
     #    GITHUB_CONTEXT: ${{ toJson(github) }}
     #  run: echo "$GITHUB_CONTEXT"
     - name: Dump Commit desicion parameters 
-      run: echo "github.event.pull_request=${{ github.event.pull_request }}, github.event.pull_request.merged=${{ github.event.pull_request.merged }}, github.event.push=${{ github.event.push }}"
+      run: echo "github.event.push=${{ github.event.push }}"
     - name: Commit build artifacts (dist, devdist, docs, coverage)
-      # Don't run on already pushed continuous integration commit. Only run when a pull request gets merged.
-      if: env.commit-message != env.CI_COMMIT_MESSAGE && ((github.event.pull_request != null && github.event.pull_request.merged == true) || (github.event.push != null))
+      # Don't run on already pushed continuous integration commit. Only run on a push to the main branch.
+      if: env.commit-message != env.CI_COMMIT_MESSAGE && github.event.push != null
       run: |
         git config --global user.name '${{ github.event.repository.name }} Continuous Integration'
         git config --global user.email 'joht@users.noreply.github.com'
