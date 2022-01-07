@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - master
-  pull_request: {}
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -71,10 +73,10 @@ jobs:
     #    GITHUB_CONTEXT: ${{ toJson(github) }}
     #  run: echo "$GITHUB_CONTEXT"
     - name: Dump Commit desicion parameters 
-      run: echo "github.event.push=${{ github.event.push }}"
+      run: echo "github.event_name=${{ github.event_name }}, github.event.push=${{ github.event.push }}, github.event.pull_request=${{ github.event.pull_request }}"
     - name: Commit build artifacts (dist, devdist, docs, coverage)
-      # Don't run on already pushed continuous integration commit. Only run on a push to the main branch.
-      if: env.commit-message != env.CI_COMMIT_MESSAGE && github.event.push != null
+      # Don't run again on already pushed auto commit. Don't run on pull request events.
+      if: env.commit-message != env.CI_COMMIT_MESSAGE && github.event_name != 'pull_request'
       run: |
         git config --global user.name '${{ github.event.repository.name }} Continuous Integration'
         git config --global user.email 'joht@users.noreply.github.com'
