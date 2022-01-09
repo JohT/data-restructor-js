@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - master
+    # Ignore changes in folders with generated contents or documentation
+    paths-ignore: 
+      - 'coverage/**'
+      - 'devdist/**'
+      - 'dist/**'
+      - 'docs/**'
+      - '**/*.md'
+      - '**/*.txt'
+      - 'LICENSE'
   pull_request:
     branches:
       - master
@@ -16,29 +25,6 @@ jobs:
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
-        token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
-
-    - name: Set the environment variable "commit-message"
-      run: echo "commit-message=$(git log -1 --pretty=format:"%s")" >> $GITHUB_ENV
-    - name: Display environment variable "commit-message"
-      run: echo "commit-message=${{ env.commit-message }}"
-
-    - name: Set environment variable "commit-author"
-      run: echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
-    - name: Display environment variable "commit-author"
-      run: echo "commit-author=${{ env.commit-author }}"
-
-    - name: Set environment variable "is-auto-commit"
-      if: env.commit-message == env.CI_COMMIT_MESSAGE && env.commit-author == env.CI_COMMIT_AUTHOR
-      run: echo "is-auto-commit=true" >> $GITHUB_ENV
-    - name: Display environment variable "is-auto-commit"
-      run: echo "is-auto-commit=${{ env.is-auto-commit }}"
-    - name: Info message on CI auto commit 
-      if: env.is-auto-commit
-      run: echo "Continuous Integration Auto Commit - The following steps will be skipped"
-
     - uses: actions/setup-node@v2
       if: env.is-auto-commit == false
       with:
@@ -83,6 +69,14 @@ jobs:
         retention-days: 31
         if-no-files-found: error
     
+    - name: Display github context variable "github.event.commits[0]"
+      run: echo "${{ toJson(github.event.commits[0]) }}" 
+    - name: Set environment variable "is-auto-commit"
+      if: github.event.commits[0].message == env.CI_COMMIT_MESSAGE && github.event.commits[0].author == env.CI_COMMIT_AUTHOR
+      run: echo "is-auto-commit=true" >> $GITHUB_ENV
+    - name: Display environment variable "is-auto-commit"
+      run: echo "is-auto-commit=${{ env.is-auto-commit }}"
+
     - name: Display event name 
       if: env.is-auto-commit == false
       run: echo "github.event_name=${{ github.event_name }}"
