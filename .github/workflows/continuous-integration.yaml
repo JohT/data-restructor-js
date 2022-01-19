@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - master
+    # Ignore changes in folders with generated contents or documentation.
+    # Need to match git add parameters below.
+    paths-ignore: 
+      - 'coverage/**'
+      - 'devdist/**'
+      - 'dist/**'
+      - 'docs/**'
+      - '**/*.md'
   pull_request:
     branches:
       - master
@@ -15,10 +23,9 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
-    # Checkout
-    # Notice: When a personal access token is used, 
-    # prevent the workflow to get triggered by itself in the commit step
     - uses: actions/checkout@v2
+      with: 
+        token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
 
     # Build
     - uses: actions/setup-node@v2
@@ -65,9 +72,11 @@ jobs:
       run: echo "github.event_name=${{ github.event_name }}"
     - name: Commit build artifacts (dist, devdist, docs, coverage)
       # Only run when a pull request gets merged or a commit is pushed to the main branch
+      # git add parameters need to match paths-ignore parameters above
       if: github.event_name == 'push'
       run: |
         git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
         git config --global user.email 'joht@users.noreply.github.com'
-        git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git add coverage devdist dist docs *.md
+        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
