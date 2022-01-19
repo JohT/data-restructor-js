@@ -4,15 +4,6 @@ on:
   push:
     branches:
       - master
-    # Ignore changes in folders with generated contents or documentation
-    paths-ignore: 
-      - 'coverage/**'
-      - 'devdist/**'
-      - 'dist/**'
-      - 'docs/**'
-      - '**/*.md'
-      - '**/*.txt'
-      - 'LICENSE'
   pull_request:
     branches:
       - master
@@ -24,65 +15,57 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
+    # Checkout
+    # Notice: When a personal access token is used, 
+    # prevent the workflow to get triggered by itself in the commit step
     - uses: actions/checkout@v2
+
+    # Build
     - uses: actions/setup-node@v2
-      if: env.is-auto-commit == false
       with:
         node-version: '12' 
     - name: Install node packages
-      if: env.is-auto-commit == false
       run: npm ci
     - name: Build package (lint, test, build, package, merge)
-      if: env.is-auto-commit == false
       run: npm run package
 
+    # Archive generated or updated files 
     - name: Archive code coverage results
-      if: env.is-auto-commit == false
       uses: actions/upload-artifact@v2
       with:
         name: test-code-coverage-report
         path: coverage
-        retention-days: 31
+        retention-days: 14
         if-no-files-found: error
     - name: Archive documentation
-      if: env.is-auto-commit == false
       uses: actions/upload-artifact@v2
       with:
         name: documentation
         path: docs
-        retention-days: 31
+        retention-days: 14
         if-no-files-found: error
     - name: Archive build artifacts
-      if: env.is-auto-commit == false
       uses: actions/upload-artifact@v2
       with:
         name: distribution-production
         path: dist
-        retention-days: 31
+        retention-days: 14
         if-no-files-found: error
     - name: Archive build artifacts
-      if: env.is-auto-commit == false
       uses: actions/upload-artifact@v2
       with:
         name: distribution-development
         path: devdist
-        retention-days: 31
+        retention-days: 14
         if-no-files-found: error
     
-    - name: Display github context variable "github.event.commits[0]"
-      run: echo "last commit message = ${{ github.event.commits[0].message }}, last commit author = ${{ github.event.commits[0].author.name }}" 
-    - name: Set environment variable "is-auto-commit"
-      if: github.event.commits[0].message == env.CI_COMMIT_MESSAGE && github.event.commits[0].author.name == env.CI_COMMIT_AUTHOR
-      run: echo "is-auto-commit=true" >> $GITHUB_ENV
-    - name: Display environment variable "is-auto-commit"
-      run: echo "is-auto-commit=${{ env.is-auto-commit }}"
-
+    # Commit and push all changed files
     - name: Display event name 
       if: env.is-auto-commit == false
       run: echo "github.event_name=${{ github.event_name }}"
     - name: Commit build artifacts (dist, devdist, docs, coverage)
-      # Don't run again on already pushed auto commit. Don't run on pull request events.
-      if: env.is-auto-commit == false && github.event_name != 'pull_request'
+      # Only run when a pull request gets merged or a commit is pushed to the main branch
+      if: github.event_name == 'push'
       run: |
         git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
         git config --global user.email 'joht@users.noreply.github.com'
