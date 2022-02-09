@@ -54,6 +54,6 @@
     "merger-js": "3.10.3",
     "node-notifier": "10.0.1",
     "nyc": "15.1.0",
-    "parcel": "2.0.0-rc.0"
+    "parcel": "2.0.0"
   }
 }
