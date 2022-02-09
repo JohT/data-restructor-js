@@ -6,7 +6,7 @@
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
 
-(function(modules, entry, mainEntry, parcelRequireName, globalName) {
+(function (modules, entry, mainEntry, parcelRequireName, globalName) {
   /* eslint-disable no-undef */
   var globalObject =
     typeof globalThis !== 'undefined'
@@ -80,11 +80,13 @@
     return cache[name].exports;
 
     function localRequire(x) {
-      return newRequire(localRequire.resolve(x));
+      var res = localRequire.resolve(x);
+      return res === false ? {} : newRequire(res);
     }
 
     function resolve(x) {
-      return modules[name][1][x] || x;
+      var id = modules[name][1][x];
+      return id != null ? id : x;
     }
   }
 
@@ -99,9 +101,9 @@
   newRequire.modules = modules;
   newRequire.cache = cache;
   newRequire.parent = previousRequire;
-  newRequire.register = function(id, exports) {
+  newRequire.register = function (id, exports) {
     modules[id] = [
-      function(require, module) {
+      function (require, module) {
         module.exports = exports;
       },
       {},
@@ -109,7 +111,7 @@
   };
 
   Object.defineProperty(newRequire, 'root', {
-    get: function() {
+    get: function () {
       return globalObject[parcelRequireName];
     },
   });
@@ -131,7 +133,7 @@
 
       // RequireJS
     } else if (typeof define === 'function' && define.amd) {
-      define(function() {
+      define(function () {
         return mainExports;
       });
 
@@ -140,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"8lBdc":[function(require,module,exports) {
+})({"j48fh":[function(require,module,exports) {
 "use strict";
 require("../../lib/js/polyfills/indexOfPolyfill.js");
 require("../../lib/js/polyfills/objectKeysPolyfill.js");
@@ -149,12 +151,12 @@ module.exports = {
     template_resolver: template_resolver
 };
 
-},{"../../lib/js/polyfills/indexOfPolyfill.js":"87bck","../../lib/js/polyfills/objectKeysPolyfill.js":"4vFpy","../../src/js/templateResolver.js":"dMMyY"}],"87bck":[function(require,module,exports) {
+},{"../../lib/js/polyfills/indexOfPolyfill.js":"6WEQI","../../lib/js/polyfills/objectKeysPolyfill.js":"cXkCN","../../src/js/templateResolver.js":"41qn9"}],"6WEQI":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
-if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object1, max, min) {
+if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, min) {
     return function indexOf(member, fromIndex) {
         if (this === null || this === undefined) throw TypeError("Array.prototype.indexOf called on null or undefined");
-        var that = Object1(this), Len = that.length >>> 0, i = min(fromIndex | 0, Len);
+        var that = Object(this), Len = that.length >>> 0, i = min(fromIndex | 0, Len);
         if (i < 0) i = max(0, Len + i);
         else if (i >= Len) return -1;
         if (member === void 0) {
@@ -166,7 +168,7 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object1, max, 
     };
 })(Object, Math.max, Math.min);
 
-},{}],"4vFpy":[function(require,module,exports) {
+},{}],"cXkCN":[function(require,module,exports) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
     if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
@@ -175,7 +177,7 @@ if (!Object.keys) Object.keys = function(o) {
     return k;
 };
 
-},{}],"dMMyY":[function(require,module,exports) {
+},{}],"41qn9":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -323,7 +325,7 @@ template_resolver.Resolver = (function() {
     return Resolver;
 })();
 
-},{"../../lib/js/flattenToArray":"hSVCn"}],"hSVCn":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"ipjOk"}],"ipjOk":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -381,5 +383,5 @@ template_resolver.Resolver = (function() {
     return result;
 };
 
-},{}]},["8lBdc"], "8lBdc", "parcelRequirec1f2")
+},{}]},["j48fh"], "j48fh", "parcelRequirec1f2")
 

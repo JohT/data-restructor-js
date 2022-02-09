@@ -6,7 +6,7 @@
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
 
-(function(modules, entry, mainEntry, parcelRequireName, globalName) {
+(function (modules, entry, mainEntry, parcelRequireName, globalName) {
   /* eslint-disable no-undef */
   var globalObject =
     typeof globalThis !== 'undefined'
@@ -80,11 +80,13 @@
     return cache[name].exports;
 
     function localRequire(x) {
-      return newRequire(localRequire.resolve(x));
+      var res = localRequire.resolve(x);
+      return res === false ? {} : newRequire(res);
     }
 
     function resolve(x) {
-      return modules[name][1][x] || x;
+      var id = modules[name][1][x];
+      return id != null ? id : x;
     }
   }
 
@@ -99,9 +101,9 @@
   newRequire.modules = modules;
   newRequire.cache = cache;
   newRequire.parent = previousRequire;
-  newRequire.register = function(id, exports) {
+  newRequire.register = function (id, exports) {
     modules[id] = [
-      function(require, module) {
+      function (require, module) {
         module.exports = exports;
       },
       {},
@@ -109,7 +111,7 @@
   };
 
   Object.defineProperty(newRequire, 'root', {
-    get: function() {
+    get: function () {
       return globalObject[parcelRequireName];
     },
   });
@@ -131,7 +133,7 @@
 
       // RequireJS
     } else if (typeof define === 'function' && define.amd) {
-      define(function() {
+      define(function () {
         return mainExports;
       });
 
@@ -140,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"ezKUg":[function(require,module,exports) {
+})({"7hzxy":[function(require,module,exports) {
 /**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1184,7 +1186,7 @@ var described_field = described_field || require("../../src/js/describedfield");
     return restructor.processJson(jsonData);
 };
 
-},{"../../lib/js/flattenToArray":"hSVCn","../../src/js/templateResolver":"dMMyY","../../src/js/describedfield":"1R6PW"}],"hSVCn":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"ipjOk","../../src/js/templateResolver":"41qn9","../../src/js/describedfield":"cleYG"}],"ipjOk":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1242,7 +1244,7 @@ var described_field = described_field || require("../../src/js/describedfield");
     return result;
 };
 
-},{}],"dMMyY":[function(require,module,exports) {
+},{}],"41qn9":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1390,7 +1392,7 @@ template_resolver.Resolver = (function() {
     return Resolver;
 })();
 
-},{"../../lib/js/flattenToArray":"hSVCn"}],"1R6PW":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"ipjOk"}],"cleYG":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1650,5 +1652,5 @@ described_field.DescribedDataFieldGroup = (function() {
     return DescribedDataFieldGroup;
 })();
 
-},{}]},["ezKUg"], "ezKUg", "parcelRequirec1f2")
+},{}]},["7hzxy"], "7hzxy", "parcelRequirec1f2")
 
