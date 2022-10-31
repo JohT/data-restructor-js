@@ -1,6 +1,10 @@
 # CHANGELOG.md
 
-## **v3.3.5** Automate MergerJS (latest)
+## **v3.4.0** Update to Node.js v18 (latest)
+
+This version contains version updates including an update to Node.js v18.
+
+## **v3.3.5** Automate MergerJS
 
 ### Automation
 
