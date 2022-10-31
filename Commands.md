@@ -2,12 +2,14 @@
 
 Overview of the commands to test, run and build this project as well as those that were used to setup it.
 
-## Most important commands for development:
+## Most important commands for development
+
 - `npm install` Installs all dependencies and creates the folder `node_modules`, that is needed for all following commands.
 - `npm run package` Ready to publish build incl. test, coverage, doc generation, dev+prod build
 - `npm login` + `npm publish` To publish a new release. Be sure to run npm run package first.
 
-## Commands to test, run and build the project:
+## Commands to test, run and build the project
+
 - `npm run coverage` Run all unit tests (using jasmine) **with** reporting coverage (using nyc/istanbul)
 - `npm test` Only all unit tests (using jasmine) **without** coverage report
 - `npm run coverage-badge` Updates code coverage badge inside `README.md`
@@ -19,7 +21,8 @@ Overview of the commands to test, run and build this project as well as those th
  The command itself needs to send the letter "k" and the enter key to the merger command to automate
  the key prompt that would otherwise block continuous integration.
 
-## Commands used to setup the project:
+## Commands used to setup the project
+
 - `npm init` Initialize node package manager, creates `package.json` file.
 - `npm install jasmine --save-dev` Adds jasmine unit test framework as development dependency.
 - `npx jasmine init` Initializes jasmine, creates `spec/support/jasmine.json` file.
@@ -32,11 +35,13 @@ Overview of the commands to test, run and build this project as well as those th
 - `npm install --save-exact --save-dev node-notifier inquirer merger-js` Setup file merger for vanilla JS distributions.
 - `npm audit fix` Fixes vulnerabilities
 
-## Further steps:
+## Further steps
+
 - It would be great to get SpecRunner.html up and running in dev mode like: "dev": "parcel ./test/js/SpecRunner.html". [parcel issue 3407](https://github.com/parcel-bundler/parcel/issues/3407) may be key for that.
 
 ## References
- * [Parcel - Getting Started](https://parceljs.org/getting_started.html)
- * [Jasmine - Using Jasmine with node](https://jasmine.github.io/setup/nodejs.html)
- * [Istanbul/nyc - Installation & Usage](https://github.com/istanbuljs/nyc#installation--usage)
- * [ESLint - Getting Started](https://eslint.org/docs/user-guide/getting-started)
+
+- [Parcel - Getting Started](https://parceljs.org/getting_started.html)
+- [Jasmine - Using Jasmine with node](https://jasmine.github.io/setup/nodejs.html)
+- [Istanbul/nyc - Installation & Usage](https://github.com/istanbuljs/nyc#installation--usage)
+- [ESLint - Getting Started](https://eslint.org/docs/user-guide/getting-started)
