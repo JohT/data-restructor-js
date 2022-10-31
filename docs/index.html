@@ -43,7 +43,8 @@
 
 
     <section>
-        <article><p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+        <article><h1>data-restructor-js</h1>
+<p><a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
 <img src="https://img.shields.io/github/languages/top/JohT/data-restructor-js" alt="Language">
 <img src="https://img.shields.io/badge/branches-94.61%25-brightgreen.svg?style=flat" alt="Branches">
 <img src="https://aleen42.github.io/badges/src/npm.svg" alt="npm">
@@ -52,10 +53,9 @@
 <img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/jsdoc" alt="JSDoc">
 <img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/nyc" alt="nyc">
 <img src="https://img.shields.io/github/package-json/dependency-version/JohT/data-restructor-js/dev/parcel" alt="parcel-bundler"></p>
-<h1>data-restructor-js</h1>
 <p>When parsing JSON on client-side, the structure of it attracts most of our attention.<br>
 If the structure evolves over time, it leads to recurring changes in the code that depends on it.</p>
-<h2>Features:</h2>
+<h2>Features</h2>
 <ul>
 <li>Adapter that takes e.g. parsed JSON and transforms it into a uniform structure</li>
 <li>Multiple transformation steps including flattening, removing duplicates, grouping, ...</li>
@@ -71,7 +71,7 @@ If the structure evolves over time, it leads to recurring changes in the code th
 </ul>
 <h2>Quickstart</h2>
 <p>Use the following command to install the library using npm:</p>
-<pre class="prettyprint source"><code>npm install data-restructor
+<pre class="prettyprint source lang-shell"><code>npm install data-restructor
 </code></pre>
 <p>Alternatively, the sources can be found inside the
 <a href="https://github.com/JohT/data-restructor-js/tree/master/src/">source folder</a>:</p>
@@ -178,7 +178,7 @@ function detailsDescription() {
   }
 </code></pre>
 <h3>Output Java Object</h3>
-<p>An Javascript object with mainly this structure (see <a href="#DescribedEntry">DescribedEntry</a> for more details) and content is returned, when the function <code>restructureJson</code> from above is called:</p>
+<p>An Javascript object with mainly this structure (see <a href="#describedentry">DescribedEntry</a> for more details) and content is returned, when the function <code>restructureJson</code> from above is called:</p>
 <pre class="prettyprint source lang-yaml"><code>category: &quot;account&quot;
 displayName: &quot;Accountnumber&quot;
 fieldName: &quot;accountnumber&quot;
@@ -221,7 +221,7 @@ details:
     fieldName: &quot;tags_comma_separated_values&quot;
     value: &quot;active, online&quot;
 </code></pre>
-<h2>Transformation Steps:</h2>
+<h2>Transformation Steps</h2>
 <h3>1. Flatten hierarchical data object</h3>
 <p>The input data object, e.g. parsed from JSON, is converted to an array of point separated property names and their values.
 For example this structure...</p>
@@ -245,7 +245,7 @@ For example this structure...</p>
 }
 </code></pre>
 <p>...is flattened to...</p>
-<pre class="prettyprint source"><code>responses[0].hits.total.value=1
+<pre class="prettyprint source lang-javascript"><code>responses[0].hits.total.value=1
 responses[0].hits.hits[0]._source.accountnumber=123
 </code></pre>
 <h3>2. Add array value properties ending with &quot;_comma_separated_values&quot;</h3>
@@ -255,12 +255,12 @@ that contains the values in a comma separated way.
 This newly created property gets the name of the array property followed by &quot;_comma_separated_values&quot;
 and is inserted right after the single array values.</p>
 <p>For example these lines...</p>
-<pre class="prettyprint source"><code>responses[0].hits.total.value=1
+<pre class="prettyprint source lang-javascript"><code>responses[0].hits.total.value=1
 responses[0].hits.hits[0]._source.tags[0]=active
 responses[0].hits.hits[0]._source.tags[1]=online
 </code></pre>
 <p>...will lead to an additional property that looks like this...</p>
-<pre class="prettyprint source"><code>responses[0].hits.hits[0]._source.tags_comma_separated_values=active, online
+<pre class="prettyprint source lang-javascript"><code>responses[0].hits.hits[0]._source.tags_comma_separated_values=active, online
 </code></pre>
 <h3>3. Attach description to matching properties</h3>
 <p>For every given description, all properties are searched for matches.
@@ -268,45 +268,50 @@ If a description matches a property, the description gets attached to it.
 This can be used to categorize and filter properties.
 The description builder accepts these ways to configure property matching:</p>
 <ul>
-<li>Equal Mode (default):<br>
+<li>
+<p>Equal Mode (default):<br>
 The property name needs to match the described pattern exactly. It is not needed to set equal mode.
 The field name will be (by default) taken from the right most (after the last separator <code>.</code>) element of the property name.
 In the example below the field name will be &quot;accountnumber&quot;.
-Example:<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+Example:</p>
+<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
 .propertyPatternEqualMode()
 .propertyPattern(&quot;responses.hits.hits._source.accountnumber&quot;)
 ...
 </code></pre>
 </li>
-<li>Pattern Mode:<br>
+<li>
+<p>Pattern Mode:<br>
 The property name needs to start with the described pattern.
 The pattern may contain variables inside double curly brackets.<br>
 The variable <code>{{fieldName}}</code> is a special case which describes from where the field name should be taken.
 If <code>{{fieldName}}</code> is not specified, the field name will be taken from the right most (after the last separator <code>.</code>) element of the property name, which is the same behavior as in &quot;Equal Mode&quot;.
 This mode needs to set using <code>propertyPatternTemplateMode</code>, since the default mode is <code>propertyPatternEqualMode</code>.
-Example:<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+Example:</p>
+<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
 .propertyPatternTemplateMode()
 .propertyPattern(&quot;responses.hits.hits._source.{{fieldName}}&quot;)
 ...
 </code></pre>
 </li>
-<li>Index Matching (Optional):<br>
+<li>
+<p>Index Matching (Optional):<br>
 If the source data is structured in an top level array and all property names look pretty much the same
 it may be needed to describe data based on the array index.
 The index of an property is taken out of its array qualifiers.<br>
 For example, the property name <code>responses[0].hits.hits[1]._source.tags[2]</code> has the index <code>0.1.2</code>.<br>
 Index Matching can be combined with property name matching.
-This example restricts the description to the first top level array:<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
+This example restricts the description to the first top level array:</p>
+<pre class="prettyprint source lang-javascript"><code>new datarestructor.PropertyStructureDescriptionBuilder()
 .indexStartsWith(&quot;0.&quot;)
 ...
 </code></pre>
 </li>
 </ul>
-<h3>4. Removing duplicates (deduplication):</h3>
+<h3>4. Removing duplicates (deduplication)</h3>
 <p>To remove duplicate properties or to override properties with other ones when they exist,
 a <code>deduplicationPattern</code> can be defined.<br/><br/>
-Variables (listed below) are put into double curly brackets and will be replaced with the contents
-of the description and the matching property.<br>
+Variables (listed below) are put into double curly brackets and will be replaced with the contents of the description and the matching property.<br>
 If there are two entries with the same resolved <code>deduplicationPattern</code> (=<code>_identifier.deduplicationId</code>),
 the second one will override the first (the first one will be removed).
 Example:</p>
@@ -314,7 +319,7 @@ Example:</p>
 .deduplicationPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}--{{fieldName}}&quot;)
 ...
 </code></pre>
-<h3>5. Grouping:</h3>
+<h3>5. Grouping</h3>
 <p>Since data had been flattened in the step 1., it is structured as a list of property names and their values.
 This non-hierarchical structure is ideal to add further properties, attach descriptions and remove duplicates.
 After all, a fully flat structure might not be suitable to display overviews/details or to collect options. <br/><br/>
@@ -330,7 +335,7 @@ same group will be put into. Example:</p>
 .groupPattern(&quot;{{category}}--{{type}}--{{index[0]}}--{{index[1]}}&quot;)
 ...
 </code></pre>
-<h3>6. Moving groups (destination group):</h3>
+<h3>6. Moving groups (destination group)</h3>
 <p>After grouping in step 5., every property containing a group and the remaining non-grouped properties
 are listed one after another. To organize them further, a group can be moved beneath another (destination) group. <br/><br/>
 The <code>groupDestinationPattern</code> contains the pattern of the group to where the own group should be moved.
@@ -351,9 +356,9 @@ var detailsDescription = new datarestructor.PropertyStructureDescriptionBuilder(
 .groupDestinationName(&quot;details&quot;)
 ...
 </code></pre>
-<h3>7. Convert data into an array of DescribedFields:</h3>
-<p>The result is finally converted into an array of <a href="#DescribedDataField">DescribedDataField</a>s.</p>
-<h2>Types, fields, variables:</h2>
+<h3>7. Convert data into an array of DescribedFields</h3>
+<p>The result is finally converted into an array of <a href="#describeddatafield">DescribedDataField</a>s.</p>
+<h2>Types, fields, variables</h2>
 <p>This section lists the types and their fields in detail (mostly taken from jsdoc).
 Every field can be used as variable in double curly brackets inside pattern properties.
 Additionally, single elements of the index can be used by specifying the index position e.g. <code>{{index[0]}}</code> (first), <code>{{index[1]}}</code> (second),...</p>
@@ -363,34 +368,34 @@ Additionally, single elements of the index can be used by specifying the index p
 <li><strong>category</strong> - name of the category. Default = &quot;&quot;. Could contain a symbol character or a short domain name. (e.g. &quot;city&quot;)</li>
 <li><strong>abbreviation</strong> - &quot;&quot;(default). One optional character, a symbol character or a short abbreviation of the category.</li>
 <li><strong>image</strong> - &quot;&quot;(default). One optional path to an image resource.</li>
-<li><strong>propertyPatternTemplateMode</strong> - boolean &quot;false&quot;(default): property name needs to be equal to the pattern. &quot;true&quot; allows variables like &quot;{{fieldname}}&quot; inside the pattern.</li>
-<li><strong>propertyPattern</strong> - property name pattern (without array indices) to match. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+<li><strong>propertyPatternTemplateMode</strong> - boolean &quot;false&quot;(default): property name needs to be equal to the pattern. &quot;true&quot; allows variables like <code>{{fieldname}}</code> inside the pattern.</li>
+<li><strong>propertyPattern</strong> - property name pattern (without array indices) to match. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#describeddatafield-public-fields">variables</a>, <a href="#describeddatafield-public-functions">further details</a></li>
 <li><strong>indexStartsWith</strong> - &quot;&quot;(default) matches all ids. String that needs to match the beginning of the id. E.g. &quot;1.&quot; will match id=&quot;1.3.4&quot; but not &quot;0.1.2&quot;.</li>
 <li><strong>groupName</strong> - name of the property, that contains grouped entries. Default=&quot;group&quot;.</li>
-<li><strong>groupPattern</strong> - Pattern that describes how to group entries. &quot;groupName&quot; defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
-<li><strong>groupDestinationPattern</strong> - Pattern that describes where the group should be moved to. Default=&quot;&quot;=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+<li><strong>groupPattern</strong> - Pattern that describes how to group entries. &quot;groupName&quot; defines the name of this group. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#describeddatafield-public-fields">variables</a>, <a href="#describeddatafield-public-functions">further details</a></li>
+<li><strong>groupDestinationPattern</strong> - Pattern that describes where the group should be moved to. Default=&quot;&quot;=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#describeddatafield-public-fields">variables</a>, <a href="#describeddatafield-public-functions">further details</a></li>
 <li><strong>groupDestinationName</strong> - (default=groupName) Name of the group when it had been moved to the destination.</li>
-<li><strong>deduplicationPattern</strong> - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#public-fields">variables</a>, <a href="#public-functions">further details</a></li>
+<li><strong>deduplicationPattern</strong> - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}. See also: <a href="#describeddatafield-public-fields">variables</a>, <a href="#describeddatafield-public-functions">further details</a></li>
 </ul>
 <h3>DescribedDataField</h3>
 <p>This is the data structure of a single output element representing a field.
 Beside the properties described below, the described data field can also contain
 custom properties containing groups (arrays) of sub fields of type DescribedDataField.</p>
-<p>Before version 3.0.0 this structure was named <a href="#DescribedEntry">DescribedEntry</a> and also contained internal fields.<br>
-Since 3.0.0 and above, <a href="#DescribedEntry">DescribedEntry</a> is only used internally and is not public any more.</p>
-<h4>Public fields</h4>
+<p>Before version 3.0.0 this structure was named <a href="#describedentry">DescribedEntry</a> and also contained internal fields.<br>
+Since 3.0.0 and above, <a href="#describedentry">DescribedEntry</a> is only used internally and is not public any more.</p>
+<h4>DescribedDataField Public Fields</h4>
 <ul>
 <li><strong>category</strong> - category of the result from the PropertyStructureDescription using a short name or e.g. a symbol character</li>
 <li><strong>type</strong> - type of the result from PropertyStructureDescription</li>
 <li><strong>abbreviation</strong> - one optional character, a symbol character or a short abbreviation of the category</li>
 <li><strong>image</strong> - one optional path to an image resource</li>
 <li><strong>index</strong> - contains an array of numbers representing the hierarchical index for list entries (and their sub lists ...). Example: <code>&quot;responses[2].hits.hits[4]._source.name&quot;</code> will have an index of [2,4].</li>
-<li><strong>groupNames</strong> - contains an array of String names. Every name represents a group that had been dynamically added as property. Groups should be added using <a href="#DescribedDataFieldGroup">DescribedDataFieldGroup</a>, which will also update the group names.</li>
+<li><strong>groupNames</strong> - contains an array of String names. Every name represents a group that had been dynamically added as property. Groups should be added using <a href="#describeddatafieldgroup">DescribedDataFieldGroup</a>, which will also update the group names.</li>
 <li><strong>displayName</strong> - display name extracted from the point separated hierarchical property name, e.g. &quot;Name&quot;</li>
 <li><strong>fieldName</strong> - field name extracted from the point separated hierarchical property name, e.g. &quot;name&quot;</li>
 <li><strong>value</strong> - content of the field</li>
 </ul>
-<h4>Public functions</h4>
+<h4>DescribedDataField Public Functions</h4>
 <p>Since version 3.0.0 and above, there are no functions any more.</p>
 <h4>Described groups</h4>
 <ul>
@@ -398,9 +403,9 @@ Since 3.0.0 and above, <a href="#DescribedEntry">DescribedEntry</a> is only used
 <li><strong>&quot;names of moved groups&quot;</strong> as described in PropertyStructureDescription of the group that had been moved</li>
 </ul>
 <h3>DescribedDataFieldGroup</h3>
-<p>This helper was added with version 3.0.0. It adds groups to <a href="#DescribedDataField">DescribedDataField</a>s.
-These groups are dynamically added properties that contain an array of sub fields also of type <a href="#DescribedDataField">DescribedDataField</a>.</p>
-<h4>Public functions</h4>
+<p>This helper was added with version 3.0.0. It adds groups to <a href="#describeddatafield">DescribedDataField</a>s.
+These groups are dynamically added properties that contain an array of sub fields also of type <a href="#describeddatafield">DescribedDataField</a>.</p>
+<h4>DescribedDataFieldGroup Public Functions</h4>
 <ul>
 <li><strong>addGroupEntry(groupName, entry)</strong> Adds an entry to the given group. If the group does not exist, it will be created and added to the &quot;groupNames&quot;.</li>
 <li><strong>addGroupEntries(groupName, entries)</strong> Adds an array of entries to the given group. If the group does not exist, it will be created and added to the &quot;groupNames&quot;.</li>
@@ -411,7 +416,7 @@ It is documented here for sake of completeness and for maintenance purposes.
 See JSDoc for a more comprehensive reference.</p>
 <h4>Properties</h4>
 <ul>
-<li><strong>describedField</strong> - contains the <a href="#DescribedDataField">DescribedDataField</a></li>
+<li><strong>describedField</strong> - contains the <a href="#describeddatafield">DescribedDataField</a></li>
 <li><strong>isMatchingIndex</strong> - true, if _identifier.index matches the described &quot;indexStartsWith&quot;</li>
 <li><strong>_identifier</strong> - internal structure for identifier. Avoid using it outside since it may change.</li>
 <li><strong>_identifier.index</strong> - array indices in hierarchical order separated by points, e.g. &quot;0.0&quot;</li>
@@ -433,12 +438,12 @@ var template = &quot;{{type}}-{{category}}&quot;;
 var resolvedString = resolver.resolveTemplate(template);
 //resolvedString will contain &quot;MyType-MyCategory&quot;
 </code></pre>
-<h4>Public functions</h4>
+<h4>Template Resolver Public Functions</h4>
 <ul>
 <li><strong>resolveTemplate</strong> - resolves the given template string. The template may contain variables in double curly brackets:
 <ul>
-<li>All <a href="#public-fields">public fields</a> can be used as variables, e.g. <code>&quot;{{fieldName}}&quot;</code>, <code>&quot;{{displayName}}&quot;</code>, <code>&quot;{{value}}&quot;</code>.</li>
-<li>Described groups that contain an array of <a href="#DescribedDataField">described entries</a> can also be used, e.g. <code>&quot;{{summaries[0].value}}&quot;</code>.</li>
+<li>All <a href="#describeddatafield-public-fields">public fields</a> can be used as variables, e.g. <code>&quot;{{fieldName}}&quot;</code>, <code>&quot;{{displayName}}&quot;</code>, <code>&quot;{{value}}&quot;</code>.</li>
+<li>Described groups that contain an array of <a href="#describeddatafield">described entries</a> can also be used, e.g. <code>&quot;{{summaries[0].value}}&quot;</code>.</li>
 <li>Parts of the index can be inserted by using e.g. <code>&quot;{{index[1]}}&quot;</code>.</li>
 <li>Besides the meta data, a described field can be used directly by its &quot;fieldName&quot;, e.g. <code>&quot;{{customernumber}}&quot;</code> will be replaced by <code>123</code>, if the structure contains <code>fieldname=&quot;customernumber&quot;, value=&quot;123&quot;</code>. This also applies to sub groups, e.g. <code>&quot;{{details.customernumber}}&quot;</code> will be replaced by <code>321</code>, if the structure contains <code>details[4].fieldname=&quot;customernumber&quot;, details[4].value=&quot;321&quot;</code>.</li>
 </ul>
@@ -449,7 +454,7 @@ var resolvedString = resolver.resolveTemplate(template);
 <p>The restructured data is by nature hierarchical and may contain cyclic data references. Fields may contain groups of fields that may contain groups of fields....
 Since JSON can't be generated out of objects with cyclic references, sub-structures are expressed by copies.
 That leads to recursion and duplication, that need to be limited. This can be configured here.</p>
-<h4>Properties</h4>
+<h4>TransformConfig Properties</h4>
 <ul>
 <li><strong>debugMode</strong> boolean value, that enables/disables detailed logging</li>
 <li><strong>maxRecursionDepth</strong> numeric value that defines the maximum recursion depth</li>
@@ -807,7 +812,7 @@ That leads to recursion and duplication, that need to be limited. This can be co
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Oct 30 2022 00:17:59 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Oct 31 2022 16:50:12 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
