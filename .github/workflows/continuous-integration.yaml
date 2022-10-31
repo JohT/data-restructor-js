@@ -30,7 +30,7 @@ jobs:
     # Build
     - uses: actions/setup-node@v3
       with:
-        node-version: '16' 
+        node-version: '18' 
     - name: Install node packages
       run: npm ci
     - name: Build package (lint, test, build, package, merge)
