@@ -498,6 +498,11 @@ That leads to recursion and duplication, that need to be limited. This can be co
 - **setMaxRecursionDepth(number)** numeric value that defines the maximum recursion depth
 - **setRemoveDuplicationAboveRecursionDepth(number)** numeric value that defines the recursion depth, above which duplications inside groups will be removed.
 
+## Related blog articles
+
+- [Most effective ways to push within GitHub Actions](https://joht.github.io/johtizen/build/2022/01/20/github-actions-push-into-repository.html)
+- [Continuous Integration for JavaScript with npm](https://joht.github.io/johtizen/build/2021/02/21/continuous-integration-javascript.html)
+
 ## References
 
 - [Mozilla MDN web docs - polyfill for 'Array.filter'](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill) for browser compatibility
