@@ -144,12 +144,12 @@
   }
 })({"eeb0L":[function(require,module,exports) {
 "use strict";
-var described_field = require("../../src/js/describedfield.js");
+var described_field = require("f52f630b99dc3a6c");
 module.exports = {
     described_field: described_field
 };
 
-},{"../../src/js/describedfield.js":"g0GVY"}],"g0GVY":[function(require,module,exports) {
+},{"f52f630b99dc3a6c":"g0GVY"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -158,14 +158,12 @@ module.exports = {
  */ "use strict";
 var module = describedFieldInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function describedFieldInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * Describes a data field of the restructured data.
  * @module described_field
- */ var described_field = module.exports = {
-}; // Export module for npm...
+ */ var described_field = module.exports = {}; // Export module for npm...
 described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExists;
 /**
  * Describes a field of the restructured data.
@@ -182,7 +180,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
  * @property {module:described_field.DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
- */ described_field.DescribedDataFieldBuilder = (function() {
+ */ described_field.DescribedDataFieldBuilder = function() {
     /**
    * Builds a {@link module:described_field.DescribedDataField}.
    * DescribedDataField is the main element of the restructured data and therefore considered "public".
@@ -352,7 +350,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
         return value === undefined || value === null ? defaultValue : value;
     }
     return DescribedDataFieldBuilder;
-})();
+}();
 /**
  * Creates a new described data field with all properties of the original one except for dynamically added groups.
  * @param {module:described_field.DescribedDataField} describedDataField
@@ -361,7 +359,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  */ described_field.copyWithoutGroups = function(describedDataField) {
     return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).groupNames([]).build();
 };
-described_field.DescribedDataFieldGroup = (function() {
+described_field.DescribedDataFieldGroup = function() {
     /**
    * Adds groups to {@link module:described_field.DescribedDataField}s. These groups are dynamically added properties
    * that contain an array of sub fields of the same type {@link module:described_field.DescribedDataField}s.
@@ -407,7 +405,7 @@ described_field.DescribedDataFieldGroup = (function() {
         };
     }
     return DescribedDataFieldGroup;
-})();
+}();
 
 },{}]},["eeb0L"], "eeb0L", "parcelRequirec1f2")
 

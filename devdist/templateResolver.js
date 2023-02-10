@@ -151,17 +151,15 @@
  */ "use strict";
 var module = templateResolverInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function templateResolverInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
- */ var template_resolver = module.exports = {
-}; // Export module for npm...
+ */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
-template_resolver.Resolver = (function() {
+var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
+template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
    * Resolver. Is used inside this repository. It could also be used outside.
@@ -199,8 +197,7 @@ template_resolver.Resolver = (function() {
      * @returns {object} object with resolvable field names and their values.
      * @public
      */ this.resolvableFieldsOfAll = function() {
-            var map = {
-            };
+            var map = {};
             var ignoreInternalFields = function(propertyName) {
                 return propertyName.indexOf("_") !== 0 && propertyName.indexOf("._") < 0;
             };
@@ -288,21 +285,19 @@ template_resolver.Resolver = (function() {
         return mapObject;
     }
     return Resolver;
-})();
+}();
 
-},{"../../lib/js/flattenToArray":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
+},{"f487ae68739219c3":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
  * @version ${project.version}
  * @see {@link https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss|stackoverflow flatten nested json objects}
- */ var module = module || {
-}; // Fallback for vanilla js without modules
+ */ var module = module || {}; // Fallback for vanilla js without modules
 /**
  * internal_object_tools. Not meant to be used outside this repository.
  * @default {}
- */ var internal_object_tools = module.exports = {
-}; // Export module for npm...
+ */ var internal_object_tools = module.exports = {}; // Export module for npm...
 /**
  * @typedef {Object} NameValuePair
  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".

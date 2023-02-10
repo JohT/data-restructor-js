@@ -144,19 +144,20 @@
   }
 })({"4dShw":[function(require,module,exports) {
 "use strict";
-require("../../lib/js/polyfills/indexOfPolyfill.js");
-require("../../lib/js/polyfills/objectKeysPolyfill.js");
-var template_resolver = require("../../src/js/templateResolver.js");
+require("84de590453371eaa");
+require("11683b3c48805458");
+var template_resolver = require("4399ca918bdf8bdb");
 module.exports = {
     template_resolver: template_resolver
 };
 
-},{"../../lib/js/polyfills/indexOfPolyfill.js":"dCgG6","../../lib/js/polyfills/objectKeysPolyfill.js":"8vHia","../../src/js/templateResolver.js":"5qyN0"}],"dCgG6":[function(require,module,exports) {
+},{"84de590453371eaa":"dCgG6","11683b3c48805458":"8vHia","4399ca918bdf8bdb":"5qyN0"}],"dCgG6":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
-if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, min) {
+if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, min) {
+    "use strict";
     return function indexOf(member, fromIndex) {
         if (this === null || this === undefined) throw TypeError("Array.prototype.indexOf called on null or undefined");
-        var that = Object(this), Len = that.length >>> 0, i = min(fromIndex | 0, Len);
+        var that = Object1(this), Len = that.length >>> 0, i = min(fromIndex | 0, Len);
         if (i < 0) i = max(0, Len + i);
         else if (i >= Len) return -1;
         if (member === void 0) {
@@ -166,12 +167,12 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, m
         } else for(; i !== Len; ++i)if (that[i] === member) return i; // all else
         return -1; // if the value was not found, then return -1
     };
-})(Object, Math.max, Math.min);
+}(Object, Math.max, Math.min);
 
 },{}],"8vHia":[function(require,module,exports) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
-    if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
+    if (o !== Object(o)) throw new TypeError("Object.keys called on a non-object");
     var k = [], p;
     for(p in o)if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
     return k;
@@ -186,17 +187,15 @@ if (!Object.keys) Object.keys = function(o) {
  */ "use strict";
 var module = templateResolverInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function templateResolverInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
- */ var template_resolver = module.exports = {
-}; // Export module for npm...
+ */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
-template_resolver.Resolver = (function() {
+var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
+template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
    * Resolver. Is used inside this repository. It could also be used outside.
@@ -234,8 +233,7 @@ template_resolver.Resolver = (function() {
      * @returns {object} object with resolvable field names and their values.
      * @public
      */ this.resolvableFieldsOfAll = function() {
-            var map = {
-            };
+            var map = {};
             var ignoreInternalFields = function(propertyName) {
                 return propertyName.indexOf("_") !== 0 && propertyName.indexOf("._") < 0;
             };
@@ -323,21 +321,19 @@ template_resolver.Resolver = (function() {
         return mapObject;
     }
     return Resolver;
-})();
+}();
 
-},{"../../lib/js/flattenToArray":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
+},{"f487ae68739219c3":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
  * @version ${project.version}
  * @see {@link https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss|stackoverflow flatten nested json objects}
- */ var module = module || {
-}; // Fallback for vanilla js without modules
+ */ var module = module || {}; // Fallback for vanilla js without modules
 /**
  * internal_object_tools. Not meant to be used outside this repository.
  * @default {}
- */ var internal_object_tools = module.exports = {
-}; // Export module for npm...
+ */ var internal_object_tools = module.exports = {}; // Export module for npm...
 /**
  * @typedef {Object} NameValuePair
  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".

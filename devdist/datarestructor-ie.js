@@ -144,26 +144,27 @@
   }
 })({"enDbA":[function(require,module,exports) {
 "use strict";
-require("../../lib/js/polyfills/isArrayPolyfill.js");
-require("../../lib/js/polyfills/arrayFilterPolyfill.js");
-require("../../lib/js/polyfills/indexOfPolyfill.js");
-require("../../lib/js/polyfills/objectKeysPolyfill.js");
-var datarestructor = require("../../src/js/datarestructor.js");
+require("28b268b99866d575");
+require("3ef668c0f3221629");
+require("b7c64673d7e5777b");
+require("2e0915225c6ce245");
+var datarestructor = require("a57a0c538ef9d0cc");
 module.exports = {
     datarestructor: datarestructor
 };
 
-},{"../../lib/js/polyfills/isArrayPolyfill.js":"2XAtx","../../lib/js/polyfills/arrayFilterPolyfill.js":"hTxNN","../../lib/js/polyfills/indexOfPolyfill.js":"dCgG6","../../lib/js/polyfills/objectKeysPolyfill.js":"8vHia","../../src/js/datarestructor.js":"jZ3Ya"}],"2XAtx":[function(require,module,exports) {
+},{"28b268b99866d575":"2XAtx","3ef668c0f3221629":"hTxNN","b7c64673d7e5777b":"dCgG6","2e0915225c6ce245":"8vHia","a57a0c538ef9d0cc":"jZ3Ya"}],"2XAtx":[function(require,module,exports) {
 // https://gist.github.com/brianonn/4ef965a06b9e950d80e4e8b8e4c527f9
 // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 if (!Array.isArray) Array.isArray = function(arg) {
-    return Object.prototype.toString.call(arg) === '[object Array]';
+    return Object.prototype.toString.call(arg) === "[object Array]";
 };
 
 },{}],"hTxNN":[function(require,module,exports) {
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill
 if (!Array.prototype.filter) Array.prototype.filter = function(func, thisArg) {
-    if (!((typeof func === 'Function' || typeof func === 'function') && this)) throw new TypeError();
+    "use strict";
+    if (!((typeof func === "Function" || typeof func === "function") && this)) throw new TypeError();
     var len = this.length >>> 0, res = new Array(len), t = this, c = 0, i = -1;
     var kValue;
     if (thisArg === undefined) {
@@ -185,10 +186,11 @@ if (!Array.prototype.filter) Array.prototype.filter = function(func, thisArg) {
 
 },{}],"dCgG6":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
-if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, min) {
+if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, min) {
+    "use strict";
     return function indexOf(member, fromIndex) {
         if (this === null || this === undefined) throw TypeError("Array.prototype.indexOf called on null or undefined");
-        var that = Object(this), Len = that.length >>> 0, i = min(fromIndex | 0, Len);
+        var that = Object1(this), Len = that.length >>> 0, i = min(fromIndex | 0, Len);
         if (i < 0) i = max(0, Len + i);
         else if (i >= Len) return -1;
         if (member === void 0) {
@@ -198,12 +200,12 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, m
         } else for(; i !== Len; ++i)if (that[i] === member) return i; // all else
         return -1; // if the value was not found, then return -1
     };
-})(Object, Math.max, Math.min);
+}(Object, Math.max, Math.min);
 
 },{}],"8vHia":[function(require,module,exports) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
-    if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
+    if (o !== Object(o)) throw new TypeError("Object.keys called on a non-object");
     var k = [], p;
     for(p in o)if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
     return k;
@@ -217,8 +219,7 @@ if (!Object.keys) Object.keys = function(o) {
  */ "use strict";
 var module = datarestructorInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function datarestructorInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * datarestructor namespace and module declaration.
@@ -233,12 +234,11 @@ function datarestructorInternalCreateIfNotExists(objectToCheck) {
  * - group
  * - flatten again
  * @module datarestructor
- */ var datarestructor = module.exports = {
-}; // Export module for npm...
+ */ var datarestructor = module.exports = {}; // Export module for npm...
 datarestructor.internalCreateIfNotExists = datarestructorInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
-var template_resolver = template_resolver || require("../../src/js/templateResolver"); // supports vanilla js & npm
-var described_field = described_field || require("../../src/js/describedfield"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("e36974a04bad772d"); // supports vanilla js & npm
+var template_resolver = template_resolver || require("6d26f2b4214be2e0"); // supports vanilla js & npm
+var described_field = described_field || require("b8d9a5e923cb6908"); // supports vanilla js & npm
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
  * 
@@ -264,7 +264,8 @@ var described_field = described_field || require("../../src/js/describedfield");
  * @property {string} groupDestinationPattern - Pattern that describes where the group should be moved to. Default=""=Group will not be moved. A pattern may contain variables in double curly brackets {{variable}}.
  * @property {string} groupDestinationName - (default=groupName) Name of the group when it had been moved to the destination.
  * @property {string} deduplicationPattern - Pattern to use to remove duplicate entries. A pattern may contain variables in double curly brackets {{variable}}.
- */ datarestructor.PropertyStructureDescriptionBuilder = (function() {
+ */ datarestructor.PropertyStructureDescriptionBuilder = function() {
+    "use strict";
     /**
    * Builder for a {@link PropertyStructureDescription}.
    * @constructs PropertyStructureDescriptionBuilder
@@ -589,7 +590,7 @@ var described_field = described_field || require("../../src/js/describedfield");
         return typeof value === "string" && value != null && value != "";
     }
     return PropertyStructureDescription;
-})();
+}();
 /**
  * Adds a group item/entry to the {@link module:datarestructor.DescribedEntry}.
  * 
@@ -631,7 +632,8 @@ var described_field = described_field || require("../../src/js/describedfield");
  * @callback module:datarestructor.stringFieldOfDescribedEntryFunction
  * @param {module:datarestructor.DescribedEntry} entry described entry that contains the field that should be returned
  * @returns {String} field value 
- */ datarestructor.DescribedEntryCreator = (function() {
+ */ datarestructor.DescribedEntryCreator = function() {
+    "use strict";
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
    * Creates a {@link module:datarestructor.DescribedEntry}.
@@ -728,20 +730,21 @@ var described_field = described_field || require("../../src/js/describedfield");
                 pointDelimited += match[1];
                 numberArray.push(parseInt(match[1]));
             }
-        }while (match)
+        }while (match);
         return {
             pointDelimited: pointDelimited,
             numberArray: numberArray
         };
     }
     return DescribedEntry;
-})();
+}();
 /**
    * @typedef {Object} module:datarestructor.TransformConfig
    * @property {boolean} debugMode enables/disables detailed logging
    * @property {number} [maxRecursionDepth=8] Maximum recursion depth
    * @property {number} [removeDuplicationAboveRecursionDepth=1]  Duplications will be removed above the given recursion depth value and remain unchanged below it.
-   */ datarestructor.Transform = (function() {
+   */ datarestructor.Transform = function() {
+    "use strict";
     /**
    * Main class for the data transformation.
    * @param {module:datarestructor.PropertyStructureDescription[]} descriptions
@@ -1227,7 +1230,7 @@ var described_field = described_field || require("../../src/js/describedfield");
         }
     }
     return Transform;
-})();
+}();
 /**
  * Main fassade for the data restructor as static function(s).
  * 
@@ -1237,8 +1240,7 @@ var described_field = described_field || require("../../src/js/describedfield");
  * allDescriptions.push(detailsDescription());
  * var result = datarestructor.Restructor.processJsonUsingDescriptions(jsonData, allDescriptions);
  * @namespace module:datarestructor.Restructor
- */ datarestructor.Restructor = {
-};
+ */ datarestructor.Restructor = {};
 /**
  * Static fassade function for the "Assembly line", that takes the jsonData and processes it using all given descriptions in their given order.
  * @param {object} jsonData - parsed JSON data or any other data object
@@ -1253,19 +1255,17 @@ var described_field = described_field || require("../../src/js/describedfield");
     return restructor.processJson(jsonData);
 };
 
-},{"../../lib/js/flattenToArray":"i4dBQ","../../src/js/templateResolver":"5qyN0","../../src/js/describedfield":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
+},{"e36974a04bad772d":"i4dBQ","6d26f2b4214be2e0":"5qyN0","b8d9a5e923cb6908":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
  * @version ${project.version}
  * @see {@link https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss|stackoverflow flatten nested json objects}
- */ var module = module || {
-}; // Fallback for vanilla js without modules
+ */ var module = module || {}; // Fallback for vanilla js without modules
 /**
  * internal_object_tools. Not meant to be used outside this repository.
  * @default {}
- */ var internal_object_tools = module.exports = {
-}; // Export module for npm...
+ */ var internal_object_tools = module.exports = {}; // Export module for npm...
 /**
  * @typedef {Object} NameValuePair
  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
@@ -1320,17 +1320,15 @@ var described_field = described_field || require("../../src/js/describedfield");
  */ "use strict";
 var module = templateResolverInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function templateResolverInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
- */ var template_resolver = module.exports = {
-}; // Export module for npm...
+ */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("../../lib/js/flattenToArray"); // supports vanilla js & npm
-template_resolver.Resolver = (function() {
+var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
+template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
    * Resolver. Is used inside this repository. It could also be used outside.
@@ -1368,8 +1366,7 @@ template_resolver.Resolver = (function() {
      * @returns {object} object with resolvable field names and their values.
      * @public
      */ this.resolvableFieldsOfAll = function() {
-            var map = {
-            };
+            var map = {};
             var ignoreInternalFields = function(propertyName) {
                 return propertyName.indexOf("_") !== 0 && propertyName.indexOf("._") < 0;
             };
@@ -1457,9 +1454,9 @@ template_resolver.Resolver = (function() {
         return mapObject;
     }
     return Resolver;
-})();
+}();
 
-},{"../../lib/js/flattenToArray":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
+},{"f487ae68739219c3":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1468,14 +1465,12 @@ template_resolver.Resolver = (function() {
  */ "use strict";
 var module = describedFieldInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function describedFieldInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * Describes a data field of the restructured data.
  * @module described_field
- */ var described_field = module.exports = {
-}; // Export module for npm...
+ */ var described_field = module.exports = {}; // Export module for npm...
 described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExists;
 /**
  * Describes a field of the restructured data.
@@ -1492,7 +1487,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
  * @property {module:described_field.DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
- */ described_field.DescribedDataFieldBuilder = (function() {
+ */ described_field.DescribedDataFieldBuilder = function() {
     /**
    * Builds a {@link module:described_field.DescribedDataField}.
    * DescribedDataField is the main element of the restructured data and therefore considered "public".
@@ -1662,7 +1657,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
         return value === undefined || value === null ? defaultValue : value;
     }
     return DescribedDataFieldBuilder;
-})();
+}();
 /**
  * Creates a new described data field with all properties of the original one except for dynamically added groups.
  * @param {module:described_field.DescribedDataField} describedDataField
@@ -1671,7 +1666,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  */ described_field.copyWithoutGroups = function(describedDataField) {
     return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).groupNames([]).build();
 };
-described_field.DescribedDataFieldGroup = (function() {
+described_field.DescribedDataFieldGroup = function() {
     /**
    * Adds groups to {@link module:described_field.DescribedDataField}s. These groups are dynamically added properties
    * that contain an array of sub fields of the same type {@link module:described_field.DescribedDataField}s.
@@ -1717,7 +1712,7 @@ described_field.DescribedDataFieldGroup = (function() {
         };
     }
     return DescribedDataFieldGroup;
-})();
+}();
 
 },{}]},["enDbA"], "enDbA", "parcelRequirec1f2")
 

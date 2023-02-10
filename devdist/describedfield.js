@@ -151,14 +151,12 @@
  */ "use strict";
 var module = describedFieldInternalCreateIfNotExists(module); // Fallback for vanilla js without modules
 function describedFieldInternalCreateIfNotExists(objectToCheck) {
-    return objectToCheck || {
-    };
+    return objectToCheck || {};
 }
 /**
  * Describes a data field of the restructured data.
  * @module described_field
- */ var described_field = module.exports = {
-}; // Export module for npm...
+ */ var described_field = module.exports = {}; // Export module for npm...
 described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExists;
 /**
  * Describes a field of the restructured data.
@@ -175,7 +173,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  * @property {string} fieldName - field name
  * @property {{*}} value - content of the field
  * @property {module:described_field.DescribedDataField[]} [couldBeAnyCustomGroupName] any number of groups attached to the field each containing multiple fields
- */ described_field.DescribedDataFieldBuilder = (function() {
+ */ described_field.DescribedDataFieldBuilder = function() {
     /**
    * Builds a {@link module:described_field.DescribedDataField}.
    * DescribedDataField is the main element of the restructured data and therefore considered "public".
@@ -345,7 +343,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
         return value === undefined || value === null ? defaultValue : value;
     }
     return DescribedDataFieldBuilder;
-})();
+}();
 /**
  * Creates a new described data field with all properties of the original one except for dynamically added groups.
  * @param {module:described_field.DescribedDataField} describedDataField
@@ -354,7 +352,7 @@ described_field.internalCreateIfNotExists = describedFieldInternalCreateIfNotExi
  */ described_field.copyWithoutGroups = function(describedDataField) {
     return new described_field.DescribedDataFieldBuilder().fromDescribedDataField(describedDataField).groupNames([]).build();
 };
-described_field.DescribedDataFieldGroup = (function() {
+described_field.DescribedDataFieldGroup = function() {
     /**
    * Adds groups to {@link module:described_field.DescribedDataField}s. These groups are dynamically added properties
    * that contain an array of sub fields of the same type {@link module:described_field.DescribedDataField}s.
@@ -400,7 +398,7 @@ described_field.DescribedDataFieldGroup = (function() {
         };
     }
     return DescribedDataFieldGroup;
-})();
+}();
 
 },{}]},["g0GVY"], "g0GVY", "parcelRequirec1f2")
 
