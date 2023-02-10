@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"7hzxy":[function(require,module,exports) {
+})({"jZ3Ya":[function(require,module,exports) {
 /**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1186,7 +1186,7 @@ var described_field = described_field || require("../../src/js/describedfield");
     return restructor.processJson(jsonData);
 };
 
-},{"../../lib/js/flattenToArray":"ipjOk","../../src/js/templateResolver":"41qn9","../../src/js/describedfield":"cleYG"}],"ipjOk":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"i4dBQ","../../src/js/templateResolver":"5qyN0","../../src/js/describedfield":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1244,7 +1244,7 @@ var described_field = described_field || require("../../src/js/describedfield");
     return result;
 };
 
-},{}],"41qn9":[function(require,module,exports) {
+},{}],"5qyN0":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1392,7 +1392,7 @@ template_resolver.Resolver = (function() {
     return Resolver;
 })();
 
-},{"../../lib/js/flattenToArray":"ipjOk"}],"cleYG":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1652,5 +1652,5 @@ described_field.DescribedDataFieldGroup = (function() {
     return DescribedDataFieldGroup;
 })();
 
-},{}]},["7hzxy"], "7hzxy", "parcelRequirec1f2")
+},{}]},["jZ3Ya"], "jZ3Ya", "parcelRequirec1f2")
 

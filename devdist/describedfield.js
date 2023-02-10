@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"cleYG":[function(require,module,exports) {
+})({"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -402,5 +402,5 @@ described_field.DescribedDataFieldGroup = (function() {
     return DescribedDataFieldGroup;
 })();
 
-},{}]},["cleYG"], "cleYG", "parcelRequirec1f2")
+},{}]},["g0GVY"], "g0GVY", "parcelRequirec1f2")
 

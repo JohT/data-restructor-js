@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"2gjIT":[function(require,module,exports) {
+})({"enDbA":[function(require,module,exports) {
 "use strict";
 require("../../lib/js/polyfills/isArrayPolyfill.js");
 require("../../lib/js/polyfills/arrayFilterPolyfill.js");
@@ -153,14 +153,14 @@ module.exports = {
     datarestructor: datarestructor
 };
 
-},{"../../lib/js/polyfills/isArrayPolyfill.js":"1e7Zo","../../lib/js/polyfills/arrayFilterPolyfill.js":"47djm","../../lib/js/polyfills/indexOfPolyfill.js":"6WEQI","../../lib/js/polyfills/objectKeysPolyfill.js":"cXkCN","../../src/js/datarestructor.js":"7hzxy"}],"1e7Zo":[function(require,module,exports) {
+},{"../../lib/js/polyfills/isArrayPolyfill.js":"2XAtx","../../lib/js/polyfills/arrayFilterPolyfill.js":"hTxNN","../../lib/js/polyfills/indexOfPolyfill.js":"dCgG6","../../lib/js/polyfills/objectKeysPolyfill.js":"8vHia","../../src/js/datarestructor.js":"jZ3Ya"}],"2XAtx":[function(require,module,exports) {
 // https://gist.github.com/brianonn/4ef965a06b9e950d80e4e8b8e4c527f9
 // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 if (!Array.isArray) Array.isArray = function(arg) {
     return Object.prototype.toString.call(arg) === '[object Array]';
 };
 
-},{}],"47djm":[function(require,module,exports) {
+},{}],"hTxNN":[function(require,module,exports) {
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill
 if (!Array.prototype.filter) Array.prototype.filter = function(func, thisArg) {
     if (!((typeof func === 'Function' || typeof func === 'function') && this)) throw new TypeError();
@@ -183,7 +183,7 @@ if (!Array.prototype.filter) Array.prototype.filter = function(func, thisArg) {
     return res;
 };
 
-},{}],"6WEQI":[function(require,module,exports) {
+},{}],"dCgG6":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, min) {
     return function indexOf(member, fromIndex) {
@@ -200,7 +200,7 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, m
     };
 })(Object, Math.max, Math.min);
 
-},{}],"cXkCN":[function(require,module,exports) {
+},{}],"8vHia":[function(require,module,exports) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
     if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
@@ -209,7 +209,7 @@ if (!Object.keys) Object.keys = function(o) {
     return k;
 };
 
-},{}],"7hzxy":[function(require,module,exports) {
+},{}],"jZ3Ya":[function(require,module,exports) {
 /**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1253,7 +1253,7 @@ var described_field = described_field || require("../../src/js/describedfield");
     return restructor.processJson(jsonData);
 };
 
-},{"../../lib/js/flattenToArray":"ipjOk","../../src/js/templateResolver":"41qn9","../../src/js/describedfield":"cleYG"}],"ipjOk":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"i4dBQ","../../src/js/templateResolver":"5qyN0","../../src/js/describedfield":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1311,7 +1311,7 @@ var described_field = described_field || require("../../src/js/describedfield");
     return result;
 };
 
-},{}],"41qn9":[function(require,module,exports) {
+},{}],"5qyN0":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1459,7 +1459,7 @@ template_resolver.Resolver = (function() {
     return Resolver;
 })();
 
-},{"../../lib/js/flattenToArray":"ipjOk"}],"cleYG":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1719,5 +1719,5 @@ described_field.DescribedDataFieldGroup = (function() {
     return DescribedDataFieldGroup;
 })();
 
-},{}]},["2gjIT"], "2gjIT", "parcelRequirec1f2")
+},{}]},["enDbA"], "enDbA", "parcelRequirec1f2")
 

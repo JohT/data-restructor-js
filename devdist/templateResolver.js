@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"41qn9":[function(require,module,exports) {
+})({"5qyN0":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -290,7 +290,7 @@ template_resolver.Resolver = (function() {
     return Resolver;
 })();
 
-},{"../../lib/js/flattenToArray":"ipjOk"}],"ipjOk":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -348,5 +348,5 @@ template_resolver.Resolver = (function() {
     return result;
 };
 
-},{}]},["41qn9"], "41qn9", "parcelRequirec1f2")
+},{}]},["5qyN0"], "5qyN0", "parcelRequirec1f2")
 

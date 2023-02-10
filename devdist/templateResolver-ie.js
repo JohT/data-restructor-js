@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"j48fh":[function(require,module,exports) {
+})({"4dShw":[function(require,module,exports) {
 "use strict";
 require("../../lib/js/polyfills/indexOfPolyfill.js");
 require("../../lib/js/polyfills/objectKeysPolyfill.js");
@@ -151,7 +151,7 @@ module.exports = {
     template_resolver: template_resolver
 };
 
-},{"../../lib/js/polyfills/indexOfPolyfill.js":"6WEQI","../../lib/js/polyfills/objectKeysPolyfill.js":"cXkCN","../../src/js/templateResolver.js":"41qn9"}],"6WEQI":[function(require,module,exports) {
+},{"../../lib/js/polyfills/indexOfPolyfill.js":"dCgG6","../../lib/js/polyfills/objectKeysPolyfill.js":"8vHia","../../src/js/templateResolver.js":"5qyN0"}],"dCgG6":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, min) {
     return function indexOf(member, fromIndex) {
@@ -168,7 +168,7 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = (function(Object, max, m
     };
 })(Object, Math.max, Math.min);
 
-},{}],"cXkCN":[function(require,module,exports) {
+},{}],"8vHia":[function(require,module,exports) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
     if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
@@ -177,7 +177,7 @@ if (!Object.keys) Object.keys = function(o) {
     return k;
 };
 
-},{}],"41qn9":[function(require,module,exports) {
+},{}],"5qyN0":[function(require,module,exports) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -325,7 +325,7 @@ template_resolver.Resolver = (function() {
     return Resolver;
 })();
 
-},{"../../lib/js/flattenToArray":"ipjOk"}],"ipjOk":[function(require,module,exports) {
+},{"../../lib/js/flattenToArray":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -383,5 +383,5 @@ template_resolver.Resolver = (function() {
     return result;
 };
 
-},{}]},["j48fh"], "j48fh", "parcelRequirec1f2")
+},{}]},["4dShw"], "4dShw", "parcelRequirec1f2")
 

@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"cfxtc":[function(require,module,exports) {
+})({"eeb0L":[function(require,module,exports) {
 "use strict";
 var described_field = require("../../src/js/describedfield.js");
 module.exports = {
     described_field: described_field
 };
 
-},{"../../src/js/describedfield.js":"cleYG"}],"cleYG":[function(require,module,exports) {
+},{"../../src/js/describedfield.js":"g0GVY"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -409,5 +409,5 @@ described_field.DescribedDataFieldGroup = (function() {
     return DescribedDataFieldGroup;
 })();
 
-},{}]},["cfxtc"], "cfxtc", "parcelRequirec1f2")
+},{}]},["eeb0L"], "eeb0L", "parcelRequirec1f2")
 
