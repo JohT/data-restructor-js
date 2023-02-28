@@ -1,6 +1,6 @@
 {
   "name": "data-restructor",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Transforms parsed JSON objects into a uniform data structure",
   "directories": {
     "test": "test"
@@ -28,6 +28,8 @@
     "dev": "rm -rf devdist && parcel --out-dir devdist ./src/js/*.js",
     "devbuild": "rm -rf devdist && NODE_ENV=development parcel build --dist-dir devdist ./src/js/*.js --no-optimize --no-source-maps --no-scope-hoist --no-content-hash --detailed-report",
     "build": "export NODE_OPTIONS=--no-experimental-fetch;parcel build ./src/js/*.js",
+    "changelog": "auto-changelog",
+    "changelog-debug": "auto-changelog --template json --output changelog-data.json",
     "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run devbuild && npm run build && npm run merger"
   },
   "repository": {
@@ -46,6 +48,7 @@
   },
   "homepage": "https://joht.github.io/data-restructor-js",
   "devDependencies": {
+    "auto-changelog": "^2.4.0",
     "eslint": "8.35.0",
     "inquirer": "9.1.4",
     "istanbul-badges-readme": "1.8.5",
