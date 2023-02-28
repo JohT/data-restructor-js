@@ -158,7 +158,7 @@ function templateResolverInternalCreateIfNotExists(objectToCheck) {
  * @module template_resolver
  */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("2bc8fdaaf35dfa57"); // supports vanilla js & npm
 template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
@@ -287,7 +287,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"f487ae68739219c3":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
+},{"2bc8fdaaf35dfa57":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss

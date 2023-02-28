@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 
 ### Changes
 
+- Pin dependency auto-changelog to 2.4.0 [`#141`](https://github.com/JohT/data-restructor-js/pull/141)
+- Generate CHANGELOG.md using auto-changelog [`#140`](https://github.com/JohT/data-restructor-js/pull/140)
 - Update/node-18 [`#132`](https://github.com/JohT/data-restructor-js/pull/132)
 
 ### Dependency Updates
