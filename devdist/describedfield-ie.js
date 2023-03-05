@@ -144,12 +144,12 @@
   }
 })({"eeb0L":[function(require,module,exports) {
 "use strict";
-var described_field = require("49c22594fe0218d9");
+var described_field = require("f52f630b99dc3a6c");
 module.exports = {
     described_field: described_field
 };
 
-},{"49c22594fe0218d9":"g0GVY"}],"g0GVY":[function(require,module,exports) {
+},{"f52f630b99dc3a6c":"g0GVY"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}

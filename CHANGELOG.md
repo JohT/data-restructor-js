@@ -8,7 +8,13 @@ All notable changes to this project will be documented in this file.
 - [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - [`auto-changelog`](https://github.com/CookPete/auto-changelog)
 
-## [v3.4.1](https://github.com/JohT/data-restructor-js/compare/v3.4.0...master) (upcoming)
+## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...master) (upcoming)
+
+### Changes
+
+- Add CHANGELOG.md regeneration to continuous integration pipeline [`#142`](https://github.com/JohT/data-restructor-js/pull/142)
+
+## [v3.4.1](https://github.com/JohT/data-restructor-js/compare/v3.4.0...v3.4.1) (28 February 2023)
 
 ### Changes
 

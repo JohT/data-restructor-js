@@ -144,16 +144,16 @@
   }
 })({"enDbA":[function(require,module,exports) {
 "use strict";
-require("e26fd4c295a4a1ee");
-require("a39f2ce9dee386f0");
-require("2cd33fab0a549622");
-require("474031996ceb5a27");
-var datarestructor = require("1a957b883db91c17");
+require("28b268b99866d575");
+require("3ef668c0f3221629");
+require("b7c64673d7e5777b");
+require("2e0915225c6ce245");
+var datarestructor = require("a57a0c538ef9d0cc");
 module.exports = {
     datarestructor: datarestructor
 };
 
-},{"e26fd4c295a4a1ee":"2XAtx","a39f2ce9dee386f0":"hTxNN","2cd33fab0a549622":"dCgG6","474031996ceb5a27":"8vHia","1a957b883db91c17":"jZ3Ya"}],"2XAtx":[function(require,module,exports) {
+},{"28b268b99866d575":"2XAtx","3ef668c0f3221629":"hTxNN","b7c64673d7e5777b":"dCgG6","2e0915225c6ce245":"8vHia","a57a0c538ef9d0cc":"jZ3Ya"}],"2XAtx":[function(require,module,exports) {
 // https://gist.github.com/brianonn/4ef965a06b9e950d80e4e8b8e4c527f9
 // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 if (!Array.isArray) Array.isArray = function(arg) {
@@ -236,9 +236,9 @@ function datarestructorInternalCreateIfNotExists(objectToCheck) {
  * @module datarestructor
  */ var datarestructor = module.exports = {}; // Export module for npm...
 datarestructor.internalCreateIfNotExists = datarestructorInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("403576eaef4c3d50"); // supports vanilla js & npm
-var template_resolver = template_resolver || require("f62fb3394fa418f2"); // supports vanilla js & npm
-var described_field = described_field || require("4388868734c1e0a7"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("e36974a04bad772d"); // supports vanilla js & npm
+var template_resolver = template_resolver || require("6d26f2b4214be2e0"); // supports vanilla js & npm
+var described_field = described_field || require("b8d9a5e923cb6908"); // supports vanilla js & npm
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
  * 
@@ -1255,7 +1255,7 @@ var described_field = described_field || require("4388868734c1e0a7"); // support
     return restructor.processJson(jsonData);
 };
 
-},{"403576eaef4c3d50":"i4dBQ","f62fb3394fa418f2":"5qyN0","4388868734c1e0a7":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
+},{"e36974a04bad772d":"i4dBQ","6d26f2b4214be2e0":"5qyN0","b8d9a5e923cb6908":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1327,7 +1327,7 @@ function templateResolverInternalCreateIfNotExists(objectToCheck) {
  * @module template_resolver
  */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("2bc8fdaaf35dfa57"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
 template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
@@ -1456,7 +1456,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"2bc8fdaaf35dfa57":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
+},{"f487ae68739219c3":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}

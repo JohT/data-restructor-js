@@ -144,14 +144,14 @@
   }
 })({"4dShw":[function(require,module,exports) {
 "use strict";
-require("f9cbbac04b01709d");
-require("df655861a744c42f");
-var template_resolver = require("5944841c0ea18f02");
+require("84de590453371eaa");
+require("11683b3c48805458");
+var template_resolver = require("4399ca918bdf8bdb");
 module.exports = {
     template_resolver: template_resolver
 };
 
-},{"f9cbbac04b01709d":"dCgG6","df655861a744c42f":"8vHia","5944841c0ea18f02":"5qyN0"}],"dCgG6":[function(require,module,exports) {
+},{"84de590453371eaa":"dCgG6","11683b3c48805458":"8vHia","4399ca918bdf8bdb":"5qyN0"}],"dCgG6":[function(require,module,exports) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, min) {
     "use strict";
@@ -194,7 +194,7 @@ function templateResolverInternalCreateIfNotExists(objectToCheck) {
  * @module template_resolver
  */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("2bc8fdaaf35dfa57"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
 template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
@@ -323,7 +323,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"2bc8fdaaf35dfa57":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
+},{"f487ae68739219c3":"i4dBQ"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
