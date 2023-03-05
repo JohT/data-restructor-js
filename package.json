@@ -30,7 +30,7 @@
     "build": "export NODE_OPTIONS=--no-experimental-fetch;parcel build ./src/js/*.js",
     "changelog": "auto-changelog",
     "changelog-debug": "auto-changelog --template json --output changelog-data.json",
-    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run devbuild && npm run build && npm run merger"
+    "package": "npm run lint && npm run coverage && npm run coverage-badge && npm run doc && npm run changelog && npm run devbuild && npm run build && npm run merger"
   },
   "repository": {
     "type": "git",
