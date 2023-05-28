@@ -167,9 +167,9 @@ function datarestructorInternalCreateIfNotExists(objectToCheck) {
  * @module datarestructor
  */ var datarestructor = module.exports = {}; // Export module for npm...
 datarestructor.internalCreateIfNotExists = datarestructorInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("e36974a04bad772d"); // supports vanilla js & npm
-var template_resolver = template_resolver || require("6d26f2b4214be2e0"); // supports vanilla js & npm
-var described_field = described_field || require("b8d9a5e923cb6908"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("18c4c58e0f058705"); // supports vanilla js & npm
+var template_resolver = template_resolver || require("1294899c93dea6c7"); // supports vanilla js & npm
+var described_field = described_field || require("8c4b9c5cf6a20f4c"); // supports vanilla js & npm
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
  * 
@@ -1186,7 +1186,7 @@ var described_field = described_field || require("b8d9a5e923cb6908"); // support
     return restructor.processJson(jsonData);
 };
 
-},{"e36974a04bad772d":"i4dBQ","6d26f2b4214be2e0":"5qyN0","b8d9a5e923cb6908":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
+},{"18c4c58e0f058705":"i4dBQ","1294899c93dea6c7":"5qyN0","8c4b9c5cf6a20f4c":"g0GVY"}],"i4dBQ":[function(require,module,exports) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1258,7 +1258,7 @@ function templateResolverInternalCreateIfNotExists(objectToCheck) {
  * @module template_resolver
  */ var template_resolver = module.exports = {}; // Export module for npm...
 template_resolver.internalCreateIfNotExists = templateResolverInternalCreateIfNotExists;
-var internal_object_tools = internal_object_tools || require("f487ae68739219c3"); // supports vanilla js & npm
+var internal_object_tools = internal_object_tools || require("cbde56e74c44f93f"); // supports vanilla js & npm
 template_resolver.Resolver = function() {
     var removeArrayBracketsRegEx = new RegExp("\\[\\d+\\]", "gi");
     /**
@@ -1387,7 +1387,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"f487ae68739219c3":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
+},{"cbde56e74c44f93f":"i4dBQ"}],"g0GVY":[function(require,module,exports) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}

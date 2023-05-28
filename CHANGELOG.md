@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency jasmine to v5 [`#156`](https://github.com/JohT/data-restructor-js/pull/156)
+- Update dependency parcel to v2.9.1 [`#155`](https://github.com/JohT/data-restructor-js/pull/155)
 
 ## [v3.4.1](https://github.com/JohT/data-restructor-js/compare/v3.4.0...v3.4.1) (28 February 2023)
 
