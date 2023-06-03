@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency lmdb to v2.8.0 [`#154`](https://github.com/JohT/data-restructor-js/pull/154)
+- Update dependency eslint to v8.42.0 [`#157`](https://github.com/JohT/data-restructor-js/pull/157)
 
 ## [v3.4.1](https://github.com/JohT/data-restructor-js/compare/v3.4.0...v3.4.1) (28 February 2023)
 
