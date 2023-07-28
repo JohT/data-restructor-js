@@ -54,7 +54,7 @@
     "istanbul-badges-readme": "1.8.5",
     "jasmine": "5.1.0",
     "jsdoc": "4.0.2",
-    "lmdb": "2.8.3",
+    "lmdb": "2.8.4",
     "merger-js": "3.10.3",
     "node-notifier": "10.0.1",
     "nyc": "15.1.0",
