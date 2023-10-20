@@ -10,9 +10,25 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...master) (upcoming)
 
+### Changes
+
+- Add CHANGELOG.md regeneration to continuous integration pipeline [`#142`](https://github.com/JohT/data-restructor-js/pull/142)
+
 ### Dependency Updates
 
 - Update actions/checkout digest to b4ffde6 [`#185`](https://github.com/JohT/data-restructor-js/pull/185)
+- Update actions/checkout action to v4 [`#178`](https://github.com/JohT/data-restructor-js/pull/178)
+- Update dependency lmdb to v2.8.4 [`#171`](https://github.com/JohT/data-restructor-js/pull/171)
+- Update dependency parcel to v2.9.3 [`#165`](https://github.com/JohT/data-restructor-js/pull/165)
+- Update dependency lmdb to v2.8.2 [`#164`](https://github.com/JohT/data-restructor-js/pull/164)
+- Update dependency eslint to v8.42.0 [`#157`](https://github.com/JohT/data-restructor-js/pull/157)
+- Update dependency lmdb to v2.8.0 [`#154`](https://github.com/JohT/data-restructor-js/pull/154)
+- Update dependency parcel to v2.9.1 [`#155`](https://github.com/JohT/data-restructor-js/pull/155)
+- Update dependency jasmine to v5 [`#156`](https://github.com/JohT/data-restructor-js/pull/156)
+- Update dependency inquirer to v9.2.0 [`#151`](https://github.com/JohT/data-restructor-js/pull/151)
+- Update dependency eslint to v8.38.0 [`#149`](https://github.com/JohT/data-restructor-js/pull/149)
+- Update dependency eslint to v8.37.0 [`#148`](https://github.com/JohT/data-restructor-js/pull/148)
+- Update dependency inquirer to v9.1.5 [`#146`](https://github.com/JohT/data-restructor-js/pull/146)
 
 ## [v3.4.1](https://github.com/JohT/data-restructor-js/compare/v3.4.0...v3.4.1) (28 February 2023)
 
