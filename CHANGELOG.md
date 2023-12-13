@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update Node.js to v20 [`#188`](https://github.com/JohT/data-restructor-js/pull/188)
+- Update github/codeql-action action to v3 [`#198`](https://github.com/JohT/data-restructor-js/pull/198)
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...v3.4.2) (20 October 2023)
 
