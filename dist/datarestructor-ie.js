@@ -1,10 +1,10 @@
-var e=globalThis,t={},r={},i=e.parcelRequirec1f2;null==i&&((i=function(e){if(e in t)return t[e].exports;if(e in r){var i=r[e];delete r[e];var n={id:e,exports:{}};return t[e]=n,i.call(n.exports,n,n.exports),n.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,t){r[e]=t},e.parcelRequirec1f2=i);var n=i.register;n("3kxfc",function(e,t){//https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
+var e=globalThis,t={},r={},i=e.parcelRequirec1f2;null==i&&((i=function(e){if(e in t)return t[e].exports;if(e in r){var i=r[e];delete r[e];var n={id:e,exports:{}};return t[e]=n,i.call(n.exports,n,n.exports),n.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,t){r[e]=t},e.parcelRequirec1f2=i);var n=i.register;n("dED0n",function(e,t){//https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if(!Array.prototype.indexOf){var r,i,n;Array.prototype.indexOf=(r=Object,i=Math.max,n=Math.min,function(e,t){if(this===null||void 0===this)throw TypeError("Array.prototype.indexOf called on null or undefined");var o=r(this),a=o.length>>>0,s=n(0|t,a);if(s<0)s=i(0,a+s);else if(s>=a)return -1;if(void 0===e){for(;s!==a;++s)if(void 0===o[s]&&s in o)return s;// undefined
 }else if(e!=e){for(;s!==a;++s)if(o[s]!=o[s])return s;// NaN
 }else for(;s!==a;++s)if(o[s]===e)return s;// all else
 return -1;// if the value was not found, then return -1
-})}}),n("26y7f",function(e,t){//http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
-Object.keys||(Object.keys=function(e){if(e!==Object(e))throw TypeError("Object.keys called on a non-object");var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&r.push(t);return r})}),n("cB1fX",function(e,t){var r,n=o(n);// Fallback for vanilla js without modules
+})}}),n("b1M0n",function(e,t){//http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
+Object.keys||(Object.keys=function(e){if(e!==Object(e))throw TypeError("Object.keys called on a non-object");var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&r.push(t);return r})}),n("keJ9m",function(e,t){var r,n=o(n);// Fallback for vanilla js without modules
 function o(e){return e||{}}/**
  * datarestructor namespace and module declaration.
  * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
@@ -19,7 +19,7 @@ function o(e){return e||{}}/**
  * - flatten again
  * @module datarestructor
  */var a=n.exports={};// Export module for npm...
-a.internalCreateIfNotExists=o;var s=s||i("7HmuL"),u=u||i("8ZIyB"),l=l||i("d63jw");// supports vanilla js & npm
+a.internalCreateIfNotExists=o;var s=s||i("ccQZb"),u=u||i("ds403"),l=l||i("aJuQy");// supports vanilla js & npm
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
  * 
@@ -342,7 +342,7 @@ a.internalCreateIfNotExists=o;var s=s||i("7HmuL"),u=u||i("8ZIyB"),l=l||i("d63jw"
    * @protected
    * @memberof module:datarestructor.Transform
    */function(t,r,i){// "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
-var n,o,u,p,c,d,h,f,g=s.flattenToArray(t);n=g,o=RegExp("\\[\\d+\\]$","gi"),u=[],p="",c="",n.filter(function(e){if(!e.name.match(o)){""!==p&&(u.push({name:p+"_comma_separated_values",value:c}),p=""),u.push(e);return}var t=e.name.replace(o,"");p===t?c+=", "+e.value:(""!==p&&(u.push({name:p+"_comma_separated_values",value:c}),p=""),p=t,c=e.value),u.push(e)}),// Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
+var n,o,u,c,p,d,h,f,g=s.flattenToArray(t);n=g,o=RegExp("\\[\\d+\\]$","gi"),u=[],c="",p="",n.filter(function(e){if(!e.name.match(o)){""!==c&&(u.push({name:c+"_comma_separated_values",value:p}),c=""),u.push(e);return}var t=e.name.replace(o,"");c===t?p+=", "+e.value:(""!==c&&(u.push({name:c+"_comma_separated_values",value:p}),c=""),c=t,p=e.value),u.push(e)}),// Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
 g=u,i.debugMode&&(console.log("flattened data with array values:"),console.log(g));// Mark, identify and harmonize the flattened data by applying one description after another in their given order.
 var m=[];for(f=0;f<r.length;f+=1)// Remove duplicate entries where a deduplicationPattern is described
 d=m,h=/**
@@ -475,7 +475,7 @@ g=function(e){for(var t=[],r=Object.keys(e),i=0;i<r.length;i++){var n=e[r[i]];t.
  * @returns {module:datarestructor.DescribedEntry[]}
  * @memberof module:datarestructor.Restructor
  * @deprecated since v3.1.0, please use "new datarestructor.Transform(descriptions).processJson(jsonData)".
- */a.Restructor.processJsonUsingDescriptions=function(e,t,r){var i=new a.Transform(t);return r&&i.enableDebugMode(),i.processJson(e)}}),n("7HmuL",function(e,t){/**
+ */a.Restructor.processJsonUsingDescriptions=function(e,t,r){var i=new a.Transform(t);return r&&i.enableDebugMode(),i.processJson(e)}}),n("ccQZb",function(e,t){/**
  * @typedef {Object} NameValuePair
  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
  * @property {string} value - value of the property
@@ -483,12 +483,12 @@ g=function(e){for(var t=[],r=Object.keys(e),i=0;i<r.length;i++){var n=e[r[i]];t.
  * @param {object} data hierarchical object that may consist fo fields, subfields and arrays.
  * @param {number} maxRecursionDepth
  * @returns {NameValuePair[]} array of property name and value pairs
- */(($59adffa3db62607f$var$module||{}).exports={}).flattenToArray=function(e,t){var r=[];return("number"!=typeof t||t<1)&&(t=20),function e(i,n,o){if(!(o>t)&&"function"!=typeof i){if(Object(i)!==i)r.push({name:n,value:i});else if(Array.isArray(i)){var a,s=i.length;for(a=0;a<s;a+=1)e(i[a],n+"["+a+"]",o+1);0===s&&(r[n]=[],r.push({name:n,value:""}))}else{var u,l=!0;for(u in i)l=!1,e(i[u],n?n+"."+u:u,o+1);l&&n&&r.push({name:n,value:""})}}}(e,"",0),r}}),n("8ZIyB",function(e,t){var r,n=o(n);// Fallback for vanilla js without modules
+ */(($8e2fb4eb18d4597b$var$module||{}).exports={}).flattenToArray=function(e,t){var r=[];return("number"!=typeof t||t<1)&&(t=20),function e(i,n,o){if(!(o>t)&&"function"!=typeof i){if(Object(i)!==i)r.push({name:n,value:i});else if(Array.isArray(i)){var a,s=i.length;for(a=0;a<s;a+=1)e(i[a],n+"["+a+"]",o+1);0===s&&(r[n]=[],r.push({name:n,value:""}))}else{var u,l=!0;for(u in i)l=!1,e(i[u],n?n+"."+u:u,o+1);l&&n&&r.push({name:n,value:""})}}}(e,"",0),r}}),n("ds403",function(e,t){var r,n=o(n);// Fallback for vanilla js without modules
 function o(e){return e||{}}/**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
  */var a=n.exports={};// Export module for npm...
-a.internalCreateIfNotExists=o;var s=s||i("7HmuL");// supports vanilla js & npm
+a.internalCreateIfNotExists=o;var s=s||i("ccQZb");// supports vanilla js & npm
 a.Resolver=(r=RegExp("\\[\\d+\\]","gi"),/**
    * Resolver. Is used inside this repository. It could also be used outside.
    * @param {*} sourceDataObject The properties of this object will be used to replace the placeholders in the template.
@@ -549,7 +549,7 @@ var o=n.replace(r,"");return{group:n,groupWithoutArrayIndices:o,name:i}}(i)).nam
      * Supported property types: string, number, boolean
      * @param {string} stringContainingVariables
      * @param {object[]} resolvableFields (name=value)
-     */this.replaceResolvableFields=function(e,t){var r=e,i=Object.keys(t),n=0,o="",a="";for(n=0;n<i.length;n+=1)a=t[o=i[n]],r=r.replace("{{"+o+"}}",a);return r}})}),n("d63jw",function(e,t){var r=i(r);// Fallback for vanilla js without modules
+     */this.replaceResolvableFields=function(e,t){var r=e,i=Object.keys(t),n=0,o="",a="";for(n=0;n<i.length;n+=1)a=t[o=i[n]],r=r.replace("{{"+o+"}}",a);return r}})}),n("aJuQy",function(e,t){var r=i(r);// Fallback for vanilla js without modules
 function i(e){return e||{}}/**
  * Describes a data field of the restructured data.
  * @module described_field
@@ -689,6 +689,6 @@ n.internalCreateIfNotExists=i,/**
      * @param {String} groupName name of the group to which the entries will be added
      * @param {module:described_field.DescribedDataField[]} describedFields sub fields that are added to the group
      * @returns {DescribedDataFieldGroup}
-     */this.addGroupEntries=function(e,t){var r,i;if(!e||0===e.length||!t||0===t.length)return this;for(void 0===this.dataField[e]&&(this.dataField.groupNames.push(e),this.dataField[e]=[]),r=0;r<t.length;r+=1)i=t[r],this.dataField[e].push(i);return this}}}),Array.isArray||(Array.isArray=function(e){return"[object Array]"===Object.prototype.toString.call(e)}),Array.prototype.filter||(Array.prototype.filter=function(e,t){if(!(("Function"==typeof e||"function"==typeof e)&&this))throw TypeError();var r,i=this.length>>>0,n=Array(i),o=0,a=-1;if(void 0===t)for(;++a!==i;)a in this&&(r=this[a],e(this[a],a,this)&&(n[o++]=r));else for(;++a!==i;)a in this&&(r=this[a],e.call(t,this[a],a,this)&&(n[o++]=r));return n.length=o,n}),i("3kxfc"),i("26y7f");var o=i("cB1fX");module.exports={datarestructor:o};//# sourceMappingURL=datarestructor-ie.js.map
+     */this.addGroupEntries=function(e,t){var r,i;if(!e||0===e.length||!t||0===t.length)return this;for(void 0===this.dataField[e]&&(this.dataField.groupNames.push(e),this.dataField[e]=[]),r=0;r<t.length;r+=1)i=t[r],this.dataField[e].push(i);return this}}}),Array.isArray||(Array.isArray=function(e){return"[object Array]"===Object.prototype.toString.call(e)}),Array.prototype.filter||(Array.prototype.filter=function(e,t){if(!(("Function"==typeof e||"function"==typeof e)&&this))throw TypeError();var r,i=this.length>>>0,n=Array(i),o=0,a=-1;if(void 0===t)for(;++a!==i;)a in this&&(r=this[a],e(this[a],a,this)&&(n[o++]=r));else for(;++a!==i;)a in this&&(r=this[a],e.call(t,this[a],a,this)&&(n[o++]=r));return n.length=o,n}),i("dED0n"),i("b1M0n");var o=i("keJ9m");module.exports={datarestructor:o};//# sourceMappingURL=datarestructor-ie.js.map
 
 //# sourceMappingURL=datarestructor-ie.js.map

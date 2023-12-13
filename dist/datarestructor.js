@@ -1,4 +1,4 @@
-var e=globalThis,t={},i={},r=e.parcelRequirec1f2;null==r&&((r=function(e){if(e in t)return t[e].exports;if(e in i){var r=i[e];delete i[e];var n={id:e,exports:{}};return t[e]=n,r.call(n.exports,n,n.exports),n.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,t){i[e]=t},e.parcelRequirec1f2=r);var n=r.register;n("cB1fX",function(e,t){var i,n=o(n);// Fallback for vanilla js without modules
+var e=globalThis,t={},i={},r=e.parcelRequirec1f2;null==r&&((r=function(e){if(e in t)return t[e].exports;if(e in i){var r=i[e];delete i[e];var n={id:e,exports:{}};return t[e]=n,r.call(n.exports,n,n.exports),n.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,t){i[e]=t},e.parcelRequirec1f2=r);var n=r.register;n("keJ9m",function(e,t){var i,n=o(n);// Fallback for vanilla js without modules
 function o(e){return e||{}}/**
  * datarestructor namespace and module declaration.
  * It contains all functions to convert an object (e.g. parsed JSON) into uniform enumerated list of described field entries.
@@ -13,7 +13,7 @@ function o(e){return e||{}}/**
  * - flatten again
  * @module datarestructor
  */var a=n.exports={};// Export module for npm...
-a.internalCreateIfNotExists=o;var s=s||r("7HmuL"),u=u||r("8ZIyB"),l=l||r("d63jw");// supports vanilla js & npm
+a.internalCreateIfNotExists=o;var s=s||r("ccQZb"),u=u||r("ds403"),l=l||r("aJuQy");// supports vanilla js & npm
 /**
  * Takes the full qualified original property name and extracts a simple name out of it.
  * 
@@ -336,10 +336,10 @@ a.internalCreateIfNotExists=o;var s=s||r("7HmuL"),u=u||r("8ZIyB"),l=l||r("d63jw"
    * @protected
    * @memberof module:datarestructor.Transform
    */function(t,i,r){// "Flatten" the hierarchical input json to an array of property names (point separated "folders") and values.
-var n,o,u,p,d,c,h,f,g=s.flattenToArray(t);n=g,o=RegExp("\\[\\d+\\]$","gi"),u=[],p="",d="",n.filter(function(e){if(!e.name.match(o)){""!==p&&(u.push({name:p+"_comma_separated_values",value:d}),p=""),u.push(e);return}var t=e.name.replace(o,"");p===t?d+=", "+e.value:(""!==p&&(u.push({name:p+"_comma_separated_values",value:d}),p=""),p=t,d=e.value),u.push(e)}),// Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
+var n,o,u,p,c,d,h,f,g=s.flattenToArray(t);n=g,o=RegExp("\\[\\d+\\]$","gi"),u=[],p="",c="",n.filter(function(e){if(!e.name.match(o)){""!==p&&(u.push({name:p+"_comma_separated_values",value:c}),p=""),u.push(e);return}var t=e.name.replace(o,"");p===t?c+=", "+e.value:(""!==p&&(u.push({name:p+"_comma_separated_values",value:c}),p=""),p=t,c=e.value),u.push(e)}),// Fill in properties ending with the name "_comma_separated_values" for array values to make it easier to display them.
 g=u,r.debugMode&&(console.log("flattened data with array values:"),console.log(g));// Mark, identify and harmonize the flattened data by applying one description after another in their given order.
 var m=[];for(f=0;f<i.length;f+=1)// Remove duplicate entries where a deduplicationPattern is described
-c=m,h=/**
+d=m,h=/**
    * Extracts entries out of "flattened" JSON data and provides an array of objects.
    * @param {Object[]} flattenedData - flattened json from search query result
    * @param {string} flattenedData[].name - name of the property in hierarchical order separated by points
@@ -348,7 +348,7 @@ c=m,h=/**
    * @return {module:datarestructor.DescribedEntry[]}
    * @protected
    * @memberof module:datarestructor.Transform
-   */function(e,t){var i=RegExp("\\[\\d+\\]","gi"),r=[];return e.filter(function(e){var n=e.name.replace(i,"");if(t.matchesPropertyName(n)){var o=new a.DescribedEntryCreator(e,t);o._isMatchingIndex&&r.push(o)}}),r}(g,i[f]),m=null==c||0==c.length?h:/**
+   */function(e,t){var i=RegExp("\\[\\d+\\]","gi"),r=[];return e.filter(function(e){var n=e.name.replace(i,"");if(t.matchesPropertyName(n)){var o=new a.DescribedEntryCreator(e,t);o._isMatchingIndex&&r.push(o)}}),r}(g,i[f]),m=null==d||0==d.length?h:/**
    * Takes two arrays of objects, e.g. [{id: B, value: 2},{id: C, value: 3}]
    * and [{id: A, value: 1},{id: B, value: 4}] and merges them into one:
    * [{id: C, value: 3},{id: A, value: 1},{id: B, value: 4}]
@@ -377,7 +377,7 @@ c=m,h=/**
    * @return {module:datarestructor.DescribedEntry[] entries indexed by id
    * @protected
    * @memberof module:datarestructor.Transform
-   */function(e,t){for(var i={},r=0;r<e.length;r++){var n=e[r];i[t(n)]=n}return i}(t,i),s=[];for(r=0;r<e.length;r+=1)(null==(o=i(n=e[r]))||""===o||null==a[o])&&s.push(n);for(r=0;r<t.length;r+=1)s.push(n=t[r]);return s}(c,h,function(e){return e._identifier.deduplicationId});return g=m,r.debugMode&&(console.log("describedData data:"),console.log(g)),// Group entries where a groupPattern is described
+   */function(e,t){for(var i={},r=0;r<e.length;r++){var n=e[r];i[t(n)]=n}return i}(t,i),s=[];for(r=0;r<e.length;r+=1)(null==(o=i(n=e[r]))||""===o||null==a[o])&&s.push(n);for(r=0;r<t.length;r+=1)s.push(n=t[r]);return s}(d,h,function(e){return e._identifier.deduplicationId});return g=m,r.debugMode&&(console.log("describedData data:"),console.log(g)),// Group entries where a groupPattern is described
 g=/**
    * Converts the given elements into an object, that provides these
    * entries by their id. For example, [{id: A, value: 1}] becomes
@@ -469,7 +469,7 @@ g=function(e){for(var t=[],i=Object.keys(e),r=0;r<i.length;r++){var n=e[i[r]];t.
  * @returns {module:datarestructor.DescribedEntry[]}
  * @memberof module:datarestructor.Restructor
  * @deprecated since v3.1.0, please use "new datarestructor.Transform(descriptions).processJson(jsonData)".
- */a.Restructor.processJsonUsingDescriptions=function(e,t,i){var r=new a.Transform(t);return i&&r.enableDebugMode(),r.processJson(e)}}),n("7HmuL",function(e,t){/**
+ */a.Restructor.processJsonUsingDescriptions=function(e,t,i){var r=new a.Transform(t);return i&&r.enableDebugMode(),r.processJson(e)}}),n("ccQZb",function(e,t){/**
  * @typedef {Object} NameValuePair
  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
  * @property {string} value - value of the property
@@ -477,12 +477,12 @@ g=function(e){for(var t=[],i=Object.keys(e),r=0;r<i.length;r++){var n=e[i[r]];t.
  * @param {object} data hierarchical object that may consist fo fields, subfields and arrays.
  * @param {number} maxRecursionDepth
  * @returns {NameValuePair[]} array of property name and value pairs
- */(($59adffa3db62607f$var$module||{}).exports={}).flattenToArray=function(e,t){var i=[];return("number"!=typeof t||t<1)&&(t=20),function e(r,n,o){if(!(o>t)&&"function"!=typeof r){if(Object(r)!==r)i.push({name:n,value:r});else if(Array.isArray(r)){var a,s=r.length;for(a=0;a<s;a+=1)e(r[a],n+"["+a+"]",o+1);0===s&&(i[n]=[],i.push({name:n,value:""}))}else{var u,l=!0;for(u in r)l=!1,e(r[u],n?n+"."+u:u,o+1);l&&n&&i.push({name:n,value:""})}}}(e,"",0),i}}),n("8ZIyB",function(e,t){var i,n=o(n);// Fallback for vanilla js without modules
+ */(($8e2fb4eb18d4597b$var$module||{}).exports={}).flattenToArray=function(e,t){var i=[];return("number"!=typeof t||t<1)&&(t=20),function e(r,n,o){if(!(o>t)&&"function"!=typeof r){if(Object(r)!==r)i.push({name:n,value:r});else if(Array.isArray(r)){var a,s=r.length;for(a=0;a<s;a+=1)e(r[a],n+"["+a+"]",o+1);0===s&&(i[n]=[],i.push({name:n,value:""}))}else{var u,l=!0;for(u in r)l=!1,e(r[u],n?n+"."+u:u,o+1);l&&n&&i.push({name:n,value:""})}}}(e,"",0),i}}),n("ds403",function(e,t){var i,n=o(n);// Fallback for vanilla js without modules
 function o(e){return e||{}}/**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
  */var a=n.exports={};// Export module for npm...
-a.internalCreateIfNotExists=o;var s=s||r("7HmuL");// supports vanilla js & npm
+a.internalCreateIfNotExists=o;var s=s||r("ccQZb");// supports vanilla js & npm
 a.Resolver=(i=RegExp("\\[\\d+\\]","gi"),/**
    * Resolver. Is used inside this repository. It could also be used outside.
    * @param {*} sourceDataObject The properties of this object will be used to replace the placeholders in the template.
@@ -543,7 +543,7 @@ var o=n.replace(i,"");return{group:n,groupWithoutArrayIndices:o,name:r}}(r)).nam
      * Supported property types: string, number, boolean
      * @param {string} stringContainingVariables
      * @param {object[]} resolvableFields (name=value)
-     */this.replaceResolvableFields=function(e,t){var i=e,r=Object.keys(t),n=0,o="",a="";for(n=0;n<r.length;n+=1)a=t[o=r[n]],i=i.replace("{{"+o+"}}",a);return i}})}),n("d63jw",function(e,t){var i=r(i);// Fallback for vanilla js without modules
+     */this.replaceResolvableFields=function(e,t){var i=e,r=Object.keys(t),n=0,o="",a="";for(n=0;n<r.length;n+=1)a=t[o=r[n]],i=i.replace("{{"+o+"}}",a);return i}})}),n("aJuQy",function(e,t){var i=r(i);// Fallback for vanilla js without modules
 function r(e){return e||{}}/**
  * Describes a data field of the restructured data.
  * @module described_field
@@ -683,6 +683,6 @@ n.internalCreateIfNotExists=r,/**
      * @param {String} groupName name of the group to which the entries will be added
      * @param {module:described_field.DescribedDataField[]} describedFields sub fields that are added to the group
      * @returns {DescribedDataFieldGroup}
-     */this.addGroupEntries=function(e,t){var i,r;if(!e||0===e.length||!t||0===t.length)return this;for(void 0===this.dataField[e]&&(this.dataField.groupNames.push(e),this.dataField[e]=[]),i=0;i<t.length;i+=1)r=t[i],this.dataField[e].push(r);return this}}}),r("cB1fX");//# sourceMappingURL=datarestructor.js.map
+     */this.addGroupEntries=function(e,t){var i,r;if(!e||0===e.length||!t||0===t.length)return this;for(void 0===this.dataField[e]&&(this.dataField.groupNames.push(e),this.dataField[e]=[]),i=0;i<t.length;i+=1)r=t[i],this.dataField[e].push(r);return this}}}),r("keJ9m");//# sourceMappingURL=datarestructor.js.map
 
 //# sourceMappingURL=datarestructor.js.map

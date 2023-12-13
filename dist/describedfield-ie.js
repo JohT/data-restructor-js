@@ -1,4 +1,4 @@
-var i=globalThis,e={},t={},r=i.parcelRequirec1f2;null==r&&((r=function(i){if(i in e)return e[i].exports;if(i in t){var r=t[i];delete t[i];var s={id:i,exports:{}};return e[i]=s,r.call(s.exports,s,s.exports),s.exports}var n=Error("Cannot find module '"+i+"'");throw n.code="MODULE_NOT_FOUND",n}).register=function(i,e){t[i]=e},i.parcelRequirec1f2=r),(0,r.register)("d63jw",function(i,e){var t=r(t);// Fallback for vanilla js without modules
+var i=globalThis,e={},t={},r=i.parcelRequirec1f2;null==r&&((r=function(i){if(i in e)return e[i].exports;if(i in t){var r=t[i];delete t[i];var s={id:i,exports:{}};return e[i]=s,r.call(s.exports,s,s.exports),s.exports}var n=Error("Cannot find module '"+i+"'");throw n.code="MODULE_NOT_FOUND",n}).register=function(i,e){t[i]=e},i.parcelRequirec1f2=r),(0,r.register)("aJuQy",function(i,e){var t=r(t);// Fallback for vanilla js without modules
 function r(i){return i||{}}/**
  * Describes a data field of the restructured data.
  * @module described_field
@@ -138,6 +138,6 @@ s.internalCreateIfNotExists=r,/**
      * @param {String} groupName name of the group to which the entries will be added
      * @param {module:described_field.DescribedDataField[]} describedFields sub fields that are added to the group
      * @returns {DescribedDataFieldGroup}
-     */this.addGroupEntries=function(i,e){var t,r;if(!i||0===i.length||!e||0===e.length)return this;for(void 0===this.dataField[i]&&(this.dataField.groupNames.push(i),this.dataField[i]=[]),t=0;t<e.length;t+=1)r=e[t],this.dataField[i].push(r);return this}}});var s=r("d63jw");module.exports={described_field:s};//# sourceMappingURL=describedfield-ie.js.map
+     */this.addGroupEntries=function(i,e){var t,r;if(!i||0===i.length||!e||0===e.length)return this;for(void 0===this.dataField[i]&&(this.dataField.groupNames.push(i),this.dataField[i]=[]),t=0;t<e.length;t+=1)r=e[t],this.dataField[i].push(r);return this}}});var s=r("aJuQy");module.exports={described_field:s};//# sourceMappingURL=describedfield-ie.js.map
 
 //# sourceMappingURL=describedfield-ie.js.map

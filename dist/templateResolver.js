@@ -1,9 +1,9 @@
-var e=globalThis,r={},t={},n=e.parcelRequirec1f2;null==n&&((n=function(e){if(e in r)return r[e].exports;if(e in t){var n=t[e];delete t[e];var a={id:e,exports:{}};return r[e]=a,n.call(a.exports,a,a.exports),a.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,r){t[e]=r},e.parcelRequirec1f2=n);var a=n.register;a("8ZIyB",function(e,r){var t,a=o(a);// Fallback for vanilla js without modules
+var e=globalThis,r={},t={},n=e.parcelRequirec1f2;null==n&&((n=function(e){if(e in r)return r[e].exports;if(e in t){var n=t[e];delete t[e];var a={id:e,exports:{}};return r[e]=a,n.call(a.exports,a,a.exports),a.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,r){t[e]=r},e.parcelRequirec1f2=n);var a=n.register;a("ds403",function(e,r){var t,a=o(a);// Fallback for vanilla js without modules
 function o(e){return e||{}}/**
  * Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @module template_resolver
  */var i=a.exports={};// Export module for npm...
-i.internalCreateIfNotExists=o;var u=u||n("7HmuL");// supports vanilla js & npm
+i.internalCreateIfNotExists=o;var l=l||n("ccQZb");// supports vanilla js & npm
 i.Resolver=(t=RegExp("\\[\\d+\\]","gi"),/**
    * Resolver. Is used inside this repository. It could also be used outside.
    * @param {*} sourceDataObject The properties of this object will be used to replace the placeholders in the template.
@@ -57,14 +57,14 @@ var o=a.replace(t,"");return{group:a,groupWithoutArrayIndices:o,name:n}}(n)).nam
    * @param {function} filterMatchesFunction takes the property name as string argument and returns true (include) or false (exclude).
    * @protected
    * @memberof module:template_resolver.Resolver
-   */(function(e,r,t){var n,a;for(n=0;n<e.length;n+=1)a=e[n],"function"==typeof t&&t(a.name)&&(r[a.name]=a.value)})(u.flattenToArray(arguments[e],3),r,t);return r},/**
+   */(function(e,r,t){var n,a;for(n=0;n<e.length;n+=1)a=e[n],"function"==typeof t&&t(a.name)&&(r[a.name]=a.value)})(l.flattenToArray(arguments[e],3),r,t);return r},/**
      * Replaces all variables in double curly brackets, e.g. {{property}},
      * with the value of that property from the resolvableProperties.
      *
      * Supported property types: string, number, boolean
      * @param {string} stringContainingVariables
      * @param {object[]} resolvableFields (name=value)
-     */this.replaceResolvableFields=function(e,r){var t=e,n=Object.keys(r),a=0,o="",i="";for(a=0;a<n.length;a+=1)i=r[o=n[a]],t=t.replace("{{"+o+"}}",i);return t}})}),a("7HmuL",function(e,r){/**
+     */this.replaceResolvableFields=function(e,r){var t=e,n=Object.keys(r),a=0,o="",i="";for(a=0;a<n.length;a+=1)i=r[o=n[a]],t=t.replace("{{"+o+"}}",i);return t}})}),a("ccQZb",function(e,r){/**
  * @typedef {Object} NameValuePair
  * @property {string} name - point separated names of the flattened main and sub properties, e.g. "responses[2].hits.hits[4]._source.name".
  * @property {string} value - value of the property
@@ -72,6 +72,6 @@ var o=a.replace(t,"");return{group:a,groupWithoutArrayIndices:o,name:n}}(n)).nam
  * @param {object} data hierarchical object that may consist fo fields, subfields and arrays.
  * @param {number} maxRecursionDepth
  * @returns {NameValuePair[]} array of property name and value pairs
- */(($59adffa3db62607f$var$module||{}).exports={}).flattenToArray=function(e,r){var t=[];return("number"!=typeof r||r<1)&&(r=20),function e(n,a,o){if(!(o>r)&&"function"!=typeof n){if(Object(n)!==n)t.push({name:a,value:n});else if(Array.isArray(n)){var i,u=n.length;for(i=0;i<u;i+=1)e(n[i],a+"["+i+"]",o+1);0===u&&(t[a]=[],t.push({name:a,value:""}))}else{var l,s=!0;for(l in n)s=!1,e(n[l],a?a+"."+l:l,o+1);s&&a&&t.push({name:a,value:""})}}}(e,"",0),t}}),n("8ZIyB");//# sourceMappingURL=templateResolver.js.map
+ */(($8e2fb4eb18d4597b$var$module||{}).exports={}).flattenToArray=function(e,r){var t=[];return("number"!=typeof r||r<1)&&(r=20),function e(n,a,o){if(!(o>r)&&"function"!=typeof n){if(Object(n)!==n)t.push({name:a,value:n});else if(Array.isArray(n)){var i,l=n.length;for(i=0;i<l;i+=1)e(n[i],a+"["+i+"]",o+1);0===l&&(t[a]=[],t.push({name:a,value:""}))}else{var u,s=!0;for(u in n)s=!1,e(n[u],a?a+"."+u:u,o+1);s&&a&&t.push({name:a,value:""})}}}(e,"",0),t}}),n("ds403");//# sourceMappingURL=templateResolver.js.map
 
 //# sourceMappingURL=templateResolver.js.map
