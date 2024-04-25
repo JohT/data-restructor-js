@@ -10,9 +10,9 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.2...master) (upcoming)
 
-### Changes
+### Dependency Updates
 
-- Pin dependency @eslint/js to 9.1.1 [`#221`](https://github.com/JohT/data-restructor-js/pull/221)
+- Update actions/checkout digest to 0ad4b8f [`#222`](https://github.com/JohT/data-restructor-js/pull/222)
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...v3.4.2) (20 October 2023)
 
