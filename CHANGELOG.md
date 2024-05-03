@@ -10,10 +10,6 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.2...master) (upcoming)
 
-### Dependency Updates
-
-- Update dependency jsdoc to v4.0.3 [`#226`](https://github.com/JohT/data-restructor-js/pull/226)
-
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...v3.4.2) (20 October 2023)
 
 ### Changes
