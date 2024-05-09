@@ -10,10 +10,6 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.2...master) (upcoming)
 
-### Dependency Updates
-
-- Update dependency istanbul-badges-readme to v1.9.0 [`#229`](https://github.com/JohT/data-restructor-js/pull/229)
-
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...v3.4.2) (20 October 2023)
 
 ### Changes
