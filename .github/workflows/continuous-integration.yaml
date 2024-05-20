@@ -23,7 +23,7 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
-    - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+    - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
       with: 
         token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
     - name: Get GIT tags for auto-changelog generation (startingVersion config option)
