@@ -86,8 +86,12 @@ jobs:
       if: github.event_name == 'push'
       run: |
         git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
-        git config --global user.email 'joht@users.noreply.github.com'
-        git pull
+        git config --global user.email "7671054+JohT@users.noreply.github.com"
+        git fetch origin
+        git status
         git add coverage devdist dist docs *.md
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-        git push
+        git status
+        git rebase --strategy-option=theirs origin/master --verbose
+        git status
+        git push --verbose
