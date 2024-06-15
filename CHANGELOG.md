@@ -8,7 +8,40 @@ All notable changes to this project will be documented in this file.
 - [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - [`auto-changelog`](https://github.com/CookPete/auto-changelog)
 
-## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.2...master) (upcoming)
+## [v3.4.3](https://github.com/JohT/data-restructor-js/compare/v3.4.2...master) (upcoming)
+
+### Changes
+
+- Pin dependency @eslint/js to 9.1.1 [`#221`](https://github.com/JohT/data-restructor-js/pull/221)
+
+### Dependency Updates
+
+- Update actions/checkout digest to 692973e [`#243`](https://github.com/JohT/data-restructor-js/pull/243)
+- Update dependency lmdb to v3.0.12 [`#242`](https://github.com/JohT/data-restructor-js/pull/242)
+- Update dependency lmdb to v3.0.10 [`#237`](https://github.com/JohT/data-restructor-js/pull/237)
+- Update dependency lmdb to v3.0.9 [`#236`](https://github.com/JohT/data-restructor-js/pull/236)
+- Update eslint monorepo to v9.3.0 (minor) [`#234`](https://github.com/JohT/data-restructor-js/pull/234)
+- Update dependency inquirer to v9.2.21 [`#232`](https://github.com/JohT/data-restructor-js/pull/232)
+- Update actions/checkout digest to 0ad4b8f [`#231`](https://github.com/JohT/data-restructor-js/pull/231)
+- Update dependency istanbul-badges-readme to v1.9.0 [`#229`](https://github.com/JohT/data-restructor-js/pull/229)
+- Update dependency jsdoc to v4.0.3 [`#226`](https://github.com/JohT/data-restructor-js/pull/226)
+- Update dependency lmdb to v3.0.8 [`#225`](https://github.com/JohT/data-restructor-js/pull/225)
+- Update dependency inquirer to v9.2.20 [`#223`](https://github.com/JohT/data-restructor-js/pull/223)
+- Update actions/checkout digest to 0ad4b8f [`#222`](https://github.com/JohT/data-restructor-js/pull/222)
+- Update dependency eslint to v9 [`#214`](https://github.com/JohT/data-restructor-js/pull/214)
+- Update dependency lmdb to v3.0.6 [`#218`](https://github.com/JohT/data-restructor-js/pull/218)
+- Update dependency lmdb to v3 [`#209`](https://github.com/JohT/data-restructor-js/pull/209)
+- Update dependency lmdb to v2.9.4 [`#207`](https://github.com/JohT/data-restructor-js/pull/207)
+- Update dependency parcel to v2.12.0 [`#206`](https://github.com/JohT/data-restructor-js/pull/206)
+- Update dependency inquirer to v9.2.15 [`#204`](https://github.com/JohT/data-restructor-js/pull/204)
+- Update dependency parcel to v2.11.0 [`#201`](https://github.com/JohT/data-restructor-js/pull/201)
+- Update actions/upload-artifact action to v4 [`#199`](https://github.com/JohT/data-restructor-js/pull/199)
+- Update github/codeql-action action to v3 [`#198`](https://github.com/JohT/data-restructor-js/pull/198)
+- Update Node.js to v20 [`#188`](https://github.com/JohT/data-restructor-js/pull/188)
+- Update dependency lmdb to v2.9.2 [`#197`](https://github.com/JohT/data-restructor-js/pull/197)
+- Update dependency parcel to v2.10.3 [`#193`](https://github.com/JohT/data-restructor-js/pull/193)
+- Update dependency parcel to v2.10.2 [`#190`](https://github.com/JohT/data-restructor-js/pull/190)
+- Update actions/setup-node action to v4 [`#187`](https://github.com/JohT/data-restructor-js/pull/187)
 
 ## [v3.4.2](https://github.com/JohT/data-restructor-js/compare/v3.4.1...v3.4.2) (20 October 2023)
 
