@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency lmdb to v3.1.2 [`#281`](https://github.com/JohT/data-restructor-js/pull/281)
+- Update dependency inquirer to v11.0.2 [`#282`](https://github.com/JohT/data-restructor-js/pull/282)
 
 ## [v3.4.3](https://github.com/JohT/data-restructor-js/compare/v3.4.2...v3.4.3) (15 June 2024)
 
