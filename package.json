@@ -48,9 +48,9 @@
   },
   "homepage": "https://joht.github.io/data-restructor-js",
   "devDependencies": {
-    "@eslint/js": "9.10.0",
+    "@eslint/js": "9.11.0",
     "auto-changelog": "2.5.0",
-    "eslint": "9.10.0",
+    "eslint": "9.11.0",
     "inquirer": "11.0.2",
     "istanbul-badges-readme": "1.9.0",
     "jasmine": "5.3.0",
