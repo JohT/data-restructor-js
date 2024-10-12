@@ -10,10 +10,6 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.3](https://github.com/JohT/data-restructor-js/compare/v3.4.3...master) (upcoming)
 
-### Dependency Updates
-
-- Update actions/checkout digest to eef6144 [`#291`](https://github.com/JohT/data-restructor-js/pull/291)
-
 ## [v3.4.3](https://github.com/JohT/data-restructor-js/compare/v3.4.2...v3.4.3) (15 June 2024)
 
 ### Changes
