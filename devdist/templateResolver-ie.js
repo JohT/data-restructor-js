@@ -73,7 +73,7 @@
         localRequire,
         module,
         module.exports,
-        this
+        globalObject
       );
     }
 
@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"btK3Z":[function(require,module,exports) {
+})({"btK3Z":[function(require,module,exports,__globalThis) {
 "use strict";
 require("b3504c6476ecf38d");
 require("89ce2effd221e06f");
@@ -151,7 +151,7 @@ module.exports = {
     template_resolver: template_resolver
 };
 
-},{"b3504c6476ecf38d":"eZRd3","89ce2effd221e06f":"7uZBC","875b6c9f7bedeb5":"bUhQb"}],"eZRd3":[function(require,module,exports) {
+},{"b3504c6476ecf38d":"eZRd3","89ce2effd221e06f":"7uZBC","875b6c9f7bedeb5":"bUhQb"}],"eZRd3":[function(require,module,exports,__globalThis) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, min) {
     "use strict";
@@ -169,16 +169,16 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, m
     };
 }(Object, Math.max, Math.min);
 
-},{}],"7uZBC":[function(require,module,exports) {
+},{}],"7uZBC":[function(require,module,exports,__globalThis) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
-    if (o !== Object(o)) throw new TypeError("Object.keys called on a non-object");
+    if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
     var k = [], p;
     for(p in o)if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
     return k;
 };
 
-},{}],"bUhQb":[function(require,module,exports) {
+},{}],"bUhQb":[function(require,module,exports,__globalThis) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -323,7 +323,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"cbde56e74c44f93f":"4biBi"}],"4biBi":[function(require,module,exports) {
+},{"cbde56e74c44f93f":"4biBi"}],"4biBi":[function(require,module,exports,__globalThis) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -379,5 +379,5 @@ template_resolver.Resolver = function() {
     return result;
 };
 
-},{}]},["btK3Z"], "btK3Z", "parcelRequirec1f2")
+},{}]},["btK3Z"], "btK3Z", "parcelRequire94c2")
 

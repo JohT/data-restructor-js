@@ -73,7 +73,7 @@
         localRequire,
         module,
         module.exports,
-        this
+        globalObject
       );
     }
 
@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"9jIVB":[function(require,module,exports) {
+})({"9jIVB":[function(require,module,exports,__globalThis) {
 "use strict";
 require("df939a3d3210c10f");
 require("cae31ed61fcfa0ef");
@@ -153,18 +153,18 @@ module.exports = {
     datarestructor: datarestructor
 };
 
-},{"df939a3d3210c10f":"jwKcv","cae31ed61fcfa0ef":"kctqo","40a4a7ce22e4cead":"eZRd3","d5d448bea1a87675":"7uZBC","aef021ebaa9901bd":"6zDs3"}],"jwKcv":[function(require,module,exports) {
+},{"df939a3d3210c10f":"jwKcv","cae31ed61fcfa0ef":"kctqo","40a4a7ce22e4cead":"eZRd3","d5d448bea1a87675":"7uZBC","aef021ebaa9901bd":"6zDs3"}],"jwKcv":[function(require,module,exports,__globalThis) {
 // https://gist.github.com/brianonn/4ef965a06b9e950d80e4e8b8e4c527f9
 // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 if (!Array.isArray) Array.isArray = function(arg) {
-    return Object.prototype.toString.call(arg) === "[object Array]";
+    return Object.prototype.toString.call(arg) === '[object Array]';
 };
 
-},{}],"kctqo":[function(require,module,exports) {
+},{}],"kctqo":[function(require,module,exports,__globalThis) {
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill
 if (!Array.prototype.filter) Array.prototype.filter = function(func, thisArg) {
-    "use strict";
-    if (!((typeof func === "Function" || typeof func === "function") && this)) throw new TypeError();
+    'use strict';
+    if (!((typeof func === 'Function' || typeof func === 'function') && this)) throw new TypeError();
     var len = this.length >>> 0, res = new Array(len), t = this, c = 0, i = -1;
     var kValue;
     if (thisArg === undefined) {
@@ -184,7 +184,7 @@ if (!Array.prototype.filter) Array.prototype.filter = function(func, thisArg) {
     return res;
 };
 
-},{}],"eZRd3":[function(require,module,exports) {
+},{}],"eZRd3":[function(require,module,exports,__globalThis) {
 //https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf#Polyfill
 if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, min) {
     "use strict";
@@ -202,16 +202,16 @@ if (!Array.prototype.indexOf) Array.prototype.indexOf = function(Object1, max, m
     };
 }(Object, Math.max, Math.min);
 
-},{}],"7uZBC":[function(require,module,exports) {
+},{}],"7uZBC":[function(require,module,exports,__globalThis) {
 //http://tokenposts.blogspot.com/2012/04/javascript-objectkeys-browser.html
 if (!Object.keys) Object.keys = function(o) {
-    if (o !== Object(o)) throw new TypeError("Object.keys called on a non-object");
+    if (o !== Object(o)) throw new TypeError('Object.keys called on a non-object');
     var k = [], p;
     for(p in o)if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
     return k;
 };
 
-},{}],"6zDs3":[function(require,module,exports) {
+},{}],"6zDs3":[function(require,module,exports,__globalThis) {
 /**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1255,7 +1255,7 @@ var described_field = described_field || require("8c4b9c5cf6a20f4c"); // support
     return restructor.processJson(jsonData);
 };
 
-},{"18c4c58e0f058705":"4biBi","1294899c93dea6c7":"bUhQb","8c4b9c5cf6a20f4c":"chJzc"}],"4biBi":[function(require,module,exports) {
+},{"18c4c58e0f058705":"4biBi","1294899c93dea6c7":"bUhQb","8c4b9c5cf6a20f4c":"chJzc"}],"4biBi":[function(require,module,exports,__globalThis) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1311,7 +1311,7 @@ var described_field = described_field || require("8c4b9c5cf6a20f4c"); // support
     return result;
 };
 
-},{}],"bUhQb":[function(require,module,exports) {
+},{}],"bUhQb":[function(require,module,exports,__globalThis) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1456,7 +1456,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"cbde56e74c44f93f":"4biBi"}],"chJzc":[function(require,module,exports) {
+},{"cbde56e74c44f93f":"4biBi"}],"chJzc":[function(require,module,exports,__globalThis) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1714,5 +1714,5 @@ described_field.DescribedDataFieldGroup = function() {
     return DescribedDataFieldGroup;
 }();
 
-},{}]},["9jIVB"], "9jIVB", "parcelRequirec1f2")
+},{}]},["9jIVB"], "9jIVB", "parcelRequire94c2")
 

@@ -73,7 +73,7 @@
         localRequire,
         module,
         module.exports,
-        this
+        globalObject
       );
     }
 
@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"6zDs3":[function(require,module,exports) {
+})({"6zDs3":[function(require,module,exports,__globalThis) {
 /**
  * @file datarestructor transforms parsed JSON objects into a uniform data structure
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1186,7 +1186,7 @@ var described_field = described_field || require("8c4b9c5cf6a20f4c"); // support
     return restructor.processJson(jsonData);
 };
 
-},{"18c4c58e0f058705":"4biBi","1294899c93dea6c7":"bUhQb","8c4b9c5cf6a20f4c":"chJzc"}],"4biBi":[function(require,module,exports) {
+},{"18c4c58e0f058705":"4biBi","1294899c93dea6c7":"bUhQb","8c4b9c5cf6a20f4c":"chJzc"}],"4biBi":[function(require,module,exports,__globalThis) {
 "use strict";
 /**
  * @fileOverview Modded (compatibility, recursion depth) version of: https://stackoverflow.com/questions/19098797/fastest-way-to-flatten-un-flatten-nested-json-objectss
@@ -1242,7 +1242,7 @@ var described_field = described_field || require("8c4b9c5cf6a20f4c"); // support
     return result;
 };
 
-},{}],"bUhQb":[function(require,module,exports) {
+},{}],"bUhQb":[function(require,module,exports,__globalThis) {
 /**
  * @file Provides a simple template resolver, that replaces variables in double curly brackets with the values of a given object.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1387,7 +1387,7 @@ template_resolver.Resolver = function() {
     return Resolver;
 }();
 
-},{"cbde56e74c44f93f":"4biBi"}],"chJzc":[function(require,module,exports) {
+},{"cbde56e74c44f93f":"4biBi"}],"chJzc":[function(require,module,exports,__globalThis) {
 /**
  * @file Describes a data field of the restructured data.
  * @version {@link https://github.com/JohT/data-restructor-js/releases/latest latest version}
@@ -1645,5 +1645,5 @@ described_field.DescribedDataFieldGroup = function() {
     return DescribedDataFieldGroup;
 }();
 
-},{}]},["6zDs3"], "6zDs3", "parcelRequirec1f2")
+},{}]},["6zDs3"], "6zDs3", "parcelRequire94c2")
 
