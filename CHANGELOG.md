@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency parcel to v2.13.0 [`#302`](https://github.com/JohT/data-restructor-js/pull/302)
+- Update dependency lmdb to v3.1.6 [`#303`](https://github.com/JohT/data-restructor-js/pull/303)
 
 ## [v3.4.3](https://github.com/JohT/data-restructor-js/compare/v3.4.2...v3.4.3) (15 June 2024)
 
