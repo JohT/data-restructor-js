@@ -1,6 +1,6 @@
 {
   "name": "data-restructor",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "description": "Transforms parsed JSON objects into a uniform data structure",
   "directories": {
     "test": "test"
