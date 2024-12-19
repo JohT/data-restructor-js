@@ -10,39 +10,6 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...master) (upcoming)
 
-### Dependency Updates
-
-- Update dependency parcel to v2.13.3 [`#312`](https://github.com/JohT/data-restructor-js/pull/312)
-- Update eslint monorepo to v9.17.0 [`#311`](https://github.com/JohT/data-restructor-js/pull/311)
-- Update dependency inquirer to v12.2.0 [`#310`](https://github.com/JohT/data-restructor-js/pull/310)
-- Update dependency jasmine to v5.5.0 [`#309`](https://github.com/JohT/data-restructor-js/pull/309)
-- Update eslint monorepo to v9.16.0 [`#308`](https://github.com/JohT/data-restructor-js/pull/308)
-- Update dependency lmdb to v3.2.0 [`#307`](https://github.com/JohT/data-restructor-js/pull/307)
-- Update dependency parcel to v2.13.2 [`#306`](https://github.com/JohT/data-restructor-js/pull/306)
-- Update dependency parcel to v2.13.1 [`#305`](https://github.com/JohT/data-restructor-js/pull/305)
-- Update eslint monorepo to v9.15.0 [`#304`](https://github.com/JohT/data-restructor-js/pull/304)
-- Update dependency lmdb to v3.1.6 [`#303`](https://github.com/JohT/data-restructor-js/pull/303)
-- Update dependency parcel to v2.13.0 [`#302`](https://github.com/JohT/data-restructor-js/pull/302)
-- Update dependency lmdb to v3.1.5 [`#301`](https://github.com/JohT/data-restructor-js/pull/301)
-- Update dependency inquirer to v12.1.0 [`#300`](https://github.com/JohT/data-restructor-js/pull/300)
-- Update Node.js to v22 [`#297`](https://github.com/JohT/data-restructor-js/pull/297)
-- Update actions/checkout digest to eef6144 [`#291`](https://github.com/JohT/data-restructor-js/pull/291)
-- Update dependency inquirer to v12 [`#290`](https://github.com/JohT/data-restructor-js/pull/290)
-- Update dependency jasmine to v5.3.1 [`#288`](https://github.com/JohT/data-restructor-js/pull/288)
-- Update eslint monorepo to v9.11.0 (minor) [`#284`](https://github.com/JohT/data-restructor-js/pull/284)
-- Update dependency inquirer to v11.0.2 [`#282`](https://github.com/JohT/data-restructor-js/pull/282)
-- Update dependency lmdb to v3.1.2 [`#281`](https://github.com/JohT/data-restructor-js/pull/281)
-- Update dependency inquirer to v11 [`#279`](https://github.com/JohT/data-restructor-js/pull/279)
-- Update dependency lmdb to v3.1.1 [`#280`](https://github.com/JohT/data-restructor-js/pull/280)
-- Update eslint monorepo to v9.10.0 (minor) [`#274`](https://github.com/JohT/data-restructor-js/pull/274)
-- Update dependency inquirer to v10.2.0 [`#272`](https://github.com/JohT/data-restructor-js/pull/272)
-- Update dependency inquirer to v10.0.4 [`#258`](https://github.com/JohT/data-restructor-js/pull/258)
-- Update dependency inquirer to v10.0.1 [`#253`](https://github.com/JohT/data-restructor-js/pull/253)
-- Update dependency inquirer to v10 [`#252`](https://github.com/JohT/data-restructor-js/pull/252)
-- Update dependency inquirer to v9.3.5 [`#251`](https://github.com/JohT/data-restructor-js/pull/251)
-- Update dependency inquirer to v9.3.4 [`#250`](https://github.com/JohT/data-restructor-js/pull/250)
-- Update dependency inquirer to v9.3.1 [`#246`](https://github.com/JohT/data-restructor-js/pull/246)
-
 ## [v3.4.3](https://github.com/JohT/data-restructor-js/compare/v3.4.2...v3.4.3) (15 June 2024)
 
 ### Changes
