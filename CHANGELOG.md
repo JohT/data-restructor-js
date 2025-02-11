@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency jasmine to v5.6.0 [`#326`](https://github.com/JohT/data-restructor-js/pull/326)
+- Update dependency lmdb to v3.2.6 [`#327`](https://github.com/JohT/data-restructor-js/pull/327)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
