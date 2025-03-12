@@ -10,9 +10,9 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.4...master) (upcoming)
 
-### Changes
+### Dependency Updates
 
-- Pin dependency node to 20.18.3 [`#333`](https://github.com/JohT/data-restructor-js/pull/333)
+- Update dependency node to v22 [`#334`](https://github.com/JohT/data-restructor-js/pull/334)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
