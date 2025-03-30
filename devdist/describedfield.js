@@ -11,6 +11,7 @@
   entry,
   mainEntry,
   parcelRequireName,
+  externals,
   distDir,
   publicUrl,
   devServer
@@ -44,6 +45,9 @@
   function newRequire(name, jumped) {
     if (!cache[name]) {
       if (!modules[name]) {
+        if (externals[name]) {
+          return externals[name];
+        }
         // if we cannot find the module within our internal map or
         // cache jump to the current global require ie. the last bundle
         // that was added to the page.
@@ -414,5 +418,5 @@ described_field.DescribedDataFieldGroup = function() {
     return DescribedDataFieldGroup;
 }();
 
-},{}]},["chJzc"], "chJzc", "parcelRequirec1f2")
+},{}]},["chJzc"], "chJzc", "parcelRequirec1f2", {})
 
