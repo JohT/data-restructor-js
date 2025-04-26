@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency inquirer to v12.6.0 [`#347`](https://github.com/JohT/data-restructor-js/pull/347)
+- Update dependency jasmine to v5.7.0 [`#348`](https://github.com/JohT/data-restructor-js/pull/348)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
