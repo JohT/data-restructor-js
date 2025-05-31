@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency lmdb to v3.4.0 [`#361`](https://github.com/JohT/data-restructor-js/pull/361)
+- Update eslint monorepo to v9.28.0 [`#362`](https://github.com/JohT/data-restructor-js/pull/362)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
