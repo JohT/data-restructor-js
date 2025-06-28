@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency node to v22.17.0 [`#366`](https://github.com/JohT/data-restructor-js/pull/366)
+- Update eslint monorepo to v9.30.0 [`#367`](https://github.com/JohT/data-restructor-js/pull/367)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
