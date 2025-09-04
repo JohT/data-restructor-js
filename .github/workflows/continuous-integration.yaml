@@ -30,7 +30,7 @@ jobs:
       run: git fetch --tags origin
 
     # Build
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
         node-version: '22.19.0' 
     - name: Install node packages
