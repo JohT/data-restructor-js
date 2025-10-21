@@ -32,7 +32,7 @@ jobs:
     # Build
     - uses: actions/setup-node@v6
       with:
-        node-version: '22.20.0' 
+        node-version: '22.21.0' 
     - name: Install node packages
       run: npm ci
     - name: Build package (lint, test, build, package, merge)
