@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update actions/upload-artifact action to v5 [`#406`](https://github.com/JohT/data-restructor-js/pull/406)
+- Update dependency node to v22.21.1 [`#408`](https://github.com/JohT/data-restructor-js/pull/408)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
