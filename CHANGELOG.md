@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update actions/checkout action to v6 [`#417`](https://github.com/JohT/data-restructor-js/pull/417)
+- Update dependency jasmine to v5.13.0 [`#418`](https://github.com/JohT/data-restructor-js/pull/418)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
