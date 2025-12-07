@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency inquirer to v13.0.2 [`#420`](https://github.com/JohT/data-restructor-js/pull/420)
+- Update dependency parcel to v2.16.3 [`#421`](https://github.com/JohT/data-restructor-js/pull/421)
 
 ## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.3...v3.4.4) (19 December 2024)
 
