@@ -40,35 +40,35 @@ jobs:
 
     # Archive generated or updated files 
     - name: Archive code coverage results
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: test-code-coverage-report
         path: coverage
         retention-days: 14
         if-no-files-found: error
     - name: Archive documentation
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: documentation
         path: docs
         retention-days: 14
         if-no-files-found: error
     - name: Archive CHANGELOG.md
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: changelog
         path: CHANGELOG.md
         retention-days: 14
         if-no-files-found: error
     - name: Archive build artifacts
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: distribution-production
         path: dist
         retention-days: 14
         if-no-files-found: error
     - name: Archive build artifacts
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: distribution-development
         path: devdist
