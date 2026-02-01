@@ -2,8 +2,8 @@
 	"mergerJsLinks": {
 		"npm": "https://www.npmjs.com/package/merger-js",
 		"github": "https://github.com/joao-neves95/merger-js",
-		"readme": "https://github.com/joao-neves95/merger-js/blob/master/README.md",
-		"changelog": "https://github.com/joao-neves95/merger-js/blob/master/CHANGELOG.md"
+		"readme": "https://github.com/joao-neves95/merger-js/blob/main/README.md",
+		"changelog": "https://github.com/joao-neves95/merger-js/blob/main/CHANGELOG.md"
 	},
 	"autoBuild": false,
 	"notifications": false,

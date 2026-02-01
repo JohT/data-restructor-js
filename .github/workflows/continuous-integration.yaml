@@ -3,7 +3,7 @@ name: Continuous Integration
 on:
   push:
     branches:
-      - master
+      - main
     # Ignore changes in folders with generated contents or documentation.
     # Need to match git add parameters below.
     paths-ignore: 
@@ -14,7 +14,7 @@ on:
       - '**/*.md'
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -92,6 +92,6 @@ jobs:
         git add coverage devdist dist docs *.md
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git status
-        git rebase --strategy-option=theirs origin/master --verbose
+        git rebase --strategy-option=theirs origin/main --verbose
         git status
         git push --verbose
