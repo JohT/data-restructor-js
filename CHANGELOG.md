@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - [`auto-changelog`](https://github.com/CookPete/auto-changelog)
 
-## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.4...master) (upcoming)
+## [v3.4.4](https://github.com/JohT/data-restructor-js/compare/v3.4.4...main) (upcoming)
 
 ### Dependency Updates
 

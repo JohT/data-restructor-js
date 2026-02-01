@@ -36,20 +36,20 @@ npm install data-restructor
 ```
 
 Alternatively, the sources can be found inside the
-[source folder](https://github.com/JohT/data-restructor-js/tree/master/src/):
+[source folder](https://github.com/JohT/data-restructor-js/tree/main/src/):
 
-- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/datarestructor.js)
-- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/templateResolver.js)
-- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/src/js/describedfield.js)
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/main/src/js/datarestructor.js)
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/main/src/js/templateResolver.js)
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/main/src/js/describedfield.js)
 
 The development artifacts (not minified) can be found inside the
-[devdist folder](https://github.com/JohT/data-restructor-js/tree/master/devdist):
+[devdist folder](https://github.com/JohT/data-restructor-js/tree/main/devdist):
 
-- [datarestructor-ie-global-all.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor-ie-global-all.js) all sources including polyfills merged to be used without module system
-- [datarestructor-global-all.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor-global-all.js) all sources without polyfills merged to be used without module system
-- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/datarestructor.js)
-- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/templateResolver.js)
-- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/devdist/describedfield.js)
+- [datarestructor-ie-global-all.js](https://github.com/JohT/data-restructor-js/blob/main/devdist/datarestructor-ie-global-all.js) all sources including polyfills merged to be used without module system
+- [datarestructor-global-all.js](https://github.com/JohT/data-restructor-js/blob/main/devdist/datarestructor-global-all.js) all sources without polyfills merged to be used without module system
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/main/devdist/datarestructor.js)
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/main/devdist/templateResolver.js)
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/main/devdist/describedfield.js)
 
 Here are some code examples on how these modules can be imported:
 
@@ -60,16 +60,16 @@ var datarestructor = datarestructor || require("data-restructor/devdist/datarest
 ```
 
 The built (minified) versions can be found inside the
-[distribution folder](https://github.com/JohT/data-restructor-js/tree/master/dist):
+[distribution folder](https://github.com/JohT/data-restructor-js/tree/main/dist):
 
-- [datarestructor-ie-global-all-min.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie-global-all-min.js) all sources including polyfills merged and minified to be used without module system
-- [datarestructor-global-all-min.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-global-all-min.js) all sources without polyfills merged and minified to be used without module system
-- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor.js)
-- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/datarestructor-ie.js) (full compatibility with IE)
-- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver.js)
-- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/templateResolver-ie.js) (full compatibility with IE)
-- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield.js)
-- [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/master/dist/describedfield-ie.js) (full compatibility with IE)
+- [datarestructor-ie-global-all-min.js](https://github.com/JohT/data-restructor-js/blob/main/dist/datarestructor-ie-global-all-min.js) all sources including polyfills merged and minified to be used without module system
+- [datarestructor-global-all-min.js](https://github.com/JohT/data-restructor-js/blob/main/dist/datarestructor-global-all-min.js) all sources without polyfills merged and minified to be used without module system
+- [datarestructor.js](https://github.com/JohT/data-restructor-js/blob/main/dist/datarestructor.js)
+- [datarestructor-ie.js](https://github.com/JohT/data-restructor-js/blob/main/dist/datarestructor-ie.js) (full compatibility with IE)
+- [templateResolver.js](https://github.com/JohT/data-restructor-js/blob/main/dist/templateResolver.js)
+- [templateResolver-ie.js](https://github.com/JohT/data-restructor-js/blob/main/dist/templateResolver-ie.js) (full compatibility with IE)
+- [describedfield.js](https://github.com/JohT/data-restructor-js/blob/main/dist/describedfield.js)
+- [describedfield-ie.js](https://github.com/JohT/data-restructor-js/blob/main/dist/describedfield-ie.js) (full compatibility with IE)
 
 ## Code Documentation
 
@@ -91,7 +91,7 @@ npm run package
 
 As a starting point you may have a look at the following example.  
 A running, comprehensive example can be found here:
-[DataRestructorUseCaseTest.js](https://github.com/JohT/data-restructor-js/blob/master/test/js/DataRestructorUseCaseTest.js)
+[DataRestructorUseCaseTest.js](https://github.com/JohT/data-restructor-js/blob/main/test/js/DataRestructorUseCaseTest.js)
 
 ### Input Object
 
@@ -516,11 +516,11 @@ That leads to recursion and duplication, that need to be limited. This can be co
 
 Although this project doesn't use any runtime dependencies, it is created using these great tools:
 
-- [ESLint](https://eslint.org) - [MIT License](https://github.com/eslint/eslint/blob/master/LICENSE)
+- [ESLint](https://eslint.org) - [MIT License](https://github.com/eslint/eslint/blob/main/LICENSE)
 - [istanbul-badges-readme](https://www.npmjs.com/package/istanbul-badges-readme) - [MIT License](https://github.com/olavoparno/istanbul-badges-readme/blob/develop/LICENSE)
 - [Jasmine](https://jasmine.github.io) - [MIT License](https://github.com/jasmine/jasmine/blob/main/MIT.LICENSE)
-- [JSDoc](https://jsdoc.app) - [Apache Licence 2.0](https://github.com/jsdoc/jsdoc/blob/master/LICENSE)
-- [merger-js](https://github.com/joao-neves95/merger-js) - [GNU General Public License v3.0](https://github.com/joao-neves95/merger-js/blob/master/LICENSE.md)
-- [NYC aka Istanbul](https://istanbul.js.org) - [ISC License](https://github.com/istanbuljs/nyc/blob/master/LICENSE.txt)
+- [JSDoc](https://jsdoc.app) - [Apache Licence 2.0](https://github.com/jsdoc/jsdoc/blob/main/LICENSE)
+- [merger-js](https://github.com/joao-neves95/merger-js) - [GNU General Public License v3.0](https://github.com/joao-neves95/merger-js/blob/main/LICENSE.md)
+- [NYC aka Istanbul](https://istanbul.js.org) - [ISC License](https://github.com/istanbuljs/nyc/blob/main/LICENSE.txt)
 - [PARCEL](https://v2.parceljs.org) - [MIT License](https://github.com/parcel-bundler/parcel/blob/v2/LICENSE)
-- [merger-js](https://github.com/joao-neves95/merger-js) - [GNU General Public License v3.0](https://github.com/joao-neves95/merger-js/blob/master/LICENSE.md)
+- [merger-js](https://github.com/joao-neves95/merger-js) - [GNU General Public License v3.0](https://github.com/joao-neves95/merger-js/blob/main/LICENSE.md)
