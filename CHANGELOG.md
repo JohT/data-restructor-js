@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency parcel to v2.16.4 [`#433`](https://github.com/JohT/data-restructor-js/pull/433)
+- Update actions/checkout digest to de0fac2 [`#434`](https://github.com/JohT/data-restructor-js/pull/434)
 
 ## [v3.4.5](https://github.com/JohT/data-restructor-js/compare/v3.4.4...v3.4.5) (1 February 2026)
 
