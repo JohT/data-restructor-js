@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update eslint monorepo to v9.39.3 [`#439`](https://github.com/JohT/data-restructor-js/pull/439)
+- Update dependency jasmine to v6.1.0 [`#440`](https://github.com/JohT/data-restructor-js/pull/440)
 
 ## [v3.4.5](https://github.com/JohT/data-restructor-js/compare/v3.4.4...v3.4.5) (1 February 2026)
 
