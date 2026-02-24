@@ -157,12 +157,9 @@ template_resolver.Resolver = (function () {
     this.replaceResolvableFields = function (stringContainingVariables, resolvableFields) {
       var replaced = stringContainingVariables;
       var propertyNames = Object.keys(resolvableFields);
-      var propertyIndex = 0;
-      var propertyName = "";
-      var propertyValue = "";
-      for (propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
-        propertyName = propertyNames[propertyIndex];
-        propertyValue = resolvableFields[propertyName];
+      for (var propertyIndex = 0; propertyIndex < propertyNames.length; propertyIndex += 1) {
+        var propertyName = propertyNames[propertyIndex];
+        var propertyValue = resolvableFields[propertyName];
         replaced = replaced.replace("{{" + propertyName + "}}", propertyValue);
       }
       return replaced;
