@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update Node.js to v24.14.0 [`#442`](https://github.com/JohT/data-restructor-js/pull/442)
+- Update dependency nyc to v18 [`#443`](https://github.com/JohT/data-restructor-js/pull/443)
 
 ## [v3.4.5](https://github.com/JohT/data-restructor-js/compare/v3.4.4...v3.4.5) (1 February 2026)
 
