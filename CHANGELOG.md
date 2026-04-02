@@ -10,27 +10,6 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...main) (upcoming)
 
-### Dependency Updates
-
-- Update dependency lmdb to v3.5.3 [`#450`](https://github.com/JohT/data-restructor-js/pull/450)
-- Update Node.js to v24.14.1 [`#449`](https://github.com/JohT/data-restructor-js/pull/449)
-- Update dependency eslint to v10.1.0 [`#448`](https://github.com/JohT/data-restructor-js/pull/448)
-- Update dependency lmdb to v3.5.2 [`#447`](https://github.com/JohT/data-restructor-js/pull/447)
-- Update dependency inquirer to v13.3.2 [`#446`](https://github.com/JohT/data-restructor-js/pull/446)
-- Update dependency eslint to v10.0.3 [`#445`](https://github.com/JohT/data-restructor-js/pull/445)
-- Update actions/upload-artifact action to v7 [`#444`](https://github.com/JohT/data-restructor-js/pull/444)
-- Update dependency nyc to v18 [`#443`](https://github.com/JohT/data-restructor-js/pull/443)
-- Update Node.js to v24.14.0 [`#442`](https://github.com/JohT/data-restructor-js/pull/442)
-- Update eslint monorepo to v10 (major) [`#435`](https://github.com/JohT/data-restructor-js/pull/435)
-- Update dependency inquirer to v13.3.0 [`#441`](https://github.com/JohT/data-restructor-js/pull/441)
-- Update dependency jasmine to v6.1.0 [`#440`](https://github.com/JohT/data-restructor-js/pull/440)
-- Update eslint monorepo to v9.39.3 [`#439`](https://github.com/JohT/data-restructor-js/pull/439)
-- Update dependency inquirer to v13.2.5 [`#438`](https://github.com/JohT/data-restructor-js/pull/438)
-- Update dependency inquirer to v13.2.4 [`#437`](https://github.com/JohT/data-restructor-js/pull/437)
-- Update Node.js to v24.13.1 [`#436`](https://github.com/JohT/data-restructor-js/pull/436)
-- Update actions/checkout digest to de0fac2 [`#434`](https://github.com/JohT/data-restructor-js/pull/434)
-- Update dependency parcel to v2.16.4 [`#433`](https://github.com/JohT/data-restructor-js/pull/433)
-
 ## [v3.4.5](https://github.com/JohT/data-restructor-js/compare/v3.4.4...v3.4.5) (1 February 2026)
 
 ### Changes
