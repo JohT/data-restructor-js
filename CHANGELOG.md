@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency jasmine to v6.2.0 [`#454`](https://github.com/JohT/data-restructor-js/pull/454)
+- Update Node.js to v24.15.0 [`#455`](https://github.com/JohT/data-restructor-js/pull/455)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
