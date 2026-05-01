@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency eslint to v10.3.0 [`#462`](https://github.com/JohT/data-restructor-js/pull/462)
+- Update github/codeql-action action to v4.35.3 [`#461`](https://github.com/JohT/data-restructor-js/pull/461)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
