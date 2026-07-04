@@ -10,9 +10,9 @@ All notable changes to this project will be documented in this file.
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.6...main) (upcoming)
 
-### Dependency Updates
+### Changes
 
-- Update github/codeql-action action to v4.36.3 [`#486`](https://github.com/JohT/data-restructor-js/pull/486)
+- Fix transient dependencies vulnerabilities [`#487`](https://github.com/JohT/data-restructor-js/pull/487)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
