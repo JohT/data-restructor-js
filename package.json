@@ -18,6 +18,8 @@
     "node": "24"
   },
   "scripts": {
+    "_postinstall": "Patches merger-js to use standard module resolution for node-notifier. Can be removed when merger-js is updated to use require('node-notifier') instead of require('../node_modules/node-notifier'), or when switching to an alternative build tool.",
+    "postinstall": "node scripts/patch-merger-js.js",
     "prebuild": "rm -rf dist",
     "lint": "eslint \"./src/js/*.js\"",
     "test": "jasmine --config=./test/js/jasmine.json",
@@ -60,5 +62,9 @@
     "node-notifier": "10.0.1",
     "nyc": "18.0.0",
     "parcel": "2.16.4"
+  },
+  "overrides": {
+    "tmp": "0.2.7",
+    "uuid": "14.0.1"
   }
 }
