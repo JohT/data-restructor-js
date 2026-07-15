@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update actions/setup-node action to v6.5.0 [`#490`](https://github.com/JohT/data-restructor-js/pull/490)
+- Update actions/setup-node action to v7 [`#491`](https://github.com/JohT/data-restructor-js/pull/491)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
