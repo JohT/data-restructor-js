@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update github/codeql-action action to v4.37.1 [`#492`](https://github.com/JohT/data-restructor-js/pull/492)
+- Update actions/checkout action to v7.0.1 [`#493`](https://github.com/JohT/data-restructor-js/pull/493)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
