@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency eslint to v10.8.0 [`#496`](https://github.com/JohT/data-restructor-js/pull/496)
+- Update Node.js to v24.18.1 [`#497`](https://github.com/JohT/data-restructor-js/pull/497)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
