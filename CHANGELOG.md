@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency uuid to v14.0.2 [`#505`](https://github.com/JohT/data-restructor-js/pull/505)
+- Update dependency inquirer to v14.1.0 [`#506`](https://github.com/JohT/data-restructor-js/pull/506)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
