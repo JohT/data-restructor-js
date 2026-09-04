@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency inquirer to v14.2.1 [`#513`](https://github.com/JohT/data-restructor-js/pull/513)
+- Update dependency eslint to v10.10.0 [`#514`](https://github.com/JohT/data-restructor-js/pull/514)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
