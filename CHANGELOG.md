@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update Node.js to v24.22.2 [`#540`](https://github.com/JohT/data-restructor-js/pull/540)
+- Update dependency node-notifier to v12 [`#541`](https://github.com/JohT/data-restructor-js/pull/541)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
