@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency node-notifier to v12 [`#541`](https://github.com/JohT/data-restructor-js/pull/541)
+- Update dependency eslint to v10.14.0 [`#543`](https://github.com/JohT/data-restructor-js/pull/543)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
