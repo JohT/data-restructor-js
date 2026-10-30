@@ -15,7 +15,7 @@
     }
   },
   "engines": {
-    "node": "24"
+    "node": "26"
   },
   "scripts": {
     "_postinstall": "Patches merger-js to use standard module resolution for node-notifier. Can be removed when merger-js is updated to use require('node-notifier') instead of require('../node_modules/node-notifier'), or when switching to an alternative build tool.",
