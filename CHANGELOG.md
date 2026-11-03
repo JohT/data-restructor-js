@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update dependency node-notifier to v12.1.0 [`#544`](https://github.com/JohT/data-restructor-js/pull/544)
+- Update github/codeql-action action to v4.39.2 [`#545`](https://github.com/JohT/data-restructor-js/pull/545)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
