@@ -12,7 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Dependency Updates
 
-- Update Node.js to v24.22.3 [`#548`](https://github.com/JohT/data-restructor-js/pull/548)
+- Update dependency lmdb to v3.5.10 [`#549`](https://github.com/JohT/data-restructor-js/pull/549)
 
 ## [v3.4.6](https://github.com/JohT/data-restructor-js/compare/v3.4.5...v3.4.6) (2 April 2026)
 
